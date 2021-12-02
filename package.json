@@ -1,0 +1,29 @@
+{
+  "name": "sowbotv13",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Voltext/SowBotv13.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Voltext/SowBotv13/issues"
+  },
+  "homepage": "https://github.com/Voltext/SowBotv13#readme",
+  "dependencies": {
+    "ascii-table": "^0.0.9",
+    "discord.js": "^13.3.1",
+    "dotenv": "^10.0.0",
+    "glob": "^7.2.0",
+    "got": "^11.8.3",
+    "mongoose": "^6.0.14",
+    "util": "^0.12.4"
+  }
+}
