@@ -29,7 +29,7 @@ module.exports = {
 					.setThumbnail("https://static-cdn.jtvnw.net/jtv_user_pictures/191aab0a-e1ac-40c7-bfe5-e86a1257d598-profile_image-300x300.png")
 					.setURL("http://twitch.tv/sowdred");
 
-					client.channels.cache.get("796022491688337408").send({
+					client.channels.cache.get(process.env.TWITCH_LIVE).send({
 						content: "@everyone",
 						embeds: [embed],
 					});
@@ -37,7 +37,7 @@ module.exports = {
 				}
 			} else {
 				if(isOnLive) {
-					client.channels.cache.get("796022491688337408").threads.create({
+					client.channels.cache.get(process.env.TWITCH_LIVE).threads.create({
 						name: 'Votre avis sur le live ?',
 						autoArchiveDuration: 60,
 						reason: "Qu'avez vous pensez de ce match ?",
