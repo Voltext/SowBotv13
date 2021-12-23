@@ -13,10 +13,5 @@ module.exports = {
 
             command.execute(interaction, client)
         }
-
-        if(interaction.isSelectMenu()) {
-            if(interaction.customId === 'predictChoice') {
-            }
-        }
     }
 }
