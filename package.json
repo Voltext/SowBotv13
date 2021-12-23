@@ -19,11 +19,13 @@
   "homepage": "https://github.com/Voltext/SowBotv13#readme",
   "dependencies": {
     "ascii-table": "^0.0.9",
+    "discord-fetch-all": "^3.0.2",
     "discord.js": "^13.3.1",
     "dotenv": "^10.0.0",
     "glob": "^7.2.0",
     "got": "^11.8.3",
     "mongoose": "^6.0.14",
+    "ms": "^2.1.3",
     "util": "^0.12.4"
   }
 }
