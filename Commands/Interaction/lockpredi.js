@@ -5,7 +5,7 @@ const prediSchema = require('../../Schemas/prediSchema')
 module.exports = {
     name: "Fermer la prédiction",
     type: "MESSAGE",
-    permission: "KICK_MEMBERS",
+    permission: "BAN_MEMBERS",
 
     /**
      * 
