@@ -1,6 +1,4 @@
-const {
-  CommandInteraction
-} = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const TwitchSchedule = require("../../Api/twitchschedule");
 require('dotenv').config();
 
@@ -9,10 +7,11 @@ module.exports = {
   description: "Set la prog de la semaine",
   permission: "ADMINISTRATOR",
 
-  execute(interaction) {
+  async execute(interaction) {
     const getSchedule = new TwitchSchedule();
 
-    const prog = getSchedule.Schedule()
+    const prog = await getSchedule.Schedule()
+    console.log(prog);
     if (prog.data.segments !== null) {
       const programmation = prog.data.segments;
       const embed = new MessageEmbed()
