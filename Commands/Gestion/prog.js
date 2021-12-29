@@ -1,6 +1,7 @@
 const { CommandInteraction } = require("discord.js");
 const TwitchSchedule = require("../../Api/twitchschedule");
 require('dotenv').config();
+const schedule = require('node-schedule');
 
 module.exports = {
     name: "prog",
