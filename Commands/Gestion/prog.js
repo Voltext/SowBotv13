@@ -12,12 +12,8 @@ module.exports = {
   execute(interaction) {
     const getSchedule = new TwitchSchedule();
 
-    const programme = client.channels.cache.get(process.env.PROGRAMME);
-    programme.bulkDelete(1);
-
     const prog = getSchedule.Schedule()
     if (prog.data.segments !== null) {
-      console.log(prog.data)
       const programmation = prog.data.segments;
       const embed = new MessageEmbed()
         .setTitle("Programme de la semaine")

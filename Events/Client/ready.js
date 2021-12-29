@@ -61,7 +61,6 @@ module.exports = {
 
 			const prog = await getSchedule.Schedule()
 			if (prog.data.segments !== null) {
-				console.log(prog.data)
 				const programmation = prog.data.segments;
 				const embed = new MessageEmbed()
 					.setTitle("Programme de la semaine")
