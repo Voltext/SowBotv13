@@ -3,7 +3,6 @@ const {
 } = require("discord.js");
 const TwitchSchedule = require("../../Api/twitchschedule");
 require('dotenv').config();
-const schedule = require('node-schedule');
 
 module.exports = {
   name: "prog",
@@ -16,7 +15,7 @@ module.exports = {
     const programme = client.channels.cache.get(process.env.PROGRAMME);
     programme.bulkDelete(1);
 
-    const prog = await getSchedule.Schedule()
+    const prog = getSchedule.Schedule()
     if (prog.data.segments !== null) {
       console.log(prog.data)
       const programmation = prog.data.segments;
