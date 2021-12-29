@@ -6,6 +6,7 @@ client.commands = new Collection();
 
 require("./Handlers/Events")(client);
 require("./Handlers/Commands")(client);
+require("./Handlers/errorHandler.js")(client);
 
 
 client.login(process.env.BOT_TOKEN);
