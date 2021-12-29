@@ -42,10 +42,7 @@ module.exports = {
               inline: true,
             });
           })
-          client.channels.cache.get(process.env.PROGRAMME).send({
-            content: "Voici le programme de la semaine",
-            embeds: [embed],
-          });
+          interaction.reply({ content: "Voici le planning de la semaine ! ", embeds: [embed]})
         } else {
           const embed = new MessageEmbed()
             .setTitle("Programme de la semaine")
@@ -55,10 +52,7 @@ module.exports = {
             .setURL("http://twitch.tv/sowdred")
             .addField("Programme introuvable", "Le programme n'a pas encore été défini");
   
-          client.channels.cache.get(process.env.PROGRAMME).send({
-            content: "Voici le programme de la semaine",
-            embeds: [embed],
-          });
+          interaction.reply({ content: "Voici le planning de la semaine ! ", embeds: [embed]})
         }
       })
     }
