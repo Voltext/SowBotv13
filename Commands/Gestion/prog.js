@@ -11,7 +11,6 @@ module.exports = {
     const getSchedule = new TwitchSchedule();
 
     const prog = await getSchedule.Schedule()
-    console.log(prog);
     if (prog.data.segments !== null) {
       const programmation = prog.data.segments;
       const embed = new MessageEmbed()
