@@ -23,7 +23,6 @@ module.exports = {
                 userName: 1,
                 _id: 0,
             });
-            console.log(interaction.user)
             if (userObj === null) {
                 rankEmbed.setTitle(`Les points de prédictions de ${username}`)
                 rankEmbed.addField('Vos points actuels', `0 point`, true)
