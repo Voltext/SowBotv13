@@ -124,7 +124,7 @@ module.exports = {
 						userName: 1,
 						_id: 0
 					}, {
-						limit: 10
+						limit: 20
 					}).sort({
 						"points": -1
 					});
