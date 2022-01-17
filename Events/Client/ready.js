@@ -158,7 +158,7 @@ module.exports = {
 						}, );
 					}
 					client.channels.cache.get(process.env.RANK_CHANNEL).send({
-						content: "Voici le classement des préedicteurs en cours...",
+						content: "Voici le classement des prédicteurs en cours...",
 						embeds: [rankEmbed],
 					});
 				} finally {
