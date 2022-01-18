@@ -49,12 +49,14 @@ module.exports = {
 			name: "cote1",
 			description: "La côte pour le premier choix",
 			type: "STRING",
+			require: true,
 		},
 		{
 			name: "cote2",
 			description: "La côte pour le deuxième choix",
 			type: "STRING",
-		}
+			require: true,
+		},
 	]
 	}],
 
