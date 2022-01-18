@@ -116,27 +116,27 @@ module.exports = {
 									value: `${options.getString("cote2")}`,
 									inline: true
 								}, );
-							interaction.followUp({
+							interaction.reply({
 								embeds: [buteurEmbed]
-							}).then(message => {
-								message.react(process.env.ONE)
-								message.react(process.env.TWO)
-								const status = "open";
-								const msgId = message.id;
-								mongo().then(async (mongoose) => {
-									try {
-										await prediSchema.findOneAndUpdate({
-											msgId,
-										}, {
-											msgId,
-											status,
-										}, {
-											upsert: true,
-										})
-									} finally {
-										mongoose.connection.close()
-									}
-								})
+							})
+							const message = interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoose) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoose.connection.close()
+								}
 							})
 						}
 					}
