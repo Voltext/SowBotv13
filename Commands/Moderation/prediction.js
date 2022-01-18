@@ -103,6 +103,15 @@ module.exports = {
 													name: 'Prono 2',
 													value: `${process.env.TWO} : Si vous pensez qu'il ne sera pas buteur`,
 													inline: true
+												}, )
+												.addFields({
+													name: 'Côte prono 1',
+													value: `${options.getString("cote1")}`,
+													inline: true
+												}, {
+													name: 'Côte prono 2',
+													value: `${options.getString("cote2")}`,
+													inline: true
 												}, );
 											collected.first().delete()
 											interaction.followUp({
