@@ -484,7 +484,7 @@ module.exports = {
 				}
 			}
 		} catch {
-			interaction.followUp({
+			interaction.reply({
 				content: "La catégorie choisie n'existe pas ou n'est pas disponible",
 				ephemeral: true
 			});
