@@ -11,7 +11,7 @@ module.exports = {
     name: "help",
     description: "Permet d'acceder à la liste des commandes",
 
-    run: async (client, message, args) => {
+   async execute(client, message, args) {
         const directories = [
             ...new Set(client.commands.map((cmd) => cmd.directory)),
         ];
