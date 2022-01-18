@@ -96,24 +96,15 @@ module.exports = {
 								.setColor("AQUA")
 								.setAuthor("Buteur")
 								.setTitle(`${match}`)
-								.setDescription(`Est-ce que ${buteur} sera buteur lors de ce match ?`)
+								.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
 								.setFooter(buteur)
 								.addFields({
-									name: 'Prono 1',
-									value: `${process.env.ONE} : Si vous pensez qu'il sera buteur`,
+									name: 'Pronostique',
+									value: `${process.env.ONE} : Si vous pensez qu'il sera buteur \n ${process.env.TWO} : Si vous pensez qu'il ne sera pas buteur`,
 									inline: true
 								}, {
-									name: 'Prono 2',
-									value: `${process.env.TWO} : Si vous pensez qu'il ne sera pas buteur`,
-									inline: true
-								}, )
-								.addFields({
-									name: 'Côte prono 1',
-									value: `${options.getString("cote1")}`,
-									inline: true
-								}, {
-									name: 'Côte prono 2',
-									value: `${options.getString("cote2")}`,
+									name: 'Côte',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
 									inline: true
 								}, );
 							interaction.reply({
