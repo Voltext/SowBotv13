@@ -59,6 +59,8 @@ module.exports = {
                     let team1 = "";
                     let team2 = "";
 
+                    let points = 0;
+
 
                     const blockedParticipeEmbed = new MessageEmbed()
                         .setTitle('Prédiction impossible')
@@ -85,9 +87,11 @@ module.exports = {
                             editEmbed.setTitle(`Est-ce que ${buteur.text} sera buteur ce soir ?`)
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", "Oui", true)
+                                points = 3
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
+                                points = 1
                             }
                             break;
                         case "Score final":
@@ -98,12 +102,15 @@ module.exports = {
                             editEmbed.setTitle(`Laquelle de ses 2 équipes gagnera le match ? (${match})`);
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", `${team1}`, true)
+                                points = 1
                             }
                             if (reaction.emoji.name === "❌") {
                                 editEmbed.addField("Résultat :", `Match nul`, true)
+                                points = 2
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", `${team2}`, true)
+                                points = 1
                             }
                             break;
                         case "Buts":
