@@ -77,7 +77,7 @@ module.exports = {
 		]
 	}],
 
-	execute(interaction, client) {
+	async execute(interaction, client) {
 		const {
 			options,
 			member,
@@ -119,7 +119,7 @@ module.exports = {
 							interaction.reply({
 								embeds: [buteurEmbed]
 							})
-							const message = interaction.fetchReply();
+							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
 							const status = "open";
