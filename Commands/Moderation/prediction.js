@@ -141,7 +141,7 @@ module.exports = {
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
-									value: `${process.env.ONE} : Si vous pensez que ${options.getString("team1")} va gagner \n ${process.env.CROSS_ID} : Si vous pensez que qu'il y aura match nul \n ${process.env.TWO} : Si vous pensez que ${options.getString("team2")} va gagner`,
+									value: `${process.env.ONE} : Si vous pensez que ${options.getString("team1")} va gagner \n ${process.env.CROSS_ID} : Si vous pensez qu'il y aura match nul \n ${process.env.TWO} : Si vous pensez que ${options.getString("team2")} va gagner`,
 									inline: true
 								}, {
 									name: 'Côtes',
@@ -225,7 +225,7 @@ module.exports = {
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
-									value: `${process.env.ONE} : Si vous pensez que ${options.getString("team1")} va gagner \n ${process.env.CROSS_ID} : Si vous pensez que qu'il y aura match nul \n ${process.env.TWO} : Si vous pensez que ${options.getString("team2")} va gagner`,
+									value: `${process.env.ONE} : Si vous pensez que ${options.getString("team1")} va gagner \n ${process.env.CROSS_ID} : Si vous pensez qu'il y aura match nul \n ${process.env.TWO} : Si vous pensez que ${options.getString("team2")} va gagner`,
 									inline: true
 								}, {
 									name: 'Côtes',
@@ -267,7 +267,7 @@ module.exports = {
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
-									value: `${process.env.ONE} : Si vous pensez que ${options.getString("team1")} va gagner \n ${process.env.CROSS_ID} : Si vous pensez que qu'il y aura match nul \n ${process.env.TWO} : Si vous pensez que ${options.getString("team2")} va gagner`,
+									value: `${process.env.ONE} : Si vous pensez que ${options.getString("team1")} va gagner \n ${process.env.CROSS_ID} : Si vous pensez qu'il y aura match nul \n ${process.env.TWO} : Si vous pensez que ${options.getString("team2")} va gagner`,
 									inline: true
 								}, {
 									name: 'Côtes',
