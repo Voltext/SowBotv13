@@ -45,7 +45,18 @@ module.exports = {
 					value: "buteur"
 				},
 			]
-		}, {
+		}, 
+		{
+			name: "team1",
+			description: "Saisissez la première équipe qui joue à domicile",
+			type: "STRING",
+			require: true,
+		},{
+			name: "team2",
+			description: "Saisissez la deuxième équipe qui joue à l'extérieur",
+			type: "STRING",
+			require: true,
+		},{
 			name: "cote1",
 			description: "La côte pour le premier choix",
 			type: "STRING",
@@ -56,6 +67,12 @@ module.exports = {
 			description: "La côte pour le deuxième choix",
 			type: "STRING",
 			require: true,
+		},
+		{
+			name: "valeur",
+			description: "Valeur a renseignée pour les pronos : Buteur / +- Buts / Cartons",
+			type: "STRING",
+			require: false,
 		},
 	]
 	}],
@@ -73,6 +90,10 @@ module.exports = {
 				case "new": {
 					switch (options.getString("type")) {
 						case "buteur": {
+							console.log(options.getString("team1"))
+							console.log(options.getString("team2"))
+							console.log(options.getString("valeur"))
+							console.log()
 							let filter = (m) => m.author.id === interaction.user.id;
 							interaction.reply({
 									content: "Saisissez le match en séparant les 2 équipes par un `-`. Puis saisissez le buteur potentiel de ce match en séparant le match et le buteur par un `/`",
