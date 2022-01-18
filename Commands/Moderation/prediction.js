@@ -116,7 +116,7 @@ module.exports = {
 									value: `${options.getString("cote2")}`,
 									inline: true
 								}, );
-							interaction.followUp({
+							interaction.reply({
 								embeds: [buteurEmbed]
 							}).then(message => {
 								message.react(process.env.ONE)
@@ -483,15 +483,11 @@ module.exports = {
 					break;
 				}
 			}
+		} catch {
+			interaction.followUp({
+				content: "La catégorie choisie n'existe pas ou n'est pas disponible",
+				ephemeral: true
+			});
 		}
 	}
-}
-catch {
-	interaction.followUp({
-		content: "La catégorie choisie n'existe pas ou n'est pas disponible",
-		ephemeral: true
-	});
-}
-
-}
 }
