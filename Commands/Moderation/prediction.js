@@ -318,7 +318,7 @@ module.exports = {
 									inline: true
 								}, );
 							interaction.reply({
-								embeds: [matchEmbed]
+								embeds: [cartonEmbed]
 							})
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)

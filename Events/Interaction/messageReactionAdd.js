@@ -44,6 +44,9 @@ module.exports = {
             const msgId = reaction.message.id;
             const message = reaction.message;
 
+            //console.log(fields)
+            //const fieldValue = Object.values(fields)
+
             await mongo().then(async (mongoose) => {
                 try {
                     const results = await prediSchema.findOne({
@@ -59,8 +62,19 @@ module.exports = {
                     let team1 = "";
                     let team2 = "";
 
-                    let points = 0;
+                    let points = "";
 
+                    let cote1 = ""
+                    let cote2 = ""
+
+                    const fields = reaction.message.embeds[0].fields[1]
+                    for (const [key, value] of Object.entries(fields)) {
+                        if (key === "value") {
+                            const cotes = value.split("\n");
+                            cote1 = cotes[0]
+                            cote2 = cotes[2]
+                        }
+                    }
 
                     const blockedParticipeEmbed = new MessageEmbed()
                         .setTitle('Prédiction impossible')
@@ -83,26 +97,27 @@ module.exports = {
                     switch (pronoType) {
                         case "Buteur":
                             const buteur = reaction.message.embeds[0].footer
+                            const matchButeur = reaction.message.embeds[0].title
                             editEmbed.setAuthor("Buteur")
-                            editEmbed.setTitle(`Est-ce que ${buteur.text} sera buteur ce soir ?`)
+                            editEmbed.setTitle(`Est-ce que ${buteur.text} sera buteur lors de ${matchButeur} ?`)
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", "Oui", true)
-                                points = 3
+                                points = cote1
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
-                                points = 1
+                                points = cote2
                             }
                             break;
                         case "Score final":
-                            const match = reaction.message.embeds[0].footer.text
-                            team1 = match.split("-")[0];
-                            team2 = match.split("-")[1];
+                            const matchFinal = reaction.message.embeds[0].footer.text
+                            team1 = matchFinal.split("-")[0];
+                            team2 = matchFinal.split("-")[1];
                             editEmbed.setAuthor("Score final");
-                            editEmbed.setTitle(`Laquelle de ses 2 équipes gagnera le match ? (${match})`);
+                            editEmbed.setTitle(`Laquelle de ses 2 équipes gagnera le match ? (${matchFinal})`);
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", `${team1}`, true)
-                                points = 1
+                                points = cote1
                             }
                             if (reaction.emoji.name === "❌") {
                                 editEmbed.addField("Résultat :", `Match nul`, true)
@@ -110,18 +125,21 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", `${team2}`, true)
-                                points = 1
+                                points = cote2
                             }
                             break;
                         case "Buts":
                             const buts = reaction.message.embeds[0].footer
+                            const matchButs = reaction.message.embeds[0].title
                             editEmbed.setAuthor("Buts");
-                            editEmbed.setTitle(`Pensez-vous qu'il y aura ${buts.text} buts dans ce match ?`);
+                            editEmbed.setTitle(`Pensez-vous qu'il y aura ${buts.text} buts dans ${matchButs} ?`);
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", "Oui", true)
+                                points = cote1
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
+                                points = cote2
                             }
                             break;
                         case "Score -45":
@@ -132,12 +150,15 @@ module.exports = {
                             editEmbed.setTitle(`Laquelle de ces 2 équipes gagnera le match à la mi-temps ? (${match45.text})`);
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", `${team1}`, true)
+                                points = cote1
                             }
                             if (reaction.emoji.name === "❌") {
                                 editEmbed.addField("Résultat :", `Match nul`, true)
+                                points = 2
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", `${team2}`, true)
+                                points = cote2
                             }
                             break;
                         case "Score +45":
@@ -148,23 +169,29 @@ module.exports = {
                             editEmbed.setTitle(`Laquelle de ces 2 équipes gagnera le match en seconde période ? (${match90.text})`);
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", `${team1}`, true)
+                                points = cote1
                             }
                             if (reaction.emoji.name === "❌") {
                                 editEmbed.addField("Résultat :", `Match nul`, true)
+                                points = 2
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", `${team2}`, true)
+                                points = cote2
                             }
                             break;
                         case "Cartons":
                             const cartons = reaction.message.embeds[0].footer
+                            const matchCartons = reaction.message.embeds[0].title
                             editEmbed.setAuthor("Cartons");
-                            editEmbed.setTitle(`Pensez-vous qu'il y aura ${cartons.text} cartons dans ce match`);
+                            editEmbed.setTitle(`Pensez-vous qu'il y aura ${cartons.text} cartons dans ${matchCartons}`);
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", "Oui", true)
+                                points = cote1
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
+                                points = cote2
                             }
                             break;
                     }
@@ -186,11 +213,12 @@ module.exports = {
                         } else {
                             if (member.roles.cache.has(process.env.MODO_ID) === true) {
                                 if (reaction.emoji.name === "1️⃣") {
-                                    winEmbed.addField("Points remportés", `2`)
+                                    winEmbed.addField("Points remportés", `${points}`)
                                     reaction.users.fetch().then(user => {
                                         user.forEach(elem => {
                                             if (elem.bot) return
                                             if (elem.id === member.id) return
+                                            addPoint(client, elem.id, elem.username, points)
                                             elem.send({
                                                 embeds: [winEmbed]
                                             });
@@ -212,11 +240,12 @@ module.exports = {
                                     })
                                 }
                                 if (reaction.emoji.name === "❌") {
-                                    winEmbed.addField("Points remportés", `2`)
+                                    winEmbed.addField("Points remportés", `${points}`)
                                     reaction.users.fetch().then(user => {
                                         user.forEach(elem => {
                                             if (elem.bot) return
                                             if (elem.id === member.id) return
+                                            addPoint(client, elem.id, elem.username, 2)
                                             elem.send({
                                                 embeds: [winEmbed]
                                             });
@@ -238,11 +267,12 @@ module.exports = {
                                     })
                                 }
                                 if (reaction.emoji.name === "2️⃣") {
-                                    winEmbed.addField("Points remportés", `2`)
+                                    winEmbed.addField("Points remportés", `${points}`)
                                     reaction.users.fetch().then(user => {
                                         user.forEach(elem => {
                                             if (elem.bot) return
                                             if (elem.id === member.id) return
+                                            addPoint(client, elem.id, elem.username, points)
                                             elem.send({
                                                 embeds: [winEmbed]
                                             });
