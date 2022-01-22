@@ -62,17 +62,19 @@ module.exports = {
                     let team1 = "";
                     let team2 = "";
 
-                    let points = "";
+                    let points = 0;
 
-                    let cote1 = ""
-                    let cote2 = ""
+                    let cote1 = 0
+                    let cote2 = 0
+                    let cote3 = 0
 
                     const fields = reaction.message.embeds[0].fields[1]
                     for (const [key, value] of Object.entries(fields)) {
                         if (key === "value") {
                             const cotes = value.split("\n");
                             cote1 = cotes[0]
-                            cote2 = cotes[2]
+                            cote2 = cotes[1]
+                            cote3 = cotes[2]
                         }
                     }
 
@@ -106,7 +108,7 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
-                                points = cote2
+                                points = cote3
                             }
                             break;
                         case "Score final":
@@ -121,11 +123,11 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "❌") {
                                 editEmbed.addField("Résultat :", `Match nul`, true)
-                                points = 2
+                                points = cote2
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", `${team2}`, true)
-                                points = cote2
+                                points = cote3
                             }
                             break;
                         case "Buts":
@@ -139,11 +141,11 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
-                                points = cote2
+                                points = cote3
                             }
                             break;
                         case "Score -45":
-                            const match45 = reaction.message.embeds[0].footer;
+                            const match45 = reaction.message.embeds[0].footer.text;
                             team1 = match45.split("-")[0];
                             team2 = match45.split("-")[1];
                             editEmbed.setAuthor("Score -45min");
@@ -154,15 +156,15 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "❌") {
                                 editEmbed.addField("Résultat :", `Match nul`, true)
-                                points = 2
+                                points = cote2
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", `${team2}`, true)
-                                points = cote2
+                                points = cote3
                             }
                             break;
                         case "Score +45":
-                            const match90 = reaction.message.embeds[0].footer;
+                            const match90 = reaction.message.embeds[0].footer.text;
                             team1 = match90.split("-")[0];
                             team2 = match90.split("-")[1];
                             editEmbed.setAuthor("Score +45min");
@@ -173,11 +175,11 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "❌") {
                                 editEmbed.addField("Résultat :", `Match nul`, true)
-                                points = 2
+                                points = cote2
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", `${team2}`, true)
-                                points = cote2
+                                points = cote3
                             }
                             break;
                         case "Cartons":
@@ -191,7 +193,7 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
-                                points = cote2
+                                points = cote3
                             }
                             break;
                     }
@@ -228,7 +230,7 @@ module.exports = {
                                         if (winner.length === 0) {
                                             adminWin.setDescription(`Aucun gagnant pour cette prédiction`)
                                         } else {
-                                            adminWin.setDescription(`2 points ont été donné à\`\`\`\\${winner}\n\`\`\``)
+                                            adminWin.setDescription(`${points} points ont été donné à\`\`\`\\${winner}\n\`\`\``)
                                         }
                                         client.channels.cache.get(process.env.ADMIN_FEED).send({
                                             embeds: [adminWin]
@@ -255,7 +257,7 @@ module.exports = {
                                         if (winner.length === 0) {
                                             adminWin.setDescription(`Aucun gagnant pour cette prédiction`)
                                         } else {
-                                            adminWin.setDescription(`2 points ont été donné à\`\`\`\\${winner}\n\`\`\``)
+                                            adminWin.setDescription(`${points} points ont été donné à\`\`\`\\${winner}\n\`\`\``)
                                         }
                                         client.channels.cache.get(process.env.ADMIN_FEED).send({
                                             embeds: [adminWin]
@@ -282,7 +284,7 @@ module.exports = {
                                         if (winner.length === 0) {
                                             adminWin.setDescription(`Aucun gagnant pour cette prédiction`)
                                         } else {
-                                            adminWin.setDescription(`2 points ont été donné à\`\`\`\\${winner}\n\`\`\``)
+                                            adminWin.setDescription(`${points} points ont été donné à\`\`\`\\${winner}\n\`\`\``)
                                         }
                                         client.channels.cache.get(process.env.ADMIN_FEED).send({
                                             embeds: [adminWin]
