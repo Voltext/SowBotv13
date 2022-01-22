@@ -108,7 +108,7 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
-                                points = cote3
+                                points = cote2
                             }
                             break;
                         case "Score final":
@@ -141,7 +141,7 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
-                                points = cote3
+                                points = cote2
                             }
                             break;
                         case "Score -45":
@@ -149,7 +149,7 @@ module.exports = {
                             team1 = match45.split("-")[0];
                             team2 = match45.split("-")[1];
                             editEmbed.setAuthor("Score -45min");
-                            editEmbed.setTitle(`Laquelle de ces 2 équipes gagnera le match à la mi-temps ? (${match45.text})`);
+                            editEmbed.setTitle(`Laquelle de ces 2 équipes gagnera le match à la mi-temps ? (${match45})`);
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", `${team1}`, true)
                                 points = cote1
@@ -168,7 +168,7 @@ module.exports = {
                             team1 = match90.split("-")[0];
                             team2 = match90.split("-")[1];
                             editEmbed.setAuthor("Score +45min");
-                            editEmbed.setTitle(`Laquelle de ces 2 équipes gagnera le match en seconde période ? (${match90.text})`);
+                            editEmbed.setTitle(`Laquelle de ces 2 équipes gagnera le match en seconde période ? (${match90})`);
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", `${team1}`, true)
                                 points = cote1
@@ -193,7 +193,7 @@ module.exports = {
                             }
                             if (reaction.emoji.name === "2️⃣") {
                                 editEmbed.addField("Résultat :", "Non", true)
-                                points = cote3
+                                points = cote2
                             }
                             break;
                     }
