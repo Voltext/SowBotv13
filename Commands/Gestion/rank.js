@@ -1,7 +1,6 @@
 const {
     MessageEmbed
 } = require("discord.js");
-const TwitchSchedule = require("../../Api/twitchschedule");
 require('dotenv').config();
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema')
