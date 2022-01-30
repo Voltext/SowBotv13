@@ -11,7 +11,7 @@ module.exports = {
 
         const count = 1950;
         const Original = oldMessage.content.slice(0, count) + (oldMessage.content.length > count ? " ..." : "");
-        const Edit = newMessage.content.slice(0, count) + (newmessage.content.length > count ? " ..." : "");
+        const Edit = newMessage.content.slice(0, count) + (newMessage.content.length > count ? " ..." : "");
 
         const logEmbed = new MessageEmbed()
         .setColor("ORANGE")
