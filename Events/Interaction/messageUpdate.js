@@ -17,7 +17,8 @@ module.exports = {
         .setColor("ORANGE")
         .setDescription(`Un [message](${newMessage.url}) a été modifié par ${newMessage.author} dans ${newMessage.channel}.
         **Original**: \`\`\`${Original}\`\`\`
-        **Edité**: \`\`\`${Edit}\`\`\``)
+        **Edité**: \`\`\`${Edit}\`\`\`
+        \n`)
 
         if(newMessage.attachments.size > 0) {
             logEmbed.addField(`Attachments:`, `${newMessage.attachments.map((a) => a.url)}`, true)
