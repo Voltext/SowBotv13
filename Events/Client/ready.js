@@ -179,7 +179,5 @@ module.exports = {
 		});
 
 		require("../../Systems/FilterSys")(client);
-		console.log(client.filters);
-		console.log(client.filtersLog);
 	}
 }
