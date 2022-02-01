@@ -164,7 +164,9 @@ module.exports = {
             });
             break;
           case "list":
-            console.log(client.filters.get(guild.id))
+            client.filters.get(guild.id).map((w) => {
+              console.log(w);
+            });
             break;
         }
         break;
