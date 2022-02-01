@@ -47,7 +47,7 @@ module.exports = {
           name: "word",
           description: "Saisissez le mot interdit",
           type: "STRING",
-          required: true,
+          required: false,
         },
       ],
     },
