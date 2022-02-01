@@ -18,8 +18,9 @@ module.exports = {
 			type: "WATCHING"
 		});
 
-		client.channels.cache.get(process.env.PREDICTIONS).fetchMessages({limit: 5}).then(messages => console.log(`Received ${messages.size} messages`))
-		.catch(console.error);
+		const channelS = client.channels.cache.get(process.env.PREDICTIONS)
+		channelS.messages.fetch()
+		.then(console.log("Loaded"))
 
 		let isOnLive = false;
 		const getLive = new TwitchLive();
