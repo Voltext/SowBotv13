@@ -169,6 +169,11 @@ module.exports = {
               const embedWord = new MessageEmbed()
               .setTitle("Voici la liste des mots interdits")
               .setDescription(`\`\`\`${w}\`\`\`\``);
+
+              return interaction.reply({
+                content: "Voici la la liste des mots interdits",
+                ephemeral: true
+              })
             });
             break;
         }
