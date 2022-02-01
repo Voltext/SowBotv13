@@ -65,13 +65,13 @@ module.exports = {
             .setLabel('Rien')
             .setStyle('SUCCESS'),
             new MessageButton()
-            .setCustomId('delete')
-            .setLabel('Supprimer')
-            .setStyle('SECONDARY'),
-            new MessageButton()
             .setCustomId('timeout')
             .setLabel('TimeOut 1h')
             .setStyle('PRIMARY'),
+            new MessageButton()
+            .setCustomId('warn')
+            .setLabel('Warn')
+            .setStyle('SECONDARY'),
             new MessageButton()
             .setCustomId('bant')
             .setLabel('Ban 1h')
