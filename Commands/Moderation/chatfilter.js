@@ -172,6 +172,7 @@ module.exports = {
 
               return interaction.reply({
                 content: "Voici la la liste des mots interdits",
+                embeds: [embedWord],
                 ephemeral: true
               })
             });
