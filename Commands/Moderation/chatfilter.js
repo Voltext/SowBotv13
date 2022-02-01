@@ -165,17 +165,20 @@ module.exports = {
             });
             break;
           case "list":
+            let listWord = "";
             client.filters.get(guild.id).map((w) => {
-              const embedWord = new MessageEmbed()
+              listWord = listWord + w + ", ";
+            });
+
+            const embedWord = new MessageEmbed()
               .setTitle("Voici la liste des mots interdits")
-              .setDescription(`\`\`\`${w}\`\`\`\``);
+              .setDescription(`\`\`\`${listWord}\`\`\``);
 
               return interaction.reply({
                 content: "Voici la la liste des mots interdits",
                 embeds: [embedWord],
                 ephemeral: true
               })
-            });
             break;
         }
         break;
