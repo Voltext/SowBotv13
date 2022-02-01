@@ -177,5 +177,7 @@ module.exports = {
 		}).catch((err) => {
 			console.log(err)
 		});
+
+		require("../../Systems/FilterSys")(client);
 	}
 }

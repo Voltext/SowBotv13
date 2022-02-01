@@ -10,4 +10,6 @@ require("./Handlers/Events")(client);
 require("./Handlers/Commands")(client);
 require("./Handlers/errorHandler.js")(client);
 
+require("./Systems/FilterSys.js")(client);
+
 client.login(process.env.BOT_TOKEN);

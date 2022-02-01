@@ -84,7 +84,7 @@ module.exports = {
         break;
       case "configure":
         const Choice = options.getString("options");
-        const Words = options.getString("word").toLowerCase();
+        const Words = options.getString("word").toLowerCase().split(",");
 
         switch (Choice) {
           case "add":
@@ -102,29 +102,61 @@ module.exports = {
                 client.filters.set(guild.id, Words);
 
                 return interaction.reply({
-                  content: `${Words} a ete ajouté à la liste`,
+                  content: `${Words.length} mot(s) a(ont) ete ajouté à la liste`,
                   ephemeral: true
                 });
               }
 
               const newWords = [];
 
-              console.log(client.filters);
+              Words.forEach((w) => {
+                if (data.Words.includes(w)) return;
+                newWords.push(w);
+                data.Words.push(w);
+                client.filters.set(guild.id).push(w);
+              });
 
-              if (data.Words.includes(Words)) return;
-              newWords.push(Words);
-              data.Words.push(Words);
-              client.filters.set(guild.id, Words);
+              data.save();
 
               return interaction.reply({
-                content: `${Words} a ete ajouté à la liste`,
+                content: `${newWords.length} mot(s) a(ont) ete ajouté à la liste`,
                 ephemeral: true
               });
-              data.save();
             });
             break;
           case "remove":
+            Schema.findOne({
+              Guild: guild.id
+            }, async (err, data) => {
+              if (err) throw err;
+              if (!data) {
+                return interaction.reply({
+                  content: "Aucune donnée n'est disponible. Suppression impossible",
+                  ephemeral: true
+                });
+              }
 
+              const removeWords = [];
+
+              Words.forEach((w) => {
+                if (!data.Words.includes(w)) return;
+                data.Words.push(w);
+                removeWords.push(w);
+              });
+
+              const newArray = await client.filters
+              .get(guild.id)
+              .filter((word) => !removeWords.includes(word));
+
+              client.filters.set(guild.id, newArray);
+
+              interaction.reply({
+                content: `${removeWords.length} mot(s) a(ont) ete supprimés à la liste`,
+                ephemeral: true
+              })
+
+              data.save();
+            });
             break;
         }
         break;
