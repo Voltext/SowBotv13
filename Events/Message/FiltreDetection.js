@@ -59,10 +59,5 @@ module.exports = {
         channelObject.send({ content: 'Nouveau mot interdit detecté', embeds: [Embed], components: [row] })
       }
     };
-
-
-
-
-
   }
 }

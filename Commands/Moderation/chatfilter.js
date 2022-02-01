@@ -80,7 +80,7 @@ module.exports = {
         interaction.reply({
           content: `Le salon <#${loggingChannel}> a bien été designé comme salon accueillant les logs des mots interdits`,
           ephemeral: true
-        })
+        });
         break;
       case "configure":
         const Choice = options.getString("options");
@@ -110,11 +110,14 @@ module.exports = {
               const newWords = [];
 
               Words.forEach((w) => {
+                console.log(w);
                 if (data.Words.includes(w)) return;
                 newWords.push(w);
                 data.Words.push(w);
-                client.filters.set(guild.id).push(w);
+                client.filters.get(guild.id).push(w);
               });
+              console.log(client.filters)
+              console.log(client.filtersLog)
 
               data.save();
 
