@@ -88,10 +88,10 @@ module.exports = {
         break;
       case "configure":
         const Choice = options.getString("options");
-        const Words = options.getString("word").toLowerCase().split(",");
 
         switch (Choice) {
           case "add":
+            const Words = options.getString("word").toLowerCase().split(",");
             Schema.findOne({
               Guild: guild.id
             }, async (err, data) => {
@@ -130,6 +130,7 @@ module.exports = {
             });
             break;
           case "remove":
+            const Words = options.getString("word").toLowerCase().split(",");
             Schema.findOne({
               Guild: guild.id
             }, async (err, data) => {
