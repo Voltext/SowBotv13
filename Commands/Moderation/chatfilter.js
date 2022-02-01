@@ -37,6 +37,10 @@ module.exports = {
               name: "Supprimer",
               value: "remove"
             },
+            {
+              name: "Liste des mots",
+              value: "list"
+            },
           ],
         },
         {
@@ -116,8 +120,6 @@ module.exports = {
                 data.Words.push(w);
                 client.filters.get(guild.id).push(w);
               });
-              console.log(client.filters)
-              console.log(client.filtersLog)
 
               data.save();
 
@@ -148,8 +150,8 @@ module.exports = {
               });
 
               const newArray = await client.filters
-              .get(guild.id)
-              .filter((word) => !removeWords.includes(word));
+                .get(guild.id)
+                .filter((word) => !removeWords.includes(word));
 
               client.filters.set(guild.id, newArray);
 
@@ -160,6 +162,9 @@ module.exports = {
 
               data.save();
             });
+            break;
+          case "list":
+            console.log(client.filters.get(guild.id))
             break;
         }
         break;
