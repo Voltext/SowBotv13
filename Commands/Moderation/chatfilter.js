@@ -1,6 +1,7 @@
 const {
   CommandInteraction,
-  Client
+  Client,
+  MessageEmbed
 } = require('discord.js');
 const Schema = require("../../Schemas/filterSchema");
 
@@ -165,7 +166,9 @@ module.exports = {
             break;
           case "list":
             client.filters.get(guild.id).map((w) => {
-              console.log(w);
+              const embedWord = new MessageEmbed()
+              .setTitle("Voici la liste des mots interdits")
+              .setDescription(`\`\`\`${w}\`\`\`\``);
             });
             break;
         }
