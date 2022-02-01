@@ -22,6 +22,11 @@ module.exports = {
       }, ],
     },
     {
+      name: "list",
+      description: "Accede a la liste des mts interdits",
+      type: "SUB_COMMAND",
+    },
+    {
       name: "configure",
       description: "Ajouter ou supprimer des mots interdits",
       type: "SUB_COMMAND",
@@ -37,10 +42,6 @@ module.exports = {
             {
               name: "Supprimer",
               value: "remove"
-            },
-            {
-              name: "Liste des mots",
-              value: "list"
             },
           ],
         },
@@ -86,6 +87,22 @@ module.exports = {
           content: `Le salon <#${loggingChannel}> a bien été designé comme salon accueillant les logs des mots interdits`,
           ephemeral: true
         });
+        break;
+      case "list":
+        let listWord = "";
+        client.filters.get(guild.id).map((w) => {
+          listWord = listWord + w + ", ";
+        });
+
+        const embedWord = new MessageEmbed()
+          .setTitle("Voici la liste des mots interdits")
+          .setDescription(`\`\`\`${listWord}\`\`\``);
+
+        return interaction.reply({
+          content: "Voici la la liste des mots interdits",
+          embeds: [embedWord],
+          ephemeral: true
+        })
         break;
       case "configure":
         const Choice = options.getString("options");
@@ -163,22 +180,6 @@ module.exports = {
 
               data.save();
             });
-            break;
-          case "list":
-            let listWord = "";
-            client.filters.get(guild.id).map((w) => {
-              listWord = listWord + w + ", ";
-            });
-
-            const embedWord = new MessageEmbed()
-              .setTitle("Voici la liste des mots interdits")
-              .setDescription(`\`\`\`${listWord}\`\`\``);
-
-              return interaction.reply({
-                content: "Voici la la liste des mots interdits",
-                embeds: [embedWord],
-                ephemeral: true
-              })
             break;
         }
         break;
