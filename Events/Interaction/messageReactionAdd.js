@@ -247,7 +247,7 @@ module.exports = {
                                         user.forEach(elem => {
                                             if (elem.bot) return
                                             if (elem.id === member.id) return
-                                            addPoint(client, elem.id, elem.username, 3)
+                                            addPoint(client, elem.id, elem.username, points)
                                             elem.send({
                                                 embeds: [winEmbed]
                                             });
