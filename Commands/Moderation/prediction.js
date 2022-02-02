@@ -145,7 +145,7 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n 2 \n ${options.getString("cote2")}`,
+									value: `${options.getString("cote1")} \n 3 \n ${options.getString("cote2")}`,
 									inline: true
 								}, );
 							interaction.reply({
@@ -229,7 +229,7 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n 2 \n ${options.getString("cote2")}`,
+									value: `${options.getString("cote1")} \n 3 \n ${options.getString("cote2")}`,
 									inline: true
 								}, );
 							interaction.reply({
@@ -271,7 +271,7 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n 2 \n ${options.getString("cote2")}`,
+									value: `${options.getString("cote1")} \n 3 \n ${options.getString("cote2")}`,
 									inline: true
 								}, );
 							interaction.reply({
