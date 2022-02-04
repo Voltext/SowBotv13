@@ -6,6 +6,7 @@ const {
 	MessageEmbed
 } = require("discord.js");
 const schedule = require('node-schedule');
+const colors = require('colors');
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema')
 
@@ -13,6 +14,20 @@ module.exports = {
 	name: "ready",
 	once: true,
 	execute(client) {
+		console.log(
+			`
+██████ ██████ ██      ██  ██  ███████  ████████  ██████████
+██     ██  ██ ██      ██ ██   ██   ██  ██    ██      ██
+██████ ██  ██ ██  ██  ██      ██ ██    ██    ██      ██
+    ██ ██  ██ ██  ██  ██      ██   ██  ██    ██      ██
+██████ ██████ ██████████      ███████  ████████      ██
+`.rainbow +
+			`
+Bot discord en relation avec le serveur discord de ${'Sowdred !'.blue} !
+Le BOT est ${'en ligne !'.green}
+
+${'↓ LOGS ↓'.bgBlue}`,
+		);
 		console.log("✅ Le bot est actuellement en ligne");
 		client.user.setActivity("le serveur...", {
 			type: "WATCHING"

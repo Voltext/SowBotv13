@@ -19,6 +19,7 @@
   "homepage": "https://github.com/Voltext/SowBotv13#readme",
   "dependencies": {
     "ascii-table": "^0.0.9",
+    "colors": "^1.4.0",
     "discord-fetch-all": "^3.0.2",
     "discord.js": "^13.4.0",
     "discordjs-button-pagination": "^3.0.0",
