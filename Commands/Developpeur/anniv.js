@@ -15,10 +15,11 @@ module.exports = {
 
     execute(interaction) {
         const member = interaction.options.getMember('user');
+        console.log(member.user.username)
         const embed = new MessageEmbed()
-        .setTitle(`🎁 Bon anniversaire ${member.username} !`)
+        .setTitle(`🎁 Bon anniversaire ${member.user.username} !`)
         .setColor('BLUE')
-        .setDescription(`Toute l'équipe du Club House te souhaite un très bon anniversaire ${member.username}`)
-        interaction.reply({embeds: [embed]});
+        .setDescription(`Toute l'équipe du Club House te souhaite un très bon anniversaire ${member.user.username}`)
+        interaction.reply({content: `<@${member.user.id}>`,embeds: [embed]});
     }
 }
