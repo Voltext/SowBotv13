@@ -19,6 +19,7 @@ module.exports = {
         guild.channels.cache.get(process.env.GENERAL).send({
             content: `${phrase}`
         });
+        interaction.reply({content: "Message envoyé", ephemeral: true})
         
     }
 }
