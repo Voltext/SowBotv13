@@ -1,11 +1,13 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const {
+    CommandInteraction,
+    MessageEmbed
+} = require("discord.js");
 
 module.exports = {
     name: "say",
     description: "Permet de faire dire ce qu'on veut au bot",
-    permission: "ADMINISTRATOR",
-    options: [
-        {
+    permission: "KICK_MEMBERS",
+    options: [{
             name: 'phrase',
             description: "La phrase a faire dire",
             type: "STRING",
@@ -14,12 +16,17 @@ module.exports = {
     ],
 
     execute(interaction) {
-        const { guild } = interaction;
+        const {
+            guild
+        } = interaction;
         const phrase = interaction.options.getString('phrase');
         guild.channels.cache.get(process.env.GENERAL).send({
             content: `${phrase}`
-        });
-        interaction.reply({content: "Message envoyé", ephemeral: true})
-        
+        })
+        interaction.reply({
+            content: "Message envoyé",
+            ephemeral: true
+        })
+
     }
 }
