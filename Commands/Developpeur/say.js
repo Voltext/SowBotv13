@@ -13,6 +13,12 @@ module.exports = {
             type: "STRING",
             required: true
         },
+        {
+            name: 'salon',
+            description: "Salon où envoye le message",
+            type: "CHANNEL",
+            required: true
+        },
     ],
 
     execute(interaction) {
@@ -20,11 +26,12 @@ module.exports = {
             guild
         } = interaction;
         const phrase = interaction.options.getString('phrase');
-        guild.channels.cache.get(process.env.GENERAL).send({
+        const loggingChannel = interaction.options.getChannel("salon").id;
+        guild.channels.cache.get(loggingChannel).send({
             content: `${phrase}`
         })
         interaction.reply({
-            content: "Message envoyé",
+            content: `Message envoyé dans <#${loggingChannel}>`,
             ephemeral: true
         })
 
