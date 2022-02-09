@@ -44,6 +44,10 @@ module.exports = {
 						name: "Buteur",
 						value: "buteur"
 					},
+					{
+						name: "Medaille (seulement JO)",
+						value: "medaille"
+					},
 				]
 			},
 			{
@@ -55,7 +59,7 @@ module.exports = {
 				name: "team2",
 				description: "Saisissez la deuxième équipe qui joue à l'extérieur",
 				type: "STRING",
-				require: true,
+				require: false,
 			}, {
 				name: "cote1",
 				description: "La côte pour le premier choix",
@@ -182,6 +186,48 @@ module.exports = {
 								.setTitle(`${match}`)
 								.setDescription(`Pensez-vous qu'il y aura ${buts} buts dans ce match ?`)
 								.setFooter(buts)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez qu'il y aura + \n ${process.env.TWO} : Si vous pensez que qu'il y aura -`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [butsEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoose) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoose.connection.close()
+								}
+							})
+							break;
+						}
+						case "medaille": {
+							const nbMedaille = options.getString("valeur")
+							const match = `${options.getString("team1")}`
+							const butsEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("Medailles")
+								.setTitle(`${match}`)
+								.setDescription(`Pensez-vous que ${match} aura plus de ${nbMedaille} médailles durant ces JO ?`)
+								.setFooter(nbMedaille)
 								.addFields({
 									name: 'Pronostiques',
 									value: `${process.env.ONE} : Si vous pensez qu'il y aura + \n ${process.env.TWO} : Si vous pensez que qu'il y aura -`,
