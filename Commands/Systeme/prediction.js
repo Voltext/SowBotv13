@@ -226,7 +226,7 @@ module.exports = {
 								.setColor("AQUA")
 								.setAuthor("Medailles")
 								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous que ${match} aura plus de ${nbMedaille} médailles durant ces JO ?`)
+								.setDescription(`Pensez-vous que la ${match} aura plus de ${nbMedaille} médailles durant ces JO ?`)
 								.setFooter(nbMedaille)
 								.addFields({
 									name: 'Pronostiques',
