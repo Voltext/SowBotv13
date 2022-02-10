@@ -221,9 +221,6 @@ module.exports = {
                                             if (elem.bot) return
                                             if (elem.id === member.id) return
                                             addPoint(client, elem.id, elem.username, points)
-                                            elem.send({
-                                                embeds: [winEmbed]
-                                            });
                                             winner.push(elem.username)
                                         })
                                         editEmbed.addField("Gagnants :", winner.length.toString(), true)
@@ -248,9 +245,6 @@ module.exports = {
                                             if (elem.bot) return
                                             if (elem.id === member.id) return
                                             addPoint(client, elem.id, elem.username, points)
-                                            elem.send({
-                                                embeds: [winEmbed]
-                                            });
                                             winner.push(elem.username)
                                         })
                                         editEmbed.addField("Gagnants :", winner.length.toString(), true)
@@ -275,9 +269,6 @@ module.exports = {
                                             if (elem.bot) return
                                             if (elem.id === member.id) return
                                             addPoint(client, elem.id, elem.username, points)
-                                            elem.send({
-                                                embeds: [winEmbed]
-                                            });
                                             winner.push(elem.username)
                                         })
                                         editEmbed.addField("Gagnants :", winner.length.toString(), true)
