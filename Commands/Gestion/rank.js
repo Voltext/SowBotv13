@@ -44,7 +44,7 @@ module.exports = {
                         placement = placement + 1;
                         if(placement === 9) {
                             rank = rank + "--\n";
-                            pseudos = pseudos + '**------- PLAY - OFF -----**\n';
+                            pseudos = pseudos + '**------- PLAY - OFF -------**\n';
                             pointsPlayer = pointsPlayer + "--\n";
                         }
                     })
