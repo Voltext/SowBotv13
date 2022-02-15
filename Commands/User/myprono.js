@@ -1,8 +1,6 @@
 const {
   MessageEmbed
 } = require("discord.js");
-const mongo = require('../../mongo');
-const rankPrediSchema = require('../../Schemas/rankPredictSchema')
 
 module.exports = {
   name: "myprono",
@@ -14,15 +12,15 @@ module.exports = {
       require: true,
       choices: [{
           name: "PSG - REAL",
-          value: "psg"
+          value: "psgvsreal"
         },
         {
           name: "OM - QARABAG",
-          value: "om"
+          value: "omvsqarabag"
         },
         {
           name: "CHELSEA - LILLE",
-          value: "chelsea"
+          value: "chelseavslille"
         },
       ]
     },
