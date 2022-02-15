@@ -3,35 +3,34 @@ const {
 } = require("discord.js");
 
 module.exports = {
-  name: "prediction",
-  description: "Permet de créer une prédiction",
-  permission: "KICK_MEMBERS",
+  name: "myprono",
+  description: "Permet d'envoyer une prediction score exact",
   options: [{
     name: "new",
     description: "Créer une prédiction",
     type: "SUB_COMMAND",
     options: [{
-        name: "type",
+        name: "match",
         description: "Le type de prédiction que vous souhaitez créer",
         type: "STRING",
         require: true,
         choices: [{
-            name: "Résultat final",
-            value: "final"
+            name: "PSG - REAL",
+            value: "psg vs real"
           },
           {
-            name: "+/- de buts",
-            value: "but"
+            name: "OM - QARABAG",
+            value: "om vs qarabag"
           },
           {
-            name: "Cartons",
-            value: "cartons"
+            name: "CHELSEA - LILLE",
+            value: "chelsea vs lille"
           },
         ]
       },
       {
-        name: "team1",
-        description: "Saisissez la première équipe qui joue à domicile",
+        name: "score",
+        description: "Saisissez le score",
         type: "STRING",
         require: true,
       },
@@ -43,7 +42,7 @@ module.exports = {
       guild
     } = interaction;
     const score = interaction.options.getString('score');
-    const match = options.getString('type')
+    const match = interaction.options.getString('match');
 
     const embed = new MessageEmbed()
       .setColor('DARKBLUE')
