@@ -8,21 +8,26 @@ module.exports = {
   options: [{
       name: "matchs",
       description: "Les matchs dispos",
-      type: "STRING",
-      require: true,
-      choices: [{
-          name: "PSG - REAL",
-          value: "psgvsreal"
-        },
-        {
-          name: "OM - QARABAG",
-          value: "omvsqarabag"
-        },
-        {
-          name: "CHELSEA - LILLE",
-          value: "chelseavslille"
-        },
-      ]
+      type: "SUB_COMMAND",
+      options: [{
+        name: "type",
+        description: "Le type de prédiction que vous souhaitez créer",
+        type: "STRING",
+        require: true,
+        choices: [{
+            name: "PSG - REAL",
+            value: "psgvsreal"
+          },
+          {
+            name: "OM - QARABAG",
+            value: "omvsqarabag"
+          },
+          {
+            name: "CHELSEA - LILLE",
+            value: "chelseavslille"
+          },
+        ],
+      }, ],
     },
     {
       name: 'score',
@@ -37,7 +42,7 @@ module.exports = {
       guild
     } = interaction;
     const score = interaction.options.getString('score');
-    const match = options.getString('matchs')
+    const match = options.getString('type')
 
     const embed = new MessageEmbed()
       .setColor('DARKBLUE')
