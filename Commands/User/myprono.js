@@ -15,10 +15,6 @@ module.exports = {
         type: "STRING",
         require: true,
         choices: [{
-            name: "PSG - REAL",
-            value: "psg vs real"
-          },
-          {
             name: "OM - QARABAG",
             value: "om vs qarabag"
           },
