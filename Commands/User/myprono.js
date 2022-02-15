@@ -27,7 +27,12 @@ module.exports = {
     .setDescription('Pour le match PSG - REAL');
 
     guild.channels.cache.get(process.env.ADMIN_FEED).send({
-      content: `${embed}`
+      content: `Message de ${interaction.user.username}`,
+      embeds: [embed],
+  })
+  interaction.reply({
+    content: 'Prédiction envoyé',
+    ephemeral: true,
   })
     }
 }
