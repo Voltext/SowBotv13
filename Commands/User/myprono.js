@@ -3,39 +3,40 @@ const {
 } = require("discord.js");
 
 module.exports = {
-  name: "myprono",
-  description: "Permet a un utilisateur proposer un pronostique",
+  name: "prediction",
+  description: "Permet de créer une prédiction",
+  permission: "KICK_MEMBERS",
   options: [{
-      name: "matchs",
-      description: "Les matchs dispos",
-      type: "SUB_COMMAND",
-      options: [{
+    name: "new",
+    description: "Créer une prédiction",
+    type: "SUB_COMMAND",
+    options: [{
         name: "type",
         description: "Le type de prédiction que vous souhaitez créer",
         type: "STRING",
         require: true,
         choices: [{
-            name: "PSG - REAL",
-            value: "psgvsreal"
+            name: "Résultat final",
+            value: "final"
           },
           {
-            name: "OM - QARABAG",
-            value: "omvsqarabag"
+            name: "+/- de buts",
+            value: "but"
           },
           {
-            name: "CHELSEA - LILLE",
-            value: "chelseavslille"
+            name: "Cartons",
+            value: "cartons"
           },
-        ],
-      }, ],
-    },
-    {
-      name: 'score',
-      description: "Score de l'utilisateur",
-      type: "STRING",
-      required: true
-    },
-  ],
+        ]
+      },
+      {
+        name: "team1",
+        description: "Saisissez la première équipe qui joue à domicile",
+        type: "STRING",
+        require: true,
+      },
+    ]
+  }],
 
   execute(interaction) {
     const {
