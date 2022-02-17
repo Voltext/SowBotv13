@@ -3,6 +3,7 @@ const {
   Client,
   MessageEmbed
 } = require('discord.js');
+const mongo = require('../../mongo');
 const Schema = require("../../Schemas/filterSchema");
 
 module.exports = {
@@ -110,77 +111,89 @@ module.exports = {
 
         switch (Choice) {
           case "add":
-            Schema.findOne({
-              Guild: guild.id
-            }, async (err, data) => {
-              if (err) throw err;
-              if (!data) {
-                await Schema.create({
-                  Guild: guild.id,
-                  Log: null,
-                  Words: Words,
+            await mongo().then(async (mongoosechat) => {
+              try {
+                Schema.findOne({
+                  Guild: guild.id
+                }, async (err, data) => {
+                  if (err) throw err;
+                  if (!data) {
+                    await Schema.create({
+                      Guild: guild.id,
+                      Log: null,
+                      Words: Words,
+                    });
+    
+                    client.filters.set(guild.id, Words);
+    
+                    return interaction.reply({
+                      content: `${Words.length} mot(s) a(ont) ete ajouté à la liste`,
+                      ephemeral: true
+                    });
+                  }
+    
+                  const newWords = [];
+    
+                  Words.forEach((w) => {
+                    console.log(w);
+                    if (data.Words.includes(w)) return;
+                    newWords.push(w);
+                    data.Words.push(w);
+                    client.filters.get(guild.id).push(w);
+                  });
+    
+                  data.save();
+    
+                  return interaction.reply({
+                    content: `${newWords.length} mot(s) a(ont) ete ajouté à la liste`,
+                    ephemeral: true
+                  });
                 });
-
-                client.filters.set(guild.id, Words);
-
-                return interaction.reply({
-                  content: `${Words.length} mot(s) a(ont) ete ajouté à la liste`,
-                  ephemeral: true
-                });
+                break;
+              } finally {
+                mongoosechat.connection.close()
               }
-
-              const newWords = [];
-
-              Words.forEach((w) => {
-                console.log(w);
-                if (data.Words.includes(w)) return;
-                newWords.push(w);
-                data.Words.push(w);
-                client.filters.get(guild.id).push(w);
-              });
-
-              data.save();
-
-              return interaction.reply({
-                content: `${newWords.length} mot(s) a(ont) ete ajouté à la liste`,
-                ephemeral: true
-              });
-            });
-            break;
+            })
           case "remove":
-            Schema.findOne({
-              Guild: guild.id
-            }, async (err, data) => {
-              if (err) throw err;
-              if (!data) {
-                return interaction.reply({
-                  content: "Aucune donnée n'est disponible. Suppression impossible",
-                  ephemeral: true
+            await mongo().then(async (mongoosechatr) => {
+              try {
+                Schema.findOne({
+                  Guild: guild.id
+                }, async (err, data) => {
+                  if (err) throw err;
+                  if (!data) {
+                    return interaction.reply({
+                      content: "Aucune donnée n'est disponible. Suppression impossible",
+                      ephemeral: true
+                    });
+                  }
+    
+                  const removeWords = [];
+    
+                  Words.forEach((w) => {
+                    if (!data.Words.includes(w)) return;
+                    data.Words.push(w);
+                    removeWords.push(w);
+                  });
+    
+                  const newArray = await client.filters
+                    .get(guild.id)
+                    .filter((word) => !removeWords.includes(word));
+    
+                  client.filters.set(guild.id, newArray);
+    
+                  interaction.reply({
+                    content: `${removeWords.length} mot(s) a(ont) ete supprimés à la liste`,
+                    ephemeral: true
+                  })
+    
+                  data.save();
                 });
+                break;
+              } finally {
+                mongoosechatr.connection.close()
               }
-
-              const removeWords = [];
-
-              Words.forEach((w) => {
-                if (!data.Words.includes(w)) return;
-                data.Words.push(w);
-                removeWords.push(w);
-              });
-
-              const newArray = await client.filters
-                .get(guild.id)
-                .filter((word) => !removeWords.includes(word));
-
-              client.filters.set(guild.id, newArray);
-
-              interaction.reply({
-                content: `${removeWords.length} mot(s) a(ont) ete supprimés à la liste`,
-                ephemeral: true
-              })
-
-              data.save();
-            });
-            break;
+            })
         }
         break;
     }
