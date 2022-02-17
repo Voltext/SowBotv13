@@ -117,14 +117,14 @@ module.exports = {
 
         switch (Choice) {
           case "add":
-            await mongo().then(async (mongoosechat) => {
+            mongo().then(async (mongoosechat) => {
               try {
                 await Schema.findOne({
                   Guild: guild.id
                 }, async (err, data) => {
                   if (err) throw err;
                   if (!data) {
-                    await Schema.create({
+                    Schema.create({
                       Guild: guild.id,
                       Log: null,
                       Words: Words,
