@@ -149,11 +149,11 @@ module.exports = {
                     ephemeral: true
                   });
                 });
-                break;
               } finally {
                 mongoosechat.connection.close()
               }
             })
+            break;
           case "remove":
             await mongo().then(async (mongoosechatr) => {
               try {
@@ -189,11 +189,11 @@ module.exports = {
     
                   data.save();
                 });
-                break;
               } finally {
                 mongoosechatr.connection.close()
               }
             })
+            break;
         }
         break;
     }
