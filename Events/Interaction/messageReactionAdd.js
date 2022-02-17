@@ -8,7 +8,7 @@ const prediSchema = require('../../Schemas/prediSchema')
 const rankPrediSchema = require('../../Schemas/rankPredictSchema');
 
 function addPoint(client, userId, userName, points) {
-    mongo().then(async (mongoose) => {
+    mongo().then(async (mongooseaddpoint) => {
         try {
             await rankPrediSchema.findOneAndUpdate({
                 userId,
@@ -25,7 +25,7 @@ function addPoint(client, userId, userName, points) {
         } catch (error) {
             console.log(error)
             console.log(`${points} points n'ont pas pu être donné à ${userName}`)
-            mongoose.connection.close()
+            mongooseaddpoint.connection.close()
         }
     })
 }
@@ -47,7 +47,7 @@ module.exports = {
             //console.log(fields)
             //const fieldValue = Object.values(fields)
 
-            await mongo().then(async (mongoose) => {
+            await mongo().then(async (mongoosepredi) => {
                 try {
                     const results = await prediSchema.findOne({
                         msgId,
@@ -315,7 +315,7 @@ module.exports = {
                         }
                     })
                 } finally {
-                    mongoose.connection.close();
+                    mongoosepredi.connection.close();
                 }
             });
         };

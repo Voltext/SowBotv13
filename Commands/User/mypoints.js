@@ -14,7 +14,7 @@ module.exports = {
         .setColor("BLUE")
         .setDescription("Voici tous vos points accumulés au niveau des prédictions");
 
-    mongo().then(async (mongoose2) => {
+    mongo().then(async (mongoosepoints) => {
         try {
             const userObj = await rankPrediSchema.findOne({
                 userId,
@@ -33,7 +33,7 @@ module.exports = {
             }
             interaction.reply({embeds: [rankEmbed] , ephemeral: true });
         } finally {
-            mongoose2.connection.close()
+            mongoosepoints.connection.close()
         }
     })
     }

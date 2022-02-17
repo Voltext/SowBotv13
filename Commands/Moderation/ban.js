@@ -72,7 +72,7 @@ module.exports = {
 			reason: reason
 		}
 
-		await mongo().then(async (mongoose) => {
+		await mongo().then(async (mongooseban) => {
 			try {
 				await warnSchema.findOneAndUpdate({
 					guildId,
@@ -87,7 +87,7 @@ module.exports = {
 					upsert: true,
 				})
 			} finally {
-				mongoose.connection.close()
+				mongooseban.connection.close()
 			}
 		})
     }

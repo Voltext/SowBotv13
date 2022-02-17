@@ -22,7 +22,7 @@ module.exports = {
         const d = new Date();
         let name = month[d.getMonth()];
 
-        await mongo().then(async (mongoose) => {
+        await mongo().then(async (mongoosereset1) => {
             try {
                 const results = await rankPrediSchema.find({}, {
                     points: 1,
@@ -80,16 +80,16 @@ module.exports = {
                 interaction.reply({
                     embeds: [rankEmbed]
                 })
-                await mongo().then(async (mongoose2) => {
+                await mongo().then(async (mongoosereset2) => {
                     try {
                         await rankPrediSchema.deleteMany({
                         })
                     } finally {
-                        mongoose2.connection.close()
+                        mongoosereset2.connection.close()
                     }
                 })
             } finally {
-                mongoose.connection.close();
+                mongoosereset1.connection.close();
             }
         });
     }

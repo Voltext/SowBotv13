@@ -17,7 +17,7 @@ module.exports = {
         let pseudos = '';
         let pointsPlayer = '';
 
-        await mongo().then(async (mongoose) => {
+        await mongo().then(async (mongooserank) => {
             try {
                 const results = await rankPrediSchema.find({}, {
                     points: 1,
@@ -64,7 +64,7 @@ module.exports = {
                 }
                 interaction.reply({embeds: [rankEmbed]})
             } finally {
-                mongoose.connection.close();
+                mongooserank.connection.close();
             }
         });
     }

@@ -16,7 +16,7 @@ module.exports = {
         const status = "close";
 
 
-        await mongo().then(async (mongoose) => {
+        await mongo().then(async (mongooselock) => {
 			try {
 				await prediSchema.findOneAndUpdate({
 					msgId,
@@ -27,7 +27,7 @@ module.exports = {
 					upsert: true,
 				})
 			} finally {
-				mongoose.connection.close()
+				mongooselock.connection.close()
 			}
 		})
 

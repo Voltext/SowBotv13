@@ -119,7 +119,7 @@ module.exports = {
 							message.react(process.env.TWO)
 							const status = "open";
 							const msgId = message.id;
-							mongo().then(async (mongoose) => {
+							mongo().then(async (mongoosebuteur) => {
 								try {
 									await prediSchema.findOneAndUpdate({
 										msgId,
@@ -130,7 +130,7 @@ module.exports = {
 										upsert: true,
 									})
 								} finally {
-									mongoose.connection.close()
+									mongoosebuteur.connection.close()
 								}
 							})
 							break;
@@ -161,7 +161,7 @@ module.exports = {
 							message.react(process.env.TWO)
 							const status = "open";
 							const msgId = message.id;
-							mongo().then(async (mongoose) => {
+							mongo().then(async (mongoosefinal) => {
 								try {
 									await prediSchema.findOneAndUpdate({
 										msgId,
@@ -172,7 +172,7 @@ module.exports = {
 										upsert: true,
 									})
 								} finally {
-									mongoose.connection.close()
+									mongoosefinal.connection.close()
 								}
 							})
 							break;
@@ -203,7 +203,7 @@ module.exports = {
 							message.react(process.env.TWO)
 							const status = "open";
 							const msgId = message.id;
-							mongo().then(async (mongoose) => {
+							mongo().then(async (mongoosebut) => {
 								try {
 									await prediSchema.findOneAndUpdate({
 										msgId,
@@ -214,7 +214,7 @@ module.exports = {
 										upsert: true,
 									})
 								} finally {
-									mongoose.connection.close()
+									mongoosebut.connection.close()
 								}
 							})
 							break;
@@ -245,7 +245,7 @@ module.exports = {
 							message.react(process.env.TWO)
 							const status = "open";
 							const msgId = message.id;
-							mongo().then(async (mongoose) => {
+							mongo().then(async (mongoosemedaille) => {
 								try {
 									await prediSchema.findOneAndUpdate({
 										msgId,
@@ -256,7 +256,7 @@ module.exports = {
 										upsert: true,
 									})
 								} finally {
-									mongoose.connection.close()
+									mongoosemedaille.connection.close()
 								}
 							})
 							break;
@@ -287,7 +287,7 @@ module.exports = {
 							message.react(process.env.TWO)
 							const status = "open";
 							const msgId = message.id;
-							mongo().then(async (mongoose) => {
+							mongo().then(async (mongoose45) => {
 								try {
 									await prediSchema.findOneAndUpdate({
 										msgId,
@@ -298,7 +298,7 @@ module.exports = {
 										upsert: true,
 									})
 								} finally {
-									mongoose.connection.close()
+									mongoose45.connection.close()
 								}
 							})
 							break;
@@ -329,7 +329,7 @@ module.exports = {
 							message.react(process.env.TWO)
 							const status = "open";
 							const msgId = message.id;
-							mongo().then(async (mongoose) => {
+							mongo().then(async (mongoose90) => {
 								try {
 									await prediSchema.findOneAndUpdate({
 										msgId,
@@ -340,7 +340,7 @@ module.exports = {
 										upsert: true,
 									})
 								} finally {
-									mongoose.connection.close()
+									mongoose90.connection.close()
 								}
 							})
 							break;
@@ -371,7 +371,7 @@ module.exports = {
 							message.react(process.env.TWO)
 							const status = "open";
 							const msgId = message.id;
-							mongo().then(async (mongoose) => {
+							mongo().then(async (mongoosecarton) => {
 								try {
 									await prediSchema.findOneAndUpdate({
 										msgId,
@@ -382,7 +382,7 @@ module.exports = {
 										upsert: true,
 									})
 								} finally {
-									mongoose.connection.close()
+									mongoosecarton.connection.close()
 								}
 							})
 							break;

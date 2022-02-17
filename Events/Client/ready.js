@@ -136,7 +136,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			let pseudos = '';
 			let pointsPlayer = '';
 
-			await mongo().then(async (mongoose) => {
+			await mongo().then(async (mongooseclassement) => {
 				try {
 					const results = await rankPrediSchema.find({}, {
 						points: 1,
@@ -186,7 +186,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 						embeds: [rankEmbed],
 					});
 				} finally {
-					mongoose.connection.close();
+					mongooseclassement.connection.close();
 				}
 			});
 		})
