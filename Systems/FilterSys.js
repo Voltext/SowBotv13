@@ -5,7 +5,6 @@ module.exports = (client) => {
     documents.forEach((doc) => {
       client.filters.set(doc.Guild, doc.Words);
       client.filtersLog.set(doc.Guild, doc.Log);
-      console.log(client.filters)
     });
   });
 };
