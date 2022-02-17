@@ -73,14 +73,20 @@ module.exports = {
       case "settings":
         const loggingChannel = options.getChannel("logging").id;
 
-        await Schema.findOneAndUpdate({
-          Guild: guild.id
-        }, {
-          Log: loggingChannel
-        }, {
-          new: true,
-          upsert: true
-        });
+        mongo().then(async (mongoosesettings) => {
+          try {
+            await Schema.findOneAndUpdate({
+              Guild: guild.id
+            }, {
+              Log: loggingChannel
+            }, {
+              new: true,
+              upsert: true
+            });
+          } finally {
+            mongoosesettings.connection.close()
+          }
+        })
 
         client.filtersLog.set(guild.id, loggingChannel);
 
@@ -113,7 +119,7 @@ module.exports = {
           case "add":
             await mongo().then(async (mongoosechat) => {
               try {
-                Schema.findOne({
+                await Schema.findOne({
                   Guild: guild.id
                 }, async (err, data) => {
                   if (err) throw err;
@@ -123,17 +129,17 @@ module.exports = {
                       Log: null,
                       Words: Words,
                     });
-    
+
                     client.filters.set(guild.id, Words);
-    
+
                     return interaction.reply({
                       content: `${Words.length} mot(s) a(ont) ete ajouté à la liste`,
                       ephemeral: true
                     });
                   }
-    
+
                   const newWords = [];
-    
+
                   Words.forEach((w) => {
                     console.log(w);
                     if (data.Words.includes(w)) return;
@@ -141,9 +147,9 @@ module.exports = {
                     data.Words.push(w);
                     client.filters.get(guild.id).push(w);
                   });
-    
+
                   data.save();
-    
+
                   return interaction.reply({
                     content: `${newWords.length} mot(s) a(ont) ete ajouté à la liste`,
                     ephemeral: true
@@ -157,7 +163,7 @@ module.exports = {
           case "remove":
             await mongo().then(async (mongoosechatr) => {
               try {
-                Schema.findOne({
+                await Schema.findOne({
                   Guild: guild.id
                 }, async (err, data) => {
                   if (err) throw err;
@@ -167,26 +173,26 @@ module.exports = {
                       ephemeral: true
                     });
                   }
-    
+
                   const removeWords = [];
-    
+
                   Words.forEach((w) => {
                     if (!data.Words.includes(w)) return;
                     data.Words.push(w);
                     removeWords.push(w);
                   });
-    
+
                   const newArray = await client.filters
                     .get(guild.id)
                     .filter((word) => !removeWords.includes(word));
-    
+
                   client.filters.set(guild.id, newArray);
-    
+
                   interaction.reply({
                     content: `${removeWords.length} mot(s) a(ont) ete supprimés à la liste`,
                     ephemeral: true
                   })
-    
+
                   data.save();
                 });
               } finally {
