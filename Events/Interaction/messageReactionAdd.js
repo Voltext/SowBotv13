@@ -213,7 +213,7 @@ module.exports = {
                             }
                             return;
                         } else {
-                            if (member.roles.cache.has(process.env.MODO_ID) === true) {
+                            if (member.roles.cache.has(process.env.GERANT) === true) {
                                 if (reaction.emoji.name === "1️⃣") {
                                     winEmbed.addField("Points remportés", `${points}`)
                                     reaction.users.fetch().then(user => {
