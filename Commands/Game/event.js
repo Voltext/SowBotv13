@@ -1,8 +1,8 @@
 const { MessageEmbed } = require("discord.js");
 require('dotenv').config();
 const teamBDD = require("../../Game/Json/team.json")
-const clubBDD = require("../../Game/Json/club.json")
-const goalStrikerBDD = require("../../Game/Json/goalstriker.json")
+//const clubBDD = require("../../Game/Json/club.json")
+//const goalStrikerBDD = require("../../Game/Json/goalstriker.json")
 
 module.exports = {
   name: "event",
