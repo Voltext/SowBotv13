@@ -44,9 +44,9 @@ module.exports = {
     const {guild} = interaction;
     const equipe = interaction.options.getString("valeur")
 
-    const imgTeam = teamBDD[equipe][0]["image"];
-    const nomTeam = teamBDD[equipe][0]["nom"];
-    const difficulty = teamBDD[equipe][0]["difficulty"];
+    const imgTeam = teamBDD[0][equipe][0]["image"];
+    const nomTeam = teamBDD[0][equipe][0]["nom"];
+    const difficulty = teamBDD[0][equipe][0]["difficulty"];
 
     const img = new MessageAttachment(imgTeam);
 

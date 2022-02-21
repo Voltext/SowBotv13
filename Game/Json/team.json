@@ -3,70 +3,70 @@
 		"PSG": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG.png",
+				"image": "../SowBotv13/Game/Assets/PSG.png",
 				"difficulty": 1
 			}
         ],
         "Liverpool": [
 			{
 				"nom": "Liverpool",
-				"image": "../Assets/Liverpool.png",
+				"image": "../SowBotv13/Game/Assets/Liverpool.png",
 				"difficulty": 1
 			}
         ],
         "Bayern": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/Bayern.png",
+				"image": "../Game/Assets/Bayern.png",
 				"difficulty": 1
 			}
         ],
         "Atletico": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/Atletico.png",
+				"image": "../SowBotv13/Game/Assets/Atletico.png",
 				"difficulty": 1
 			}
         ],
         "Chelsea": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/Chelsea.png",
+				"image": "../SowBotv13/Game/Assets/Chelsea.png",
 				"difficulty": 1
 			}
         ],
         "Juventus": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/Juventus.png",
+				"image": "../SowBotv13/Game/Assets/Juventus.png",
 				"difficulty": 1
 			}
         ],
         "Leipzig": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/Leipzig.png",
+				"image": "../SowBotv13/Game/Assets/Leipzig.png",
 				"difficulty": 2
 			}
         ],
         "Porto": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/Porto.png",
+				"image": "../SowBotv13/Game/Assets/Porto.png",
 				"difficulty": 3
 			}
         ],
         "Real": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/Real.png",
+				"image": "../SowBotv13/Game/Assets/Real.png",
 				"difficulty": 1
 			}
         ],
         "United": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/United.png",
+				"image": "../SowBotv13/Game/Assets/United.png",
 				"difficulty": 1
 			}
         ]
