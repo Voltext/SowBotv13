@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, MessageAttachment } = require("discord.js");
 require('dotenv').config();
 const teamBDD = require("../../Game/Json/team.json")
 //const clubBDD = require("../../Game/Json/club.json")
@@ -41,6 +41,22 @@ module.exports = {
 	}],
 
   async execute(interaction) {
-    
+    const {guild} = interaction;
+    const equipe = interaction.options.getString("valeur")
+
+    const imgTeam = teamBDD[equipe][0]["image"];
+    const nomTeam = teamBDD[equipe][0]["nom"];
+    const difficulty = teamBDD[equipe][0]["difficulty"];
+
+    const img = new MessageAttachment(imgTeam);
+
+    const embed = new MessageEmbed()
+    .setTitle("Devinez l'équipe en fonction des nationalités des joueurs")
+    .setImage(`attachment://${equipe}.png`);
+
+    guild.channels.cache.get(process.env.EVENT).send({
+      embeds: [embed],
+      files: [img]
+  })
   }
 }

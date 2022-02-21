@@ -3,70 +3,70 @@
 		"PSG": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG2.png",
+				"image": "../Assets/PSG.png",
 				"difficulty": 1
 			}
         ],
         "Liverpool": [
 			{
 				"nom": "Liverpool",
-				"image": "../Assets/PSG2.png",
+				"image": "../Assets/Liverpool.png",
 				"difficulty": 1
 			}
         ],
         "Bayern": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG2.png",
+				"image": "../Assets/Bayern.png",
 				"difficulty": 1
 			}
         ],
         "Atletico": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG2.png",
+				"image": "../Assets/Atletico.png",
 				"difficulty": 1
 			}
         ],
         "Chelsea": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG2.png",
+				"image": "../Assets/Chelsea.png",
 				"difficulty": 1
 			}
         ],
         "Juventus": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG2.png",
+				"image": "../Assets/Juventus.png",
 				"difficulty": 1
 			}
         ],
         "Leipzig": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG2.png",
-				"difficulty": 1
+				"image": "../Assets/Leipzig.png",
+				"difficulty": 2
 			}
         ],
         "Porto": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG2.png",
-				"difficulty": 1
+				"image": "../Assets/Porto.png",
+				"difficulty": 3
 			}
         ],
         "Real": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG2.png",
+				"image": "../Assets/Real.png",
 				"difficulty": 1
 			}
         ],
         "United": [
 			{
 				"nom": "PSG",
-				"image": "../Assets/PSG2.png",
+				"image": "../Assets/United.png",
 				"difficulty": 1
 			}
         ]
