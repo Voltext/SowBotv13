@@ -56,69 +56,71 @@ module.exports = {
     let time = 0;
     let libelle = "";
 
-    if(teamBDD[0].hasOwnProperty(equipe)) {
-      const id = teamBDD[0][equipe][0]["id"];
-    const imgTeam = teamBDD[0][equipe][0]["image"];
-    const nomTeam = teamBDD[0][equipe][0]["nom"];
-    const difficulty = teamBDD[0][equipe][0]["difficulty"];
+    if (interaction.options.getString('type') === "drapeaux") {
 
-    const img = new MessageAttachment(imgTeam);
+      if (teamBDD[0].hasOwnProperty(equipe)) {
+        const id = teamBDD[0][equipe][0]["id"];
+        const imgTeam = teamBDD[0][equipe][0]["image"];
+        const nomTeam = teamBDD[0][equipe][0]["nom"];
+        const difficulty = teamBDD[0][equipe][0]["difficulty"];
 
-    if (difficulty === 1) {
-      libelle="FACILE"
-      color = "GREEN";
-      sec = "30 secondes";
-      time=30000
-    } else if (difficulty === 2) {
-      libelle="MOYEN"
-      color = "ORANGE";
-      sec = "20 secondes";
-      time=20000
-    } else if (difficulty === 3) {
-      libelle="DIFFICILE"
-      color = "RED";
-      sec = "12 secondes";
-      time=12000
-    } else if (difficulty === 4) {
-      libelle="EXTREME"
-      color="DARK_BUT_NOT_BLACK";
-      sec="10 secondes";
-      time=10000;
-    }
+        const img = new MessageAttachment(imgTeam);
 
-    const embed = new MessageEmbed()
-      .setColor(color)
-      .setAuthor(`Difficulté : ${libelle}`)
-      .setTitle("Devinez l'équipe en fonction de la nationalité des joueurs")
-      .setDescription(`Vous avez ${sec}`)
-      .setImage(`attachment://${id}.png`);
+        if (difficulty === 1) {
+          libelle = "FACILE"
+          color = "GREEN";
+          sec = "30 secondes";
+          time = 30000
+        } else if (difficulty === 2) {
+          libelle = "MOYEN"
+          color = "ORANGE";
+          sec = "20 secondes";
+          time = 20000
+        } else if (difficulty === 3) {
+          libelle = "DIFFICILE"
+          color = "RED";
+          sec = "12 secondes";
+          time = 12000
+        } else if (difficulty === 4) {
+          libelle = "EXTREME"
+          color = "DARK_BUT_NOT_BLACK";
+          sec = "10 secondes";
+          time = 10000;
+        }
 
-    const filter = (m) => nomTeam.includes(m.content.toLowerCase())
+        const embed = new MessageEmbed()
+          .setColor(color)
+          .setAuthor(`Difficulté : ${libelle}`)
+          .setTitle("Devinez l'équipe en fonction de la nationalité des joueurs")
+          .setDescription(`Vous avez ${sec}`)
+          .setImage(`attachment://${id}.png`);
 
-    interaction.reply({
-        embeds: [embed],
-        files: [img]
-      })
-      .then(() => {
-        interaction.channel.awaitMessages({
-            filter,
-            max: 1,
-            time: time
+        const filter = (m) => nomTeam.includes(m.content.toLowerCase())
+
+        interaction.reply({
+            embeds: [embed],
+            files: [img]
           })
-          .then(collected => {
-            const winner = collected.first().author.id
-            interaction.followUp(`Félicitations <@${winner}> ! `)
+          .then(() => {
+            interaction.channel.awaitMessages({
+                filter,
+                max: 1,
+                time: time
+              })
+              .then(collected => {
+                const winner = collected.first().author.id
+                interaction.followUp(`Félicitations <@${winner}> ! `)
+              })
+              .catch(collected => {
+                interaction.followUp(`Personne n'a trouvé la solution dans le temps imparti. La bonne réponse était : ${equipe}`)
+              })
           })
-          .catch(collected => {
-            interaction.followUp(`Personne n'a trouvé la solution dans le temps imparti. La bonne réponse était : ${equipe}`)
-          })
-      })
-    }
-    else {
-      interaction.reply({
-        content: "L'équipe demandée n'existe pas",
-        ephemeral: true
-      })
+      } else {
+        interaction.reply({
+          content: "L'équipe demandée n'existe pas",
+          ephemeral: true
+        })
+      }
     }
   }
 }
