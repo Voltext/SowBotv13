@@ -1,0 +1,28 @@
+[
+	{
+		"Allister": [
+			{
+				"id": "J1",
+				"nom": ["allister", "mac allister", "alexis mac allister"],
+				"image": "../SowBotv13/Game/Assets/J1.png",
+				"difficulty": 3
+			}
+        ],
+        "Walker": [
+			{
+				"id": "J3",
+				"nom": ["walker", "kyle walker"],
+				"image": "../SowBotv13/Game/Assets/J3.png",
+				"difficulty": 2
+			}
+        ],
+        "Moreno": [
+			{
+				"id": "J2",
+				"nom": ["moreno", "gerard moreno"],
+				"image": "../SowBotv13/Game/Assets/J2.png",
+				"difficulty": 2
+			}
+        ]
+	}
+]

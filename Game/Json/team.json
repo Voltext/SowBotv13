@@ -20,7 +20,7 @@
 			{
 				"id": 5,
 				"nom": ["bayern", "bayern munich", "bayern munchen"],
-				"image": "../Game/Assets/5.png",
+				"image": "../SowBotv13/Game/Assets/5.png",
 				"difficulty": 1
 			}
         ],
