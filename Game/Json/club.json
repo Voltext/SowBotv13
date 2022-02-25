@@ -140,7 +140,7 @@
 			{
 				"id": "J17",
 				"nom": ["oscar"],
-				"image": "../SowBotv13/Game/Assets/J17.png",
+				"image": "../SowBotv13/Game/Assets/J17.jpg",
 				"difficulty": 3
 			}
         ],
@@ -148,7 +148,7 @@
 			{
 				"id": "J18",
 				"nom": ["podolski"],
-				"image": "../SowBotv13/Game/Assets/J18.png",
+				"image": "../SowBotv13/Game/Assets/J18.jpg",
 				"difficulty": 3
 			}
         ],
@@ -156,7 +156,7 @@
 			{
 				"id": "J19",
 				"nom": ["witsel"],
-				"image": "../SowBotv13/Game/Assets/J19.png",
+				"image": "../SowBotv13/Game/Assets/J19.jpg",
 				"difficulty": 3
 			}
         ],
@@ -164,7 +164,7 @@
 			{
 				"id": "J20",
 				"nom": ["schweinsteiger"],
-				"image": "../SowBotv13/Game/Assets/J20.png",
+				"image": "../SowBotv13/Game/Assets/J20.jpg",
 				"difficulty": 4
 			}
         ],
@@ -172,7 +172,7 @@
 			{
 				"id": "J21",
 				"nom": ["lrychowiak"],
-				"image": "../SowBotv13/Game/Assets/J21.png",
+				"image": "../SowBotv13/Game/Assets/J21.jpg",
 				"difficulty": 4
 			}
         ],
@@ -180,7 +180,7 @@
 			{
 				"id": "J22",
 				"nom": ["santelli"],
-				"image": "../SowBotv13/Game/Assets/J22.png",
+				"image": "../SowBotv13/Game/Assets/J22.jpg",
 				"difficulty": 3
 			}
         ],
@@ -188,7 +188,7 @@
 			{
 				"id": "J23",
 				"nom": ["lampard"],
-				"image": "../SowBotv13/Game/Assets/J23.png",
+				"image": "../SowBotv13/Game/Assets/J23.jpg",
 				"difficulty": 2
 			}
         ]
