@@ -156,7 +156,7 @@ module.exports = {
         const embed = new MessageEmbed()
           .setColor(color)
           .setAuthor(`Difficulté : ${libelle}`)
-          .setTitle("Devinez l'équipe en fonction de la nationalité des joueurs")
+          .setTitle("Devinez le joueur en fonction des clubs par lequel il est passé")
           .setDescription(`Vous avez ${sec}`)
           .setImage(`attachment://${id}.png`);
 
