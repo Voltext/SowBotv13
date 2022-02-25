@@ -88,10 +88,10 @@
 				"difficulty": 2
 			}
         ],
-		"Palois": [
+		"Pallois": [
 			{
 				"id": "J12",
-				"nom": ["palois", "nicolas palois"],
+				"nom": ["pallois", "nicolas pallois"],
 				"image": "../SowBotv13/Game/Assets/J12.png",
 				"difficulty": 1
 			}
