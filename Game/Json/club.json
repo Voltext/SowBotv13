@@ -119,6 +119,78 @@
 				"image": "../SowBotv13/Game/Assets/J15.png",
 				"difficulty": 1
 			}
+        ],
+		"Chicharito": [
+			{
+				"id": "J24",
+				"nom": ["chicarito"],
+				"image": "../SowBotv13/Game/Assets/J24.png",
+				"difficulty": 3
+			}
+        ],
+		"Schurrle": [
+			{
+				"id": "J16",
+				"nom": ["schurrle", "andre schurrle"],
+				"image": "../SowBotv13/Game/Assets/J16.png",
+				"difficulty": 3
+			}
+        ],
+		"Oscar": [
+			{
+				"id": "J17",
+				"nom": ["oscar"],
+				"image": "../SowBotv13/Game/Assets/J17.png",
+				"difficulty": 3
+			}
+        ],
+		"Podolski": [
+			{
+				"id": "J18",
+				"nom": ["podolski"],
+				"image": "../SowBotv13/Game/Assets/J18.png",
+				"difficulty": 3
+			}
+        ],
+		"Witsel": [
+			{
+				"id": "J19",
+				"nom": ["witsel"],
+				"image": "../SowBotv13/Game/Assets/J19.png",
+				"difficulty": 3
+			}
+        ],
+		"Schweinsteiger": [
+			{
+				"id": "J20",
+				"nom": ["schweinsteiger"],
+				"image": "../SowBotv13/Game/Assets/J20.png",
+				"difficulty": 4
+			}
+        ],
+		"Krychowiak": [
+			{
+				"id": "J21",
+				"nom": ["lrychowiak"],
+				"image": "../SowBotv13/Game/Assets/J21.png",
+				"difficulty": 4
+			}
+        ],
+		"Santelli": [
+			{
+				"id": "J22",
+				"nom": ["santelli"],
+				"image": "../SowBotv13/Game/Assets/J22.png",
+				"difficulty": 3
+			}
+        ],
+		"Lampard": [
+			{
+				"id": "J23",
+				"nom": ["lampard"],
+				"image": "../SowBotv13/Game/Assets/J23.png",
+				"difficulty": 2
+			}
         ]
 	}
 ]
