@@ -106,7 +106,8 @@ module.exports = {
       })
 
         interaction.reply({
-            content: "Qui est cette équipe ?"
+            content: "Qui est cette équipe ?",
+            ephemeral: true
           })
           .then(() => {
             interaction.channel.awaitMessages({
@@ -174,7 +175,8 @@ module.exports = {
           files: [img]
       })
         interaction.reply({
-            content: "Qui est ce joueur ?"
+            content: "Qui est ce joueur ?",
+            ephemeral: true
           })
           .then(() => {
             interaction.channel.awaitMessages({
