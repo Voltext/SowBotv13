@@ -50,6 +50,9 @@ module.exports = {
   }],
 
   async execute(interaction) {
+
+    const { guild } = interaction;
+
     const value = interaction.options.getString("valeur");
     let color = "";
     let sec = "";
@@ -97,9 +100,13 @@ module.exports = {
 
         const filter = (m) => nomTeam.includes(m.content.toLowerCase())
 
+        guild.channels.cache.get(process.env.EVENT).send({
+          embeds: [embed],
+          files: [img]
+      })
+
         interaction.reply({
-            embeds: [embed],
-            files: [img]
+            content: "Qui est cette équipe ?"
           })
           .then(() => {
             interaction.channel.awaitMessages({
@@ -162,9 +169,12 @@ module.exports = {
 
         const filter = (m) => nomJoueur.includes(m.content.toLowerCase())
 
+        guild.channels.cache.get(process.env.EVENT).send({
+          embeds: [embed],
+          files: [img]
+      })
         interaction.reply({
-            embeds: [embed],
-            files: [img]
+            content: "Qui est ce joueur ?"
           })
           .then(() => {
             interaction.channel.awaitMessages({
