@@ -23,6 +23,102 @@
 				"image": "../SowBotv13/Game/Assets/J2.png",
 				"difficulty": 2
 			}
+        ],
+		"DeLigt": [
+			{
+				"id": "J4",
+				"nom": ["de ligt", "mathjis de ligt"],
+				"image": "../SowBotv13/Game/Assets/J4.png",
+				"difficulty": 1
+			}
+        ],
+		"Gendouzi": [
+			{
+				"id": "J5",
+				"nom": ["gendouzi", "metheo gendouzi"],
+				"image": "../SowBotv13/Game/Assets/J5.png",
+				"difficulty": 1
+			}
+        ],
+		"Haaland": [
+			{
+				"id": "J6",
+				"nom": ["haaland", "erling haaland"],
+				"image": "../SowBotv13/Game/Assets/J6.png",
+				"difficulty": 1
+			}
+        ],
+		"Haller": [
+			{
+				"id": "J7",
+				"nom": ["haller", "sebastian haller"],
+				"image": "../SowBotv13/Game/Assets/J7.png",
+				"difficulty": 3
+			}
+        ],
+		"Khazri": [
+			{
+				"id": "J8",
+				"nom": ["khazri", "wahbi khazri"],
+				"image": "../SowBotv13/Game/Assets/J8.png",
+				"difficulty": 1
+			}
+        ],
+		"Leca": [
+			{
+				"id": "J9",
+				"nom": ["leca", "jean-louis leca"],
+				"image": "../SowBotv13/Game/Assets/J9.png",
+				"difficulty": 2
+			}
+        ],
+		"Moutinho": [
+			{
+				"id": "J10",
+				"nom": ["moutinho", "joao moutinho"],
+				"image": "../SowBotv13/Game/Assets/J10.png",
+				"difficulty": 1
+			}
+        ],
+		"Mukiele": [
+			{
+				"id": "J11",
+				"nom": ["mukiele", "nordi mukiele"],
+				"image": "../SowBotv13/Game/Assets/J11.png",
+				"difficulty": 2
+			}
+        ],
+		"Palois": [
+			{
+				"id": "J12",
+				"nom": ["palois", "nicolas palois"],
+				"image": "../SowBotv13/Game/Assets/J12.png",
+				"difficulty": 1
+			}
+        ],
+		"Pepe": [
+			{
+				"id": "J13",
+				"nom": ["pepe"],
+				"image": "../SowBotv13/Game/Assets/J13.png",
+				"difficulty": 1
+			}
+        ],
+		"Ronaldo": [
+			{
+				"id": "J14",
+				"nom": ["ronaldo", "cristiano ronaldo"],
+				"image": "../SowBotv13/Game/Assets/J14.png",
+				"difficulty": 1
+			}
+        ],
+		"Messi": [
+			{
+				"id": "J15",
+				"nom": ["messi", "lionel messi"],
+				"image": "../SowBotv13/Game/Assets/J15.png",
+				"difficulty": 1
+			}
         ]
 	}
 ]
