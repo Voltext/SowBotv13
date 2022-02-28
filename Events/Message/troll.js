@@ -38,5 +38,8 @@ const {
     if(messageContent[messageContent.length -1] === "Oui" || messageContent[messageContent.length -1] === "oui") {
         message.channel.send("Stiti 🐒");
     }
+    if(messageContent[messageContent.length -1] === "Sow" || messageContent[messageContent.length -1] === "Sowdred") {
+        message.channel.send("Il te répondra jamais ce #teubé");
+    }
     }
   }
