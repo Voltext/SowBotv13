@@ -35,5 +35,8 @@ const {
     if(messageContent[messageContent.length -1] === "Si" || messageContent[messageContent.length -1] === "si") {
         message.channel.send("Tron 🍋");
     }
+    if(messageContent[messageContent.length -1] === "Oui" || messageContent[messageContent.length -1] === "oui") {
+        message.channel.send("Stiti 🐒");
+    }
     }
   }
