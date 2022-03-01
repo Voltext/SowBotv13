@@ -49,13 +49,13 @@ module.exports ={
             description: "Lancez un event",
             options: [
                 {
-                    name: "nomE",
+                    name: "nevent",
                     type: "STRING",
                     required: true,
                     description: "Saisissez le nom de votre event"
                 }, 
                 {
-                    name: "descriptionE",
+                    name: "devent",
                     type: "STRING",
                     required: true,
                     description: "Saisissez une description de votre event"
@@ -144,8 +144,8 @@ module.exports ={
             }
             break
             case "event" : {
-                const title = options.getString("nomE")
-                const description = options.getString("descriptionE")
+                const title = options.getString("nevent")
+                const description = options.getString("devent")
                 
                 guild.channels.cache.get(process.env.EVENT_VOC).send({
                     embeds: [Embed.setTitle(title).setDescription(description).setColor("BLUE").setFooter(`Rejoignez le salon en cliquant ici -> <#${voiceChannel.id}>`)]
