@@ -68,7 +68,7 @@ module.exports ={
     async execute(interaction, client) {
         const { options, member, guild } = interaction;
 
-        const subChannel = options.getSubcommand();
+        const subCommand = options.getSubcommand();
         const voiceChannel = member.voice.channel;
         const Embed = new MessageEmbed().setColor("GREEN");
         const ownedChannel = client.voiceGenerator.get(member.id);
