@@ -319,5 +319,9 @@ module.exports = {
                 }
             });
         };
+
+        if (reaction.message.channel.id === process.env.DEMANDES) {
+            console.log(reaction.message.embeds[0])
+        }
     }
 }
