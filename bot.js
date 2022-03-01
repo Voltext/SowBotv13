@@ -5,6 +5,7 @@ require('dotenv').config();
 client.commands = new Collection();
 client.filters = new Collection();
 client.filtersLog = new Collection();
+client.voiceGenerator = new Collection();
 
 require("./Handlers/Events")(client);
 require("./Handlers/Commands")(client);
