@@ -146,11 +146,13 @@ module.exports ={
             case "event" : {
                 const title = options.getString("nevent")
                 const description = options.getString("devent")
+
+                interaction.reply({embeds: [Embed.setDescription("Votre annonce a bien été postée")], ephemeral: true})
                 
                 guild.channels.cache.get(process.env.EVENT_VOC).send({
-                    embeds: [Embed.setTitle(title).setDescription(description).setColor("BLUE").setFooter(`Rejoignez le salon en cliquant ici -> <#${voiceChannel.id}>`)]
+                    content: `${member} vient de lancer un événement dans son salon vocal !`,
+                    embeds: [new MessageEmbed().setTitle(title).setDescription(`${description} \n Rejoignez le salon en cliquant ici -> <#${voiceChannel.id}>`).setColor("BLUE")]
                 })
-                interaction.reply({embeds: [Embed.setDescription("Votre annonce a bien été postée")], ephemeral: true})
             }
             break
         }
