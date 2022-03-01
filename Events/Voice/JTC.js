@@ -11,7 +11,7 @@ module.exports = {
         const { member, guild} = newState;
         const oldChannel = oldState.channel;
         const newChannel = newState.channel;
-        const joinToCreate = process.env.JOIN;
+        const joinToCreate = "948257809454223420";
 
         if(oldChannel !== newChannel && newChannel && newChannel.id === joinToCreate) {
             const voiceChannel = await guild.channels.create(member.user.tag, {
