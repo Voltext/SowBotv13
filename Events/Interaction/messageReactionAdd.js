@@ -321,7 +321,13 @@ module.exports = {
         };
 
         if (reaction.message.channel.id === process.env.DEMANDES) {
-            console.log(reaction.message.embeds[0])
+            const title = reaction.message.embeds[0].title
+            const description = reaction.message.embeds[0].description
+
+            client.channels.cache.get(process.env.EVENT_VOC).send({
+                content: ``,
+                embeds: [new MessageEmbed().setColor("GOLD").setTitle(title).setDescription(description)]
+            });
         }
     }
 }

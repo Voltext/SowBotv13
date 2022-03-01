@@ -59,21 +59,6 @@ module.exports ={
                     type: "STRING",
                     required: true,
                     description: "Saisissez une description de votre event"
-                },
-                {
-                    name: "couleur",
-                    type: "STRING",
-                    required: true,
-                    description: "Saisissez une description de votre event",
-                    choices: [
-                        {name: "Vert", value: "green"},
-                        {name: "Bleu", value: "blue"},
-                        {name: "Orange", value: "orange"},
-                        {name: "Rouge", value: "red"},
-                        {name: "Gold", value: "gold"},
-                        {name: "Blanc", value: "white"},
-                        {name: "Noir", value: "black"},
-                    ]
                 }
             ]
         },
@@ -104,7 +89,7 @@ module.exports ={
 
         const subCommand = options.getSubcommand();
         const voiceChannel = member.voice.channel;
-        const Embed = new MessageEmbed();
+        const Embed = new MessageEmbed().setColor("GREEN")
         const ownedChannel = client.voiceGenerator.get(member.id);
 
         if(!voiceChannel) {
@@ -121,15 +106,15 @@ module.exports ={
                     return interaction.reply({embeds: [Embed.setDescription("Le nom du salon doit être compris entre 1 et 22 caractères.").setColor("RED")], ephemeral: true});
                 }
                 voiceChannel.edit({name: newName});
-                interaction.reply({embeds: [Embed.setDescription(`Le nom du salon a bien été modifié en *${newName}*`).setColor("GREEN")], ephemeral: true})
+                interaction.reply({embeds: [Embed.setDescription(`Le nom du salon a bien été modifié en *${newName}*`)], ephemeral: true})
             }
             break;
             case "invite": {
                 const targetMember = options.getMember("user");
                 voiceChannel.permissionOverwrites.edit(targetMember, {CONNECT: true});
                 
-                await targetMember.send({embeds: [Embed.setDescription(`${member} vous a invité a rejoindre son salon vocal <#${voiceChannel.id}>`).setColor("GREEN")]})
-                interaction.reply({embeds: [Embed.setDescription(`${targetMember} a bien été invité dans votre salon`).setColor("GREEN")], ephemeral: true});
+                await targetMember.send({embeds: [Embed.setDescription(`${member} vous a invité a rejoindre son salon vocal <#${voiceChannel.id}>`)]})
+                interaction.reply({embeds: [Embed.setDescription(`${targetMember} a bien été invité dans votre salon`)], ephemeral: true});
             }
             break;
             case "blacklist": {
@@ -138,8 +123,8 @@ module.exports ={
 
                 if(targetMember.voice.channel && targetMember.voice.channel.id === voiceChannel.id) targetMember.voice.setChannel(null)
                 
-                await targetMember.send({embeds: [Embed.setDescription(`${member} vous a exclu de son salon vocal <#${voiceChannel.id}>`).setColor("GREEN")]})
-                interaction.reply({embeds: [Embed.setDescription(`${targetMember} a bien été exclu de votre salon`).setColor("GREEN")], ephemeral: true});
+                await targetMember.send({embeds: [Embed.setDescription(`${member} vous a exclu de son salon vocal <#${voiceChannel.id}>`)]})
+                interaction.reply({embeds: [Embed.setDescription(`${targetMember} a bien été exclu de votre salon`)], ephemeral: true});
             }
             break;
             case "public" : {
@@ -147,12 +132,12 @@ module.exports ={
                 switch(turnChoice) {
                     case "on" : {
                         voiceChannel.permissionOverwrites.edit(guild.id, {CONNECT: null});
-                        interaction.reply({embeds: [Embed.setDescription("Vous avez rendu votre salon public et ouvert aux membres").setColor("GREEN")], ephemeral: true})
+                        interaction.reply({embeds: [Embed.setDescription("Vous avez rendu votre salon public et ouvert aux membres")], ephemeral: true})
                     }
                     break;
                     case "off" : {
                         voiceChannel.permissionOverwrites.edit(guild.id, {CONNECT: false});
-                        interaction.reply({embeds: [Embed.setDescription("Vous avez rendu votre salon privé, seul les personnes invitées pourront rejoindre votre salon").setColor("GREEN")], ephemeral: true})
+                        interaction.reply({embeds: [Embed.setDescription("Vous avez rendu votre salon privé, seul les personnes invitées pourront rejoindre votre salon")], ephemeral: true})
                     }
                     break
                 }
@@ -161,44 +146,12 @@ module.exports ={
             case "event" : {
                 const title = options.getString("nevent")
                 const description = options.getString("devent")
-                const couleur = options.getString("couleur")
 
-                switch(couleur) {
-                    case "green" : {
-                        Embed.setColor("GREEN")
-                    }
-                    break;
-                    case "blue" : {
-                        Embed.setColor("BLUE")
-                    }
-                    break
-                    case "orange" : {
-                        Embed.setColor("ORANGE")
-                    }
-                    break
-                    case "red" : {
-                        Embed.setColor("RED")
-                    }
-                    break
-                    case "gold" : {
-                        Embed.setColor("GOLD")
-                    }
-                    break
-                    case "white" : {
-                        Embed.setColor("WHITE")
-                    }
-                    break
-                    case "black" : {
-                        Embed.setColor("BLACK")
-                    }
-                    break
-                }
-
-                interaction.reply({embeds: [Embed.setDescription("Votre demande d'annonce a bien été postée").setColor("GREEN")], ephemeral: true})
+                interaction.reply({embeds: [Embed.setDescription("Votre demande d'annonce a bien été postée")], ephemeral: true})
                 
                 guild.channels.cache.get(process.env.DEMANDES).send({
                     content: `${member} aimerait lancer un événement dans son salon vocal, voici les informations de l'événement`,
-                    embeds: [new MessageEmbed().setTitle(title).setDescription(`${description} \n`)]
+                    embeds: [new MessageEmbed().setTitle(title).setDescription(description).addField("ChannelId", voiceChannel.id).setFooter(member.username)]
                 }).then(message => {
 					message.react(process.env.CHECK_ID);
 					message.react(process.env.CROSS_ID);
