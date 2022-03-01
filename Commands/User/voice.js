@@ -196,7 +196,7 @@ module.exports ={
 
                 interaction.reply({embeds: [Embed.setDescription("Votre demande d'annonce a bien été postée").setColor("GREEN")], ephemeral: true})
                 
-                guild.channels.cache.get(process.env.DEMANDE).send({
+                guild.channels.cache.get(process.env.DEMANDES).send({
                     content: `${member} aimerait lancer un événement dans son salon vocal, voici les informations de l'événement`,
                     embeds: [new MessageEmbed().setTitle(title).setDescription(`${description} \n`)]
                 }).then(message => {
