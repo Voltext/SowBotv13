@@ -44,6 +44,25 @@ module.exports ={
             ]
         },
         {
+            name: "event",
+            type: "SUB_COMMAND",
+            description: "Lancez un event",
+            options: [
+                {
+                    name: "nomE",
+                    type: "STRING",
+                    required: true,
+                    description: "Saisissez le nom de votre event"
+                }, 
+                {
+                    name: "descriptionE",
+                    type: "STRING",
+                    required: true,
+                    description: "Saisissez une description de votre event"
+                }
+            ]
+        },
+        {
             name: "public",
             type: "SUB_COMMAND",
             description: "Faire de votre salon, un salon public",
@@ -122,6 +141,16 @@ module.exports ={
                     }
                     break
                 }
+            }
+            break
+            case "event" : {
+                const title = options.getString("nomE")
+                const description = options.getString("descriptionE")
+                
+                guild.channels.cache.get(process.env.EVENT_VOC).send({
+                    embeds: [Embed.setTitle(title).setDescription(description).setColor("BLUE").setFooter(`Rejoignez le salon en cliquant ici -> <#${voiceChannel.id}>`)]
+                })
+                interaction.reply({embeds: [Embed.setDescription("Votre annonce a bien été postée")], ephemeral: true})
             }
             break
         }
