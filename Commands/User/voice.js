@@ -99,7 +99,7 @@ module.exports ={
             }
             break;
             case "blacklist": {
-                const targetMember = options.getMember("user");
+                const targetMember = options.getMember("member");
                 voiceChannel.permissionOverwrites.edit(targetMember, {CONNECT: false});
 
                 if(targetMember.voice.channel && targetMember.voice.channel.id === voiceChannel.id) targetMember.voice.setChannel(null)
