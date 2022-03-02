@@ -36,6 +36,9 @@ ${'↓ LOGS ↓'.bgBlue}`,
 		const channelS = client.channels.cache.get(process.env.PREDICTIONS)
 		channelS.messages.fetch()
 		.then(console.log("Loaded"))
+		const channelD = client.channels.cache.get(process.env.DEMANDES)
+		channelD.messages.fetch()
+		.then(console.log("Loaded"))
 
 		let isOnLive = false;
 		const getLive = new TwitchLive();

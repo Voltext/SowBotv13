@@ -321,15 +321,20 @@ module.exports = {
         };
 
         if (reaction.message.channel.id === process.env.DEMANDES) {
-            const title = reaction.message.embeds[0].title
-            const description = reaction.message.embeds[0].description
-            const author = reaction.message.embeds[0].author.name
-            const footer = reaction.message.embeds[0].footer.text
+            if (reaction.emoji.name === "✅") {
+                const title = reaction.message.embeds[0].title
+                const description = reaction.message.embeds[0].description
+                const author = reaction.message.embeds[0].author.name
+                const footer = reaction.message.embeds[0].footer.text
 
-            client.channels.cache.get(process.env.EVENT_VOC).send({
-                content: `Nouvel événement`,
-                embeds: [new MessageEmbed().setColor("GOLD").setTitle(title).setDescription(`${author} vient de lancer un événement dans son salon vocal. Rejoignez l'événement -> <#${footer}>`).addField("Description de l'événement", description)]
-            });
+                client.channels.cache.get(process.env.EVENT_VOC).send({
+                    content: `Nouvel événement`,
+                    embeds: [new MessageEmbed().setColor("GOLD").setTitle(title).setDescription(`${author} vient de lancer un événement dans son salon vocal. Rejoignez l'événement -> <#${footer}>`).addField("Description de l'événement", description)]
+                });
+            }
+            if (reaction.emoji.name === "❌") {
+                await reaction.message.delete();
+            }
         }
     }
 }
