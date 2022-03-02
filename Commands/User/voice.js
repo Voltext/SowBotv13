@@ -147,11 +147,13 @@ module.exports ={
                 const title = options.getString("nevent")
                 const description = options.getString("devent")
 
+                console.log(member)
+
                 interaction.reply({embeds: [Embed.setDescription("Votre demande d'annonce a bien été postée")], ephemeral: true})
                 
                 guild.channels.cache.get(process.env.DEMANDES).send({
                     content: `${member} aimerait lancer un événement dans son salon vocal, voici les informations de l'événement`,
-                    embeds: [new MessageEmbed().setTitle(title).setDescription(description).addField("Member", member).setFooter(`${voiceChannel.id}`)]
+                    embeds: [new MessageEmbed().setTitle(title).setDescription(description).setFooter(`${voiceChannel.id}`)]
                 }).then(message => {
 					message.react(process.env.CHECK_ID);
 					message.react(process.env.CROSS_ID);
