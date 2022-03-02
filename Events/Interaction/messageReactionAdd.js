@@ -321,15 +321,14 @@ module.exports = {
         };
 
         if (reaction.message.channel.id === process.env.DEMANDES) {
-            console.log(reaction.message.embeds[0])
             const title = reaction.message.embeds[0].title
             const description = reaction.message.embeds[0].description
             const author = reaction.message.embeds[0].author.name
             const footer = reaction.message.embeds[0].footer.text
 
             client.channels.cache.get(process.env.EVENT_VOC).send({
-                content: `${author} vient de lancer un événement dans son salon vocal. Rejoignez l'événement -> <#${footer}>`,
-                embeds: [new MessageEmbed().setColor("GOLD").setTitle(title).setDescription(description)]
+                content: `Nouvel événement`,
+                embeds: [new MessageEmbed().setColor("GOLD").setTitle(title).setDescription(`${author} vient de lancer un événement dans son salon vocal. Rejoignez l'événement -> <#${footer}> \n Voici une courte description de l'événement \n ${description}]`)]
             });
         }
     }
