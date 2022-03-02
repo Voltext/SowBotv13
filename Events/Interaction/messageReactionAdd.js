@@ -328,7 +328,7 @@ module.exports = {
 
             client.channels.cache.get(process.env.EVENT_VOC).send({
                 content: `Nouvel événement`,
-                embeds: [new MessageEmbed().setColor("GOLD").setTitle(title).setDescription(`${author} vient de lancer un événement dans son salon vocal. Rejoignez l'événement -> <#${footer}> \n Voici une courte description de l'événement \n ${description}]`)]
+                embeds: [new MessageEmbed().setColor("GOLD").setTitle(title).setDescription(`${author} vient de lancer un événement dans son salon vocal. Rejoignez l'événement -> <#${footer}>`).addField("Description de l'événement", description)]
             });
         }
     }
