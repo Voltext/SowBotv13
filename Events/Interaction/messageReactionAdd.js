@@ -324,8 +324,8 @@ module.exports = {
             console.log(reaction.message.embeds[0])
             const title = reaction.message.embeds[0].title
             const description = reaction.message.embeds[0].description
-            const author = reaction.message.embeds[0].author
-            const footer = reaction.message.embeds[0].footer
+            const author = reaction.message.embeds[0].author.name
+            const footer = reaction.message.embeds[0].footer.text
 
             client.channels.cache.get(process.env.EVENT_VOC).send({
                 content: `${author} vient de lancer un événement dans son salon vocal. Rejoignez l'événement -> <#${footer}>`,
