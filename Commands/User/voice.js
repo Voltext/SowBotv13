@@ -147,8 +147,6 @@ module.exports ={
                 const title = options.getString("nevent")
                 const description = options.getString("devent")
 
-                console.log(member)
-
                 interaction.reply({embeds: [Embed.setDescription("Votre demande d'annonce a bien été postée")], ephemeral: true})
                 
                 guild.channels.cache.get(process.env.DEMANDES).send({
