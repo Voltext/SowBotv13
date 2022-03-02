@@ -323,9 +323,11 @@ module.exports = {
         if (reaction.message.channel.id === process.env.DEMANDES) {
             const title = reaction.message.embeds[0].title
             const description = reaction.message.embeds[0].description
+            const author = reaction.message.embeds[0].author
+            const footer = reaction.message.embeds[0].footer
 
             client.channels.cache.get(process.env.EVENT_VOC).send({
-                content: ``,
+                content: `${author} vient de lancer un événement dans son salon vocal. Rejoignez l'événement -> <#${footer}>`,
                 embeds: [new MessageEmbed().setColor("GOLD").setTitle(title).setDescription(description)]
             });
         }
