@@ -20,7 +20,7 @@ module.exports = {
         .addField("ID", `${target.user.id}`)
         .addField("Roles", `${target.roles.cache.map(r => r).join(" ").replace("@everyone", " ") || "None"}`)
         .addField("Membre depuis:", `<t:${parseInt(target.joinedTimestamp / 1000)}:R>`, true)
-        .addField("Compte crée le:", `\`${moment(new Date(target.user.createdTimestamp)).format("DD/MM/YYYY @ h:mm:ss a")}\``)
+        .addField("Compte crée le:", `\`${moment(new Date(target.user.createdTimestamp)).format("DD/MM/YYYY @ hh:mm:ss a")}\``)
 
         interaction.reply({embeds: [Response], ephemeral: true})
     }
