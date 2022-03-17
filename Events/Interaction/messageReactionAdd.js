@@ -290,9 +290,9 @@ module.exports = {
                             }
                             break;
                         case "Marque et gagne":
-                            const buteur = reaction.message.embeds[0].footer.text;
+                            const buteurm = reaction.message.embeds[0].footer.text;
                             editEmbed.setAuthor("Marque et gagne")
-                            editEmbed.setTitle(`Est-ce que ${buteur} marquera et son équipe gagnera? `)
+                            editEmbed.setTitle(`Est-ce que ${buteurm} marquera et son équipe gagnera? `)
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", "Oui", true)
                                 points = cote1
