@@ -48,6 +48,38 @@ module.exports = {
 						name: "Medaille (seulement JO)",
 						value: "medaille"
 					},
+					{
+						name: "Gagne la competition",
+						value: "compet"
+					},
+					{
+						name: "Equipes gagnent",
+						value: "teams"
+					},
+					{
+						name: "Score multiple",
+						value: "scorem"
+					},
+					{
+						name: "Gagne par ecart",
+						value: "ecart"
+					},
+					{
+						name: "Qualification",
+						value: "qualif"
+					},
+					{
+						name: "Double buteurs",
+						value: "buteurs"
+					},
+					{
+						name: "But avant",
+						value: "butavant"
+					},
+					{
+						name: "Buteur et Vainqueur",
+						value: "butwin"
+					},
 				]
 			},
 			{
@@ -75,6 +107,12 @@ module.exports = {
 			{
 				name: "valeur",
 				description: "Valeur a renseignée pour les pronos : Buteur / +- Buts / Cartons",
+				type: "STRING",
+				require: false,
+			},
+			{
+				name: "valeur2",
+				description: "Valeur a renseignée pour les pronos : Gagne par ecart",
 				type: "STRING",
 				require: false,
 			},
@@ -383,6 +421,344 @@ module.exports = {
 									})
 								} finally {
 									mongoosecarton.connection.close()
+								}
+							})
+							break;
+						}
+						case "compet": {
+							const team1 = options.getString("team1")
+							const compet = options.getString("team2")
+							const competEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("Competition")
+								.setTitle(`${team1} - ${compet}`)
+								.setDescription(`Pensez-vous que ${team1} remportera la ${compet} ?`)
+								.setFooter(`${team1} gagnera ${team2}`)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez qu'ils la gagneront + \n ${process.env.TWO} : Si vous pensez qu'ils ne la gagneront pas`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [competEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoosebut) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoosebut.connection.close()
+								}
+							})
+							break;
+						}
+						case "teams": {
+							const team1 = options.getString("team1")
+							const team2 = options.getString("team2")
+							const team3 = options.getString("valeur")
+							const teamsEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("Equipes gagnent")
+								.setTitle(`${team1} - ${team2}`)
+								.setDescription(`Pensez-vous que ${team1}, ${team2} et ${team3} ne perdront pas ?`)
+								.setFooter(`${team1}, ${team2} et ${team3}`)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez qu'ils ne perdront pas + \n ${process.env.TWO} : Si vous pensez qu'ils vont perdre`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [teamsEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoosebut) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoosebut.connection.close()
+								}
+							})
+							break;
+						}
+						case "scorem": {
+							const buts = options.getString("valeur")
+							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							const butsmEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("Buts Multiples")
+								.setTitle(`${match}`)
+								.setDescription(`Pensez-vous qu'il y aura ${buts} buts dans ce match ?`)
+								.setFooter(buts)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez que oui \n ${process.env.TWO} : Si vous pensez que non`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [butsmEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoosebut) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoosebut.connection.close()
+								}
+							})
+							break;
+						}
+						case "ecart": {
+							const teamwin = options.getString("valeur")
+							const ecart = options.getString("valeur2")
+							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							const ecartEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("Gagne ecart")
+								.setTitle(`${match}`)
+								.setDescription(`Pensez-vous que ${teamwin} gagnera avec ${ecart} buts d'écart ?`)
+								.setFooter(`${teamwin} gagnera avec ${ecart}`)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez que oui \n ${process.env.TWO} : Si vous pensez que non`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [ecartEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoosebut) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoosebut.connection.close()
+								}
+							})
+							break;
+						}
+						case "qualif": {
+							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							const qualifEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("Qualification")
+								.setTitle(`${match}`)
+								.setDescription("Laquelle de ces 2 équipes gagnera le match ?")
+								.setFooter(match)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez que ${options.getString("team1")} va se qualifier \n ${process.env.TWO} : Si vous pensez que ${options.getString("team2")} va se qualifier`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [qualifEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.CROSS_ID)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoosefinal) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoosefinal.connection.close()
+								}
+							})
+							break;
+						}
+						case "buteurs": {
+							const buteurs = options.getString("valeur")
+							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							const buteursEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("Buteurs")
+								.setTitle(`${match}`)
+								.setDescription(`Est-ce qu'au moins l'un des 2 : ${buteurs} seront buteur lors de ${match} ?`)
+								.setFooter(buteurs)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez que oui \n ${process.env.TWO} : Si vous pensez que non`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [buteursEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoosebuteur) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoosebuteur.connection.close()
+								}
+							})
+							break;
+						}
+						case "butavant": {
+							const minute = options.getString("valeur")
+							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							const minutesEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("But avant")
+								.setTitle(`${match}`)
+								.setDescription(`Est-ce qu'il y aura un but avant la ${minute} lors de ${match} ?`)
+								.setFooter(minute)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez que oui \n ${process.env.TWO} : Si vous pensez que non`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [minutesEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoosebuteur) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoosebuteur.connection.close()
+								}
+							})
+							break;
+						}
+						case "butwin": {
+							const buteur = options.getString("valeur")
+							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							const butwinEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("Marque et gagne")
+								.setTitle(`${match}`)
+								.setDescription(`Pensez-vous que ${buteur} marquera et son équipe gagnera ?`)
+								.setFooter(buteur)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez que oui \n ${process.env.TWO} : Si vous pensez que non`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [butwinEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoosebut) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoosebut.connection.close()
 								}
 							})
 							break;

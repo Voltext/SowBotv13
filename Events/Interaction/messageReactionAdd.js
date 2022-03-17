@@ -196,6 +196,112 @@ module.exports = {
                                 points = cote2
                             }
                             break;
+                        case "Competition":
+                            const compet = reaction.message.embeds[0].footer
+                            editEmbed.setAuthor("Competition")
+                            editEmbed.setTitle(`Est-ce que ${compet.text} ?`)
+                            if (reaction.emoji.name === "1️⃣") {
+                                editEmbed.addField("Résultat :", "Oui", true)
+                                points = cote1
+                            }
+                            if (reaction.emoji.name === "2️⃣") {
+                                editEmbed.addField("Résultat :", "Non", true)
+                                points = cote2
+                            }
+                            break;
+                        case "Equipes gagnent":
+                            const teams = reaction.message.embeds[0].footer
+                            editEmbed.setAuthor("Equipes gagnent")
+                            editEmbed.setTitle(`Est-ce que ${teams.text} ne perdront pas leur match ?`)
+                            if (reaction.emoji.name === "1️⃣") {
+                                editEmbed.addField("Résultat :", "Oui", true)
+                                points = cote1
+                            }
+                            if (reaction.emoji.name === "2️⃣") {
+                                editEmbed.addField("Résultat :", "Non", true)
+                                points = cote2
+                            }
+                            break;
+                        case "Buts Multiples":
+                            const buts = reaction.message.embeds[0].footer
+                            editEmbed.setAuthor("Buts Multiples")
+                            editEmbed.setTitle(`Est-ce qu'il y aura ${buts.text} dans de match ?`)
+                            if (reaction.emoji.name === "1️⃣") {
+                                editEmbed.addField("Résultat :", "Oui", true)
+                                points = cote1
+                            }
+                            if (reaction.emoji.name === "2️⃣") {
+                                editEmbed.addField("Résultat :", "Non", true)
+                                points = cote2
+                            }
+                            break;
+                        case "Gagne ecart":
+                            const ecart = reaction.message.embeds[0].footer
+                            editEmbed.setAuthor("Gagne ecart")
+                            editEmbed.setTitle(`Pensez-vous que ${ecart.text} buts d'écart ?`)
+                            if (reaction.emoji.name === "1️⃣") {
+                                editEmbed.addField("Résultat :", "Oui", true)
+                                points = cote1
+                            }
+                            if (reaction.emoji.name === "2️⃣") {
+                                editEmbed.addField("Résultat :", "Non", true)
+                                points = cote2
+                            }
+                            break;
+                        case "Qualification":
+                            const matchqualif = reaction.message.embeds[0].footer.text;
+                            team1 = matchqualif.split("-")[0];
+                            team2 = matchqualif.split("-")[1];
+                            editEmbed.setAuthor("Qualification")
+                            editEmbed.setTitle(`Quelle équipe se qualifiera ? ${matchqualif}`)
+                            if (reaction.emoji.name === "1️⃣") {
+                                editEmbed.addField("Résultat :", `${team1}`, true)
+                                points = cote1
+                            }
+                            if (reaction.emoji.name === "2️⃣") {
+                                editEmbed.addField("Résultat :", `${team2}`, true)
+                                points = cote2
+                            }
+                            break;
+                        case "Buteurs":
+                            const buteurs = reaction.message.embeds[0].footer.text;
+                            editEmbed.setAuthor("Buteurs")
+                            editEmbed.setTitle(`Est-ce que l'un des 2 : ${buteurs} marquera ? `)
+                            if (reaction.emoji.name === "1️⃣") {
+                                editEmbed.addField("Résultat :", "Oui", true)
+                                points = cote1
+                            }
+                            if (reaction.emoji.name === "2️⃣") {
+                                editEmbed.addField("Résultat :", "Non", true)
+                                points = cote2
+                            }
+                            break;
+                        case "But avant":
+                            const minutes = reaction.message.embeds[0].footer.text;
+                            editEmbed.setAuthor("But avant")
+                            editEmbed.setTitle(`Est-ce qu'il y aura un but avant la ${minutes} minutes ? `)
+                            if (reaction.emoji.name === "1️⃣") {
+                                editEmbed.addField("Résultat :", "Oui", true)
+                                points = cote1
+                            }
+                            if (reaction.emoji.name === "2️⃣") {
+                                editEmbed.addField("Résultat :", "Non", true)
+                                points = cote2
+                            }
+                            break;
+                        case "Marque et gagne":
+                            const buteur = reaction.message.embeds[0].footer.text;
+                            editEmbed.setAuthor("Marque et gagne")
+                            editEmbed.setTitle(`Est-ce que ${buteur} marquera et son équipe gagnera? `)
+                            if (reaction.emoji.name === "1️⃣") {
+                                editEmbed.addField("Résultat :", "Oui", true)
+                                points = cote1
+                            }
+                            if (reaction.emoji.name === "2️⃣") {
+                                editEmbed.addField("Résultat :", "Non", true)
+                                points = cote2
+                            }
+                            break;
                     }
 
 
