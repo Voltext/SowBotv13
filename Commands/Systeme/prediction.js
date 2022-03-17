@@ -617,7 +617,6 @@ module.exports = {
 							})
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
-							message.react(process.env.CROSS_ID)
 							message.react(process.env.TWO)
 							const status = "open";
 							const msgId = message.id;
