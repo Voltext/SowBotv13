@@ -433,7 +433,7 @@ module.exports = {
 								.setAuthor("Competition")
 								.setTitle(`${team1} - ${compet}`)
 								.setDescription(`Pensez-vous que ${team1} remportera la ${compet} ?`)
-								.setFooter(`${team1} gagnera ${team2}`)
+								.setFooter(`${team1} gagnera ${compet}`)
 								.addFields({
 									name: 'Pronostiques',
 									value: `${process.env.ONE} : Si vous pensez qu'ils la gagneront + \n ${process.env.TWO} : Si vous pensez qu'ils ne la gagneront pas`,
@@ -474,7 +474,7 @@ module.exports = {
 							const teamsEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Equipes gagnent")
-								.setTitle(`${team1} - ${team2}`)
+								.setTitle(`${team1} / ${team2} / ${team3}`)
 								.setDescription(`Pensez-vous que ${team1}, ${team2} et ${team3} ne perdront pas ?`)
 								.setFooter(`${team1}, ${team2} et ${team3}`)
 								.addFields({
