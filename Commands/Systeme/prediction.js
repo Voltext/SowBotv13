@@ -432,7 +432,7 @@ module.exports = {
 								.setColor("AQUA")
 								.setAuthor("Competition")
 								.setTitle(`${team1} - ${compet}`)
-								.setDescription(`Pensez-vous que ${team1} remportera la ${compet} ?`)
+								.setDescription(`Pensez-vous que ${team1} remportera ${compet} ?`)
 								.setFooter(`${team1} gagnera ${compet}`)
 								.addFields({
 									name: 'Pronostiques',
@@ -517,7 +517,7 @@ module.exports = {
 								.setColor("AQUA")
 								.setAuthor("Buts Multiples")
 								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous qu'il y aura ${buts} buts dans ce match ?`)
+								.setDescription(`Pensez-vous qu'il y aura ${buts} dans ce match ?`)
 								.setFooter(buts)
 								.addFields({
 									name: 'Pronostiques',
@@ -560,7 +560,7 @@ module.exports = {
 								.setColor("AQUA")
 								.setAuthor("Gagne ecart")
 								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous que ${teamwin} gagnera avec ${ecart} buts d'écart ?`)
+								.setDescription(`Pensez-vous que ${teamwin} gagnera avec au moins ${ecart} buts d'écart ?`)
 								.setFooter(`${teamwin} gagnera avec ${ecart}`)
 								.addFields({
 									name: 'Pronostiques',
