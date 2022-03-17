@@ -601,7 +601,7 @@ module.exports = {
 								.setColor("AQUA")
 								.setAuthor("Qualification")
 								.setTitle(`${match}`)
-								.setDescription("Laquelle de ces 2 équipes gagnera le match ?")
+								.setDescription("Laquelle de ces 2 équipes va se qualifier ?")
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
