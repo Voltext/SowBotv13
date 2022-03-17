@@ -223,9 +223,9 @@ module.exports = {
                             }
                             break;
                         case "Buts Multiples":
-                            const buts = reaction.message.embeds[0].footer
+                            const butsm = reaction.message.embeds[0].footer
                             editEmbed.setAuthor("Buts Multiples")
-                            editEmbed.setTitle(`Est-ce qu'il y aura ${buts.text} dans de match ?`)
+                            editEmbed.setTitle(`Est-ce qu'il y aura ${butsm.text} dans de match ?`)
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", "Oui", true)
                                 points = cote1
