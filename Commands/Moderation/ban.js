@@ -53,6 +53,7 @@ module.exports = {
 		await member.send({embeds: [BanEmbedUser]});
 
 		guild.members.ban(user);
+		interaction.reply({ content: `Vous avez correctement ban ${user} pour ${reason}`, ephemeral: true });
 		const banEmbed = new MessageEmbed()
 			.setTitle('Bannissement permanent')
 			.setDescription(
