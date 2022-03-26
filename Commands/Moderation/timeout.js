@@ -30,7 +30,7 @@ module.exports = {
         const user = interaction.options.getUser('user');
         const lenght = interaction.options.getString('lenght');
         const reason = interaction.options.getString('reason');
-        const member = interaction.options.getMember('user');
+        const member = await interaction.guild.members.fetch(user.id);
 
         const timeIsMs = ms(lenght)
         if(!timeIsMs)

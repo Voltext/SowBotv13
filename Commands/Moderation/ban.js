@@ -52,7 +52,7 @@ module.exports = {
 
 		await member.send({embeds: [BanEmbedUser]});
 
-		member.ban();
+		guild.members.ban(user);
 		const banEmbed = new MessageEmbed()
 			.setTitle('Bannissement permanent')
 			.setDescription(
