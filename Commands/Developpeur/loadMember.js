@@ -34,9 +34,9 @@ module.exports = {
     const members = await guild.members.fetch();
 
     members.forEach(async element => {
-      const path = `./Assets/Cards/${element.user.id}.png`
+      const pathImg = `./Assets/Cards/${element.user.id}.png`
       try {
-        if (!fs.existsSync(path)) {
+        if (!fs.existsSync(pathImg)) {
           const user = element.user.username;
           const values = await Util.getMemberRole(element)
           const stats = [];
