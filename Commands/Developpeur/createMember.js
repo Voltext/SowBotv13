@@ -43,9 +43,16 @@ module.exports = {
     const {
       guild
     } = interaction
+    
 
     const member = interaction.options.getMember('user');
     const posteUser = interaction.options.getString('poste');
+
+    fs.unlink(`./Assets/Cards/${interaction.user.id}.png`, function (err) {
+      if (err) throw err;
+      // if no error, file has been deleted successfully
+      console.log('Carte supprimée');
+  });
 
     const values = await Util.getMemberRole(member)
     const stats = [];
