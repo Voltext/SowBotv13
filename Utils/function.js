@@ -10,7 +10,7 @@ module.exports = class Utils {
             type = 'Commune'
             min = 70
             max = 82
-        } else if (roles.includes(process.env.MODO_ID)) {
+        } else if (roles.includes(process.env.MODO_ID) && !roles.includes(process.env.RESPONSABLE)) {
             type = 'Rare'
             min = 82
             max = 85
