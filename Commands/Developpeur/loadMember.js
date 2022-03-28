@@ -7,30 +7,33 @@ module.exports = {
 
     async execute(interaction) {
       const { guild } = interaction
+      let count = 0;
 
-      const channelS = guild.channels.cache.get('893865510440144956')
-      const loadMessages = await channelS.messages.fetch({limit:5})
+      const members = await guild.members.fetch();
 
-      loadMessages.forEach(async element => {
+      members.forEach(async element => {
+        const user = element.user.username;
+        const roles = element._roles;
         let role = "";
-        const firstuser = element.content.split('@')
-        const userId = firstuser[1].split('>')
-        const user = await guild.members.fetch(userId[0]).catch(console.error);
-        if(user._roles.includes(process.env.MEMBRE)) {
-          role = role + " / Membre";
+        if(roles.includes(process.env.MEMBRE)) {
+          role = role + "Membre /";
         }
-        if(user._roles.includes(process.env.MODO_ID)) {
-          role = role + " / Modérateur";
+        if(roles.includes(process.env.MODO_ID)) {
+          role = role + "Modérateur /";
         }
-        if(user._roles.includes(process.env.RESPONSABLE)) {
-          role = role + " / Responsable";
+        if(roles.includes(process.env.RESPONSABLE)) {
+          role = role + "Responsable /";
         }
-        if(user._roles.includes(process.env.ADMIN)) {
-          role = role + " / Admin";
+        if(roles.includes(process.env.ADMIN)) {
+          role = role + "Admin /";
         }
+        count = count + 1;
         guild.channels.cache.get('796022491688337408').send({
-          content: `${user.user.username} / ${role}`
+          content: `${user} / ${role}`
       })
       });
+      interaction.followUp({
+        content: `${count}`
+      })
     }
 }
