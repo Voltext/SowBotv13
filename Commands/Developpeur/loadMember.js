@@ -31,9 +31,7 @@ module.exports = {
       guild
     } = interaction
 
-    const members = await guild.members.fetch({
-      limit: 1
-    });
+    const members = await guild.members.fetch();
 
     members.forEach(async element => {
       const user = element.user.username;
