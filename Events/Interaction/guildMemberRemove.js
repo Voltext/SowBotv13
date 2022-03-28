@@ -22,5 +22,11 @@ module.exports = {
     memberChannel.edit({
       name: `${memberCount} Membres`,
     });
+
+    fs.unlink(`./Assets/Cards/${interaction.user.id}.png`, function (err) {
+      if (err) throw err;
+      // if no error, file has been deleted successfully
+      console.log('Carte supprimée');
+  });
   }
 }
