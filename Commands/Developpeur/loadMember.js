@@ -118,8 +118,7 @@ module.exports = {
       fs.writeFileSync(`./Assets/Cards/${element.user.id}.png`, buffer)
 
       guild.channels.cache.get('796022491688337408').send({
-        content: `${user}`,
-        files: [attachment]
+        content: `Ok`,
       })
     });
   }
