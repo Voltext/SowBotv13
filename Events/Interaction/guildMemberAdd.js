@@ -13,7 +13,7 @@ module.exports = {
       channel
     } = interaction;
 
-    console.log(member);
+    console.log(interaction);
 
     let memberCount = interaction.guild.memberCount
 
