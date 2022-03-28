@@ -22,7 +22,7 @@ registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
 })
 
 module.exports = {
-  name: "loadmember",
+  name: "loadmembers",
   description: "Charger tous les utilisateurs",
   permission: "ADMINISTRATOR",
 
