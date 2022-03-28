@@ -6,10 +6,9 @@ const {
 
 module.exports = {
   name: "guildMemberAdd",
-  async execute(interaction, client) {
+  async execute(interaction, member) {
     const {
       options,
-      member,
       guild,
       channel
     } = interaction;
