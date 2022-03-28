@@ -72,7 +72,7 @@ module.exports = {
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
     ctx.font = '30px DINNextLTPro-Black'
-    let name = `${user.toUpperCase()}`
+    let name = `${member.user.username.toUpperCase()}`
     ctx.fillText(name, 175, 245)
 
     ctx.fillStyle = '#ffffff'
