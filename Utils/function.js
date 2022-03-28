@@ -22,8 +22,12 @@ module.exports = class Utils {
         return [type, min, max]
     }
 
-    static getRandomNumber(min, max) {
+    static getRandomNumbers(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min)
+    }
+
+    static getRandomNumber(max) {
+        return Math.floor(Math.random() * Math.floor(max));
     }
 
     static numAverage(a) {

@@ -30,6 +30,7 @@ module.exports = {
     const {
       guild
     } = interaction
+    const posteCard = ["Attaquant", "Milieu", "Défenseur"]
 
     const members = await guild.members.fetch();
 
@@ -41,7 +42,7 @@ module.exports = {
           const values = await Util.getMemberRole(element)
           const stats = [];
           for (let it = 0; it < 6; it++) {
-            stats.push(Util.getRandomNumber(values[1], values[2]))
+            stats.push(Util.getRandomNumbers(values[1], values[2]))
           }
 
           const canvas = createCanvas(350, 590)
@@ -69,7 +70,7 @@ module.exports = {
           ctx.fillStyle = '#ffffff'
           ctx.textAlign = "center"
           ctx.font = '12px DINNextLTPro-UltraLightIt'
-          let poste = `Milieu`
+          let poste = `${posteCard[Util.getRandomNumbers(0,2)]}`
           ctx.fillText(poste.toUpperCase().split('').join(' '), 175, 260)
 
           ctx.fillStyle = '#ffffff'
