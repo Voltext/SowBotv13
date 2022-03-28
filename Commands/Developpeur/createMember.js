@@ -117,7 +117,7 @@ module.exports = {
     ctx.clip();
 
     const pfp = await loadImage(
-      element.user.displayAvatarURL({
+      member.user.displayAvatarURL({
         format: 'png',
       })
     )
@@ -127,7 +127,7 @@ module.exports = {
     const attachment = new MessageAttachment(canvas.toBuffer())
 
     const buffer = canvas.toBuffer('image/png')
-    fs.writeFileSync(`./Assets/Cards/${element.user.id}.png`, buffer)
+    fs.writeFileSync(`./Assets/Cards/${member.user.id}.png`, buffer)
 
   }
 }
