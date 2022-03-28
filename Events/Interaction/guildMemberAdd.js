@@ -30,8 +30,6 @@ module.exports = {
       channel
     } = interaction;
 
-    console.log(interaction);
-
     let memberCount = interaction.guild.memberCount
 
     const memberChannel = guild.channels.cache.get(process.env.MEMBER_COUNT);
