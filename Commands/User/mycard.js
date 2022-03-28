@@ -5,14 +5,6 @@ const path = require('path');
 module.exports = {
     name: "mycard",
     description: "Récupère ta carte",
-    options: [
-        {
-            name: 'user',
-            description: "L'utilisateur souhaité",
-            type: "USER",
-            required: true
-        },
-    ],
 
     execute(interaction) {
         const userId = interaction.user.id
