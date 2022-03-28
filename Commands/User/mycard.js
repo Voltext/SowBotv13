@@ -18,12 +18,10 @@ module.exports = {
 
         const attachment = new MessageAttachment(image)
 
-        fs.readdir(path.join(__dirname, `../../Assets/Cards`), (err, files) => {
-            nbFiles = files.length
-        });
+        const length = fs.readdirSync(path.join(__dirname, `../../Assets/Cards`)).length
 
         interaction.reply({
-            content: `1/${nbFiles} cartes collectionnées`,
+            content: `1/${length} cartes collectionnées`,
             files: [attachment],
             ephemeral: true
         })
