@@ -6,7 +6,7 @@ module.exports = class Utils {
         let min = 0
         let max = 0
 
-        if (roles.includes(process.env.MEMBRE)) {
+        if (roles.includes(process.env.MEMBRE) && !roles.includes(process.env.MODO_ID) && !roles.includes(process.env.RESPONSABLE)) {
             type = 'Commune'
             min = 70
             max = 82

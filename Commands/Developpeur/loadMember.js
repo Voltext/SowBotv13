@@ -31,7 +31,7 @@ module.exports = {
       guild
     } = interaction
 
-    const members = await guild.members.fetch();
+    const members = await guild.members.fetch({limit: 1});
 
     members.forEach(async element => {
       const path = `./Assets/Cards/${element.user.id}.png`
@@ -119,6 +119,9 @@ module.exports = {
 
           const buffer = canvas.toBuffer('image/png')
           fs.writeFileSync(`./Assets/Cards/${element.user.id}.png`, buffer)
+        }
+        else {
+          console.log("Membe déjà existant");
         }
       } catch (err) {
         console.error(err)
