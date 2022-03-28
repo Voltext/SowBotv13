@@ -18,7 +18,7 @@ module.exports = {
     execute(interaction) {
         const member = interaction.options.getMember('user');
         
-        const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${member.user.id}`))
+        const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${member.user.id}.png`))
 
         const attachment = new MessageAttachment(image)
 
