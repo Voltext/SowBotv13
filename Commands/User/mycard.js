@@ -18,9 +18,7 @@ module.exports = {
 
         const attachment = new MessageAttachment(image)
 
-        const dir = './Assets/Cards';
-
-        fs.readdir(dir, (err, files) => {
+        fs.readdir(path.join(__dirname, `../../Assets/Cards`), (err, files) => {
             nbFiles = files.length
         });
 
