@@ -471,12 +471,19 @@ module.exports = {
 							const team1 = options.getString("team1")
 							const team2 = options.getString("team2")
 							const team3 = options.getString("valeur")
+							let teamClone = ""
+							if(team3 == null || team3 == "") {
+								teamClone = `${team1} / ${team2}`
+							}
+							else {
+								teamClone = `${team1} / ${team2} / ${team3}`
+							}
 							const teamsEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Equipes gagnent")
-								.setTitle(`${team1} / ${team2} / ${team3}`)
-								.setDescription(`Pensez-vous que ${team1}, ${team2} et ${team3} ne perdront pas ?`)
-								.setFooter(`${team1}, ${team2} et ${team3}`)
+								.setTitle(`${teamClone}`)
+								.setDescription(`Pensez-vous que ${teamClone} ne perdront pas (victoire ou nul) ?`)
+								.setFooter(`${teamClone}`)
 								.addFields({
 									name: 'Pronostiques',
 									value: `${process.env.ONE} : Si vous pensez qu'ils ne perdront pas + \n ${process.env.TWO} : Si vous pensez qu'ils vont perdre`,
