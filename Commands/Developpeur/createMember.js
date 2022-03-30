@@ -175,8 +175,10 @@ module.exports = {
       const buffer = canvas.toBuffer('image/png')
       fs.writeFileSync(`./Assets/Cards/${member.user.id}_boost.png`, buffer)
     }
-    const buffer = canvas.toBuffer('image/png')
-    fs.writeFileSync(`./Assets/Cards/${member.user.id}.png`, buffer)
+    else {
+      const buffer = canvas.toBuffer('image/png')
+      fs.writeFileSync(`./Assets/Cards/${member.user.id}.png`, buffer)
+    }
 
   }
 }
