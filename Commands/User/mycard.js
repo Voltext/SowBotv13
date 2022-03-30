@@ -17,16 +17,6 @@ module.exports = {
         const pathImg = `../../Assets/Cards/${userId}_boost.png`
 
         const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
-        try {
-            if (fs.existsSync(pathImg)) {
-                const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
-                attachmentBoost = new MessageAttachment(imageBoost)
-            } else {
-                attachmentBoost = ''
-            }
-        } catch (err) {
-            console.error(err)
-        }
 
         const attachment = new MessageAttachment(image)
 
@@ -38,12 +28,23 @@ module.exports = {
             ephemeral: true
         })
 
-        if (!attachmentBoost == '') {
-            interaction.followUp({
-                content: `Vous possedez une carte Boost !`,
-                files: [attachmentBoost],
-                ephemeral: true
-            })
+        try {
+            if (fs.existsSync(pathImg)) {
+                const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
+                attachmentBoost = new MessageAttachment(imageBoost)
+            } else {
+                attachmentBoost = ''
+            }
+            if (!attachmentBoost == '') {
+                interaction.followUp({
+                    content: `Vous possedez une carte Boost !`,
+                    files: [attachmentBoost],
+                    ephemeral: true
+                })
+            }
+        } catch (err) {
+            console.error(err)
         }
+        
     }
 }
