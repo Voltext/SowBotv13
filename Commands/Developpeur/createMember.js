@@ -84,7 +84,7 @@ module.exports = {
     for (let it = 0; it < 6; it++) {
       stats.push(Util.getRandomNumbers(values[1], values[2]))
     }
-    const noteGenerale = Math.round(Util.numAverage(stats))
+    let noteGenerale = Math.round(Util.numAverage(stats))
 
     const canvas = createCanvas(350, 590)
     const ctx = canvas.getContext('2d')
