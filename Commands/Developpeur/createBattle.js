@@ -42,47 +42,47 @@ const {
       ctx.fillStyle = '#000000'
       ctx.font = '30px DINNextLTPro-Black'
       let name1 = `Voltext`
-      ctx.fillText(name1, 420, 280)
+      ctx.fillText(name1.toUpperCase(), 420, 280)
   
       ctx.fillStyle = '#000000'
       ctx.font = '30px DINNextLTPro-Black'
       let name2 = `Voltext`
-      ctx.fillText(name2, 420, 415)
+      ctx.fillText(name2.toUpperCase(), 420, 415)
   
       ctx.fillStyle = '#000000'
       ctx.font = '30px DINNextLTPro-Black'
       let name3 = `Voltext`
-      ctx.fillText(name3, 420, 660)
+      ctx.fillText(name3.toUpperCase(), 420, 660)
   
       ctx.fillStyle = '#000000'
       ctx.font = '30px DINNextLTPro-Black'
       let name4 = `Voltext`
-      ctx.fillText(name4, 420, 810)
+      ctx.fillText(name4.toUpperCase(), 420, 810)
   
       ctx.fillStyle = '#000000'
       ctx.font = '30px DINNextLTPro-Black'
       let name5 = `Voltext`
-      ctx.fillText(name5, 1280, 280)
+      ctx.fillText(name5.toUpperCase(), 1280, 280)
   
       ctx.fillStyle = '#000000'
       ctx.font = '30px DINNextLTPro-Black'
       let name6 = `Voltext`
-      ctx.fillText(name6, 1280, 415)
+      ctx.fillText(name6.toUpperCase(), 1280, 415)
   
       ctx.fillStyle = '#000000'
       ctx.font = '30px DINNextLTPro-Black'
       let name7 = `Voltext`
-      ctx.fillText(name7, 1280, 660)
+      ctx.fillText(name7.toUpperCase(), 1280, 660)
   
       ctx.fillStyle = '#000000'
       ctx.font = '30px DINNextLTPro-Black'
       let name8 = `Voltext`
-      ctx.fillText(name8, 1280, 810)
+      ctx.fillText(name8.toUpperCase(), 1280, 810)
 
       ctx.fillStyle = '#a69b94'
       ctx.font = '43px DINNextLTPro-Black'
       let month = `Mars`
-      ctx.fillText(month, 800, 250)
+      ctx.fillText(month.toUpperCase(), 1000, 250)
 
       const attachment = new MessageAttachment(canvas.toBuffer())
       interaction.reply({
