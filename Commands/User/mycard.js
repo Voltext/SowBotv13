@@ -14,7 +14,6 @@ module.exports = {
         const userId = interaction.user.id
         let nbFiles = 0;
         let attachmentBoost = ''
-        const pathImg = `../../Assets/Cards/${userId}_boost.png`
 
         const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
 
@@ -29,6 +28,7 @@ module.exports = {
         })
 
         try {
+            const pathImg = `../../Assets/Cards/${userId}_boost.png`
             if (fs.existsSync(pathImg)) {
                 const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
                 attachmentBoost = new MessageAttachment(imageBoost)
