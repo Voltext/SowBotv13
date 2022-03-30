@@ -31,16 +31,12 @@ module.exports = {
             if (fs.existsSync(pathImg)) {
                 const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
                 const attachmentBoost = new MessageAttachment(imageBoost)
-            } else {
-                const attachmentBoost = ''
-            }
-            if (!attachmentBoost == '') {
                 interaction.followUp({
                     content: `Vous possedez une carte Boost !`,
                     files: [attachmentBoost],
                     ephemeral: true
                 })
-            }
+            } 
         } catch (err) {
             console.error(err)
         }
