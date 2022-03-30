@@ -166,7 +166,7 @@ module.exports = {
       })
     )
     if(isBoost == 'oui') {
-      ctx.filter = "blur(50px)"
+      ctx.filter = 'blur(50)'
     }
     ctx.drawImage(pfp, 130, 80, 90, 90)
 
