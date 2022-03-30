@@ -12,21 +12,21 @@ module.exports = {
 
     execute(interaction) {
 
+
+        const userId = interaction.user.id
+
+        const imageBasic = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
+
+        const attachmentBasic = new MessageAttachment(imageBasic)
+
+        const length = fs.readdirSync(path.join(__dirname, `../../Assets/Cards`)).length
+
+        interaction.reply({
+            content: `1/${length} cartes collectionnées`,
+            files: [attachmentBasic],
+            ephemeral: true
+        })
         try {
-            const userId = interaction.user.id
-
-            const imageBasic = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
-
-            const attachmentBasic = new MessageAttachment(imageBasic)
-
-            const length = fs.readdirSync(path.join(__dirname, `../../Assets/Cards`)).length
-
-            interaction.reply({
-                content: `1/${length} cartes collectionnées`,
-                files: [attachmentBasic],
-                ephemeral: true
-            })
-
             const pathImg = `../../Assets/Cards/${userId}_boost.png`
             if (fs.existsSync(pathImg)) {
                 const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
@@ -36,7 +36,7 @@ module.exports = {
                     files: [attachmentBoost],
                     ephemeral: true
                 })
-            } 
+            }
         } catch (err) {
             console.error(err)
         }
