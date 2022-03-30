@@ -42,17 +42,17 @@ const {
       ctx.fillStyle = '#000000'
       ctx.font = '30px DINNextLTPro-Black'
       let name1 = `Voltext`
-      ctx.fillText(name1, 175, 210)
+      ctx.fillText(name1, 420, 300)
   
       ctx.fillStyle = '#ffffff'
       ctx.font = '30px DINNextLTPro-Black'
       let name2 = `Voltext`
-      ctx.fillText(name2, 300, 210)
+      ctx.fillText(name2, 460, 300)
   
       ctx.fillStyle = '#ffffff'
       ctx.font = '30px DINNextLTPro-Black'
       let name3 = `Voltext`
-      ctx.fillText(name3, 450, 210)
+      ctx.fillText(name3, 420, 300)
   
       ctx.fillStyle = '#ffffff'
       ctx.font = '30px DINNextLTPro-Black'
