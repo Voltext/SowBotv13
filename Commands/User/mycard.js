@@ -10,7 +10,7 @@ module.exports = {
     name: "mycard",
     description: "Récupère ta carte",
 
-    execute(interaction) {
+    async execute(interaction) {
 
 
         const userId = interaction.user.id
@@ -21,7 +21,7 @@ module.exports = {
 
         const length = fs.readdirSync(path.join(__dirname, `../../Assets/Cards`)).length
 
-        interaction.reply({
+        await interaction.reply({
             content: `1/${length} cartes collectionnées`,
             files: [attachmentBasic],
             ephemeral: true
