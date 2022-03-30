@@ -65,14 +65,14 @@ module.exports = {
     const isBoost = interaction.options.getString('isboost');
 
     if(isBoost == 'oui') {
-      fs.unlink(`./Assets/Cards/${interaction.user.id}_boost.png`, function (err) {
+      fs.unlink(`./Assets/Cards/${member.user.id}_boost.png`, function (err) {
         if (err) throw err;
         // if no error, file has been deleted successfully
         console.log('Carte Boost supprimée');
     });
     }
     else {
-      fs.unlink(`./Assets/Cards/${interaction.user.id}.png`, function (err) {
+      fs.unlink(`./Assets/Cards/${member.user.id}.png`, function (err) {
         if (err) throw err;
         // if no error, file has been deleted successfully
         console.log('Carte supprimée');
