@@ -100,6 +100,10 @@ module.exports = {
       stats[5] = stats[5] + 5
     }
 
+    if(posteUser == 'Gardien') {
+      values[0] = `${values[0]}G`
+    }
+
     const background = await loadImage(
       path.join(__dirname, `../../Assets/Base/${values[0]}.png`)
     )
