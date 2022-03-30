@@ -25,5 +25,19 @@ module.exports = {
         interaction.reply({
             files: [attachment]
         })
+
+        try {
+            const pathImg = path.join(__dirname, `../../Assets/Cards/${member.user.id}_boost.png`)
+            if (fs.existsSync(pathImg)) {
+                const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${member.user.id}_boost.png`))
+                const attachmentBoost = new MessageAttachment(imageBoost)
+                interaction.followUp({
+                    files: [attachmentBoost]
+                })
+            }
+        } catch (err) {
+            console.error(err)
+        }
     }
+    
 }
