@@ -28,7 +28,7 @@ module.exports = {
         })
         try {
             console.log("test")
-            const pathImg = `../../Assets/Cards/${userId}_boost.png`
+            const pathImg = path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`)
             console.log(pathImg)
             if (fs.existsSync(pathImg)) {
                 const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
