@@ -142,14 +142,14 @@ module.exports = {
                     embeds: [rankEmbed], 
                     files: [attachment]
                 })
-                /* await mongo().then(async (mongoosereset2) => {
+                await mongo().then(async (mongoosereset2) => {
                     try {
                         await rankPrediSchema.deleteMany({
                         })
                     } finally {
                         mongoosereset2.connection.close()
                     }
-                }) */
+                })
             } finally {
                 mongoosereset1.connection.close();
             }
