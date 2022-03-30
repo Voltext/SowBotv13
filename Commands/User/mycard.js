@@ -14,7 +14,7 @@ module.exports = {
         const userId = interaction.user.id
         let nbFiles = 0;
         let attachmentBoost = ''
-        const pathImg = `./Assets/Cards/${userId}_boost.png`
+        const pathImg = `../../Assets/Cards/${userId}_boost.png`
 
         const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
         try {
