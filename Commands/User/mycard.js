@@ -18,9 +18,11 @@ module.exports = {
 
         const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
         try {
-            if (!fs.existsSync(pathImg)) {
+            if (fs.existsSync(pathImg)) {
                 const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
                 attachmentBoost = new MessageAttachment(imageBoost)
+            } else {
+                attachmentBoost = ''
             }
         } catch (err) {
             console.error(err)
@@ -32,8 +34,16 @@ module.exports = {
 
         interaction.reply({
             content: `1/${length} cartes collectionnées`,
-            files: [attachment, attachmentBoost],
+            files: [attachment],
             ephemeral: true
         })
+
+        if (!attachmentBoost == '') {
+            interaction.followUp({
+                content: `Vous possedez une carte Boost !`,
+                files: [attachmentBoost],
+                ephemeral: true
+            })
+        }
     }
 }
