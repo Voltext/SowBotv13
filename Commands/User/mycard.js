@@ -14,7 +14,6 @@ module.exports = {
 
         try {
             const userId = interaction.user.id
-            let attachmentBoost = ''
 
             const imageBasic = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
 
@@ -31,9 +30,9 @@ module.exports = {
             const pathImg = `../../Assets/Cards/${userId}_boost.png`
             if (fs.existsSync(pathImg)) {
                 const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
-                attachmentBoost = new MessageAttachment(imageBoost)
+                const attachmentBoost = new MessageAttachment(imageBoost)
             } else {
-                attachmentBoost = ''
+                const attachmentBoost = ''
             }
             if (!attachmentBoost == '') {
                 interaction.followUp({
