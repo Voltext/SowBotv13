@@ -13,8 +13,18 @@ module.exports = {
     execute(interaction) {
         const userId = interaction.user.id
         let nbFiles = 0;
+        let attachmentBoost = ''
+        const pathImg = `./Assets/Cards/${element.user.id}_boost.png`
 
         const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
+        try {
+            if (!fs.existsSync(pathImg)) {
+                const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
+                attachmentBoost = new MessageAttachment(imageBoost)
+            }
+        } catch (err) {
+            console.error(err)
+        }
 
         const attachment = new MessageAttachment(image)
 
@@ -22,7 +32,7 @@ module.exports = {
 
         interaction.reply({
             content: `1/${length} cartes collectionnées`,
-            files: [attachment],
+            files: [attachment, attachmentBoost],
             ephemeral: true
         })
     }
