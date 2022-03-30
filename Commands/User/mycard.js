@@ -29,8 +29,8 @@ module.exports = {
         try {
             console.log("test")
             const pathImg = `../../Assets/Cards/${userId}_boost.png`
+            console.log(pathImg)
             if (fs.existsSync(pathImg)) {
-                console.log("test2")
                 const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
                 const attachmentBoost = new MessageAttachment(imageBoost)
                 interaction.followUp({
