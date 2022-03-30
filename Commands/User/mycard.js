@@ -14,21 +14,20 @@ module.exports = {
 
         try {
             const userId = interaction.user.id
-            let nbFiles = 0;
             let attachmentBoost = ''
 
-            const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
+            const imageBasic = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}.png`))
 
-            const attachment = new MessageAttachment(image)
+            const attachmentBasic = new MessageAttachment(imageBasic)
 
             const length = fs.readdirSync(path.join(__dirname, `../../Assets/Cards`)).length
 
             interaction.reply({
                 content: `1/${length} cartes collectionnées`,
-                files: [attachment],
+                files: [attachmentBasic],
                 ephemeral: true
             })
-            
+
             const pathImg = `../../Assets/Cards/${userId}_boost.png`
             if (fs.existsSync(pathImg)) {
                 const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
