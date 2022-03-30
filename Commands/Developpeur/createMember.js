@@ -37,6 +37,21 @@ module.exports = {
       type: "STRING",
       required: true
     },
+    {
+      name: 'isboost',
+      description: "Est ce que cette carte est un boost",
+      type: "STRING",
+      required: true,
+				choices: [{
+						name: "Oui",
+						value: "oui"
+					},
+					{
+						name: "Non",
+						value: "non"
+					},
+        ],
+    },
   ],
 
   async execute(interaction) {
@@ -47,21 +62,43 @@ module.exports = {
 
     const member = interaction.options.getMember('user');
     const posteUser = interaction.options.getString('poste');
+    const isBoost = interaction.options.getString('isboost');
 
-    fs.unlink(`./Assets/Cards/${interaction.user.id}.png`, function (err) {
-      if (err) throw err;
-      // if no error, file has been deleted successfully
-      console.log('Carte supprimée');
-  });
+    if(isBoost == 'oui') {
+      fs.unlink(`./Assets/Cards/${interaction.user.id}_boost.png`, function (err) {
+        if (err) throw err;
+        // if no error, file has been deleted successfully
+        console.log('Carte Boost supprimée');
+    });
+    }
+    else {
+      fs.unlink(`./Assets/Cards/${interaction.user.id}.png`, function (err) {
+        if (err) throw err;
+        // if no error, file has been deleted successfully
+        console.log('Carte supprimée');
+    });
+    }
 
     const values = await Util.getMemberRole(member)
     const stats = [];
     for (let it = 0; it < 6; it++) {
       stats.push(Util.getRandomNumbers(values[1], values[2]))
     }
+    const noteGenerale = Math.round(Util.numAverage(stats))
 
     const canvas = createCanvas(350, 590)
     const ctx = canvas.getContext('2d')
+
+    if(isBoost == 'oui') {
+      values[0] = 'Boost'
+      noteGenerale = noteGenerale + 5
+      stats[0] = stats[0] + 5
+      stats[1] = stats[1] + 5
+      stats[2] = stats[2] + 5
+      stats[3] = stats[3] + 5
+      stats[4] = stats[4] + 5
+      stats[5] = stats[5] + 5
+    }
 
     const background = await loadImage(
       path.join(__dirname, `../../Assets/Base/${values[0]}.png`)
@@ -73,7 +110,7 @@ module.exports = {
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
     ctx.font = '50px DINNextLTPro-Black'
-    let scoreG = `${Math.round(Util.numAverage(stats))}`
+    let scoreG = `${noteGenerale}`
     ctx.fillText(scoreG, 175, 210)
 
     ctx.fillStyle = '#ffffff'
@@ -128,11 +165,16 @@ module.exports = {
         format: 'png',
       })
     )
-
+    if(isBoost == 'oui') {
+      ctx.filter = "blur(50px)"
+    }
     ctx.drawImage(pfp, 130, 80, 90, 90)
 
-    const attachment = new MessageAttachment(canvas.toBuffer())
 
+    if(isBoost == 'oui') {
+      const buffer = canvas.toBuffer('image/png')
+      fs.writeFileSync(`./Assets/Cards/${member.user.id}_boost.png`, buffer)
+    }
     const buffer = canvas.toBuffer('image/png')
     fs.writeFileSync(`./Assets/Cards/${member.user.id}.png`, buffer)
 
