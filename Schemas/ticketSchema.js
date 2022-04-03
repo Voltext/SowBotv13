@@ -28,6 +28,11 @@ const ticketSchema = mongoose.Schema({
   Type: {
     type: String,
     required: true
+  },
+  Modo: {
+    type: String,
+    default: null,
+    required: true
   }
 
 })
