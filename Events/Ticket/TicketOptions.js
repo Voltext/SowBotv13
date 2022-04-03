@@ -82,7 +82,7 @@ module.exports = {
                     }, {
                         Modo: interaction.user.username
                     });
-                    Embed.setDescription("✅ | Vous venez de prendre en charge le ticket");
+                    Embed.setDescription(`✅ | ${interaction.user.username} vient de prendre en charge le ticket`);
                     interaction.reply({
                         embeds: [Embed]
                     });
