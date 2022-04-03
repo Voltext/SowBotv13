@@ -50,7 +50,8 @@ module.exports = {
                 ChannelID: channel.id,
                 Closed: false,
                 Locked: false,
-                Type: customId
+                Type: customId,
+                Modo: null
             });
 
             const Embed = new MessageEmbed()
