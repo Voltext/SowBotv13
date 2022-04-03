@@ -30,6 +30,14 @@ module.exports = {
                     allow: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"],
                 },
                 {
+                    id: process.env.MODO_ID,
+                    allow: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"],
+                },
+                {
+                    id: process.env.RESPONSABLE,
+                    allow: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"],
+                },
+                {
                     id: process.env.EVERYONE,
                     deny: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"],
                 }
