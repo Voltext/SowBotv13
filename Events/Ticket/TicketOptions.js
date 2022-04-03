@@ -95,12 +95,12 @@ module.exports = {
                     const MEMBER = guild.members.cache.get(docs.MemberID);
                     const Message = await guild.channels.cache.get(process.env.TRANSCRIPT).send({
                         embeds: [
-                            Embed.setAuthor(
-                                MEMBER.user.tag,
-                                MEMBER.user.displayAvatarURL({
+                            Embed.setAuthor({
+                                name: MEMBER.user.tag,
+                                iconURL: MEMBER.user.displayAvatarURL({
                                     dynamic: true
                                 })
-                            ).setTitle(`Transcript Type: ${docs.Type}\nID: ${docs.TicketID}`),
+                            }).setTitle(`Transcript Type: ${docs.Type}\nID: ${docs.TicketID}`),
                         ],
                         files: [attachment],
                     });
