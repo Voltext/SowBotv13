@@ -25,7 +25,7 @@ module.exports = {
             ephemeral: true
         })
 
-        if (!["close", "lock", "unlock"].includes(customId)) return;
+        if (!["close", "lock", "unlock", "charge"].includes(customId)) return;
 
         const Embed = new MessageEmbed().setColor("BLUE")
 
@@ -72,6 +72,17 @@ module.exports = {
                     channel.permissionOverwrites.edit(docs.MemberID, {
                         SEND_MESSAGES: true,
                     });
+                    interaction.reply({
+                        embeds: [Embed]
+                    });
+                    break;
+                case "charge":
+                    await DB.updateOne({
+                        ChannelID: channel.id
+                    }, {
+                        Modo: interaction.user.username
+                    });
+                    Embed.setDescription("✅ | Vous venez de prendre en charge le ticket");
                     interaction.reply({
                         embeds: [Embed]
                     });

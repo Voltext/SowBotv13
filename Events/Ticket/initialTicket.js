@@ -51,7 +51,7 @@ module.exports = {
                 Closed: false,
                 Locked: false,
                 Type: customId,
-                Modo: null
+                Modo: "Aucun"
             });
 
             const Embed = new MessageEmbed()
@@ -80,7 +80,12 @@ module.exports = {
                 .setCustomId("unlock")
                 .setLabel("Deverouiller")
                 .setStyle("SECONDARY")
-                .setEmoji("🔓")
+                .setEmoji("🔓"),
+                new MessageButton()
+                .setCustomId("charge")
+                .setLabel("Prendre en charge")
+                .setStyle("WARNING")
+                .setEmoji("🤝")
             );
 
             channel.send({
