@@ -22,6 +22,7 @@
     "canvas": "^2.9.1",
     "colors": "^1.4.0",
     "discord-fetch-all": "^3.0.2",
+    "discord-html-transcripts": "^2.2.8",
     "discord.js": "^13.4.0",
     "discordjs-button-pagination": "^3.0.0",
     "dotenv": "^10.0.0",
