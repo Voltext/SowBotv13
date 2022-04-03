@@ -83,7 +83,7 @@ module.exports = {
                 .setEmoji("🔓"),
                 new MessageButton()
                 .setCustomId("charge")
-                .setLabel("Prendre en charge")
+                .setLabel("Prendre")
                 .setStyle("WARNING")
                 .setEmoji("🤝")
             );
