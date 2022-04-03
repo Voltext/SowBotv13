@@ -68,7 +68,7 @@ module.exports = {
             Buttons.addComponents(
                 new MessageButton()
                 .setCustomId('close')
-                .setLabel("Sauvegarder & Fermer")
+                .setLabel("Sauvegarder")
                 .setStyle("SUCCESS")
                 .setEmoji("🛡️"),
                 new MessageButton()
