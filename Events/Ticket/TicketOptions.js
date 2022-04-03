@@ -16,14 +16,15 @@ module.exports = {
         const {
             guild,
             customId,
-            channel
+            channel,
+            member
         } = interaction;
-
-        if (!["close", "lock", "unlock"].includes(customId)) return;
 
         if (!member.permissions.has("BAN_MEMBERS")) return interaction.reply({
             content: 'Vous ne pouvez pas utiliser ces boutons'
         })
+
+        if (!["close", "lock", "unlock"].includes(customId)) return;
 
         const Embed = new MessageEmbed().setColor("BLUE")
 
