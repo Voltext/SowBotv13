@@ -46,14 +46,14 @@ module.exports = {
             });
 
             const Embed = new MessageEmbed()
-                .setAuthor(
-                    `${guild.name} | Ticket: ${ID}`,
-                    guild.iconURL({
+                .setAuthor({
+                    name: `${guild.name} | Ticket: ${ID}`,
+                    iconURL: guild.iconURL({
                         dynamic: true
                     })
-                )
+                })
                 .setDescription("Votre ticket a bien été ouvert, merci d'attendre patiemment qu'il soit prit en charge par un membre du staff")
-                .setFooter("Ces boutons ci-dessous sont réservés aux membre du staff")
+                .setFooter({content: "Ces boutons ci-dessous sont réservés aux membre du staff"})
 
             const Buttons = new MessageActionRow();
             Buttons.addComponents(

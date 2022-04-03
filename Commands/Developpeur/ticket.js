@@ -9,10 +9,10 @@ module.exports = {
         const { guild } = interaction;
 
         const Embed = new MessageEmbed()
-        .setAuthor(
-            guild.name + " | Système de ticket",
-            guild.iconURL({ dynamic: true })
-        )
+        .setAuthor({
+            name: guild.name + " | Système de ticket",
+            iconURL: guild.iconURL({ dynamic: true })
+        })
         .setDescription(
             "Ouvrir un ticket pour demander de l'aide"
         )
