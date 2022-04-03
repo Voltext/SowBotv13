@@ -68,7 +68,7 @@ module.exports = {
             Buttons.addComponents(
                 new MessageButton()
                 .setCustomId('close')
-                .setLabel("Sauvegarder")
+                .setLabel("Sauvegarder & Fermer")
                 .setStyle("SUCCESS")
                 .setEmoji("🛡️"),
                 new MessageButton()
@@ -83,8 +83,8 @@ module.exports = {
                 .setEmoji("🔓"),
                 new MessageButton()
                 .setCustomId("charge")
-                .setLabel("Prendre")
-                .setStyle("WARNING")
+                .setLabel("Prendre en charge")
+                .setStyle("DANGER")
                 .setEmoji("🤝")
             );
 
