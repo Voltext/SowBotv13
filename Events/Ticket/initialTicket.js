@@ -53,7 +53,7 @@ module.exports = {
                     })
                 })
                 .setDescription("Votre ticket a bien été ouvert, merci d'attendre patiemment qu'il soit prit en charge par un membre du staff")
-                .setFooter({content: "Ces boutons ci-dessous sont réservés aux membre du staff"})
+                .setFooter({text: "Ces boutons ci-dessous sont réservés aux membre du staff"})
 
             const Buttons = new MessageActionRow();
             Buttons.addComponents(
