@@ -68,11 +68,11 @@ module.exports = {
                         let name1 = `${elem.userName}`
                         ctx.fillText(name1, xp, yp)
                         
-                        yp = yp + 75;
+                        yp = yp + 55;
 
                         if (placement === 10) {
                             xp = 1020
-                            yp = 300
+                            yp = 350
                         }
 
                         placement = placement + 1;
