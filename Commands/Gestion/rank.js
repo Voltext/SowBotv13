@@ -59,7 +59,7 @@ module.exports = {
                     let y = 0
 
                     let xp = 350
-                    let yp = 200
+                    let yp = 300
 
                     ctx.drawImage(background, x, y)
                     results.forEach(function (elem) {
@@ -68,9 +68,9 @@ module.exports = {
                         let name1 = `${elem.userName}`
                         ctx.fillText(name1, xp, yp)
 
-                        if (placement === 11) {
+                        if (placement === 10) {
                             xp = 1020
-                            yp = 200
+                            yp = 300
                         }
                         yp = yp + 50;
 
