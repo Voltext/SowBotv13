@@ -4,6 +4,21 @@ const {
 require('dotenv').config();
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema')
+const {
+    registerFont,
+    createCanvas,
+    loadImage
+} = require("canvas")
+const path = require('path');
+registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
+    family: 'DINNextLTPro-Black'
+})
+registerFont('./Assets/Fonts/DINNextLTPro-UltraLightIt.ttf', {
+    family: 'DINNextLTPro-UltraLightIt'
+})
+registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
+    family: 'DINNextRoundedLTPro-Bold'
+})
 
 module.exports = {
     name: "rank",
@@ -12,10 +27,6 @@ module.exports = {
 
     async execute(interaction) {
         let placement = 1;
-
-        let rank = '';
-        let pseudos = '';
-        let pointsPlayer = '';
 
         await mongo().then(async (mongooserank) => {
             try {
@@ -37,32 +48,45 @@ module.exports = {
                 if (results.length === 0) {
                     rankEmbed.addField("Classement", "Aucun utilisateur ne fait actuellement parti de ce classement")
                 } else {
+                    const canvas = createCanvas(1920, 1080)
+                    const ctx = canvas.getContext('2d')
+
+                    const background = await loadImage(
+                        path.join(__dirname, `../../Assets/Base/Classement.png`)
+                    )
+                    let xp = 300
+                    let yp = 100
+
+                    let x1 = 280
+                    let y1 = 100
+                    ctx.drawImage(background, x, y)
                     results.forEach(function (elem) {
-                        rank = rank + placement + '\n';
-                        pseudos = pseudos + elem.userName + '\n';
-                        pointsPlayer = pointsPlayer + elem.points + '\n';
-                        placement = placement + 1;
-                        if(placement === 9) {
-                            rank = rank + "--\n";
-                            pseudos = pseudos + '**------- PLAY - OFF -------**\n';
-                            pointsPlayer = pointsPlayer + "--\n";
+
+                        ctx.fillStyle = '#000000'
+                        ctx.font = '30px DINNextLTPro-Black'
+                        let placement1 = `${placement}`
+                        ctx.fillText(placement1, x1, y1 + 20)
+
+                        ctx.fillStyle = '#000000'
+                        ctx.font = '30px DINNextLTPro-Black'
+                        let name1 = `${elem}`
+                        ctx.fillText(name1, xp, yp + 20)
+
+                        if (placement === 11) {
+                            xp = 420
+                            yp = 100
+                            x1 = 400
+                            y1 = 100
                         }
+
+                        placement = placement + 1;
                     })
-                    rankEmbed.addFields({
-                        name: '❯ Placement',
-                        value: rank,
-                        inline: true
-                    }, {
-                        name: '❯ Pseudo',
-                        value: pseudos,
-                        inline: true
-                    }, {
-                        name: '❯ Points',
-                        value: pointsPlayer,
-                        inline: true
-                    }, );
+                    const attachment = new MessageAttachment(canvas.toBuffer())
+                    interaction.reply({
+                        files: [attachment]
+                    })
                 }
-                interaction.reply({embeds: [rankEmbed]})
+                
             } finally {
                 mongooserank.connection.close();
             }
