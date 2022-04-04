@@ -69,12 +69,12 @@ module.exports = {
                         ctx.fillStyle = '#000000'
                         ctx.font = '30px DINNextLTPro-Black'
                         let placement1 = `${placement}`
-                        ctx.fillText(placement1, x1, y1 + 20)
+                        ctx.fillText(placement1, x1, y1)
 
                         ctx.fillStyle = '#000000'
                         ctx.font = '30px DINNextLTPro-Black'
-                        let name1 = `${elem}`
-                        ctx.fillText(name1, xp, yp + 20)
+                        let name1 = `${elem.userName}`
+                        ctx.fillText(name1, xp, yp)
 
                         if (placement === 11) {
                             xp = 420
@@ -82,6 +82,8 @@ module.exports = {
                             x1 = 400
                             y1 = 100
                         }
+                        yp = yp + 20;
+                        y1 = y1 + 20;
 
                         placement = placement + 1;
                     })
