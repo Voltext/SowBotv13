@@ -28,6 +28,7 @@ module.exports = {
 
     async execute(interaction) {
         let placement = 1;
+        let pointsPlayer = 0;
 
         await mongo().then(async (mongooserank) => {
             try {
@@ -61,18 +62,30 @@ module.exports = {
                     let xp = 350
                     let yp = 340
 
+                    let x1 = 900
+                    let y1 = 340
+
                     ctx.drawImage(background, x, y)
                     results.forEach(function (elem) {
                         ctx.fillStyle = '#ffffff'
                         ctx.font = '30px DINNextLTPro-Black'
                         let name1 = `${elem.userName}`
                         ctx.fillText(name1, xp, yp)
+
+                        ctx.fillStyle = '#ffffff'
+                        ctx.font = '30px DINNextLTPro-Black'
+                        let points = `${elem.points}`
+                        ctx.fillText(points, x1, y1)
                         
                         yp = yp + 65;
+                        y1 = y1 + 65;
 
                         if (placement === 10) {
-                            xp = 1070
+                            xp = 1060
                             yp = 340
+
+                            x1 = 1600
+                            y1 = 340
                         }
 
                         placement = placement + 1;
