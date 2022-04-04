@@ -41,11 +41,6 @@ module.exports = {
                     "points": -1
                 });
 
-
-                const rankEmbed = new MessageEmbed()
-                    .setTitle("Classement des prédicteurs")
-                    .setDescription("Voici le TOP 20 des meilleurs prédicteurs du serveur");
-
                 if (results.length === 0) {
                     rankEmbed.addField("Classement", "Aucun utilisateur ne fait actuellement parti de ce classement")
                 } else {

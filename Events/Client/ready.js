@@ -150,7 +150,6 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			rankchannel.bulkDelete(1);
 			let placement = 1;
 
-
 			await mongo().then(async (mongooseclassement) => {
 				try {
 					const results = await rankPrediSchema.find({}, {
