@@ -59,7 +59,7 @@ module.exports = {
                     let y = 0
 
                     let xp = 350
-                    let yp = 300
+                    let yp = 350
 
                     ctx.drawImage(background, x, y)
                     results.forEach(function (elem) {
@@ -67,12 +67,13 @@ module.exports = {
                         ctx.font = '30px DINNextLTPro-Black'
                         let name1 = `${elem.userName}`
                         ctx.fillText(name1, xp, yp)
+                        
+                        yp = yp + 100;
 
                         if (placement === 10) {
                             xp = 1020
                             yp = 300
                         }
-                        yp = yp + 50;
 
                         placement = placement + 1;
                     })
