@@ -9,6 +9,21 @@ const schedule = require('node-schedule');
 const colors = require('colors');
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema')
+const {
+    registerFont,
+    createCanvas,
+    loadImage
+} = require("canvas")
+const path = require('path');
+registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
+    family: 'DINNextLTPro-Black'
+})
+registerFont('./Assets/Fonts/DINNextLTPro-UltraLightIt.ttf', {
+    family: 'DINNextLTPro-UltraLightIt'
+})
+registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
+    family: 'DINNextRoundedLTPro-Bold'
+})
 
 module.exports = {
 	name: "ready",
@@ -35,10 +50,10 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 		const channelS = client.channels.cache.get(process.env.PREDICTIONS)
 		channelS.messages.fetch()
-		.then(console.log("Loaded"))
+			.then(console.log("Loaded"))
 		const channelD = client.channels.cache.get(process.env.DEMANDES)
 		channelD.messages.fetch()
-		.then(console.log("Loaded"))
+			.then(console.log("Loaded"))
 
 		let isOnLive = false;
 		const getLive = new TwitchLive();
@@ -135,9 +150,6 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			rankchannel.bulkDelete(1);
 			let placement = 1;
 
-			let rank = '';
-			let pseudos = '';
-			let pointsPlayer = '';
 
 			await mongo().then(async (mongooseclassement) => {
 				try {
@@ -159,35 +171,51 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					if (results.length === 0) {
 						rankEmbed.addField("Classement", "Aucun utilisateur ne fait actuellement parti de ce classement")
 					} else {
+						const canvas = createCanvas(1920, 1080)
+						const ctx = canvas.getContext('2d')
+
+						const background = await loadImage(
+							path.join(__dirname, `../../Assets/Base/Classement.png`)
+						)
+						let x = 0
+						let y = 0
+
+						let xp = 350
+						let yp = 340
+
+						let x1 = 900
+						let y1 = 340
+
+						ctx.drawImage(background, x, y)
 						results.forEach(function (elem) {
-							rank = rank + placement + '\n';
-							pseudos = pseudos + elem.userName + '\n';
-							pointsPlayer = pointsPlayer + elem.points + '\n';
-							placement = placement + 1;
-							if(placement === 9) {
-								rank = rank + "--\n";
-								pseudos = pseudos + '**------- PLAY - OFF -------**\n';
-								pointsPlayer = pointsPlayer + "--\n";
-						}
+							ctx.fillStyle = '#ffffff'
+                        ctx.font = '30px DINNextLTPro-Black'
+                        let name1 = `${elem.userName}`
+                        ctx.fillText(name1, xp, yp)
+
+                        ctx.fillStyle = '#ffffff'
+                        ctx.font = '30px DINNextLTPro-Black'
+                        let points = `${elem.points}`
+                        ctx.fillText(points, x1, y1)
+                        
+                        yp = yp + 65;
+                        y1 = y1 + 65;
+
+                        if (placement === 10) {
+                            xp = 1060
+                            yp = 340
+
+                            x1 = 1600
+                            y1 = 340
+                        }
+
+                        placement = placement + 1;
 						})
-						rankEmbed.addFields({
-							name: '❯ Placement',
-							value: rank,
-							inline: true
-						}, {
-							name: '❯ Pseudo',
-							value: pseudos,
-							inline: true
-						}, {
-							name: '❯ Points',
-							value: pointsPlayer,
-							inline: true
-						}, );
+						const attachment = new MessageAttachment(canvas.toBuffer())
+						interaction.reply({
+							files: [attachment]
+						})
 					}
-					client.channels.cache.get(process.env.RANK_CHANNEL).send({
-						content: "Voici le classement des prédicteurs en cours...",
-						embeds: [rankEmbed],
-					});
 				} finally {
 					mongooseclassement.connection.close();
 				}

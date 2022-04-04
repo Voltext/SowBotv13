@@ -28,7 +28,6 @@ module.exports = {
 
     async execute(interaction) {
         let placement = 1;
-        let pointsPlayer = 0;
 
         await mongo().then(async (mongooserank) => {
             try {
