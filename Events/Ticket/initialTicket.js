@@ -43,15 +43,22 @@ module.exports = {
                 }
             ],
         }).then(async (channel) => {
-            DB.create({
-                GuildID: guild.id,
-                MemberID: member.id,
-                TicketID: ID,
-                ChannelID: channel.id,
-                Closed: false,
-                Locked: false,
-                Type: customId,
-                Modo: "Aucun"
+            await mongo().then(async (mongooseticketinit) => {
+                try {
+                    DB.create({
+                        GuildID: guild.id,
+                        MemberID: member.id,
+                        TicketID: ID,
+                        ChannelID: channel.id,
+                        Closed: false,
+                        Locked: false,
+                        Type: customId,
+                        Modo: "Aucun"
+                    });
+                }
+                finally {
+                    mongooseticketinit.connection.close();
+                }
             });
 
             const Embed = new MessageEmbed()
