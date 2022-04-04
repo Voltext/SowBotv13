@@ -54,6 +54,9 @@ module.exports = {
                     const background = await loadImage(
                         path.join(__dirname, `../../Assets/Base/Classement.png`)
                     )
+                    let x = 0
+                    let y = 0
+                    
                     let xp = 300
                     let yp = 100
 
