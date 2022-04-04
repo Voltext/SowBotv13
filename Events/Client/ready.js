@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const TwitchLive = require("../../Api/twitchlive");
 const TwitchSchedule = require("../../Api/twitchschedule");
 const {
-	MessageEmbed
+	MessageEmbed,
+	MessageAttachment
 } = require("discord.js");
 const schedule = require('node-schedule');
 const colors = require('colors');
