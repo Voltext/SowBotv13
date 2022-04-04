@@ -61,17 +61,9 @@ module.exports = {
                     let xp = 300
                     let yp = 100
 
-                    let x1 = 280
-                    let y1 = 100
                     ctx.drawImage(background, x, y)
                     results.forEach(function (elem) {
-
-                        ctx.fillStyle = '#000000'
-                        ctx.font = '30px DINNextLTPro-Black'
-                        let placement1 = `${placement}`
-                        ctx.fillText(placement1, x1, y1)
-
-                        ctx.fillStyle = '#000000'
+                        ctx.fillStyle = '#ffffff'
                         ctx.font = '30px DINNextLTPro-Black'
                         let name1 = `${elem.userName}`
                         ctx.fillText(name1, xp, yp)
@@ -79,11 +71,8 @@ module.exports = {
                         if (placement === 11) {
                             xp = 420
                             yp = 100
-                            x1 = 400
-                            y1 = 100
                         }
-                        yp = yp + 20;
-                        y1 = y1 + 20;
+                        yp = yp + 50;
 
                         placement = placement + 1;
                     })
