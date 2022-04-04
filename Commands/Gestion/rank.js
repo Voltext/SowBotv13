@@ -59,7 +59,7 @@ module.exports = {
                     let y = 0
 
                     let xp = 350
-                    let yp = 345
+                    let yp = 340
 
                     ctx.drawImage(background, x, y)
                     results.forEach(function (elem) {
@@ -72,7 +72,7 @@ module.exports = {
 
                         if (placement === 10) {
                             xp = 1070
-                            yp = 345
+                            yp = 340
                         }
 
                         placement = placement + 1;
