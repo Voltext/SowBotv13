@@ -44,10 +44,8 @@ module.exports = {
             ],
         }).then(async (channel) => {
             await mongo().then(async (mongooseticketinit) => {
-                console.log("test")
                 try {
-                    console.log("test2")
-                    DB.createCollection({
+                    await DB.createCollection({
                         GuildID: guild.id,
                         MemberID: member.id,
                         TicketID: ID,
