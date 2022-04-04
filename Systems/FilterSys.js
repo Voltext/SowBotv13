@@ -1,7 +1,7 @@
 const Schema = require("../Schemas/filterSchema");
 const mongo = require('../../mongo');
 
-module.exports = (client) => {
+module.exports = async (client) => {
   await mongo().then(async (mongoosefiltre) => {
     try {
       await Schema.find().then((documents) => {
