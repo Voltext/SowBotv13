@@ -1,5 +1,6 @@
 const {
-    MessageEmbed
+    MessageEmbed,
+    MessageAttachment
 } = require("discord.js");
 require('dotenv').config();
 const mongo = require('../../mongo');
@@ -56,7 +57,7 @@ module.exports = {
                     )
                     let x = 0
                     let y = 0
-                    
+
                     let xp = 300
                     let yp = 100
 
