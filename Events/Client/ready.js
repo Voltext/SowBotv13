@@ -212,9 +212,9 @@ ${'↓ LOGS ↓'.bgBlue}`,
                         placement = placement + 1;
 						})
 						const attachment = new MessageAttachment(canvas.toBuffer())
-						interaction.reply({
+						client.channels.cache.get(process.env.RANK_CHANNEL).send({
 							files: [attachment]
-						})
+						});
 					}
 				} finally {
 					mongooseclassement.connection.close();
