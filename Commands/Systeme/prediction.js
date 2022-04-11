@@ -173,9 +173,9 @@ module.exports = {
 									cote1 = cote1 * 2
 									cote2 = cote2 * 2
 									color = "GOLD"
+									buteurEmbed.setImage(`attachment://${img}`)
+									buteurEmbed.setThumbnail(`attachment://${img_small}`);
 								}
-								buteurEmbed.setImage(`attachment://${img}`)
-								buteurEmbed.setThumbnail(`attachment://${img_small}`);
 								buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
 								.setColor(color)
 								.setFooter(buteur)
