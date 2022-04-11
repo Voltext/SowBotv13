@@ -779,7 +779,7 @@ module.exports = {
 							const journee = options.getString("team1")
 							const ecartEmbed = new MessageEmbed()
 								.setColor("AQUA")
-								.setAuthor("But journée")
+								.setAuthor({name: "But journée"})
 								.setTitle(`${match}`)
 								.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} buts pour la ${journee} jouernée de ${championnat}`)
 								.setFooter(`+ ou - de ${buts} buts pour la ${journee} journée de ${championnat}`)
