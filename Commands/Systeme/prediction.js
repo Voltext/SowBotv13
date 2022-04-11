@@ -180,7 +180,7 @@ module.exports = {
 								}, );
 							interaction.reply({
 								embeds: [buteurEmbed],
-								files: ['../../Assets/Predi/x2.png']
+								files: ['./Assets/Predi/x2.png']
 							})
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
