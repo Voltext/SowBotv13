@@ -161,15 +161,17 @@ module.exports = {
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
 							let color = "AQUA"
 							let img = "x1.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const buteurEmbed = new MessageEmbed()
 								.setAuthor("Buteur")
 								.setTitle(`${match}`);
 								if(options.getString("boost") == 'x2') {
-									buteurEmbed.setThumbnail("attachment://x2.png");
-									options.getString('cote1') = options.getString('cote1') * 2
-									options.getString('cote2') = options.getString('cote2') * 2
-									color = "GOLD"
 									img = "x2.png"
+									buteurEmbed.setThumbnail("attachment://x2.png");
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
 								}
 								buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
 								.setColor(color)
@@ -180,7 +182,7 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
 							interaction.reply({
