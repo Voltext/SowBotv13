@@ -305,7 +305,7 @@ module.exports = {
                         case "But journée":
                             const butday = reaction.message.embeds[0].footer.text;
                             editEmbed.setAuthor("But journée")
-                            editEmbed.setTitle(`Pensez-vous qu'il y aura + ou - de  ${buteurm}`)
+                            editEmbed.setTitle(`Pensez-vous qu'il y aura + ou - de  ${butday}`)
                             if (reaction.emoji.name === "1️⃣") {
                                 editEmbed.addField("Résultat :", "Oui", true)
                                 points = cote1
