@@ -1,7 +1,8 @@
 const {
 	MessageActionRow,
 	MessageEmbed,
-	MessageSelectMenu
+	MessageSelectMenu,
+	MessageAttachment
 } = require("discord.js");
 const ms = require("ms");
 const mongo = require('../../mongo');
@@ -109,6 +110,26 @@ module.exports = {
 				require: true,
 			},
 			{
+				name: "boost",
+				description: "Designe si le prono est une cote boost",
+				type: "STRING",
+				require: true,
+				choices: [
+					{
+						name: "Sans boost",
+						value: "x1"
+					},
+					{
+						name: "Boost x2",
+						value: "x2"
+					},
+					{
+						name: "Boost x3",
+						value: "x3"
+					},
+				]
+			},
+			{
 				name: "valeur",
 				description: "Valeur a renseignée pour les pronos : Buteur / +- Buts / Cartons",
 				type: "STRING",
@@ -141,8 +162,12 @@ module.exports = {
 							const buteurEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Buteur")
-								.setTitle(`${match}`)
-								.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
+								.setTitle(`${match}`);
+								if(options.getString("boost") === 'x2') {
+									const file = new MessageAttachment('../../Assets/Predi/x2.png');
+									buteurEmbed.setThumbnail("attachment://x2.png")
+								}
+								buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
 								.setFooter(buteur)
 								.addFields({
 									name: 'Pronostiques',
@@ -154,7 +179,8 @@ module.exports = {
 									inline: true
 								}, );
 							interaction.reply({
-								embeds: [buteurEmbed]
+								embeds: [buteurEmbed],
+								files: [file]
 							})
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
