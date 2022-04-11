@@ -780,9 +780,9 @@ module.exports = {
 							const butDayEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor({name: "But journée"})
-								.setTitle(`${journee} journée de ${championnat}`)
-								.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} buts pour la ${journee} journée de ${championnat}`)
-								.setFooter(`+ ou - de ${buts} buts pour la ${journee} journée de ${championnat}`)
+								.setTitle(`${journee} de ${championnat}`)
+								.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} buts pour la ${journee} de ${championnat}`)
+								.setFooter(`+ ou - de ${buts} buts pour la ${journee} de ${championnat}`)
 								.addFields({
 									name: 'Pronostiques',
 									value: `${process.env.ONE} : Si vous pensez que oui \n ${process.env.TWO} : Si vous pensez que non`,
