@@ -163,7 +163,8 @@ module.exports = {
 								.setColor("AQUA")
 								.setAuthor("Buteur")
 								.setTitle(`${match}`);
-								if(options.getString("boost") === 'x2') {
+								if(options.getString("boost") == 'x2') {
+									console.log("ok");
 									const file = new MessageAttachment('../../Assets/Predi/x2.png');
 									buteurEmbed.setThumbnail("attachment://x2.png")
 								}
