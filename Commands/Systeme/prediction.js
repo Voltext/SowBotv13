@@ -168,11 +168,11 @@ module.exports = {
 								.setTitle(`${match}`);
 								if(options.getString("boost") == 'x2') {
 									img = "x2.png"
-									buteurEmbed.setThumbnail("attachment://x2.png");
 									cote1 = cote1 * 2
 									cote2 = cote2 * 2
 									color = "GOLD"
 								}
+								buteurEmbed.setThumbnail(`attachment://${img}`);
 								buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
 								.setColor(color)
 								.setFooter(buteur)
