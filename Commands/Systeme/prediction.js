@@ -161,6 +161,7 @@ module.exports = {
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
 							let color = "AQUA"
 							let img = "x1.png"
+							let img_small = "x1_small.png"
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const buteurEmbed = new MessageEmbed()
@@ -168,11 +169,13 @@ module.exports = {
 								.setTitle(`${match}`);
 								if(options.getString("boost") == 'x2') {
 									img = "x2.png"
+									img_small = "x2_small.png"
 									cote1 = cote1 * 2
 									cote2 = cote2 * 2
 									color = "GOLD"
 								}
-								buteurEmbed.setThumbnail(`attachment://${img}`);
+								buteurEmbed.setImage(`attachment://${img}`)
+								buteurEmbed.setThumbnail(`attachment://${img_small}`);
 								buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
 								.setColor(color)
 								.setFooter(buteur)
@@ -187,7 +190,7 @@ module.exports = {
 								}, );
 							interaction.reply({
 								embeds: [buteurEmbed],
-								files: [`./Assets/Predi/${img}`]
+								files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
 							})
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
