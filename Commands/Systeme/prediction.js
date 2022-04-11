@@ -175,6 +175,15 @@ module.exports = {
 								buteurEmbed.setImage(`attachment://${img}`)
 								buteurEmbed.setThumbnail(`attachment://${img_small}`);
 							}
+							if (options.getString("boost") == 'x3') {
+								img = "x3.png"
+								img_small = "x3_small.png"
+								cote1 = cote1 * 3
+								cote2 = cote2 * 3
+								color = "RED"
+								buteurEmbed.setImage(`attachment://${img}`)
+								buteurEmbed.setThumbnail(`attachment://${img_small}`);
+							}
 							buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
 								.setColor(color)
 								.setFooter(buteur)
