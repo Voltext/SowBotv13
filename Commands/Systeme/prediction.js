@@ -114,8 +114,7 @@ module.exports = {
 				description: "Designe si le prono est une cote boost",
 				type: "STRING",
 				require: true,
-				choices: [
-					{
+				choices: [{
 						name: "Sans boost",
 						value: "x1"
 					},
@@ -167,16 +166,16 @@ module.exports = {
 							const buteurEmbed = new MessageEmbed()
 								.setAuthor("Buteur")
 								.setTitle(`${match}`);
-								if(options.getString("boost") == 'x2') {
-									img = "x2.png"
-									img_small = "x2_small.png"
-									cote1 = cote1 * 2
-									cote2 = cote2 * 2
-									color = "GOLD"
-									buteurEmbed.setImage(`attachment://${img}`)
-									buteurEmbed.setThumbnail(`attachment://${img_small}`);
-								}
-								buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
+							if (options.getString("boost") == 'x2') {
+								img = "x2.png"
+								img_small = "x2_small.png"
+								cote1 = cote1 * 2
+								cote2 = cote2 * 2
+								color = "GOLD"
+								buteurEmbed.setImage(`attachment://${img}`)
+								buteurEmbed.setThumbnail(`attachment://${img_small}`);
+							}
+							buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
 								.setColor(color)
 								.setFooter(buteur)
 								.addFields({
@@ -188,10 +187,16 @@ module.exports = {
 									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [buteurEmbed],
-								files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
-							})
+							if (options.getString("boost") == 'x1') {
+								interaction.reply({
+									embeds: [buteurEmbed],
+								})
+							} else {
+								interaction.reply({
+									embeds: [buteurEmbed],
+									files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+								})
+							}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -512,10 +517,9 @@ module.exports = {
 							const team2 = options.getString("team2")
 							const team3 = options.getString("valeur")
 							let teamClone = ""
-							if(team3 == null || team3 == "") {
+							if (team3 == null || team3 == "") {
 								teamClone = `${team1} / ${team2}`
-							}
-							else {
+							} else {
 								teamClone = `${team1} / ${team2} / ${team3}`
 							}
 							const teamsEmbed = new MessageEmbed()
@@ -815,7 +819,9 @@ module.exports = {
 							const journee = options.getString("team1")
 							const butDayEmbed = new MessageEmbed()
 								.setColor("AQUA")
-								.setAuthor({name: "But journée"})
+								.setAuthor({
+									name: "But journée"
+								})
 								.setTitle(`${journee} de ${championnat}`)
 								.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} buts pour la ${journee} de ${championnat}`)
 								.setFooter(`+ ou - de ${buts} buts pour la ${journee} de ${championnat}`)
