@@ -774,15 +774,15 @@ module.exports = {
 							break;
 						}
 						case "butday": {
-							const championnat = options.getString("valeur")
-							const buts = options.getString("valeur2")
-							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							const buts = options.getString("valeur")
+							const championnat = options.getString("team2")
+							const journee = options.getString("team1")
 							const ecartEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("But journée")
 								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} dans cette journée de ${championnat}`)
-								.setFooter(`${buts} dans cette journée de ${championnat}`)
+								.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} buts pour la ${journee} jouernée de ${championnat}`)
+								.setFooter(`+ ou - de ${buts} buts pour la ${journee} journée de ${championnat}`)
 								.addFields({
 									name: 'Pronostiques',
 									value: `${process.env.ONE} : Si vous pensez que oui \n ${process.env.TWO} : Si vous pensez que non`,
