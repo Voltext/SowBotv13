@@ -159,15 +159,20 @@ module.exports = {
 						case "buteur": {
 							const buteur = options.getString("valeur")
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
 							const buteurEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Buteur")
 								.setTitle(`${match}`);
 								if(options.getString("boost") == 'x2') {
-									console.log("ok");
 									buteurEmbed.setThumbnail("attachment://x2.png");
+									options.getString('cote1') = options.getString('cote1') * 2
+									options.getString('cote2') = options.getString('cote2') * 2
+									color = "GOLD"
+									img = "x2.png"
 								}
 								buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
+								.setColor(color)
 								.setFooter(buteur)
 								.addFields({
 									name: 'Pronostiques',
@@ -180,7 +185,7 @@ module.exports = {
 								}, );
 							interaction.reply({
 								embeds: [buteurEmbed],
-								files: ['./Assets/Predi/x2.png']
+								files: [`./Assets/Predi/${img}`]
 							})
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
