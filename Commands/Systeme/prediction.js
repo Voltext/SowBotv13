@@ -80,6 +80,10 @@ module.exports = {
 						name: "Buteur et Vainqueur",
 						value: "butwin"
 					},
+					{
+						name: "But journée",
+						value: "butday"
+					},
 				]
 			},
 			{
@@ -765,6 +769,49 @@ module.exports = {
 									})
 								} finally {
 									mongoosebut.connection.close()
+								}
+							})
+							break;
+						}
+						case "butday": {
+							const championnat = options.getString("valeur")
+							const buts = options.getString("valeur2")
+							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							const ecartEmbed = new MessageEmbed()
+								.setColor("AQUA")
+								.setAuthor("But journée")
+								.setTitle(`${match}`)
+								.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} dans cette journée de ${championnat}`)
+								.setFooter(`${buts} dans cette journée de ${championnat}`)
+								.addFields({
+									name: 'Pronostiques',
+									value: `${process.env.ONE} : Si vous pensez que oui \n ${process.env.TWO} : Si vous pensez que non`,
+									inline: true
+								}, {
+									name: 'Côtes',
+									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									inline: true
+								}, );
+							interaction.reply({
+								embeds: [ecartEmbed]
+							})
+							const message = await interaction.fetchReply();
+							message.react(process.env.ONE)
+							message.react(process.env.TWO)
+							const status = "open";
+							const msgId = message.id;
+							mongo().then(async (mongoosebutday) => {
+								try {
+									await prediSchema.findOneAndUpdate({
+										msgId,
+									}, {
+										msgId,
+										status,
+									}, {
+										upsert: true,
+									})
+								} finally {
+									mongoosebutday.connection.close()
 								}
 							})
 							break;
