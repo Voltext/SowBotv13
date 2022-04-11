@@ -165,8 +165,6 @@ module.exports = {
 								.setTitle(`${match}`);
 								if(options.getString("boost") == 'x2') {
 									console.log("ok");
-									const file = new MessageAttachment('../../Assets/Predi/x2.png', 'x2.png');
-									buteurEmbed.attachFiles(file);
 									buteurEmbed.setThumbnail("attachment://x2.png");
 								}
 								buteurEmbed.setDescription(`Est-ce que ${buteur} sera buteur lors de ${match} ?`)
@@ -182,7 +180,7 @@ module.exports = {
 								}, );
 							interaction.reply({
 								embeds: [buteurEmbed],
-								files: [file]
+								files: ['../../Assets/Predi/x2.png']
 							})
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
