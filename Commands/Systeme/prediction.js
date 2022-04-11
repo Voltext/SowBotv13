@@ -777,10 +777,10 @@ module.exports = {
 							const buts = options.getString("valeur")
 							const championnat = options.getString("team2")
 							const journee = options.getString("team1")
-							const ecartEmbed = new MessageEmbed()
+							const butDayEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor({name: "But journée"})
-								.setTitle(`${match}`)
+								.setTitle(`${journee} ${championnat}`)
 								.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} buts pour la ${journee} jouernée de ${championnat}`)
 								.setFooter(`+ ou - de ${buts} buts pour la ${journee} journée de ${championnat}`)
 								.addFields({
@@ -793,7 +793,7 @@ module.exports = {
 									inline: true
 								}, );
 							interaction.reply({
-								embeds: [ecartEmbed]
+								embeds: [butDayEmbed]
 							})
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
