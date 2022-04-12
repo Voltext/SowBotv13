@@ -229,11 +229,37 @@ module.exports = {
 						}
 						case "final": {
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
+							let cote3 = 3
 							const matchEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Score final")
-								.setTitle(`${match}`)
-								.setDescription("Laquelle de ces 2 équipes gagnera le match ?")
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									cote3 = cote3 * 2
+									color = "GOLD"
+									matchEmbed.setImage(`attachment://${img}`)
+									matchEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									cote3 = cote3 * 3
+									color = "RED"
+									matchEmbed.setImage(`attachment://${img}`)
+									matchEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								matchEmbed.setDescription("Laquelle de ces 2 équipes gagnera le match ?")
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
@@ -241,12 +267,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n 3 \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote3} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [matchEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [matchEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [matchEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.CROSS_ID)
@@ -272,11 +305,34 @@ module.exports = {
 						case "but": {
 							const buts = options.getString("valeur")
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const butsEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Buts")
-								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous qu'il y aura ${buts} buts dans ce match ?`)
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									butsEmbed.setImage(`attachment://${img}`)
+									butsEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									butsEmbed.setImage(`attachment://${img}`)
+									butsEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								butsEmbed.setDescription(`Pensez-vous qu'il y aura ${buts} buts dans ce match ?`)
 								.setFooter(buts)
 								.addFields({
 									name: 'Pronostiques',
@@ -284,12 +340,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [butsEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [butsEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [butsEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -314,11 +377,34 @@ module.exports = {
 						case "medaille": {
 							const nbMedaille = options.getString("valeur")
 							const match = `${options.getString("team1")}`
-							const butsEmbed = new MessageEmbed()
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
+							const medailleEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Medailles")
-								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous que la ${match} aura plus de ${nbMedaille} médailles durant ces JO ?`)
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									medailleEmbed.setImage(`attachment://${img}`)
+									medailleEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									medailleEmbed.setImage(`attachment://${img}`)
+									medailleEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								medailleEmbed.setDescription(`Pensez-vous que la ${match} aura plus de ${nbMedaille} médailles durant ces JO ?`)
 								.setFooter(nbMedaille)
 								.addFields({
 									name: 'Pronostiques',
@@ -326,12 +412,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [butsEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [medailleEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [medailleEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -355,11 +448,37 @@ module.exports = {
 						}
 						case "score45": {
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
+							let cote3 = 3
 							const matchEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Score -45")
-								.setTitle(`${match}`)
-								.setDescription("Laquelle de ces 2 équipes gagnera le match à la mi-temps ?")
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									cote3 = cote3 * 2
+									color = "GOLD"
+									matchEmbed.setImage(`attachment://${img}`)
+									matchEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									cote3 = cote3 * 3
+									color = "RED"
+									matchEmbed.setImage(`attachment://${img}`)
+									matchEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								matchEmbed.setDescription("Laquelle de ces 2 équipes gagnera le match à la mi-temps ?")
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
@@ -367,12 +486,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n 3 \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote3} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [matchEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [matchEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [matchEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.CROSS_ID)
@@ -397,11 +523,37 @@ module.exports = {
 						}
 						case "score90": {
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
+							let cote3 = 3
 							const matchEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Score +45")
-								.setTitle(`${match}`)
-								.setDescription("Laquelle de ces 2 équipes gagnera le match en seconde période ?")
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									cote3 = cote3 * 2
+									color = "GOLD"
+									matchEmbed.setImage(`attachment://${img}`)
+									matchEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									cote3 = cote3 * 3
+									color = "RED"
+									matchEmbed.setImage(`attachment://${img}`)
+									matchEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								matchEmbed.setDescription("Laquelle de ces 2 équipes gagnera le match en seconde période ?")
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
@@ -409,12 +561,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n 3 \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote3} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [matchEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [matchEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [matchEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.CROSS_ID)
@@ -440,11 +599,34 @@ module.exports = {
 						case "cartons": {
 							const cartons = options.getString("valeur")
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const cartonEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Cartons")
-								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous qu'il y aura ${cartons} cartons dans ce match`)
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									cartonEmbed.setImage(`attachment://${img}`)
+									cartonEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									cartonEmbed.setImage(`attachment://${img}`)
+									cartonEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								cartonEmbed.setDescription(`Pensez-vous qu'il y aura ${cartons} cartons dans ce match`)
 								.setFooter(cartons)
 								.addFields({
 									name: 'Prono 1',
@@ -452,12 +634,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [cartonEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [cartonEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [cartonEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -482,11 +671,34 @@ module.exports = {
 						case "compet": {
 							const team1 = options.getString("team1")
 							const compet = options.getString("team2")
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const competEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Competition")
-								.setTitle(`${team1} - ${compet}`)
-								.setDescription(`Pensez-vous que ${team1} remportera ${compet} ?`)
+								.setTitle(`${team1} - ${compet}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									competEmbed.setImage(`attachment://${img}`)
+									competEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									competEmbed.setImage(`attachment://${img}`)
+									competEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								competEmbed.setDescription(`Pensez-vous que ${team1} remportera ${compet} ?`)
 								.setFooter(`${team1} gagnera ${compet}`)
 								.addFields({
 									name: 'Pronostiques',
@@ -494,12 +706,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [competEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [competEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [competEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -531,11 +750,34 @@ module.exports = {
 							} else {
 								teamClone = `${team1} / ${team2} / ${team3}`
 							}
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const teamsEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Equipes gagnent")
-								.setTitle(`${teamClone}`)
-								.setDescription(`Pensez-vous que ${teamClone} ne perdront pas (victoire ou nul) ?`)
+								.setTitle(`${teamClone}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									teamsEmbed.setImage(`attachment://${img}`)
+									teamsEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									teamsEmbed.setImage(`attachment://${img}`)
+									teamsEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								teamsEmbed.setDescription(`Pensez-vous que ${teamClone} ne perdront pas (victoire ou nul) ?`)
 								.setFooter(`${teamClone}`)
 								.addFields({
 									name: 'Pronostiques',
@@ -543,12 +785,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [teamsEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [teamsEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [teamsEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -573,11 +822,34 @@ module.exports = {
 						case "scorem": {
 							const buts = options.getString("valeur")
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const butsmEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Buts Multiples")
-								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous qu'il y aura ${buts} dans ce match ?`)
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									butsmEmbed.setImage(`attachment://${img}`)
+									butsmEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									butsmEmbed.setImage(`attachment://${img}`)
+									butsmEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								butsmEmbed.setDescription(`Pensez-vous qu'il y aura ${buts} dans ce match ?`)
 								.setFooter(buts)
 								.addFields({
 									name: 'Pronostiques',
@@ -585,12 +857,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [butsmEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [butsmEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [butsmEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -616,11 +895,34 @@ module.exports = {
 							const teamwin = options.getString("valeur")
 							const ecart = options.getString("valeur2")
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const ecartEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Gagne ecart")
-								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous que ${teamwin} gagnera avec au moins ${ecart} buts d'écart ?`)
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									ecartEmbed.setImage(`attachment://${img}`)
+									ecartEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									ecartEmbed.setImage(`attachment://${img}`)
+									ecartEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								ecartEmbed.setDescription(`Pensez-vous que ${teamwin} gagnera avec au moins ${ecart} buts d'écart ?`)
 								.setFooter(`${teamwin} gagnera avec ${ecart}`)
 								.addFields({
 									name: 'Pronostiques',
@@ -628,12 +930,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [ecartEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [ecartEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [ecartEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -657,11 +966,34 @@ module.exports = {
 						}
 						case "qualif": {
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const qualifEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Qualification")
-								.setTitle(`${match}`)
-								.setDescription("Laquelle de ces 2 équipes va se qualifier ?")
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									qualifEmbed.setImage(`attachment://${img}`)
+									qualifEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									qualifEmbed.setImage(`attachment://${img}`)
+									qualifEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								qualifEmbed.setDescription("Laquelle de ces 2 équipes va se qualifier ?")
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
@@ -669,12 +1001,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [qualifEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [qualifEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [qualifEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -699,11 +1038,34 @@ module.exports = {
 						case "buteurs": {
 							const buteurs = options.getString("valeur")
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const buteursEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Buteurs")
-								.setTitle(`${match}`)
-								.setDescription(`Est-ce qu'au moins l'un des 2 : ${buteurs} seront buteur lors de ${match} ?`)
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									buteursEmbed.setImage(`attachment://${img}`)
+									buteursEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									buteursEmbed.setImage(`attachment://${img}`)
+									buteursEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								buteursEmbed.setDescription(`Est-ce qu'au moins l'un des 2 : ${buteurs} seront buteur lors de ${match} ?`)
 								.setFooter(buteurs)
 								.addFields({
 									name: 'Pronostiques',
@@ -711,12 +1073,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [buteursEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [buteursEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [buteursEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -741,11 +1110,34 @@ module.exports = {
 						case "butavant": {
 							const minute = options.getString("valeur")
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const minutesEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("But avant")
-								.setTitle(`${match}`)
-								.setDescription(`Est-ce qu'il y aura un but avant la ${minute} lors de ${match} ?`)
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									minutesEmbed.setImage(`attachment://${img}`)
+									minutesEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									minutesEmbed.setImage(`attachment://${img}`)
+									minutesEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								minutesEmbed.setDescription(`Est-ce qu'il y aura un but avant la ${minute} lors de ${match} ?`)
 								.setFooter(minute)
 								.addFields({
 									name: 'Pronostiques',
@@ -753,12 +1145,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [minutesEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [minutesEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [minutesEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -783,11 +1182,34 @@ module.exports = {
 						case "butwin": {
 							const buteur = options.getString("valeur")
 							const match = `${options.getString("team1")} - ${options.getString("team2")}`
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const butwinEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor("Marque et gagne")
-								.setTitle(`${match}`)
-								.setDescription(`Pensez-vous que ${buteur} marquera et son équipe gagnera ?`)
+								.setTitle(`${match}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									butwinEmbed.setImage(`attachment://${img}`)
+									butwinEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									butwinEmbed.setImage(`attachment://${img}`)
+									butwinEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								butwinEmbed.setDescription(`Pensez-vous que ${buteur} marquera et son équipe gagnera ?`)
 								.setFooter(buteur)
 								.addFields({
 									name: 'Pronostiques',
@@ -795,12 +1217,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [butwinEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [butwinEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [butwinEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
@@ -826,13 +1255,36 @@ module.exports = {
 							const buts = options.getString("valeur")
 							const championnat = options.getString("team2")
 							const journee = options.getString("team1")
+							let color = "AQUA"
+							let img = "x1.png"
+							let img_small = "x1_small.png"
+							let cote1 = options.getString('cote1')
+							let cote2 = options.getString('cote2')
 							const butDayEmbed = new MessageEmbed()
 								.setColor("AQUA")
 								.setAuthor({
 									name: "But journée"
 								})
-								.setTitle(`${journee} de ${championnat}`)
-								.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} buts pour la ${journee} de ${championnat}`)
+								.setTitle(`${journee} de ${championnat}`);
+								if (options.getString("boost") == 'x2') {
+									img = "x2.png"
+									img_small = "x2_small.png"
+									cote1 = cote1 * 2
+									cote2 = cote2 * 2
+									color = "GOLD"
+									butDayEmbed.setImage(`attachment://${img}`)
+									butDayEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								if (options.getString("boost") == 'x3') {
+									img = "x3.png"
+									img_small = "x3_small.png"
+									cote1 = cote1 * 3
+									cote2 = cote2 * 3
+									color = "RED"
+									butDayEmbed.setImage(`attachment://${img}`)
+									butDayEmbed.setThumbnail(`attachment://${img_small}`);
+								}
+								butDayEmbed.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} buts pour la ${journee} de ${championnat}`)
 								.setFooter(`+ ou - de ${buts} buts pour la ${journee} de ${championnat}`)
 								.addFields({
 									name: 'Pronostiques',
@@ -840,12 +1292,19 @@ module.exports = {
 									inline: true
 								}, {
 									name: 'Côtes',
-									value: `${options.getString("cote1")} \n ${options.getString("cote2")}`,
+									value: `${cote1} \n ${cote2}`,
 									inline: true
 								}, );
-							interaction.reply({
-								embeds: [butDayEmbed]
-							})
+								if (options.getString("boost") == 'x1') {
+									interaction.reply({
+										embeds: [butDayEmbed],
+									})
+								} else {
+									interaction.reply({
+										embeds: [butDayEmbed],
+										files: [`./Assets/Predi/${img}`, `./Assets/Predi/${img_small}`]
+									})
+								}
 							const message = await interaction.fetchReply();
 							message.react(process.env.ONE)
 							message.react(process.env.TWO)
