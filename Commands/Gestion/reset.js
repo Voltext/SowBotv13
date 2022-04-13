@@ -67,7 +67,6 @@ module.exports = {
                         pointsPlayer = pointsPlayer + elem.points + '\n';
                         battle.push([elem.userName, elem.points])
                         placement = placement + 1;
-                        console.log(members)
                         members.forEach(async element => {
                             if(element.user.id == elem.userId) {
                                 await element.roles.add(process.env.BATTLE)
