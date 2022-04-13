@@ -56,7 +56,7 @@ module.exports = {
                     let xp = 350
                     let yp = 340
 
-                    let x1 = 892
+                    let x1 = 890
                     let y1 = 340
 
                     ctx.drawImage(background, x, y)
@@ -78,7 +78,7 @@ module.exports = {
                             xp = 1060
                             yp = 340
 
-                            x1 = 1600
+                            x1 = 1590
                             y1 = 340
                         }
 
