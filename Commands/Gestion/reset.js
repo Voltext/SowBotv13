@@ -69,8 +69,11 @@ module.exports = {
                         battle.push([elem.userName, elem.points])
                         placement = placement + 1;
                         guild.members.fetch({limit:1}).then(m => {
-                            console.log(m)
-                            // let members = m.map(u => u.user.username)
+                             let members = m.map(u => {
+                                 if(u.user.id === elem.userId) {
+                                     console.log(u)
+                                 }
+                             })
                             // console.log(members) //array of all members
                             // //you can also use "m.each(u => console.log(u.user.username))" to log each one individually
                           })
