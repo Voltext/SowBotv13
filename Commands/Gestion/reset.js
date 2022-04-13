@@ -34,10 +34,6 @@ module.exports = {
         let pointsPlayer = '';
         let placement = 1;
 
-        const {
-            guild
-        } = interaction
-
         const month = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
 
         const d = new Date();
@@ -65,12 +61,6 @@ module.exports = {
                     results.forEach(async function (elem) {
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
-                        const members = await guild.members.fetch();
-                        members.forEach(async function (element) {
-                            if(element.user.id == elem.userId) {
-                                element.roles.add('936172336783171634')
-                            }
-                        })
                         battle.push([elem.userName, elem.points])
                         placement = placement + 1;
                     })
