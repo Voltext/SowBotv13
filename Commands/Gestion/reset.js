@@ -68,14 +68,9 @@ module.exports = {
                         pointsPlayer = pointsPlayer + elem.points + '\n';
                         battle.push([elem.userName, elem.points])
                         placement = placement + 1;
-                        guild.members.fetch().then(m => {
-                             let members = m.map(u => {
-                                 if(u.user.id === elem.userId) {
-                                     console.log(u.user.username)
-                                 }
-                             })
-                            // console.log(members) //array of all members
-                            // //you can also use "m.each(u => console.log(u.user.username))" to log each one individually
+                        guild.members.fetch({limit:1}).then(m => {
+                            m.map(u => console.log(u))
+                            //you can also use "m.each(u => console.log(u.user.username))" to log each one individually
                           })
                     })
                     rankEmbed.addFields({
