@@ -33,7 +33,7 @@ module.exports = {
             guild
         } = interaction
         const members = await guild.members.fetch({limit:1});
-        let battleRole = message.guild.roles.cache.get(process.env.BATTLE);
+        let battleRole = guild.roles.cache.get(process.env.BATTLE);
 
         let battle = [];
         let pseudos = '';
