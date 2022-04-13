@@ -29,6 +29,8 @@ module.exports = {
     permission: "BAN_MEMBERS",
 
     async execute(interaction) {
+
+        const { guild } = interaction
         let battle = [];
         let pseudos = '';
         let pointsPlayer = '';
