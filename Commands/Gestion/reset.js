@@ -34,6 +34,8 @@ module.exports = {
         let pointsPlayer = '';
         let placement = 1;
 
+        const { guild } = interaction
+
         const month = ["Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Aout", "Septembre", "Octobre", "Novembre", "Decembre"];
 
         const d = new Date();
@@ -61,6 +63,8 @@ module.exports = {
                     results.forEach(function (elem) {
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
+                        const member = await message.guild.members.cache.get(elem.userId);
+                        await member.roles.add('936172336783171634');
                         battle.push([elem.userName, elem.points])
                         placement = placement + 1;
                     })
@@ -142,14 +146,14 @@ module.exports = {
                     embeds: [rankEmbed], 
                     files: [attachment]
                 })
-                await mongo().then(async (mongoosereset2) => {
-                    try {
-                        await rankPrediSchema.deleteMany({
-                        })
-                    } finally {
-                        mongoosereset2.connection.close()
-                    }
-                })
+                // await mongo().then(async (mongoosereset2) => {
+                //     try {
+                //         await rankPrediSchema.deleteMany({
+                //         })
+                //     } finally {
+                //         mongoosereset2.connection.close()
+                //     }
+                // })
             } finally {
                 mongoosereset1.connection.close();
             }
