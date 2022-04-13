@@ -61,7 +61,7 @@ module.exports = {
                     rankEmbed.addField("Classement", "Aucun gagnant ce mois-ci")
                 } else {
                     results.forEach(async function (elem) {
-                        const member = guild.members.fetch(elem.userId);
+                        const member = await guild.members.fetch(elem.userId);
                         console.log(member)
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
