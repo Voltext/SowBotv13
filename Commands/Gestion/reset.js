@@ -62,7 +62,8 @@ module.exports = {
                     rankEmbed.addField("Classement", "Aucun gagnant ce mois-ci")
                 } else {
                     results.forEach(async function (elem) {
-                        guild.users.fetch(elem.userId).then(Unmember => {
+                        guild.members.fetch(elem.userId).then(Unmember => {
+                            console.log(Unmember)
                             Unmember.roles.add(battleRole);
                         });
                         pseudos = pseudos + elem.userName + '\n';
