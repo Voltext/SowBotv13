@@ -29,6 +29,7 @@ module.exports = {
     permission: "BAN_MEMBERS",
 
     async execute(interaction, client) {
+        const { guild } = interaction
         const members = await guild.members.fetch({limit:1});
 
         let battle = [];
