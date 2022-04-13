@@ -236,7 +236,6 @@ module.exports = {
 							let cote2 = options.getString('cote2')
 							let cote3 = 3
 							const matchEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Score final")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -260,6 +259,7 @@ module.exports = {
 									matchEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								matchEmbed.setDescription("Laquelle de ces 2 équipes gagnera le match ?")
+								.setColor(color)
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
@@ -311,7 +311,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const butsEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Buts")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -333,6 +332,7 @@ module.exports = {
 									butsEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								butsEmbed.setDescription(`Pensez-vous qu'il y aura ${buts} buts dans ce match ?`)
+								.setColor(color)
 								.setFooter(buts)
 								.addFields({
 									name: 'Pronostiques',
@@ -383,7 +383,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const medailleEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Medailles")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -405,6 +404,7 @@ module.exports = {
 									medailleEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								medailleEmbed.setDescription(`Pensez-vous que la ${match} aura plus de ${nbMedaille} médailles durant ces JO ?`)
+								.setColor(color)
 								.setFooter(nbMedaille)
 								.addFields({
 									name: 'Pronostiques',
@@ -455,7 +455,6 @@ module.exports = {
 							let cote2 = options.getString('cote2')
 							let cote3 = 3
 							const matchEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Score -45")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -479,6 +478,7 @@ module.exports = {
 									matchEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								matchEmbed.setDescription("Laquelle de ces 2 équipes gagnera le match à la mi-temps ?")
+								.setColor(color)
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
@@ -530,7 +530,6 @@ module.exports = {
 							let cote2 = options.getString('cote2')
 							let cote3 = 3
 							const matchEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Score +45")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -554,6 +553,7 @@ module.exports = {
 									matchEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								matchEmbed.setDescription("Laquelle de ces 2 équipes gagnera le match en seconde période ?")
+								.setColor(color)
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
@@ -605,7 +605,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const cartonEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Cartons")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -627,6 +626,7 @@ module.exports = {
 									cartonEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								cartonEmbed.setDescription(`Pensez-vous qu'il y aura ${cartons} cartons dans ce match`)
+								.setColor(color)
 								.setFooter(cartons)
 								.addFields({
 									name: 'Prono 1',
@@ -677,7 +677,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const competEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Competition")
 								.setTitle(`${team1} - ${compet}`);
 								if (options.getString("boost") == 'x2') {
@@ -699,6 +698,7 @@ module.exports = {
 									competEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								competEmbed.setDescription(`Pensez-vous que ${team1} remportera ${compet} ?`)
+								.setColor(color)
 								.setFooter(`${team1} gagnera ${compet}`)
 								.addFields({
 									name: 'Pronostiques',
@@ -756,7 +756,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const teamsEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Equipes gagnent")
 								.setTitle(`${teamClone}`);
 								if (options.getString("boost") == 'x2') {
@@ -778,6 +777,7 @@ module.exports = {
 									teamsEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								teamsEmbed.setDescription(`Pensez-vous que ${teamClone} ne perdront pas (victoire ou nul) ?`)
+								.setColor(color)
 								.setFooter(`${teamClone}`)
 								.addFields({
 									name: 'Pronostiques',
@@ -828,7 +828,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const butsmEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Buts Multiples")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -850,6 +849,7 @@ module.exports = {
 									butsmEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								butsmEmbed.setDescription(`Pensez-vous qu'il y aura ${buts} dans ce match ?`)
+								.setColor(color)
 								.setFooter(buts)
 								.addFields({
 									name: 'Pronostiques',
@@ -901,7 +901,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const ecartEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Gagne ecart")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -923,6 +922,7 @@ module.exports = {
 									ecartEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								ecartEmbed.setDescription(`Pensez-vous que ${teamwin} gagnera avec au moins ${ecart} buts d'écart ?`)
+								.setColor(color)
 								.setFooter(`${teamwin} gagnera avec ${ecart}`)
 								.addFields({
 									name: 'Pronostiques',
@@ -972,7 +972,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const qualifEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Qualification")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -994,6 +993,7 @@ module.exports = {
 									qualifEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								qualifEmbed.setDescription("Laquelle de ces 2 équipes va se qualifier ?")
+								.setColor(color)
 								.setFooter(match)
 								.addFields({
 									name: 'Pronostiques',
@@ -1044,7 +1044,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const buteursEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Buteurs")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -1066,6 +1065,7 @@ module.exports = {
 									buteursEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								buteursEmbed.setDescription(`Est-ce qu'au moins l'un des 2 : ${buteurs} seront buteur lors de ${match} ?`)
+								.setColor(color)
 								.setFooter(buteurs)
 								.addFields({
 									name: 'Pronostiques',
@@ -1116,7 +1116,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const minutesEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("But avant")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -1138,6 +1137,7 @@ module.exports = {
 									minutesEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								minutesEmbed.setDescription(`Est-ce qu'il y aura un but avant la ${minute} lors de ${match} ?`)
+								.setColor(color)
 								.setFooter(minute)
 								.addFields({
 									name: 'Pronostiques',
@@ -1188,7 +1188,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const butwinEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor("Marque et gagne")
 								.setTitle(`${match}`);
 								if (options.getString("boost") == 'x2') {
@@ -1210,6 +1209,7 @@ module.exports = {
 									butwinEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								butwinEmbed.setDescription(`Pensez-vous que ${buteur} marquera et son équipe gagnera ?`)
+								.setColor(color)
 								.setFooter(buteur)
 								.addFields({
 									name: 'Pronostiques',
@@ -1261,7 +1261,6 @@ module.exports = {
 							let cote1 = options.getString('cote1')
 							let cote2 = options.getString('cote2')
 							const butDayEmbed = new MessageEmbed()
-								.setColor("AQUA")
 								.setAuthor({
 									name: "But journée"
 								})
@@ -1285,6 +1284,7 @@ module.exports = {
 									butDayEmbed.setThumbnail(`attachment://${img_small}`);
 								}
 								butDayEmbed.setDescription(`Pensez-vous qu'il y aura + ou - de ${buts} buts pour la ${journee} de ${championnat}`)
+								.setColor(color)
 								.setFooter(`+ ou - de ${buts} buts pour la ${journee} de ${championnat}`)
 								.addFields({
 									name: 'Pronostiques',
