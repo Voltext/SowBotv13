@@ -70,7 +70,7 @@ module.exports = {
                         placement = placement + 1;
                         members.forEach(async element => {
                             console.log(element)
-                        }
+                        })
                     })
                     rankEmbed.addFields({
                         name: '#',
