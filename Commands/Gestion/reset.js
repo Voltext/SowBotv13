@@ -66,12 +66,12 @@ module.exports = {
                     results.forEach(async function (elem) {
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
-                        battle.push([elem.userName, elem.points])
+                        battle.push([elem.userName, elem.points, elem.userId])
                         placement = placement + 1;
-                        members.forEach(async element => {
-                            if(element.user.id == elem.userId) {
-                                console.log(element)
-                            }
+                    })
+                    members.forEach(async element => {
+                        battle.forEach(elem => {
+                            console.log(elem)
                         })
                     })
                     rankEmbed.addFields({
