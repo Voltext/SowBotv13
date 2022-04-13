@@ -21,21 +21,22 @@ module.exports = {
         if (messageContent[messageContent.length - 1] === "quoi" || messageContent[messageContent.length - 1] === "quoi?" || messageContent[messageContent.length - 1] === "Quoi?" || messageContent[messageContent.length - 1] === "Quoi") {
             message.channel.send("Feur...");
         }
-        if (messageContent[messageContent.length - 1] === "hein?" || messageContent[messageContent.length - 1] === "hein" || messageContent[messageContent.length - 1] === "Hein" || messageContent[messageContent.length - 1] === "Hein?") {
+        else if (messageContent[messageContent.length - 1] === "hein?" || messageContent[messageContent.length - 1] === "hein" || messageContent[messageContent.length - 1] === "Hein" || messageContent[messageContent.length - 1] === "Hein?") {
                 message.channel.send("2.");
         }
-        if (messageContent[messageContent.length - 1] === "Non" || messageContent[messageContent.length - 1] === "non") {
+        else if (messageContent[messageContent.length - 1] === "Non" || messageContent[messageContent.length - 1] === "non") {
             message.channel.send("Bril...");
         }
-        if (messageContent[messageContent.length - 1] === "Si" || messageContent[messageContent.length - 1] === "si") {
+        else if (messageContent[messageContent.length - 1] === "Si" || messageContent[messageContent.length - 1] === "si") {
             message.channel.send("Tron 🍋");
         }
-        if (messageContent[messageContent.length - 1] === "Oui" || messageContent[messageContent.length - 1] === "oui") {
+        else if (messageContent[messageContent.length - 1] === "Oui" || messageContent[messageContent.length - 1] === "oui") {
             message.channel.send("Stiti 🐒");
         }
-        if (messageContent[messageContent.length - 1] === "GOAL" || messageContent[messageContent.length - 1] === "Goal") {     
+        else if (messageContent[messageContent.length - 1] === "GOAL" || messageContent[messageContent.length - 1] === "Goal") {     
             const Embed = new MessageEmbed().setTitle("Kaaaaaariiiiim").setImage("attachment://goal.png")
             message.channel.send({
+                embeds: [Embed],
                 files: ['./Assets/Troll/goal.png']
             })
         }
