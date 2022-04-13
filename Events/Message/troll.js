@@ -33,7 +33,7 @@ module.exports = {
         else if (messageContent[messageContent.length - 1] === "Oui" || messageContent[messageContent.length - 1] === "oui") {
             message.channel.send("Stiti 🐒");
         }
-        else if (messageContent[messageContent.length - 1] == "GOAL" || messageContent[messageContent.length - 1] == "Goal") {
+        else if (messageContent[messageContent.length - 1] == "Karim" || messageContent[messageContent.length - 1] == "karim") {
             console.log("test");     
             const Embed = new MessageEmbed().setTitle("Kaaaaaariiiiim").setImage("attachment://goal.png")
             message.channel.send({
