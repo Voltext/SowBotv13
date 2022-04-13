@@ -28,7 +28,8 @@ module.exports = {
     description: "Reset le classement des prédicteurs",
     permission: "BAN_MEMBERS",
 
-    async execute(interaction) {
+    async execute(interaction, client) {
+        console.log(client);
         const { guild } = interaction
         let battleRole = guild.roles.cache.get(process.env.BATTLE);
 
@@ -63,7 +64,6 @@ module.exports = {
                 } else {
                     results.forEach(async function (elem) {
                         guild.members.fetch(elem.userId).then(Unmember => {
-                            console.log(Unmember)
                             Unmember.roles.add(battleRole);
                         });
                         pseudos = pseudos + elem.userName + '\n';
