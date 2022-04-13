@@ -69,7 +69,9 @@ module.exports = {
                         battle.push([elem.userName, elem.points])
                         placement = placement + 1;
                         members.forEach(async element => {
-                            console.log(element)
+                            if(element.user.id == elem.userId) {
+                                console.log(element)
+                            }
                         })
                     })
                     rankEmbed.addFields({
