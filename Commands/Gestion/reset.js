@@ -66,8 +66,9 @@ module.exports = {
                     results.forEach(async function (elem) {
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
-                        battle.push([elem.userName, elem.points, elem.userId])
+                        battle.push([elem.userName, elem.points])
                         placement = placement + 1;
+                        console.log(elem)
                     })
                     members.forEach(async element => {
                         battle.forEach(elem => {
