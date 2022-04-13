@@ -49,6 +49,7 @@ module.exports = {
                 const results = await rankPrediSchema.find({}, {
                     points: 1,
                     userName: 1,
+                    userId,
                     _id: 0
                 }, {
                     limit: 8
