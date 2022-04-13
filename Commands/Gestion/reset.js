@@ -63,7 +63,7 @@ module.exports = {
                     results.forEach(function (elem) {
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
-                        const member = await message.guild.members.cache.get(elem.userId);
+                        const member = await guild.members.cache.get(elem.userId);
                         await member.roles.add('936172336783171634');
                         battle.push([elem.userName, elem.points])
                         placement = placement + 1;
