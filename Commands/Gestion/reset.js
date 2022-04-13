@@ -29,7 +29,6 @@ module.exports = {
     permission: "BAN_MEMBERS",
 
     async execute(interaction, client) {
-        console.log(client);
         const { guild } = interaction
         let battleRole = guild.roles.cache.get(process.env.BATTLE);
 
@@ -63,7 +62,8 @@ module.exports = {
                     rankEmbed.addField("Classement", "Aucun gagnant ce mois-ci")
                 } else {
                     results.forEach(async function (elem) {
-                        guild.members.fetch(elem.userId).then(Unmember => {
+                        client.users.fetch(elem.userId).then(Unmember => {
+                            console.log(Unmember)
                             Unmember.roles.add(battleRole);
                         });
                         pseudos = pseudos + elem.userName + '\n';
