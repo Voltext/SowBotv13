@@ -29,8 +29,7 @@ module.exports = {
     permission: "BAN_MEMBERS",
 
     async execute(interaction, client) {
-        const { guild, message } = interaction
-        let battleRole = guild.roles.cache.get(process.env.BATTLE);
+        const members = await guild.members.fetch({limit:1});
 
         let battle = [];
         let pseudos = '';
@@ -62,12 +61,11 @@ module.exports = {
                     rankEmbed.addField("Classement", "Aucun gagnant ce mois-ci")
                 } else {
                     results.forEach(async function (elem) {
-                        const member = message.guild.members.cache.get(elem.userId);
-                        console.log(member);
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
                         battle.push([elem.userName, elem.points])
                         placement = placement + 1;
+                        console.log(members)
                     })
                     rankEmbed.addFields({
                         name: '#',
