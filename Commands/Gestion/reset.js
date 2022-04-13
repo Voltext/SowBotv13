@@ -68,6 +68,7 @@ module.exports = {
                         const members = await guild.members.fetch();
                         members.forEach(async element => {
                             if(element.user.id == elem.userId) {
+                                console.log(element)
                                 await element.roles.add(process.env.BATTLE)
                             }
                         })
