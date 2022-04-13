@@ -29,8 +29,10 @@ module.exports = {
     permission: "BAN_MEMBERS",
 
     async execute(interaction, client) {
-        const { guild } = interaction
-        const members = await guild.members.fetch({limit:1});
+        const {
+            guild
+        } = interaction
+        const members = await guild.members.fetch();
 
         let battle = [];
         let pseudos = '';
@@ -66,7 +68,14 @@ module.exports = {
                         pointsPlayer = pointsPlayer + elem.points + '\n';
                         battle.push([elem.userName, elem.points])
                         placement = placement + 1;
-                        console.log(members)
+                        guild.members.fetch().then(m => {
+                            if(m.user.id == elem.userId) {
+                                console.log("Ok")
+                            }
+                            // let members = m.map(u => u.user.username)
+                            // console.log(members) //array of all members
+                            // //you can also use "m.each(u => console.log(u.user.username))" to log each one individually
+                          })
                     })
                     rankEmbed.addFields({
                         name: '#',
