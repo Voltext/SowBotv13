@@ -62,8 +62,8 @@ module.exports = {
                 } else {
                     results.forEach(async function (elem) {
                         guild.members.fetch(elem.userId)
-                        .then(member => {
-                            member.roles.add(process.env.BATTLE)
+                        .then(async member => {
+                            await member.roles.add(process.env.BATTLE)
                         })
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
