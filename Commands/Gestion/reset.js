@@ -66,7 +66,7 @@ module.exports = {
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
                         const members = await guild.members.fetch();
-                        members.forEach(async element => {
+                        members.forEach(async function (element) {
                             if(element.user.id == elem.userId) {
                                 element.roles.add('936172336783171634')
                             }
