@@ -14,6 +14,7 @@ const {
     loadImage
 } = require("canvas")
 const path = require('path');
+const rank = require("./rank");
 registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
     family: 'DINNextLTPro-Black'
 })
@@ -33,7 +34,7 @@ module.exports = {
         const {
             guild
         } = interaction
-        
+
         let battleRole = guild.roles.cache.get(process.env.BATTLE);
 
         let battle = [];
@@ -88,6 +89,7 @@ module.exports = {
                         value: battle[0][1].toString(),
                         inline: true
                     }, );
+                    rankEmbed.addField("Play-Off", "Voici les duels pour ce mois de Play-Off !");
 
                     rankEmbed.setFooter("Félicitation !")
                 }
