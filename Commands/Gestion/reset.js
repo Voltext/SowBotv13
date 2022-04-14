@@ -7,6 +7,7 @@ require('dotenv').config();
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema');
 const prediSchema = require('../../Schemas/prediSchema');
+const Util = require('../../Utils/function')
 const {
     registerFont,
     createCanvas,
@@ -32,8 +33,6 @@ module.exports = {
         const {
             guild
         } = interaction
-        const members = await guild.members.fetch({limit:1});
-        let battleRole = guild.roles.cache.get(process.env.BATTLE);
 
         let battle = [];
         let pseudos = '';
@@ -68,10 +67,8 @@ module.exports = {
                     results.forEach(async function (elem) {
                         pseudos = pseudos + elem.userName + '\n';
                         pointsPlayer = pointsPlayer + elem.points + '\n';
-                        battle.push([elem.userName, elem.points])
+                        battle.push([elem.userName, elem.points, elem.userId])
                         placement = placement + 1;
-                        //const member = await guild.members.fetch(elem.userId);
-                        //member.roles.add(battleRole)
                     })
                     rankEmbed.addFields({
                         name: '#',
@@ -100,52 +97,68 @@ module.exports = {
                 let y = 0
                 ctx.drawImage(background, x, y)
 
-                ctx.fillStyle = '#000000'
-                ctx.font = '30px DINNextLTPro-Black'
+                ctx.fillStyle = '#e5b040'
+                ctx.font = '30px DINNextRoundedLTPro-Bold'
                 let name1 = `${battle[0][0]}`
-                ctx.fillText(name1, 420, 280)
+                ctx.fillText(name1, 280, 150)
 
-                ctx.fillStyle = '#000000'
+                ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
                 let name2 = `${battle[7][0]}`
-                ctx.fillText(name2, 420, 415)
+                ctx.fillText(name2, 280, 250)
 
-                ctx.fillStyle = '#000000'
+                ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
                 let name3 = `${battle[1][0]}`
-                ctx.fillText(name3, 420, 660)
+                ctx.fillText(name3, 280, 380)
 
-                ctx.fillStyle = '#000000'
+                ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
                 let name4 = `${battle[6][0]}`
-                ctx.fillText(name4, 420, 810)
+                ctx.fillText(name4, 280, 490)
 
-                ctx.fillStyle = '#000000'
+                ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
                 let name5 = `${battle[2][0]}`
-                ctx.fillText(name5, 1280, 280)
+                ctx.fillText(name5, 280, 610)
 
-                ctx.fillStyle = '#000000'
+                ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
                 let name6 = `${battle[5][0]}`
-                ctx.fillText(name6, 1280, 415)
+                ctx.fillText(name6, 280, 720)
 
-                ctx.fillStyle = '#000000'
+                ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
                 let name7 = `${battle[3][0]}`
-                ctx.fillText(name7, 1280, 660)
+                ctx.fillText(name7, 280, 850)
 
-                ctx.fillStyle = '#000000'
+                ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
                 let name8 = `${battle[4][0]}`
-                ctx.fillText(name8, 1280, 810)
+                ctx.fillText(name8, 280, 950)
 
-                ctx.fillStyle = '#a69b94'
-                ctx.font = '43px DINNextLTPro-Black'
+                ctx.fillStyle = '#e5b040'
+                ctx.font = '80px DINNextLTPro-Black'
                 let month = `${name}`
-                ctx.fillText(month.toUpperCase(), 1000, 250)
+                ctx.fillText(month.toUpperCase(), 1250, 120)
 
-                const attachment = new MessageAttachment(canvas.toBuffer())
+                battle.forEach(async m => {
+                    let size = 100
+                    let padding = 50
+
+                    const member = await guild.members.fetch(m[2])
+
+                    const pdp = await loadImage(member.user.displayAvatarURL({
+                        format: 'png',
+                      }))
+
+                    ctx.drawImage(pdp, 150, 80, 90, 90)
+                })
+
+
+                const attachment = new MessageAttachment(canvas.toBuffer(), 'battle.png')
+
+                rankEmbed.setImage('attachment://battle.png')
 
                 interaction.reply({
                     embeds: [rankEmbed],

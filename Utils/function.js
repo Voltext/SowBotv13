@@ -32,10 +32,22 @@ module.exports = class Utils {
 
     static numAverage(a) {
         var b = a.length,
-            c = 0, i;
-        for (i = 0; i < b; i++){
-          c += Number(a[i]);
+            c = 0,
+            i;
+        for (i = 0; i < b; i++) {
+            c += Number(a[i]);
         }
-        return c/b;
-      }
+        return c / b;
+    }
+
+    /* static getInfoReset(guild, userId) {
+        let battleRole = guild.roles.cache.get(process.env.BATTLE);
+        const member = guild.members.fetch(userId)
+        //member.roles.add(battleRole)
+
+        return member.user.displayAvatarURL({
+            format: 'png',
+          })
+
+    } */
 }
