@@ -63,7 +63,9 @@ module.exports = {
                                                 const channel = await client.channels.fetch(process.env.BATTLE_TEXT);
                                                 //const pseudos = message.embeds[0].fields
                                                 channel.messages.fetch().then((messages) => {
-                                                    console.log(messages)
+                                                    messages.forEach(m => {
+                                                        console.log(m)
+                                                    })
                                                     messages.map((Unmessage) => {
                                                         const fields = Unmessage.embeds[0].fields[1]
                                                         const title = Unmessage.embeds[0].title
