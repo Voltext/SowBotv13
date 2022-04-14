@@ -106,12 +106,13 @@ module.exports = {
                 const max = options.getNumber("max")
                 const ecart = options.getNumber("ecart")
                 const isPerfect = options.getString("isperfect")
+                let arr = []
 
                 if(isPerfect === "oui") {
-                    const arr = [{libelle: libelle, pointMax: max, isPerfect: true}]
+                    arr = [{libelle: libelle, pointMax: max, isPerfect: true}]
                 }
                 else {
-                    const arr = [{libelle: libelle, pointMax: max, ecart: ecart, isPerfect: false}]
+                    arr = [{libelle: libelle, pointMax: max, ecart: ecart, isPerfect: false}]
                 }
 
                 await mongo().then(async (mongoosseaddprono) => {
