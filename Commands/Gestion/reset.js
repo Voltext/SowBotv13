@@ -212,7 +212,7 @@ module.exports = {
                 const battleEmbed = new MessageEmbed()
                 .setColor("GOLD")
                 .setTitle(`BATTLE - ${name.toUpperCase()}`)
-                .setDescription(`Félicitations pour votre qualification pour les battle du mois de ${name}. Vous trouverez ci-dessous, les battle, ainsi que vos adversaires. Bonne chance à tous !`);
+                .setDescription(`Félicitations pour votre qualification pour les battle. Vous trouverez ci-dessous, les battle, ainsi que vos adversaires. Bonne chance à tous !`);
                 battleEmbed.addFields({
                     name: 'Réponse ?',
                     value: "🔴\n🔴\n🔴\n🔴\n🔴\n🔴\n🔴\n🔴",

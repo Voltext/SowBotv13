@@ -5,8 +5,8 @@ const reponseSchema = mongoose.Schema({
     type: String,
     required: true
   }, 
-  warnings: {
-    type: [Object],
+  reponses: {
+    type: [String],
     required: true
   }
 
