@@ -64,43 +64,42 @@ module.exports = {
                                                 //const pseudos = message.embeds[0].fields
                                                 channel.messages.fetch().then((messages) => {
                                                     messages.forEach(m => {
-                                                        if(m.content === "#BATTLE") {
-                                                            console.log(m)
-                                                        }
-                                                    })
-                                                    messages.map((Unmessage) => {
-                                                        const fields = Unmessage.embeds[0].fields[1]
-                                                        const title = Unmessage.embeds[0].title
-                                                        for (const [key, value] of Object.entries(fields)) {
-                                                            if (key === "value") {
-                                                                const pseudos = value.split("\n");
-                                                                pseudos.forEach(element => {
-                                                                    listPseudo = listPseudo + element + '\n'
-                                                                    if (message.author.username === element) {
-                                                                        listEmoji = listEmoji + '🟢 \n'
-                                                                    } else {
-                                                                        listEmoji = listEmoji + '🔴 \n'
-                                                                    }
-                                                                })
+                                                        if (m.content === "#BATTLE") {
+                                                            const fields = m.embeds[0].fields[1]
+                                                            const title = m.embeds[0].title
+                                                            for (const [key, value] of Object.entries(fields)) {
+                                                                if (key === "value") {
+                                                                    const pseudos = value.split("\n");
+                                                                    pseudos.forEach(element => {
+                                                                        listPseudo = listPseudo + element + '\n'
+                                                                        if (message.author.username === element) {
+                                                                            listEmoji = listEmoji + '🟢 \n'
+                                                                        } else {
+                                                                            listEmoji = listEmoji + '🔴 \n'
+                                                                        }
+                                                                    })
+                                                                }
                                                             }
+                                                            const battleEmbed = new MessageEmbed()
+                                                                .setColor("GOLD")
+                                                                .setTitle(title)
+                                                                .setDescription(`Félicitations pour votre qualification pour les battle. Vous trouverez ci-dessous, les battle, ainsi que vos adversaires. Bonne chance à tous !`);
+                                                            battleEmbed.addFields({
+                                                                name: 'Réponse ?',
+                                                                value: listEmoji,
+                                                                inline: true
+                                                            }, {
+                                                                name: '❯ Joueurs',
+                                                                value: listPseudo,
+                                                                inline: true
+                                                            }, );
+                                                            battleEmbed.setFooter({
+                                                                text: "Lorsqu'un joueur enverra sa réponse, son pseudo passera en vert"
+                                                            });
+                                                            m.edit({
+                                                                embeds: [battleEmbed]
+                                                            })
                                                         }
-                                                        const battleEmbed = new MessageEmbed()
-                                                            .setColor("GOLD")
-                                                            .setTitle(title)
-                                                            .setDescription(`Félicitations pour votre qualification pour les battle. Vous trouverez ci-dessous, les battle, ainsi que vos adversaires. Bonne chance à tous !`);
-                                                        battleEmbed.addFields({
-                                                            name: 'Réponse ?',
-                                                            value: listEmoji,
-                                                            inline: true
-                                                        }, {
-                                                            name: '❯ Joueurs',
-                                                            value: listPseudo,
-                                                            inline: true
-                                                        }, );
-                                                        battleEmbed.setFooter({
-                                                            text: "Lorsqu'un joueur enverra sa réponse, son pseudo passera en vert"
-                                                        });
-                                                        Unmessage.edit({embeds: [battleEmbed]})
                                                     })
                                                 })
 
