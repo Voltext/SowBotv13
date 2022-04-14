@@ -160,7 +160,6 @@ module.exports = {
 
                 for (let i in battle) {
                     const member1 = await guild.members.fetch(battle[i][2])
-                    console.log(member1)
 
                     const pdp1 = await loadImage(member1.user.displayAvatarURL({
                         format: 'png',
