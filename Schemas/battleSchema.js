@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const battleSchema = mongoose.Schema({
   id: {
-    type: String,
+    type: Number,
     required: true
   },
   userId1: {

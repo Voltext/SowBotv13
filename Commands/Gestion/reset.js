@@ -1,20 +1,17 @@
 const {
-    CommandInteraction,
     MessageEmbed,
     MessageAttachment
 } = require("discord.js");
 require('dotenv').config();
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema');
-const prediSchema = require('../../Schemas/prediSchema');
-const Util = require('../../Utils/function')
+const battleSchema = require('../../Schemas/battleSchema');
 const {
     registerFont,
     createCanvas,
     loadImage
 } = require("canvas")
 const path = require('path');
-const rank = require("./rank");
 registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
     family: 'DINNextLTPro-Black'
 })
@@ -30,7 +27,7 @@ module.exports = {
     description: "Reset le classement des prédicteurs",
     permission: "BAN_MEMBERS",
 
-    async execute(interaction, client) {
+    async execute(interaction) {
         const {
             guild
         } = interaction
@@ -72,8 +69,8 @@ module.exports = {
                         pointsPlayer = pointsPlayer + elem.points + '\n';
                         battle.push([elem.userName, elem.points, elem.userId])
                         placement = placement + 1;
-                        const member = await guild.members.fetch(elem.userId);
-                        member.roles.add(battleRole)
+                        //const member = await guild.members.fetch(elem.userId);
+                        //member.roles.add(battleRole)
 
                     })
                     rankEmbed.addFields({
@@ -201,6 +198,34 @@ module.exports = {
                 //         mongoosereset2.connection.close()
                 //     }
                 // })
+
+                const arr = [{id:1, userId1: battle[0][2], userId2: battle[1][2]}, {id:2, userId1: battle[2][2], userId2: battle[3][2]}, {id:3, userId1: battle[4][2], userId2: battle[5][2]}, {id:4, userId1: battle[6][2], userId2: battle[7][2]}]
+
+                await mongo().then(async (mongoosseaddbattle) => {
+                    try {
+                        await battleSchema.insertMany(arr);
+                    } catch (error) {
+                        mongoosseaddbattle.connection.close()
+                    }
+                })
+
+                const battleEmbed = new MessageEmbed()
+                .setColor("GOLD")
+                .setTitle(`BATTLE - ${name.toUpperCase()}`)
+                .setDescription(`Félicitations pour votre qualification pour les battle du mois de ${name}. Vous trouverez ci-dessous, les battle, ainsi que vos adversaires. Bonne chance à tous !`);
+                battleEmbed.addFields({
+                    name: 'Réponse ?',
+                    value: "🔴\n🔴\n🔴\n🔴\n🔴\n🔴\n🔴\n🔴",
+                    inline: true
+                }, {
+                    name: '❯ Joueurs',
+                    value: pseudos,
+                    inline: true
+                },);
+                battleEmbed.setFooter({text: "Lorsqu'un joueur enverra sa réponse, son pseudo passera en vert"})
+                guild.channels.cache.get(process.env.BATTLE_TEXT).send({
+                    embeds: [battleEmbed]
+                })
             } finally {
                 mongoosereset1.connection.close();
             }
