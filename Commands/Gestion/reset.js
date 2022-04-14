@@ -142,18 +142,32 @@ module.exports = {
                 let month = `${name}`
                 ctx.fillText(month.toUpperCase(), 1250, 120)
 
-                battle.forEach(async m => {
-                    let size = 100
-                    let padding = 50
+                /*  const member1 = await guild.members.fetch(battle[0][2])
 
-                    const member = await guild.members.fetch(m[2])
+                 const pdp1 = await loadImage(member1.user.displayAvatarURL({
+                     format: 'png',
+                 }))
 
-                    const pdp = await loadImage(member.user.displayAvatarURL({
+                 ctx.drawImage(pdp1, 150, 80, 90, 90)
+
+                 const member2 = await guild.members.fetch(battle[1][2])
+
+                 const pdp2 = await loadImage(member2.user.displayAvatarURL({
+                     format: 'png',
+                 }))
+
+                 ctx.drawImage(pdp2, 150, 150, 90, 90) */
+
+                for (let i in battle) {
+                    const member1 = await guild.members.fetch(battle[i][2])
+                    console.log(member1)
+
+                    const pdp1 = await loadImage(member1.user.displayAvatarURL({
                         format: 'png',
-                      }))
+                    }))
 
-                    ctx.drawImage(pdp, 150, 80, 90, 90)
-                })
+                    ctx.drawImage(pdp1, 150, 80, 90, 90)
+                }
 
 
                 const attachment = new MessageAttachment(canvas.toBuffer(), 'battle.png')
