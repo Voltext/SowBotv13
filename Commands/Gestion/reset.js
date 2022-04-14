@@ -104,22 +104,22 @@ module.exports = {
 
                 ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
-                let name2 = `${battle[7][0]}`
+                let name2 = `${battle[1][0]}`
                 ctx.fillText(name2, 280, 250)
 
                 ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
-                let name3 = `${battle[1][0]}`
+                let name3 = `${battle[2][0]}`
                 ctx.fillText(name3, 280, 380)
 
                 ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
-                let name4 = `${battle[6][0]}`
+                let name4 = `${battle[3][0]}`
                 ctx.fillText(name4, 280, 490)
 
                 ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
-                let name5 = `${battle[2][0]}`
+                let name5 = `${battle[4][0]}`
                 ctx.fillText(name5, 280, 610)
 
                 ctx.fillStyle = '#ffffff'
@@ -129,12 +129,12 @@ module.exports = {
 
                 ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
-                let name7 = `${battle[3][0]}`
+                let name7 = `${battle[6][0]}`
                 ctx.fillText(name7, 280, 850)
 
                 ctx.fillStyle = '#ffffff'
                 ctx.font = '30px DINNextLTPro-Black'
-                let name8 = `${battle[4][0]}`
+                let name8 = `${battle[7][0]}`
                 ctx.fillText(name8, 280, 950)
 
                 ctx.fillStyle = '#e5b040'
@@ -142,23 +142,7 @@ module.exports = {
                 let month = `${name}`
                 ctx.fillText(month.toUpperCase(), 1250, 120)
 
-                /*  const member1 = await guild.members.fetch(battle[0][2])
-
-                 const pdp1 = await loadImage(member1.user.displayAvatarURL({
-                     format: 'png',
-                 }))
-
-                 ctx.drawImage(pdp1, 150, 80, 90, 90)
-
-                 const member2 = await guild.members.fetch(battle[1][2])
-
-                 const pdp2 = await loadImage(member2.user.displayAvatarURL({
-                     format: 'png',
-                 }))
-
-                 ctx.drawImage(pdp2, 150, 150, 90, 90) */
-
-                for (var i in battle) {
+                for (let i in battle) {
                     const member = await guild.members.fetch(battle[i][2])
 
                     const pdp = await loadImage(member.user.displayAvatarURL({
@@ -166,8 +150,31 @@ module.exports = {
                     }))
 
                     let size = 50
-                    let padding = 10
-                    ctx.drawImage(pdp, padding, padding + i * (size + padding), size, size)
+                    if(i == 1) {
+                        valueI = 0.9
+                    }
+                    else if(i == 2) {
+                        valueI = 2.02
+                    }
+                    else if(i == 3) {
+                        valueI = 2.93
+                    }
+                    else if(i == 4) {
+                        valueI = 4.03
+                    }
+                    else if(i == 5) {
+                        valueI = 4.947
+                    }
+                    else if(i == 6) {
+                        valueI = 6.05
+                    }
+                    else if(i == 7) {
+                        valueI = 6.95
+                    }
+                    else {
+                        valueI = i
+                    } 
+                    ctx.drawImage(pdp, 170, 95 + valueI * (size + 65), size * 1.75, size * 1.75)
                 }
 
 
