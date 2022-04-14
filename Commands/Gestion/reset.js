@@ -33,6 +33,8 @@ module.exports = {
         const {
             guild
         } = interaction
+        
+        let battleRole = guild.roles.cache.get(process.env.BATTLE);
 
         let battle = [];
         let pseudos = '';
