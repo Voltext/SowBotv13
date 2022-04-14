@@ -1,5 +1,5 @@
 const { Client, Collection } = require("discord.js");
-const client = new Client({ partials: ["CHANNEL"], intents: 32767});
+const client = new Client({ partials: ["CHANNEL"], intents: 98045});
 require('dotenv').config();
 
 client.commands = new Collection();

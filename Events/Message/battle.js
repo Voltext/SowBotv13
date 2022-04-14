@@ -13,7 +13,7 @@ module.exports = {
      * @param {Client} client
      */
     async execute(message, client) {
-        if(message.channel.type === 'dm') {
+        if(message.channel.type == 'dm') {
             console.log("Ok")
         }
     }
