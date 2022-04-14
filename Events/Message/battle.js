@@ -65,6 +65,9 @@ module.exports = {
                                                 channel.messages.fetch().then((messages) => {
                                                     messages.forEach(m => {
                                                         console.log(m)
+                                                        if(message.embeds[0].title.includes("BATTLE")) {
+                                                            console.log(message)
+                                                        }
                                                     })
                                                     messages.map((Unmessage) => {
                                                         const fields = Unmessage.embeds[0].fields[1]
