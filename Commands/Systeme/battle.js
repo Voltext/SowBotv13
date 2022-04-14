@@ -33,12 +33,6 @@ module.exports = {
                 description: "Saisissez la valeur max"
             },
             {
-                name: "ecart",
-                type: "NUMBER",
-                required: false,
-                description: "Saisissez les points perdu par ecart"
-            },
-            {
                 name: "isperfect",
                 type: "STRING",
                 required: true,
@@ -47,7 +41,13 @@ module.exports = {
                     {name: "Oui", value: "oui"},
                     {name: "Non", value: "non"}
                 ]
-            }]
+            },
+            {
+                name: "ecart",
+                type: "NUMBER",
+                required: false,
+                description: "Saisissez les points perdu par ecart"
+            },]
         },
         {
             name: "results",
