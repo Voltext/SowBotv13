@@ -108,6 +108,8 @@ module.exports = {
                 const isPerfect = options.getString("isperfect")
                 let arr = []
 
+                console.log(isPerfect)
+
                 if(isPerfect === "oui") {
                     arr = [{libelle: libelle, pointMax: max, isPerfect: true}]
                 }
