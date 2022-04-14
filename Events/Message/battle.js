@@ -64,6 +64,7 @@ module.exports = {
                                                 //const pseudos = message.embeds[0].fields
                                                 channel.messages.fetch().then((messages) => {
                                                     messages.map((Unmessage) => {
+                                                        console.log(Unmessage)
                                                         const fields = Unmessage.embeds[0].fields[1]
                                                         const title = Unmessage.embeds[0].title
                                                         for (const [key, value] of Object.entries(fields)) {
