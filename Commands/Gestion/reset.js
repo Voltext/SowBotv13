@@ -69,6 +69,9 @@ module.exports = {
                         pointsPlayer = pointsPlayer + elem.points + '\n';
                         battle.push([elem.userName, elem.points, elem.userId])
                         placement = placement + 1;
+                        const member = await guild.members.fetch(elem.userId);
+                        member.roles.add(battleRole)
+
                     })
                     rankEmbed.addFields({
                         name: '#',
