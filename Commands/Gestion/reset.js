@@ -224,6 +224,7 @@ module.exports = {
                 },);
                 battleEmbed.setFooter({text: "Lorsqu'un joueur enverra sa réponse, son pseudo passera en vert"})
                 guild.channels.cache.get(process.env.BATTLE_TEXT).send({
+                    content: "#BATTLE",
                     embeds: [battleEmbed]
                 })
             } finally {
