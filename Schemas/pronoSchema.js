@@ -9,12 +9,12 @@ const pronoSchema = mongoose.Schema({
     type: Number,
     required: true
   },
-  ecart: {
-    type: Number,
-    required: false
-  },
   isPerfect: {
     type: Boolean,
+    required: true
+  },
+  ecart: {
+    type: Number,
     required: false
   }
 })
