@@ -14,6 +14,7 @@ module.exports = {
    */
   async execute(message, client) {
     if (message.author.bot) return
+    if (message.channel.type === 'dm') return
 
     const {
       content,
