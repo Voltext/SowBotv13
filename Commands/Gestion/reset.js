@@ -158,7 +158,7 @@ module.exports = {
 
                  ctx.drawImage(pdp2, 150, 150, 90, 90) */
 
-                for (let i in battle) {
+                /* for (let i in battle) {
                     const member1 = await guild.members.fetch(battle[i][2])
 
                     const pdp1 = await loadImage(member1.user.displayAvatarURL({
@@ -166,7 +166,7 @@ module.exports = {
                     }))
 
                     ctx.drawImage(pdp1, 150, 80, 90, 90)
-                }
+                } */
 
 
                 const attachment = new MessageAttachment(canvas.toBuffer(), 'battle.png')
