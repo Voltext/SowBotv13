@@ -91,6 +91,30 @@ module.exports = {
                     ephemeral: true
                 })
             }
+            case "prono": {
+                const libelle = options.getString("texte")
+                const max = options.getNumber("max")
+                const ecart = options.getNumber("ecart")
+
+                const arr = [{libelle: libelle, pointMax: max, ecart: ecart}]
+
+                await mongo().then(async (mongoosseaddprono) => {
+                    try {
+                        await pronoSchema.insertMany(arr);
+                    } catch (error) {
+                        mongoosseaddprono.connection.close()
+                    }
+                })
+                const embed = new MessageEmbed()
+                .setColor("GREEN")
+                .setTitle("Prono crée")
+                .setDescription("Le pronostique a bien été crée et assigné.")
+
+                interaction.reply({
+                    embeds: [embed],
+                    ephemeral: true
+                })
+            }
         }
     }
 }
