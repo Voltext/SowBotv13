@@ -35,9 +35,19 @@ module.exports = {
             {
                 name: "ecart",
                 type: "NUMBER",
-                required: true,
+                required: false,
                 description: "Saisissez les points perdu par ecart"
-            },]
+            },
+            {
+                name: "isperfect",
+                type: "STRING",
+                required: true,
+                description: "Saisissez oui ou non",
+                choices: [
+                    {name: "Oui", value: "oui"},
+                    {name: "Non", value: "non"}
+                ]
+            }]
         },
         {
             name: "results",
@@ -95,8 +105,14 @@ module.exports = {
                 const libelle = options.getString("texte")
                 const max = options.getNumber("max")
                 const ecart = options.getNumber("ecart")
+                const isPerfect = options.getString("isperfect")
 
-                const arr = [{libelle: libelle, pointMax: max, ecart: ecart}]
+                if(isPerfect === "oui") {
+                    const arr = [{libelle: libelle, pointMax: max, isPerfect: true}]
+                }
+                else {
+                    const arr = [{libelle: libelle, pointMax: max, ecart: ecart, isPerfect: false}]
+                }
 
                 await mongo().then(async (mongoosseaddprono) => {
                     try {
