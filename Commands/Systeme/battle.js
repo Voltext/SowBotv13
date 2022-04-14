@@ -118,6 +118,7 @@ module.exports = {
                     try {
                         await pronoSchema.insertMany(arr);
                     } catch (error) {
+                        console.log(error)
                         mongoosseaddprono.connection.close()
                     }
                 })
