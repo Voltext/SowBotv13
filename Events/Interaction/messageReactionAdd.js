@@ -12,7 +12,6 @@ function addPoint(client, userId, userName, points) {
         try {
             await rankPrediSchema.findOneAndUpdate({
                 userId,
-                userName,
             }, {
                 userId,
                 userName,

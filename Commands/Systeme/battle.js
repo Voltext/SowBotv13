@@ -53,6 +53,42 @@ module.exports = {
             name: "results",
             type: "SUB_COMMAND",
             description: "Changez le nom de votre salon",
+            options: [{
+                name: "reponse1",
+                type: "STRING",
+                required: true,
+                description: "Saisissez la réponse 1"
+            }, 
+            {
+                name: "reponse2",
+                type: "STRING",
+                required: true,
+                description: "Saisissez la réponse 2"
+            },
+            {
+                name: "reponse3",
+                type: "STRING",
+                required: true,
+                description: "Saisissez la réponse 3",
+            },
+            {
+                name: "reponse4",
+                type: "STRING",
+                required: true,
+                description: "Saisissez la réponse 4"
+            },
+            {
+                name: "reponse5",
+                type: "STRING",
+                required: true,
+                description: "Saisissez la réponse 5"
+            },
+            {
+                name: "reponse6",
+                type: "STRING",
+                required: true,
+                description: "Saisissez la réponse 6"
+            },]
         },
     ],
     /**
