@@ -5,6 +5,7 @@ const {
     MessageActionRow,
     Client
 } = require('discord.js');
+const DIG = require("discord-image-generation");
 
 module.exports = {
     name: "messageCreate",
@@ -16,7 +17,12 @@ module.exports = {
         if (message.author.bot) return
         if (message.channel.type === 'dm') return
 
-        const { content,guild,author,channel } = message
+        const {
+            content,
+            guild,
+            author,
+            channel
+        } = message
         const messageContent = content.toLowerCase().split(" ");
 
         // if (messageContent[messageContent.length - 1] === "quoi" || messageContent[messageContent.length - 1] === "quoi?" || messageContent[messageContent.length - 1] === "Quoi?" || messageContent[messageContent.length - 1] === "Quoi") {
@@ -34,13 +40,18 @@ module.exports = {
         // else if (messageContent[messageContent.length - 1] === "Oui" || messageContent[messageContent.length - 1] === "oui") {
         //     message.channel.send("Stiti 🐒");
         // }
-        if (messageContent[messageContent.length - 1] == "Kariiiiim" || messageContent[messageContent.length - 1] == "kariiiiim") {
-            console.log("test");     
-            const Embed = new MessageEmbed().setTitle("Kaaaaaariiiiim").setImage("attachment://goal.png")
+        /* if (messageContent[messageContent.length - 1] == "Trigger" || messageContent[messageContent.length - 1] == "trigger") {
+            let avatar = message.author.displayAvatarURL({
+                dynamic: true,
+                format: 'png'
+            });
+            // Make the image
+            let img = await new DIG.Triggered().getImage(avatar)
+            // Add the image as an attachement
+            let attach = new .MessageAttachment(img, "delete.png");;
             message.channel.send({
-                embeds: [Embed],
-                files: ['./Assets/Troll/goal.png']
+                files: [attach]
             })
-        }
+        } */
     }
 }
