@@ -143,7 +143,7 @@ module.exports ={
                 const turnChoice = options.getString("choix")
                 switch(turnChoice) {
                     case "on" : {
-                        voiceChannel.permissionOverwrites.edit(guild.id, {CONNECT: null});
+                        voiceChannel.permissionOverwrites.edit(guild.id, {CONNECT: true});
                         client.channels.fetch(ownedTextChannel).then((channel) => {
                             channel.permissionOverwrites.edit(guild.id, {SEND_MESSAGES: true, VIEW_CHANNEL: true});
                         })
