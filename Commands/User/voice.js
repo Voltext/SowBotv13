@@ -116,6 +116,10 @@ module.exports ={
             case "invite": {
                 const targetMember = options.getMember("user");
                 voiceChannel.permissionOverwrites.edit(targetMember, {CONNECT: true});
+
+                client.channels.fetch(ownedTextChannel).then((channel) => {
+                    channel.permissionOverwrites.edit(targetMember, {SEND_MESSAGES: true, VIEW_CHANNEL: true});
+                })
                 
                 await targetMember.send({embeds: [Embed.setDescription(`${member} vous a invité a rejoindre son salon vocal <#${voiceChannel.id}>`)]})
                 interaction.reply({embeds: [Embed.setDescription(`${targetMember} a bien été invité dans votre salon`)], ephemeral: true});
