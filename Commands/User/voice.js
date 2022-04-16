@@ -91,6 +91,7 @@ module.exports ={
         const voiceChannel = member.voice.channel;
         const Embed = new MessageEmbed().setColor("GREEN")
         const ownedChannel = client.voiceGenerator.get(member.id);
+        const ownedTextChannel = client.voiceGenerator.get(member.id);
 
         if(!voiceChannel) {
             return interaction.reply({embeds: [Embed.setDescription("Vous devez être dans un salon vocal pour effectuer cette commande").setColor("RED")], ephemeral: true});
@@ -105,6 +106,9 @@ module.exports ={
                 if(newName.length > 22 || newName.length < 1) {
                     return interaction.reply({embeds: [Embed.setDescription("Le nom du salon doit être compris entre 1 et 22 caractères.").setColor("RED")], ephemeral: true});
                 }
+                client.channels.fetch(ownedTextChannel).then((channel) => {
+                    channel.edit({name: newName});
+                })
                 voiceChannel.edit({name: newName});
                 interaction.reply({embeds: [Embed.setDescription(`Le nom du salon a bien été modifié en *${newName}*`)], ephemeral: true})
             }
