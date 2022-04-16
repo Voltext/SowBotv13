@@ -44,6 +44,7 @@ module.exports = {
         const ownedTextChannel = client.textGenerator.get(member.id);
 
         console.log(ownedTextChannel)
+        console.log(ownedChannel)
         
         if(ownedChannel && oldChannel.id === ownedChannel && (!newChannel || newChannel.id !== ownedChannel)) {
             client.voiceGenerator.set(member.id, null);
