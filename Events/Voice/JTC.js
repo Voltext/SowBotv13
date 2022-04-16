@@ -26,8 +26,8 @@ module.exports = {
                 type: "GUILD_TEXT",
                 parent: newChannel.parent,
                 permissionOverwrites: [
-                    {id: member.id, allow: ["SEND_MESSAGESS", "VIEW_CHANNEL"]},
-                    {id: guild.id, deny: ["SEND_MESSAGESS", "VIEW_CHANNEL"]},
+                    {id: member.id, allow: ["SEND_MESSAGES", "VIEW_CHANNEL"]},
+                    {id: guild.id, deny: ["SEND_MESSAGES", "VIEW_CHANNEL"]},
                 ]
             });
 
