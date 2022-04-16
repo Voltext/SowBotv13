@@ -129,6 +129,10 @@ module.exports ={
                 const targetMember = options.getMember("member");
                 voiceChannel.permissionOverwrites.edit(targetMember, {CONNECT: false});
 
+                client.channels.fetch(ownedTextChannel).then((channel) => {
+                    channel.permissionOverwrites.edit(targetMember, {SEND_MESSAGES: false, VIEW_CHANNEL: false});
+                })
+
                 if(targetMember.voice.channel && targetMember.voice.channel.id === voiceChannel.id) targetMember.voice.setChannel(null)
                 
                 await targetMember.send({embeds: [Embed.setDescription(`${member} vous a exclu de son salon vocal <#${voiceChannel.id}>`)]})
@@ -140,11 +144,17 @@ module.exports ={
                 switch(turnChoice) {
                     case "on" : {
                         voiceChannel.permissionOverwrites.edit(guild.id, {CONNECT: null});
+                        client.channels.fetch(ownedTextChannel).then((channel) => {
+                            channel.permissionOverwrites.edit(guild.id, {SEND_MESSAGES: true, VIEW_CHANNEL: true});
+                        })
                         interaction.reply({embeds: [Embed.setDescription("Vous avez rendu votre salon public et ouvert aux membres")], ephemeral: true})
                     }
                     break;
                     case "off" : {
                         voiceChannel.permissionOverwrites.edit(guild.id, {CONNECT: false});
+                        client.channels.fetch(ownedTextChannel).then((channel) => {
+                            channel.permissionOverwrites.edit(guild.id, {SEND_MESSAGES: false, VIEW_CHANNEL: false});
+                        })
                         interaction.reply({embeds: [Embed.setDescription("Vous avez rendu votre salon privé, seul les personnes invitées pourront rejoindre votre salon")], ephemeral: true})
                     }
                     break
