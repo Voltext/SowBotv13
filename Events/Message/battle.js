@@ -8,6 +8,7 @@ const {
 const mongo = require('../../mongo');
 const reponseSchema = require('../../Schemas/reponseSchema');
 const battleSchema = require('../../Schemas/battleSchema');
+const pronoSchema = require('../../Schemas/pronoSchema');
 
 module.exports = {
     name: "messageCreate",
@@ -53,60 +54,64 @@ module.exports = {
                                         }]
                                     });
                                     if (results === null) {
-                                        await mongo().then(async (mongoosseaddreponse) => {
-                                            try {
-                                                await reponseSchema.insertMany(arr);
-                                                message.reply("Votre participation a bien été pris en compte.")
-                                                let listPseudo = ''
-                                                let listEmoji = ''
+                                        if (answers.length !== 6) {
+                                            message.reply(`Vous n'avez pas donné suffisament de réponse. Vous avez donné ${answers.length}/6 reponses`)
+                                        } else {
+                                            await mongo().then(async (mongoosseaddreponse) => {
+                                                try {
+                                                    await reponseSchema.insertMany(arr);
+                                                    message.reply("Votre participation a bien été pris en compte.")
+                                                    let listPseudo = ''
+                                                    let listEmoji = ''
 
-                                                const channel = await client.channels.fetch(process.env.BATTLE_TEXT);
-                                                //const pseudos = message.embeds[0].fields
-                                                channel.messages.fetch().then((messages) => {
-                                                    messages.forEach(m => {
-                                                        if (m.content === "#BATTLE") {
-                                                            const fields = m.embeds[0].fields[1]
-                                                            const title = m.embeds[0].title
-                                                            for (const [key, value] of Object.entries(fields)) {
-                                                                if (key === "value") {
-                                                                    const pseudos = value.split("\n");
-                                                                    pseudos.forEach(element => {
-                                                                        listPseudo = listPseudo + element + '\n'
-                                                                        if (message.author.username === element) {
-                                                                            listEmoji = listEmoji + '🟢 \n'
-                                                                        } else {
-                                                                            listEmoji = listEmoji + '🔴 \n'
-                                                                        }
-                                                                    })
+                                                    const channel = await client.channels.fetch(process.env.BATTLE_TEXT);
+                                                    //const pseudos = message.embeds[0].fields
+                                                    channel.messages.fetch().then((messages) => {
+                                                        messages.forEach(m => {
+                                                            if (m.content === "#BATTLE") {
+                                                                const fields = m.embeds[0].fields[1]
+                                                                const title = m.embeds[0].title
+                                                                for (const [key, value] of Object.entries(fields)) {
+                                                                    if (key === "value") {
+                                                                        const pseudos = value.split("\n");
+                                                                        pseudos.forEach(element => {
+                                                                            listPseudo = listPseudo + element + '\n'
+                                                                            if (message.author.username === element) {
+                                                                                listEmoji = listEmoji + '🟢 \n'
+                                                                            } else {
+                                                                                listEmoji = listEmoji + '🔴 \n'
+                                                                            }
+                                                                        })
+                                                                    }
                                                                 }
+                                                                const battleEmbed = new MessageEmbed()
+                                                                    .setColor("GOLD")
+                                                                    .setTitle(title)
+                                                                    .setDescription(`Félicitations pour votre qualification pour les battle. Vous trouverez ci-dessous, les battle, ainsi que vos adversaires. Bonne chance à tous !`);
+                                                                battleEmbed.addFields({
+                                                                    name: 'Réponse ?',
+                                                                    value: listEmoji,
+                                                                    inline: true
+                                                                }, {
+                                                                    name: '❯ Joueurs',
+                                                                    value: listPseudo,
+                                                                    inline: true
+                                                                }, );
+                                                                battleEmbed.setFooter({
+                                                                    text: "Lorsqu'un joueur enverra sa réponse, son pseudo passera en vert"
+                                                                });
+                                                                m.edit({
+                                                                    embeds: [battleEmbed]
+                                                                })
                                                             }
-                                                            const battleEmbed = new MessageEmbed()
-                                                                .setColor("GOLD")
-                                                                .setTitle(title)
-                                                                .setDescription(`Félicitations pour votre qualification pour les battle. Vous trouverez ci-dessous, les battle, ainsi que vos adversaires. Bonne chance à tous !`);
-                                                            battleEmbed.addFields({
-                                                                name: 'Réponse ?',
-                                                                value: listEmoji,
-                                                                inline: true
-                                                            }, {
-                                                                name: '❯ Joueurs',
-                                                                value: listPseudo,
-                                                                inline: true
-                                                            }, );
-                                                            battleEmbed.setFooter({
-                                                                text: "Lorsqu'un joueur enverra sa réponse, son pseudo passera en vert"
-                                                            });
-                                                            m.edit({
-                                                                embeds: [battleEmbed]
-                                                            })
-                                                        }
+                                                        })
                                                     })
-                                                })
 
-                                            } catch (error) {
-                                                mongoosseaddreponse.connection.close()
-                                            }
-                                        })
+                                                } catch (error) {
+                                                    mongoosseaddreponse.connection.close()
+                                                }
+                                            })
+                                        }
                                     } else {
                                         message.reply("Vous avez déjà envoyé votre participation")
                                     }
