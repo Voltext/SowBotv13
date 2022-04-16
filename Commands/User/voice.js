@@ -91,7 +91,7 @@ module.exports ={
         const voiceChannel = member.voice.channel;
         const Embed = new MessageEmbed().setColor("GREEN")
         const ownedChannel = client.voiceGenerator.get(member.id);
-        const ownedTextChannel = client.voiceGenerator.get(member.id);
+        const ownedTextChannel = client.textGenerator.get(member.id);
 
         if(!voiceChannel) {
             return interaction.reply({embeds: [Embed.setDescription("Vous devez être dans un salon vocal pour effectuer cette commande").setColor("RED")], ephemeral: true});
