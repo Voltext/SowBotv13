@@ -41,12 +41,13 @@ module.exports = {
         }
 
         const ownedChannel = client.voiceGenerator.get(member.id);
+        const ownedTextChannel = client.textGenerator.get(member.id);
         
         if(ownedChannel && oldChannel.id === ownedChannel && (!newChannel || newChannel.id !== ownedChannel)) {
             client.voiceGenerator.set(member.id, null);
             client.textGenerator.set(member.id, null);
             oldChannel.delete().catch(() => {});
-            textChannel.delete().catch(() => {});
+            ownedTextChannel.delete().catch(() => {});
         }
     }
 }
