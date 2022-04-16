@@ -42,15 +42,14 @@ module.exports = {
 
         const ownedChannel = client.voiceGenerator.get(member.id);
         const ownedTextChannel = client.textGenerator.get(member.id);
-
-        console.log(ownedTextChannel)
-        console.log(ownedChannel)
         
         if(ownedChannel && oldChannel.id === ownedChannel && (!newChannel || newChannel.id !== ownedChannel)) {
             client.voiceGenerator.set(member.id, null);
             client.textGenerator.set(member.id, null);
             oldChannel.delete().catch(() => {});
-            ownedTextChannel.delete().catch(() => {});
+            client.channels.fetch(ownedTextChannel).then((channel) => {
+                channel.delete().catch(() => {});
+            })
         }
     }
 }
