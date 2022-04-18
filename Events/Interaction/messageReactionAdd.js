@@ -51,10 +51,11 @@ module.exports = {
                     const results = await prediSchema.findOne({
                         msgId,
                     });
-                    const result = Object.values(results)
-                    if (result === null) {
+                    if (results === null) {
                         console.log("Prediction null")
+                        console.log(msgId)
                     } else {
+                        const result = Object.values(results)
                         const status = result[2].status
                         const pronoType = message.embeds[0].author.name
 
