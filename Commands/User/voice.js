@@ -91,6 +91,7 @@ module.exports ={
         const voiceChannel = member.voice.channel;
         const Embed = new MessageEmbed().setColor("GREEN")
         const ownedChannel = client.voiceGenerator.get(member.id);
+        const ownedTextChannel = client.textGenerator.get(member.id);
 
         if(!voiceChannel) {
             return interaction.reply({embeds: [Embed.setDescription("Vous devez être dans un salon vocal pour effectuer cette commande").setColor("RED")], ephemeral: true});
@@ -105,6 +106,9 @@ module.exports ={
                 if(newName.length > 22 || newName.length < 1) {
                     return interaction.reply({embeds: [Embed.setDescription("Le nom du salon doit être compris entre 1 et 22 caractères.").setColor("RED")], ephemeral: true});
                 }
+                client.channels.fetch(ownedTextChannel).then((channel) => {
+                    channel.edit({name: newName});
+                })
                 voiceChannel.edit({name: newName});
                 interaction.reply({embeds: [Embed.setDescription(`Le nom du salon a bien été modifié en *${newName}*`)], ephemeral: true})
             }
@@ -112,6 +116,10 @@ module.exports ={
             case "invite": {
                 const targetMember = options.getMember("user");
                 voiceChannel.permissionOverwrites.edit(targetMember, {CONNECT: true});
+
+                client.channels.fetch(ownedTextChannel).then((channel) => {
+                    channel.permissionOverwrites.edit(targetMember, {SEND_MESSAGES: true, VIEW_CHANNEL: true});
+                })
                 
                 await targetMember.send({embeds: [Embed.setDescription(`${member} vous a invité a rejoindre son salon vocal <#${voiceChannel.id}>`)]})
                 interaction.reply({embeds: [Embed.setDescription(`${targetMember} a bien été invité dans votre salon`)], ephemeral: true});
@@ -120,6 +128,10 @@ module.exports ={
             case "blacklist": {
                 const targetMember = options.getMember("member");
                 voiceChannel.permissionOverwrites.edit(targetMember, {CONNECT: false});
+
+                client.channels.fetch(ownedTextChannel).then((channel) => {
+                    channel.permissionOverwrites.edit(targetMember, {SEND_MESSAGES: false, VIEW_CHANNEL: false});
+                })
 
                 if(targetMember.voice.channel && targetMember.voice.channel.id === voiceChannel.id) targetMember.voice.setChannel(null)
                 
@@ -131,12 +143,18 @@ module.exports ={
                 const turnChoice = options.getString("choix")
                 switch(turnChoice) {
                     case "on" : {
-                        voiceChannel.permissionOverwrites.edit(guild.id, {CONNECT: null});
+                        voiceChannel.permissionOverwrites.edit(guild.id, {CONNECT: true});
+                        client.channels.fetch(ownedTextChannel).then((channel) => {
+                            channel.permissionOverwrites.edit(guild.id, {SEND_MESSAGES: true, VIEW_CHANNEL: true});
+                        })
                         interaction.reply({embeds: [Embed.setDescription("Vous avez rendu votre salon public et ouvert aux membres")], ephemeral: true})
                     }
                     break;
                     case "off" : {
                         voiceChannel.permissionOverwrites.edit(guild.id, {CONNECT: false});
+                        client.channels.fetch(ownedTextChannel).then((channel) => {
+                            channel.permissionOverwrites.edit(guild.id, {SEND_MESSAGES: false, VIEW_CHANNEL: false});
+                        })
                         interaction.reply({embeds: [Embed.setDescription("Vous avez rendu votre salon privé, seul les personnes invitées pourront rejoindre votre salon")], ephemeral: true})
                     }
                     break

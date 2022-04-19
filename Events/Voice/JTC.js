@@ -22,8 +22,18 @@ module.exports = {
                     {id: guild.id, deny: ["CONNECT"]},
                 ]
             });
+            const textChannel = await guild.channels.create(member.user.tag, {
+                type: "GUILD_TEXT",
+                parent: newChannel.parent,
+                permissionOverwrites: [
+                    {id: member.id, allow: ["SEND_MESSAGES", "VIEW_CHANNEL"]},
+                    {id: guild.id, deny: ["SEND_MESSAGES", "VIEW_CHANNEL"]},
+                ]
+            });
 
             client.voiceGenerator.set(member.id, voiceChannel.id);
+            client.textGenerator.set(member.id, textChannel.id);
+
             await newChannel.permissionOverwrites.edit(member, {CONNECT: false});
             setTimeout(() => newChannel.permissionOverwrites.delete(member), 30 * 1000);
 
@@ -31,10 +41,15 @@ module.exports = {
         }
 
         const ownedChannel = client.voiceGenerator.get(member.id);
+        const ownedTextChannel = client.textGenerator.get(member.id);
         
         if(ownedChannel && oldChannel.id === ownedChannel && (!newChannel || newChannel.id !== ownedChannel)) {
             client.voiceGenerator.set(member.id, null);
+            client.textGenerator.set(member.id, null);
             oldChannel.delete().catch(() => {});
+            client.channels.fetch(ownedTextChannel).then((channel) => {
+                channel.delete().catch(() => {});
+            })
         }
     }
 }
