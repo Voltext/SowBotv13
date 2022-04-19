@@ -1288,7 +1288,7 @@ module.exports = {
 								.setFooter(`+ ou - de ${buts} buts pour la ${journee} de ${championnat}`)
 								.addFields({
 									name: 'Pronostiques',
-									value: `${process.env.ONE} : Si vous pensez que oui \n ${process.env.TWO} : Si vous pensez que non`,
+									value: `${process.env.ONE} : Si vous pensez qu'il y aura + \n ${process.env.TWO} : Si vous pensez qu'il y aura -`,
 									inline: true
 								}, {
 									name: 'Côtes',
