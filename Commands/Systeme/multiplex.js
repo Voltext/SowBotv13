@@ -6,10 +6,23 @@ module.exports = {
     permission: "ADMINISTRATOR",
     options: [
         {
-            name: 'but',
+            name: 'type',
             description: "Equipe qui marque",
             type: "STRING",
-            required: true
+            required: true,
+            choices: [{
+                name: "But",
+                value: "but"
+              },
+              {
+                name: "Carton Jaune",
+                value: "jaune"
+              },
+              {
+                name: "Carton Rouge",
+                value: "rouge"
+              },
+            ]
         },
         {
             name: 'buteur',
@@ -30,6 +43,12 @@ module.exports = {
             required: true
         },
         {
+            name: 'minute',
+            description: "minute du but",
+            type: "STRING",
+            required: true
+        },
+        {
             name: 'channel',
             description: "recupere le channel sur lequel envoyer le message",
             type: "CHANNEL",
@@ -42,17 +61,30 @@ module.exports = {
 
         const loggingChannel = interaction.options.getChannel("channel").id;
 
-        const but = interaction.options.getString("but");
+        const type = interaction.options.getString("type");
+        const minute = interaction.options.getString("minute");
         const buteur = interaction.options.getString("buteur");
         const match = interaction.options.getString("match");
         const score = interaction.options.getString("score");
 
         const equipe = match.split('-')
 
+        let infos = ''
+
+        if(type == 'but') {
+            infos = `${minute}' : ⚽ ${buteur}`
+        }
+        if(type == 'jaune') {
+            infos = `${minute}' : 🟨 ${buteur}`
+        }
+        if(type == 'rouge') {
+            infos = `${minute}' : 🟥 ${buteur}`
+        }
+
         const embed = new MessageEmbed()
         .setTitle(`BUUUUUUUUUT : ${but}`)
         .setColor('BLUE')
-        .setDescription(`**${equipe[0]} ${score} ${equipe[1]}** \n \n ⚽ ${buteur}`)
+        .setDescription(`**${equipe[0]} ${score} ${equipe[1]}** \n \n ${infos}`)
 
         guild.channels.cache.get(loggingChannel).send({
             embeds: [embed]
