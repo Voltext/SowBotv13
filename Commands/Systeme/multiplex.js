@@ -35,8 +35,7 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle(`BUUUUUUUUUT : ${but}`)
         .setColor('BLUE')
-        .setAuthor({ name: match})
-        .setDescription(`${equipe[0]} ${score} ${equipe[1]}}`)
+        .setDescription(`${equipe[0]} ${score} ${equipe[1]}`)
 
         interaction.reply({
             embeds: [embed]
