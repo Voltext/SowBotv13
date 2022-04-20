@@ -54,6 +54,12 @@ module.exports = {
             type: "CHANNEL",
             required: true
         },
+        {
+            name: 'but',
+            description: "minute du but",
+            type: "STRING",
+            required: false
+        },
     ],
 
     execute(interaction) {
@@ -62,6 +68,7 @@ module.exports = {
         const loggingChannel = interaction.options.getChannel("channel").id;
 
         const type = interaction.options.getString("type");
+        const but = interaction.options.getString("but");
         const minute = interaction.options.getString("minute");
         const buteur = interaction.options.getString("buteur");
         const match = interaction.options.getString("match");
@@ -70,20 +77,28 @@ module.exports = {
         const equipe = match.split('-')
 
         let infos = ''
+        let stats = ''
+        let color = ''
 
         if(type == 'but') {
             infos = `${minute}' : ⚽ ${buteur}`
+            stats = `BUUUUUUUUUT : ${but}`
+            color= 'BLUE'
         }
         if(type == 'jaune') {
             infos = `${minute}' : 🟨 ${buteur}`
+            stats = `Carton Jaune : ${but}`
+            color = 'GOLD'
         }
         if(type == 'rouge') {
             infos = `${minute}' : 🟥 ${buteur}`
+            stats = `Carton Rouge : ${but}`
+            color = 'RED'
         }
 
         const embed = new MessageEmbed()
-        .setTitle(`BUUUUUUUUUT : ${but}`)
-        .setColor('BLUE')
+        .setTitle(`${stats}`)
+        .setColor(`${color}`)
         .setDescription(`**${equipe[0]} ${score} ${equipe[1]}** \n \n ${infos}`)
 
         guild.channels.cache.get(loggingChannel).send({
