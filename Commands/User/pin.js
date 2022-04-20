@@ -17,17 +17,29 @@ module.exports = {
   }, ],
 
   async execute(interaction) {
-    const { guild } = interaction
+    const {
+      guild
+    } = interaction
     const msgId = interaction.options.getString("msgid")
     const channel = await guild.channels.fetch('932438149739737089');
-    //const pseudos = message.embeds[0].fields
-    channel.messages.fetch(msgId).then(async (msg) => {
-      console.log(msg)
-      await msg.pin();
-    })
-    interaction.reply({
-      content: "Message épinglé",
-      ephemeral: true,
-    })
+
+    const member = await guild.members.fetch(interaction.user.id);
+
+    if (member.roles.cache.has('966251610248470528') === true) {
+      channel.messages.fetch(msgId).then(async (msg) => {
+        await msg.pin();
+      })
+      interaction.reply({
+        content: "Message épinglé",
+        ephemeral: true,
+      })
+    }
+    else {
+      interaction.reply({
+        content: "Vous n'avez pas la permission de faire ça",
+        ephemeral: true,
+      })
+    }
+
   }
 }
