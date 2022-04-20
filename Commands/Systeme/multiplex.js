@@ -29,9 +29,19 @@ module.exports = {
             type: "STRING",
             required: true
         },
+        {
+            name: 'channel',
+            description: "recupere le channel sur lequel envoyer le message",
+            type: "CHANNEL",
+            required: true
+        },
     ],
 
     execute(interaction) {
+        const { guild } = interaction
+
+        const loggingChannel = interaction.options.getChannel("channel").id;
+
         const but = interaction.options.getString("but");
         const buteur = interaction.options.getString("buteur");
         const match = interaction.options.getString("match");
@@ -42,10 +52,10 @@ module.exports = {
         const embed = new MessageEmbed()
         .setTitle(`BUUUUUUUUUT : ${but}`)
         .setColor('BLUE')
-        .setDescription(`${equipe[0]} ${score} ${equipe[1]} \n ⚽ ${buteur}`)
+        .setDescription(`**${equipe[0]} ${score} ${equipe[1]}** \n \n ⚽ ${buteur}`)
 
-        interaction.reply({
+        guild.channels.cache.get(loggingChannel).send({
             embeds: [embed]
-        })
+          })
     }
 }
