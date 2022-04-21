@@ -27,14 +27,14 @@ module.exports = {
 
         await mongo().then(async (mongoosepredi) => {
             try {
-                const results = await linkTwitchSchema.findOne({
+                const results = await cardCollectionSchema.findOne({
                     userId,
                 });
                 if (results === null) {
                     nbCards = 1
                 }
                 else {
-                    nbCards = results.cards.length
+                    nbCards = results.cards.length + 1
                 }
                 await interaction.reply({
                     content: `${nbCards}/${length} cartes collectionnées`,
