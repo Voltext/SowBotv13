@@ -7,7 +7,6 @@ const {
 module.exports = {
     name: "messageDelete",
     async execute(message) {
-        if(message.author.bot) return;
 
         const logDelete = new MessageEmbed()
         .setColor("RED")
