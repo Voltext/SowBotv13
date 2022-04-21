@@ -25,7 +25,7 @@ module.exports = {
         if (card.data !== null) {
             const data = card.data
 
-            data.forEach(function (elem) {
+            data.forEach(async function (elem) {
                 const userName = elem.user_name
 
                 await mongo().then(async (mongoosepredi) => {
