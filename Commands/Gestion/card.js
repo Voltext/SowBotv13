@@ -43,9 +43,6 @@ module.exports = {
                             })
                         } else {
                             const userId = results.userId
-                            const embed = new MessageEmbed()
-                                .setTitle("Nouvelle demande de carte")
-                                .setDescription(`${elem.user_name} vient de récupérer une carte ! Félicitations`);
 
                             const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
                             let chosenFile = files[Math.floor(Math.random() * files.length)]
@@ -66,45 +63,23 @@ module.exports = {
                                     mongooselock.connection.close()
                                 }
                             })
-
-                            const member = await guild.members.fetch(userId);
-
-                            const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${chosenFile}`))
-                            const attachmentBoost = new MessageAttachment(image)
-
-                            await member.send({
-                                embeds: [new MessageEmbed().setTitle("Nouvelle carte débloquée").setImage(`attachment://${chosenFile}`)],
-                                files: [attachmentBoost]
-                            })
-
-                            guild.channels.cache.get(process.env.ADMIN_FEED).send({
-                                content: chosenFile,
-                                embeds: [embed]
-                            })
+                            await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
+                                'status': 'FULFILLED'
+                            }, {
+                                headers: {
+                                    'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+                                    'client-id': process.env.CLIENT_ID_SOW,
+                                    'Content-Type': 'application/json'
+                                }
+                            });
                         }
                     } finally {
                         mongoosepredi.connection.close();
                     }
                 });
 
-                ArrId.push(elem.id)
-               
             })
 
-            console.log(ArrId)
-
-            ArrId.forEach(async function (e) {
-                console.log(e)
-                await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${e}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
-                    'status': 'FULFILLED'
-                }, {
-                    headers: {
-                        'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
-                        'client-id': process.env.CLIENT_ID_SOW,
-                        'Content-Type': 'application/json'
-                    }
-                });
-            })
 
         } else {
             interaction.reply({
