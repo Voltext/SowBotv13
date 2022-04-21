@@ -26,7 +26,7 @@
     "discord-html-transcripts": "^2.2.8",
     "discord-image-generation": "^1.4.13",
     "discord.js": "^13.4.0",
-    "discordjs-button-pagination": "^3.0.0",
+    "discordjs-button-pagination": "^3.0.1",
     "dotenv": "^10.0.0",
     "fs": "^0.0.1-security",
     "glob": "^7.2.0",
