@@ -44,6 +44,6 @@ module.exports = {
                 mongoosepredi.connection.close();
             }
         })  
-        pagination(interaction, ArrEmb)
+        pagination(interaction, ArrEmb[0])
     }
 }
