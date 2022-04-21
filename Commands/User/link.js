@@ -5,6 +5,8 @@ const {
   } = require("discord.js");
   const fs = require('fs')
   const path = require('path');
+  const mongo = require('../../mongo');
+  const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
   
   module.exports = {
     name: "link",
@@ -26,7 +28,7 @@ const {
 
       await mongo().then(async (mongooselock) => {
         try {
-            await prediSchema.findOneAndUpdate({
+            await linkTwitchSchema.findOneAndUpdate({
                 userId,
             }, {
                 userId,
