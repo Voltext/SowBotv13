@@ -67,7 +67,7 @@ module.exports = {
 
                             const member = await guild.members.fetch(userId);
 
-                            const image = await fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${chosenFile}`))
+                            const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${chosenFile}`))
                             const attachmentBoost = new MessageAttachment(image)
 
                             await member.send({
@@ -87,7 +87,7 @@ module.exports = {
                 
                 console.log(elem.id)
 
-                const res = await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
+                await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
                     'status': 'FULFILLED'
                 }, {
                     headers: {
@@ -96,7 +96,6 @@ module.exports = {
                         'Content-Type': 'application/json'
                     }
                 });
-
             })
 
         } else {
