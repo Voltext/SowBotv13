@@ -3,7 +3,6 @@ const {
     MessageAttachment
 } = require("discord.js");
 const Cards = require("../../Api/card");
-const CardPatch = require("../../Api/cardFulfilled");
 require('dotenv').config();
 const fs = require('fs')
 const path = require('path');
