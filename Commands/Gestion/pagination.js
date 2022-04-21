@@ -16,8 +16,8 @@ module.exports = {
 
     async execute(interaction) {
         const userId = interaction.user.id
-        const ArrEmb = []
-        const ArrImg = []
+        var ArrEmb = []
+        var ArrImg = []
         await mongo().then(async (mongoosepredi) => {
             try {
                 const results = await cardCollectionSchema.findOne({
