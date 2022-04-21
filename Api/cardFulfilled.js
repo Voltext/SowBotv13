@@ -24,4 +24,4 @@ class CardPatch {
     }
 }
 
-module.exports = Card;
+module.exports = CardPatch;
