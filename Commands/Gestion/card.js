@@ -1,5 +1,6 @@
 const {
-    MessageEmbed, MessageAttachment
+    MessageEmbed,
+    MessageAttachment
 } = require("discord.js");
 const Cards = require("../../Api/card");
 const CardPatch = require("../../Api/cardFulfilled");
@@ -63,7 +64,7 @@ module.exports = {
                                     mongooselock.connection.close()
                                 }
                             })
-                                
+
                             const member = await guild.members.fetch(userId);
 
                             const image = await fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${chosenFile}`))
@@ -84,9 +85,17 @@ module.exports = {
                     }
                 });
 
-                const patchCard = new CardPatch()
-
-                await patchCard.patchEvent(elem.id)
+                fetch(`https://api.twitch.tv/helix/channel_points/custom_rewards?id=dd830257-d211-41fa-9c41-89472c032a9f&broadcaster_id=727375071?reward_id=${elem.id}`, {
+                        method: 'PATCH',
+                        headers: {
+                            'content-Type': 'application/json',
+                            'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+                            'client-id': process.env.CLIENT_ID_SOW
+                        },
+                        body: JSON.stringify({ "status" : "FULFILLED" })
+                    }).then(response => response.json())
+                    .then((data) => console.log("FULFILLED"))
+                    .catch(error => console.error(JSON.stringify(error)))
 
             })
 
