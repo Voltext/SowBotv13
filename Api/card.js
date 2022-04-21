@@ -8,7 +8,7 @@ class Card {
         const res = await got(makeURL(), {
              headers: {
                  'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
-                 'Client-Id': process.env.CLIENT_ID_SOW
+                 'client-id': process.env.CLIENT_ID_SOW
              },
              responseType: 'json'
         })
