@@ -1,5 +1,6 @@
 const {
-    MessageEmbed, MessageAttachment
+    MessageEmbed,
+    MessageAttachment
 } = require("discord.js");
 const Cards = require("../../Api/card");
 const CardPatch = require("../../Api/cardFulfilled");
@@ -9,6 +10,7 @@ const path = require('path');
 const mongo = require('../../mongo');
 const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
 const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
+const axios = require('axios')
 
 module.exports = {
     name: "card",
@@ -63,7 +65,7 @@ module.exports = {
                                     mongooselock.connection.close()
                                 }
                             })
-                                
+
                             const member = await guild.members.fetch(userId);
 
                             const image = await fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${chosenFile}`))
@@ -84,9 +86,19 @@ module.exports = {
                     }
                 });
 
-                const patchCard = new CardPatch()
+                console.log(elem.id)
 
-                await patchCard.patchEvent(elem.id)
+                const res = await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=dd830257-d211-41fa-9c41-89472c032a9f&broadcaster_id=727375071&reward_id=${elem.id}`, {
+                    'status': 'FULFILLED'
+                }, {
+                    headers: {
+                        'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+                        'client-id': process.env.CLIENT_ID_SOW,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                console.log(res)
 
             })
 
