@@ -26,8 +26,10 @@ module.exports = {
                 const embed = new MessageEmbed()
                     .setTitle("Nouvelle demande de carte")
                     .setDescription(`${elem.user_name} vient de récupérer une carte ! Félicitations`)
+
+                    console.log(path.join(__dirname, `../../Assets/Cards/`))
                 
-                var files = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/`))
+                const files = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/`))
                 let chosenFile = files[Math.floor(Math.random() * files.length)]
 
                 guild.channels.cache.get(process.env.ADMIN_FEED).send({
