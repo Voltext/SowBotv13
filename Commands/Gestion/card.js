@@ -84,7 +84,7 @@ module.exports = {
                         mongoosepredi.connection.close();
                     }
                 });
-
+                
                 console.log(elem.id)
 
                 const res = await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
@@ -96,8 +96,6 @@ module.exports = {
                         'Content-Type': 'application/json'
                     }
                 });
-
-                console.log(res)
 
             })
 
