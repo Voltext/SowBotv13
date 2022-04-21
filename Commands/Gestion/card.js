@@ -1,5 +1,5 @@
 const {
-    MessageEmbed
+    MessageEmbed, MessageAttachment
 } = require("discord.js");
 const Cards = require("../../Api/card");
 require('dotenv').config();
@@ -62,6 +62,15 @@ module.exports = {
                                     mongooselock.connection.close()
                                 }
                             })
+                                
+                            const member = await guild.members.fetch(userId);
+                            const image = awaitfs.readFileSync(path.join(__dirname, `../../Assets/Cards/${chosenFile}`))
+                            const attachmentBoost = new MessageAttachment(image)
+                            member.send({
+                                content: "Vous venez de débloquer une nouvelle carte !",
+                                files: attachmentBoost
+                            })
+
                             guild.channels.cache.get(process.env.ADMIN_FEED).send({
                                 content: chosenFile,
                                 embeds: [embed]
