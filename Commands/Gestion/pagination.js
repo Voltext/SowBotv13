@@ -52,7 +52,7 @@ module.exports = {
 
                     const buttonList = [button1, button2];
                     const timeout = 10000;
-                    paginationEmbed(interaction, ArrEmb, buttonList, timeout);
+                    paginationEmbed(interaction, ArrEmb, ArrImg, buttonList, timeout);
                 }
             } finally {
                 mongoosepredi.connection.close();
