@@ -29,7 +29,7 @@ module.exports = {
 
                     console.log(path.join(__dirname, `../../Assets/Cards/`))
                 
-                const files = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/`))
+                const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
                 let chosenFile = files[Math.floor(Math.random() * files.length)]
 
                 guild.channels.cache.get(process.env.ADMIN_FEED).send({
