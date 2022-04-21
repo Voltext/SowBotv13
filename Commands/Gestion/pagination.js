@@ -50,6 +50,8 @@ module.exports = {
                         .setLabel("Next")
                         .setStyle("SUCCESS");
 
+                        console.log(ArrImg)
+
                     const buttonList = [button1, button2];
                     const timeout = 10000;
                     paginationEmbed(interaction, ArrEmb, ArrImg, buttonList, timeout);
