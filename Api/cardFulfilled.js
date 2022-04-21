@@ -14,7 +14,7 @@ class CardPatch {
                 'client-id': process.env.CLIENT_ID_SOW
             },
             responseType: 'json',
-            body: JSON.stringify({ status : "FULFILLED" })
+            body: JSON.stringify({ "status" : "FULFILLED" })
         })
 
         if (!res || !res.body) {
