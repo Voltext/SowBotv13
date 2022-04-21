@@ -23,7 +23,7 @@ module.exports = {
 
         const getUsers = new Cards()
 
-        let ArrId = []
+        const ArrId = []
 
         const card = await getUsers.getUserCard()
         if (card.data !== null) {
@@ -77,8 +77,6 @@ module.exports = {
                                 files: [attachmentBoost]
                             })
 
-                            ArrId.push(elem.id)
-
                             guild.channels.cache.get(process.env.ADMIN_FEED).send({
                                 content: chosenFile,
                                 embeds: [embed]
@@ -88,6 +86,8 @@ module.exports = {
                         mongoosepredi.connection.close();
                     }
                 });
+
+                ArrId.push(elem.id)
                
             })
 
