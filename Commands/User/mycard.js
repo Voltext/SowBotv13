@@ -34,10 +34,10 @@ module.exports = {
                     nbCards = 1
                 }
                 else {
-                    nbCards = results.cards.length + 1
+                    nbCards = results.cards.length
                 }
                 await interaction.reply({
-                    content: `${nbCards}/${length} cartes collectionnées`,
+                    content: `${nbCards}/${length} cartes collectionnées en plus de la/les vôtre(s)`,
                     files: [attachmentBasic],
                     ephemeral: true
                 })
