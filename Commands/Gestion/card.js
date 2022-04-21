@@ -64,9 +64,11 @@ module.exports = {
                             })
                                 
                             const member = await guild.members.fetch(userId);
+
                             const image = await fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${chosenFile}`))
                             const attachmentBoost = new MessageAttachment(image)
-                            member.send({
+
+                            await member.send({
                                 content: "Vous venez de débloquer une nouvelle carte !",
                                 files: attachmentBoost
                             })
