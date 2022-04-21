@@ -72,6 +72,7 @@ module.exports = {
                                     'Content-Type': 'application/json'
                                 }
                             });
+                            console.log(elem.id)
                         }
                     } finally {
                         mongoosepredi.connection.close();
