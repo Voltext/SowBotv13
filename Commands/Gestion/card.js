@@ -91,7 +91,10 @@ module.exports = {
                
             })
 
+            console.log(ArrId)
+
             ArrId.forEach(async function (e) {
+                console.log(e)
                 await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${e}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
                     'status': 'FULFILLED'
                 }, {
