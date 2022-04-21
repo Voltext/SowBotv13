@@ -22,7 +22,7 @@ const {
       } = interaction
 
       const userName = interaction.options.getString("username")
-      const userId = interation.user.id
+      const userId = interaction.user.id
 
       await mongo().then(async (mongooselock) => {
         try {
