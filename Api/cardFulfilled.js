@@ -7,11 +7,12 @@ const makeURL = query => `https://api.twitch.tv/helix/channel_points/custom_rewa
 
 class CardPatch {
     async patchEvent(query) {
-        const res = await got(makeURL(), {
+        const res = await got(makeURL(query), {
             method: 'PATCH',
             headers: {
                 'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
-                'client-id': process.env.CLIENT_ID_SOW
+                'client-id': process.env.CLIENT_ID_SOW,
+                'content-Type': 'application/json',
             },
             responseType: 'json',
             body: JSON.stringify({ "status" : "FULFILLED" })
