@@ -5,6 +5,8 @@ const {
 } = require("discord.js");
 const fs = require('fs')
 const path = require('path');
+const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
+const mongo = require('../../mongo');
 
 module.exports = {
     name: "mycard",
@@ -21,11 +23,28 @@ module.exports = {
 
         const length = fs.readdirSync(path.join(__dirname, `../../Assets/Cards`)).length
 
-        await interaction.reply({
-            content: `1/${length} cartes collectionnées`,
-            files: [attachmentBasic],
-            ephemeral: true
-        })
+        let nbCards = 0
+
+        await mongo().then(async (mongoosepredi) => {
+            try {
+                const results = await linkTwitchSchema.findOne({
+                    userId,
+                });
+                if (results === null) {
+                    nbCards = 1
+                }
+                else {
+                    nbCards = results.cards.length
+                }
+                await interaction.reply({
+                    content: `${nbCards}/${length} cartes collectionnées`,
+                    files: [attachmentBasic],
+                    ephemeral: true
+                })
+            } finally {
+                mongoosepredi.connection.close();
+            }
+        });
         try {
             const pathImg = path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`)
             if (fs.existsSync(pathImg)) {
