@@ -69,8 +69,8 @@ module.exports = {
                             const attachmentBoost = new MessageAttachment(image)
 
                             await member.send({
-                                content: "Vous venez de débloquer une nouvelle carte !",
-                                files: attachmentBoost
+                                embeds: [new MessageEmbed().setTitle("Nouvelle carte débloquée").setImage(`attachment://${chosenFile}`)],
+                                files: [attachmentBoost]
                             })
 
                             guild.channels.cache.get(process.env.ADMIN_FEED).send({
