@@ -77,6 +77,8 @@ module.exports = {
                                 files: [attachmentBoost]
                             })
 
+                            ArrId.push(elem.id)
+
                             guild.channels.cache.get(process.env.ADMIN_FEED).send({
                                 content: chosenFile,
                                 embeds: [embed]
@@ -86,8 +88,6 @@ module.exports = {
                         mongoosepredi.connection.close();
                     }
                 });
-
-                ArrId.push(elem.id)
                
             })
 
