@@ -1,6 +1,7 @@
 const {
     MessageEmbed,
-    MessageAttachment
+    MessageAttachment,
+    MessageButton
 } = require("discord.js");
 const pagination = require("../../Systems/ButtonPagination");
 require('dotenv').config();
@@ -28,8 +29,7 @@ module.exports = {
                     interaction.reply({
                         content: "Vous n'avez aucune carte"
                     })
-                }
-                else {
+                } else {
                     const ArrCards = results.cards
 
                     ArrCards.forEach(function (elem) {
@@ -40,11 +40,23 @@ module.exports = {
                         ArrEmb.push(embed)
                         ArrImg.push(img)
                     })
-                    console.log(ArrEmb)
+                    const button1 = new MessageButton()
+                        .setCustomId("previousbtn")
+                        .setLabel("Previous")
+                        .setStyle("DANGER");
+
+                    const button2 = new MessageButton()
+                        .setCustomId("nextbtn")
+                        .setLabel("Next")
+                        .setStyle("SUCCESS");
+
+                    const buttonList = [button1, button2];
+                    const timeout = 10000;
+                    paginationEmbed(interaction, ArrEmb, buttonList, timeout);
                 }
             } finally {
                 mongoosepredi.connection.close();
             }
-        })  
+        })
     }
 }
