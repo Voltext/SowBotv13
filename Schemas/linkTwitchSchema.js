@@ -5,7 +5,7 @@ const linkTwitchSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  twitchName: {
+  userName: {
     type: String,
     required: true
   },
