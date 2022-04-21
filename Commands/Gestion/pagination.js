@@ -8,6 +8,7 @@ const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
 const fs = require('fs')
 const path = require('path');
 const mongo = require('../../mongo');
+const paginationEmbed = require('discordjs-button-pagination')
 
 module.exports = {
     name: "pagination",
@@ -39,11 +40,11 @@ module.exports = {
                         ArrEmb.push(embed)
                         ArrImg.push(img)
                     })
+                    console.log(ArrEmb)
                 }
             } finally {
                 mongoosepredi.connection.close();
             }
         })  
-        pagination(interaction, ArrEmb[0])
     }
 }
