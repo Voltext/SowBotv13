@@ -82,6 +82,11 @@ module.exports = {
                         mongoosepredi.connection.close();
                     }
                 });
+
+                const patchCard = new CardPatch()
+
+                await patchCard.patchEvent(elem.id)
+
             })
 
         } else {
