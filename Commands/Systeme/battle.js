@@ -54,40 +54,28 @@ module.exports = {
             type: "SUB_COMMAND",
             description: "Changez le nom de votre salon",
             options: [{
-                name: "reponse1",
+                name: "winner1",
                 type: "STRING",
-                required: true,
+                required: false,
                 description: "Saisissez la réponse 1"
             }, 
             {
-                name: "reponse2",
+                name: "winner2",
                 type: "STRING",
-                required: true,
+                required: false,
                 description: "Saisissez la réponse 2"
             },
             {
-                name: "reponse3",
+                name: "winner3",
                 type: "STRING",
-                required: true,
+                required: false,
                 description: "Saisissez la réponse 3",
             },
             {
-                name: "reponse4",
+                name: "winner4",
                 type: "STRING",
-                required: true,
+                required: false,
                 description: "Saisissez la réponse 4"
-            },
-            {
-                name: "reponse5",
-                type: "STRING",
-                required: true,
-                description: "Saisissez la réponse 5"
-            },
-            {
-                name: "reponse6",
-                type: "STRING",
-                required: true,
-                description: "Saisissez la réponse 6"
             },]
         },
     ],
@@ -136,6 +124,7 @@ module.exports = {
                     embeds: [embed],
                     ephemeral: true
                 })
+                break;
             }
             case "prono": {
                 const libelle = options.getString("texte")
@@ -143,8 +132,6 @@ module.exports = {
                 const ecart = options.getNumber("ecart")
                 const isPerfect = options.getString("isperfect")
                 let arr = []
-
-                console.log(isPerfect)
 
                 if(isPerfect === "oui") {
                     arr = [{libelle: libelle, pointMax: max, isPerfect: true}]
@@ -170,6 +157,17 @@ module.exports = {
                     embeds: [embed],
                     ephemeral: true
                 })
+                break
+            }
+            case "results": {
+                const winnerone = options.getString("winner1")
+                const winnertwo = options.getString("winner2")
+                const winnerthree = options.getString("winner3")
+                const winnerfour = options.getString("winner4")
+
+                
+                
+                break
             }
         }
     }
