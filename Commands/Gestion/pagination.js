@@ -18,6 +18,7 @@ module.exports = {
 
     async execute(interaction) {
         const userId = interaction.user.id
+        const userName = interaction.user.username
         var ArrEmb = []
         var ArrImg = []
         await mongo().then(async (mongoosepredi) => {
@@ -52,7 +53,7 @@ module.exports = {
 
                     const buttonList = [button1, button2];
                     const timeout = 10000;
-                    paginationEmbed(interaction, ArrEmb, ArrImg, buttonList, timeout);
+                    paginationEmbed(interaction, ArrEmb, ArrImg, userName, buttonList, timeout);
                 }
             } finally {
                 mongoosepredi.connection.close();
