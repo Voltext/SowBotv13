@@ -181,12 +181,11 @@ module.exports = {
                     ctx.drawImage(pdp, 170, 95 + valueI * (size + 65), size * 1.75, size * 1.75)
                 }
 
+                rankEmbed.setImage('attachment://battle.png')
 
                 const attachment = new MessageAttachment(canvas.toBuffer(), 'battle.png')
 
-                rankEmbed.setImage('attachment://battle.png')
-
-                interaction.reply({
+                guild.channels.cache.get('935323305609678948').send({
                     embeds: [rankEmbed],
                     files: [attachment]
                 })
