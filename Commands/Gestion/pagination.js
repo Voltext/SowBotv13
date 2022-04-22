@@ -3,12 +3,12 @@ const {
     MessageAttachment,
     MessageButton
 } = require("discord.js");
-const pagination = require("../../Systems/ButtonPagination");
 require('dotenv').config();
 const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
 const fs = require('fs')
 const path = require('path');
 const mongo = require('../../mongo');
+const paginationEmbed = require('discordjs-button-pagination')
 
 module.exports = {
     name: "pagination",
