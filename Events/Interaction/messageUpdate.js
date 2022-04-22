@@ -7,7 +7,6 @@ const {
 module.exports = {
     name: "messageUpdate",
     async execute(oldMessage, newMessage) {
-        if(oldMessage.author.bot) return;
 
         const count = 1950;
         const Original = oldMessage.content.slice(0, count) + (oldMessage.content.length > count ? " ..." : "");
