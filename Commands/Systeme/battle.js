@@ -258,6 +258,7 @@ module.exports = {
                                     }
                                 })
                             })
+                            console.log(players)
                         }
 
 
