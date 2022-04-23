@@ -234,24 +234,21 @@ module.exports = {
                                 allReponses.forEach(async r => {
                                     if (elem.isPerfect === true) {
                                         if (Util.cleanVar(r.reponse).toLowerCase() === arr[r.pronoId - 1].toLowerCase()) {
-                                            if(!players.get(r.userId)) {
+                                            if (!players.get(r.userId)) {
                                                 players.set(r.userId, elem.pointMax)
-                                            }
-                                            else {
+                                            } else {
                                                 const actualPoint = players.get(r.userId) + elem.pointMax
                                                 players.set(r.userId, actualPoint)
                                             }
                                         }
-                                    } 
-                                    else {
+                                    } else {
                                         const ecart = (parseInt(Util.cleanVar(r.reponse)) - parseInt(arr[r.pronoId - 1]))
                                         const ptsPerdu = ecart * elem.ecart
                                         const ptsFinaux = elem.pointMax - ptsPerdu
-                                        if(ptsFinaux > 0) {
-                                            if(!players.get(r.userId)) {
+                                        if (ptsFinaux > 0) {
+                                            if (!players.get(r.userId)) {
                                                 players.set(r.userId, ptsFinaux)
-                                            }
-                                            else {
+                                            } else {
                                                 const actualPoint = players.get(r.userId) + ptsFinaux
                                                 players.set(r.userId, actualPoint)
                                             }
@@ -267,28 +264,30 @@ module.exports = {
                                         id: 1,
                                         _id: 0
                                     });
-                                    if(results === null) {
+                                    if (results === null) {
                                         interaction.reply({
-                                            content:"Aucune Battle en cours",
+                                            content: "Aucune Battle en cours",
                                             ephemeral: true
                                         })
-                                    }
-                                    else {
+                                    } else {
                                         const embed = new MessageEmbed();
                                         results.forEach(async battle => {
                                             embed.setTitle(`Vainqueur de sa battle`);
-                                            if(players.get(battle.userId1) > players.get(battle.userId2)) {
+                                            if (players.get(battle.userId1) > players.get(battle.userId2)) {
                                                 const member1 = await guild.members.fetch(battle.userId1);
                                                 const member2 = await guild.members.fetch(battle.userId2);
                                                 embed.setDescription(`Félicitations à ${member1.user.username} qui gagne son duel sur ${member2.user.username}!`)
-                                                .setFooter({text: `${member1.user.username} gagne sur le score de ${players.get(battle.userId1)} - ${players.get(battle.userId2)}`})
+                                                    .setFooter({
+                                                        text: `${member1.user.username} gagne sur le score de ${players.get(battle.userId1)} - ${players.get(battle.userId2)}`
+                                                    })
                                                 winners.set(battle.id, battle.userId1)
-                                            }
-                                            else {
+                                            } else {
                                                 const member1 = await guild.members.fetch(battle.userId1);
                                                 const member2 = await guild.members.fetch(battle.userId2);
                                                 embed.setDescription(`Félicitations à ${member2.user.username} qui gagne son duel sur ${member1.user.username}!`)
-                                                .setFooter({text: `${member2.user.username} gagne sur le score de ${players.get(battle.userId2)} - ${players.get(battle.userId1)}`})
+                                                    .setFooter({
+                                                        text: `${member2.user.username} gagne sur le score de ${players.get(battle.userId2)} - ${players.get(battle.userId1)}`
+                                                    })
                                                 winners.set(battle.id, battle.userId1)
                                             }
                                             guild.channels.cache.get(process.env.BATTLE_TEXT).send({
@@ -300,7 +299,39 @@ module.exports = {
                                     mongooserank.connection.close();
                                 }
                             })
-                            console.log(winners)
+                            await mongo().then(async (mongooseresetbattle) => {
+                                try {
+                                    await battleSchema.deleteMany({})
+                                } finally {
+                                    mongooseresetbattle.connection.close()
+                                }
+                            })
+                            if(winners.get(3)) {
+                                const arr = [{
+                                    id: 1,
+                                    userId1: winners.get(1),
+                                    userId2: winners.get(2)
+                                }, {
+                                    id: 2,
+                                    userId1: winners.get(3),
+                                    userId2: winners.get(4)
+                                }]
+                            }
+                            else {
+                                const arr = [{
+                                    id: 1,
+                                    userId1: winners.get(1),
+                                    userId2: winners.get(2)
+                                }]
+                            }
+
+                            await mongo().then(async (mongoosseaddbattle) => {
+                                try {
+                                    await battleSchema.insertMany(arr);
+                                } catch (error) {
+                                    mongoosseaddbattle.connection.close()
+                                }
+                            })
                         }
                     } catch {
                         mongooserank.connection.close();
