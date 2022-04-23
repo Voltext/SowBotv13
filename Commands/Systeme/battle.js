@@ -237,7 +237,7 @@ module.exports = {
                                                     console.log("2")
                                                     if(elem.isPerfect === true) {
                                                         console.log(r.reponse.toLowerCase())
-                                                        console.log(` ${resultone}\n`)
+                                                        console.log(` ${resultone.toLowerCase()}\n.`)
                                                         if(r.reponse.toLowerCase() === ` ${resultone.toLowerCase()}\n.`) {
                                                             console.log("4")
                                                             players.set(r.userId, elem.pointMax)
