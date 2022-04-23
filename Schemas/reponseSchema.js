@@ -5,8 +5,12 @@ const reponseSchema = mongoose.Schema({
     type: String,
     required: true
   }, 
+  pronoId:  {
+    type: String,
+    required: true
+  },
   reponses: {
-    type: [String],
+    type: String,
     required: true
   }
 

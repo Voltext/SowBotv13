@@ -210,7 +210,9 @@ module.exports = {
                                     })
                                 }
                                 else {
-                                    console.log(results)
+                                    results.forEach(function name(elem) {
+                                        console.log(elem.reponses)
+                                    })
                                 }
 
 
