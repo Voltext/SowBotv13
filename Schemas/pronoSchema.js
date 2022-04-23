@@ -1,10 +1,6 @@
 const mongoose = require('mongoose');
 
 const pronoSchema = mongoose.Schema({
-  id: {
-    type: Number,
-    required: true
-  },
   libelle: {
     type: String,
     required: true
@@ -16,6 +12,10 @@ const pronoSchema = mongoose.Schema({
   isPerfect: {
     type: Boolean,
     required: true
+  },
+  id: {
+    type: Number,
+    required: false
   },
   ecart: {
     type: Number,
