@@ -25,7 +25,7 @@ module.exports = {
             if (content.startsWith("#BATTLE")) {
                 const answers = content.split("-");
                 answers.shift()
-                const arr = [{userId: message.author.id, pronoId: 1, reponses: answers[0]}, {userId: message.author.id, pronoId: 2, reponses: answers[1]}, {userId: message.author.id, pronoId: 3, reponses: answers[2]}, {userId: message.author.id, pronoId: 4, reponses: answers[3]}, {userId: message.author.id, pronoId: 5, reponses: answers[4]}, {userId: message.author.id, pronoId: 6, reponses: answers[5]}]
+                const arr = [{userId: message.author.id, pronoId: 1, reponse: answers[0]}, {userId: message.author.id, pronoId: 2, reponse: answers[1]}, {userId: message.author.id, pronoId: 3, reponse: answers[2]}, {userId: message.author.id, pronoId: 4, reponse: answers[3]}, {userId: message.author.id, pronoId: 5, reponse: answers[4]}, {userId: message.author.id, pronoId: 6, reponse: answers[5]}]
 
                 const userId = message.author.id
 
