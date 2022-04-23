@@ -218,7 +218,7 @@ module.exports = {
                                     // for each element
                                   ])
                                     .then((result) => {
-                                      console.log(result.prono_responses);
+                                      console.log(result.prono_reponses);
                                     })
                                     .catch((error) => {
                                       console.log(error);
