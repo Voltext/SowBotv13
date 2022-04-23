@@ -277,12 +277,16 @@ module.exports = {
                                         results.forEach(async battle => {
                                             embed.setTitle(`Vainqueur de la battle n°${battle.id}`);
                                             if(players.get(battle.userId1) > players.get(battle.userId2)) {
-                                                const member = await guild.members.fetch(battle.userId1);
-                                                embed.setDescription(`Félicitations à ${member.user.username} !`)
+                                                const member1 = await guild.members.fetch(battle.userId1);
+                                                const member2 = await guild.members.fetch(battle.userId2);
+                                                embed.setDescription(`Félicitations à ${member1.user.username} qui gagne son duel sur ${member2.user.username}!`)
+                                                .setFooter({text: `${member.user.username} gagne sur le score de ${players.get(battle.userId1)} - ${players.get(battle.userId1)}`})
                                             }
                                             else {
-                                                const member = await guild.members.fetch(battle.userId2);
-                                                embed.setDescription(`Félicitations à ${member.user.username} !`)
+                                                const member1 = await guild.members.fetch(battle.userId1);
+                                                const member2 = await guild.members.fetch(battle.userId2);
+                                                embed.setDescription(`Félicitations à ${member2.user.username} qui gagne son duel sur ${member1.user.username}!`)
+                                                .setFooter({text: `${member.user.username} gagne sur le score de ${players.get(battle.userId1)} - ${players.get(battle.userId1)}`})
                                             }
                                             guild.channels.cache.get(process.env.BATTLE_TEXT).send({
                                                 embeds: [embed]
