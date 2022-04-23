@@ -234,7 +234,7 @@ module.exports = {
                                     if (elem.isPerfect === true) {
                                         console.log(arr)
                                         console.log(arr[r.pronoId - 1])
-                                        if (Util.cleanVar(r.reponse).toLowerCase() === arr[r.pronoId - 1]) {
+                                        if (Util.cleanVar(r.reponse).toLowerCase() === arr[r.pronoId - 1].toLowerCase()) {
                                             if(!players.get(r.userId)) {
                                                 players.set(r.userId, elem.pointMax)
                                                 console.log(players.get(r.userId))
