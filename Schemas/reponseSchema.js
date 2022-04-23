@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { Schema } = require('mongoose');
 
 const reponseSchema = mongoose.Schema({
   userId:  {
@@ -13,7 +14,7 @@ const reponseSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  reponses: [{ type: Schema.Types.ObjectId, ref:'Pronos' }],
+  reponse: [{ type: Schema.Types.ObjectId, ref:'Pronos' }],
 
 })
 
