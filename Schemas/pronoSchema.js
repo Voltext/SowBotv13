@@ -13,7 +13,7 @@ const pronoSchema = mongoose.Schema({
     type: Boolean,
     required: true
   },
-  id: {
+  pronoId: {
     type: Number,
     required: false
   },
