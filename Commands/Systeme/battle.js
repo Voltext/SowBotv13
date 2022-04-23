@@ -273,21 +273,22 @@ module.exports = {
                                         const embed = new MessageEmbed();
                                         results.forEach(async battle => {
                                             console.log(battle)
+                                            console.log(players)
                                             embed.setTitle(`Vainqueur de sa battle`);
                                             if (players.get(battle.userId1) > players.get(battle.userId2)) {
-                                                const member1 = await guild.members.fetch(battle.userId1);
-                                                const member2 = await guild.members.fetch(battle.userId2);
-                                                embed.setDescription(`Félicitations à ${member1.user.username} qui gagne son duel sur ${member2.user.username}!`)
+                                                const memberonew = await guild.members.fetch(battle.userId1);
+                                                const membertwol = await guild.members.fetch(battle.userId2);
+                                                embed.setDescription(`Félicitations à ${memberonew.user.username} qui gagne son duel sur ${membertwol.user.username}!`)
                                                     .setFooter({
-                                                        text: `${member1.user.username} gagne sur le score de ${players.get(battle.userId1)} - ${players.get(battle.userId2)}`
+                                                        text: `${memberonew.user.username} gagne sur le score de ${players.get(battle.userId1)} - ${players.get(battle.userId2)}`
                                                     })
                                                 winners.set(battle.id, battle.userId1)
                                             } else {
-                                                const member1 = await guild.members.fetch(battle.userId1);
-                                                const member2 = await guild.members.fetch(battle.userId2);
-                                                embed.setDescription(`Félicitations à ${member2.user.username} qui gagne son duel sur ${member1.user.username}!`)
+                                                const memberonel = await guild.members.fetch(battle.userId1);
+                                                const membertwow = await guild.members.fetch(battle.userId2);
+                                                embed.setDescription(`Félicitations à ${membertwow.user.username} qui gagne son duel sur ${memberonel.user.username}!`)
                                                     .setFooter({
-                                                        text: `${member2.user.username} gagne sur le score de ${players.get(battle.userId2)} - ${players.get(battle.userId1)}`
+                                                        text: `${membertwow.user.username} gagne sur le score de ${players.get(battle.userId2)} - ${players.get(battle.userId1)}`
                                                     })
                                                 winners.set(battle.id, battle.userId1)
                                             }
