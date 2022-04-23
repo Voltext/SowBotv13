@@ -1,20 +1,15 @@
 const mongoose = require('mongoose');
-const { Schema } = require('mongoose');
 
 const reponseSchema = mongoose.Schema({
   userId:  {
     type: String,
     required: true
   }, 
-  pronoId:  {
-    type: String,
-    required: true
-  },
+  pronoId: {type: mongoose.Schema.Types.ObjectId, ref: "Pronos"},
   reponse: {
     type: String,
     required: true
   },
-  reponses: [{ type: Schema.Types.ObjectId, ref:'Pronos' }],
 
 })
 
