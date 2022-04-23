@@ -307,6 +307,44 @@ module.exports = {
                         mongooserank.connection.close();
                     }
                 })
+                await mongo().then(async (mongooseresetbattle) => {
+                    try {
+                        await battleSchema.deleteMany({})
+                    } finally {
+                        mongooseresetbattle.connection.close()
+                    }
+                })
+
+                var newBattle = []    
+
+                if(winners.get(3)) {
+                    newBattle = [{
+                        id: 1,
+                        userId1: winners.get(1),
+                        userId2: winners.get(2)
+                    }, {
+                        id: 2,
+                        userId1: winners.get(3),
+                        userId2: winners.get(4)
+                    }]
+                }
+                else {
+                    newBattle = [{
+                        id: 1,
+                        userId1: winners.get(1),
+                        userId2: winners.get(2)
+                    }]
+                }
+
+                
+
+                await mongo().then(async (mongoosseaddbattle) => {
+                    try {
+                        await battleSchema.insertMany(newBattle);
+                    } catch (error) {
+                        mongoosseaddbattle.connection.close()
+                    }
+                })
                 break
             }
         }
