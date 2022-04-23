@@ -241,6 +241,9 @@ module.exports = {
                                                 players.set(r.userId, actualPoint)
                                             }
                                         }
+                                        else {
+                                            
+                                        }
                                     } else {
                                         const ecart = Util.difference(parseInt(Util.cleanVar(r.reponse)), parseInt(arr[r.pronoId - 1]))
                                         const ptsPerdu = ecart * elem.ecart
