@@ -216,9 +216,6 @@ module.exports = {
                                     // Deconstructs the array field from the
                                     // input document to output a document
                                     // for each element
-                                    {
-                                      $unwind: "$prono_reponses",
-                                    },
                                   ])
                                     .then((result) => {
                                       console.log(result);
