@@ -311,6 +311,7 @@ module.exports = {
                         mongooseresetbattle.connection.close()
                     }
                 })
+
                 var arra = []
                 if (winners.get(3)) {
                     arra = [{
@@ -332,7 +333,7 @@ module.exports = {
 
                 await mongo().then(async (mongoosseaddbattle) => {
                     try {
-                        await battleSchema.insertMany(arr);
+                        await battleSchema.insertMany(arra);
                     } catch (error) {
                         mongoosseaddbattle.connection.close()
                     }
