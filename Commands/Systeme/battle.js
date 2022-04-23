@@ -3,9 +3,9 @@ const {
     MessageEmbed
 } = require("discord.js");
 const mongo = require('../../mongo');
-const reponseSchema = require('../../Schemas/reponseSchema');
+//const reponseSchema = require('../../Schemas/reponseSchema');
 const battleSchema = require('../../Schemas/battleSchema');
-const pronoSchema = require('../../Schemas/pronoSchema');
+const {pronoSchema, reponseSchema} = require('../../Schemas/pronoSchema');
 const counterSchema = require('../../Schemas/counterSchema');
 
 module.exports = {
@@ -204,7 +204,7 @@ module.exports = {
 
                     await mongo().then(async (mongooserank) => {
                             try {
-                                reponseSchema.find({}).populate({path:"pronoId"})
+                                pronoSchema.find({}).populate("reponses")
                                 .exec((error, result) => {
                                     if(error) {
                                         console.log(error);

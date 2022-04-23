@@ -13,14 +13,34 @@ const pronoSchema = mongoose.Schema({
     type: Boolean,
     required: true
   },
-  pronoId: {
-    type: Number,
-    required: false
-  },
+  reponses: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Reponses"
+ }],
   ecart: {
     type: Number,
     required: false
   }
 })
 
-module.exports = mongoose.model('Pronos', pronoSchema);
+const reponseSchema = mongoose.Schema({
+  userId:  {
+    type: String,
+    required: true
+  }, 
+  prono: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Pronos"
+ },
+  reponse: {
+    type: String,
+    required: true
+  },
+
+})
+
+const Reponses = mongoose.model('Reponses', reponseSchema);
+const Pronos = mongoose.model('Pronos', pronoSchema);
+
+module.exports = {Reponses, Pronos}
+
