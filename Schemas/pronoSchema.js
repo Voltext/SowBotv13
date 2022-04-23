@@ -13,9 +13,9 @@ const pronoSchema = mongoose.Schema({
     type: Boolean,
     required: true
   },
-  reponses: [{ 
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Reponses"
+  pronoId: [{ 
+    type: Number,
+    required: false
  }],
   ecart: {
     type: Number,

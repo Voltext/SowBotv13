@@ -3,9 +3,9 @@ const {
     MessageEmbed
 } = require("discord.js");
 const mongo = require('../../mongo');
-//const reponseSchema = require('../../Schemas/reponseSchema');
+const reponseSchema = require('../../Schemas/reponseSchema');
 const battleSchema = require('../../Schemas/battleSchema');
-const {pronoSchema, reponseSchema} = require('../../Schemas/pronoSchema');
+const pronoSchema = require('../../Schemas/pronoSchema');
 const counterSchema = require('../../Schemas/counterSchema');
 
 module.exports = {
@@ -204,28 +204,26 @@ module.exports = {
 
                     await mongo().then(async (mongooserank) => {
                             try {
-                                pronoSchema.find({}).populate("reponses")
-                                .exec((error, result) => {
-                                    if(error) {
-                                        console.log(error);
-                                    } else {
-                                        console.log(result);
-                                    }
-                                });
+                                const results = await reponseSchema.find({}, {
+                                    userId: 1,
+                                    reponses: 1,
+                                    pronoId: 1,
+                                    _id: 0
+                                },);
 
-                                /* if(results.length === 0) {
+                                if(results.length === 0) {
                                     interaction.reply({
                                         content: "Aucune réponse n'est disponible"
                                     })
                                 }
                                 else {
-                                    results.forEach(async element => {
-                                        console.log(element)
+                                    results.forEach(async elemen => {
+                                        console.log(elem)
                                     })
-                                } */
+                                }
 
 
-                            } catch {
+                            } finally {
                                 mongooserank.connection.close();
                             }
                         })

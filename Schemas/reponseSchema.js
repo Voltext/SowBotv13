@@ -5,7 +5,7 @@ const reponseSchema = mongoose.Schema({
     type: String,
     required: true
   }, 
-  pronoId: {type: Number, ref: "Pronos"},
+  pronoId: {type: Number, required: true},
   reponse: {
     type: String,
     required: true
