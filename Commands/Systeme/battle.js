@@ -242,7 +242,7 @@ module.exports = {
                                             }
                                         }
                                     } else {
-                                        const ecart = difference(parseInt(Util.cleanVar(r.reponse)), parseInt(arr[r.pronoId - 1]))
+                                        const ecart = Util.difference(parseInt(Util.cleanVar(r.reponse)), parseInt(arr[r.pronoId - 1]))
                                         const ptsPerdu = ecart * elem.ecart
                                         const ptsFinaux = elem.pointMax - ptsPerdu
                                         if (ptsFinaux > 0) {

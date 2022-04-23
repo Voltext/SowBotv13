@@ -44,6 +44,10 @@ module.exports = class Utils {
         return value.replace(' ', '').replace('\n', '')
     }
 
+    static difference(a, b) {
+        return Math.abs(a - b);
+      }
+
     /* static getInfoReset(guild, userId) {
         let battleRole = guild.roles.cache.get(process.env.BATTLE);
         const member = guild.members.fetch(userId)
