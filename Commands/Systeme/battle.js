@@ -352,7 +352,6 @@ module.exports = {
                         mongoosseaddbattle.connection.close()
                     }
                 }) */
-                console.log(winners)
                 break
             }
             case "create": {
@@ -369,6 +368,7 @@ module.exports = {
                 var members = ""
                 var balls = ""
 
+                console.log(winners)
                 if(winners.get(3)) {
                     const memberone = await guild.members.fetch(winners.get(1));
                     const membertwo = await guild.members.fetch(winners.get(2));
