@@ -239,7 +239,6 @@ module.exports = {
                                             } else {
                                                 const actualPoint = players.get(r.userId) + elem.pointMax
                                                 players.set(r.userId, actualPoint)
-                                                delete(actualPoint)
                                             }
                                         }
                                     } else {
@@ -251,8 +250,9 @@ module.exports = {
                                                 players.set(r.userId, ptsFinaux)
                                             } else {
                                                 const actualPoint = players.get(r.userId) + ptsFinaux
+                                                console.log(actualPoint)
                                                 players.set(r.userId, actualPoint)
-                                                delete(actualPoint)
+                                                console.log(players.get(r.userId))
                                             }
                                         }
                                     }
