@@ -39,13 +39,13 @@ module.exports = {
             {
                 name: "user3",
                 type: "USER",
-                required: true,
+                required: false,
                 description: "Saisissez la réponse 3"
             },
             {
                 name: "user4",
                 type: "USER",
-                required: true,
+                required: false,
                 description: "Saisissez la réponse 4"
             },
         ]
