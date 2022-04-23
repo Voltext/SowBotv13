@@ -235,6 +235,7 @@ module.exports = {
                                                     if(elem.isPerfect === true) {
                                                         if(Util.cleanVar(r.reponse).toLowerCase() === `${resultone.toLowerCase()}`) {
                                                             players.set(r.userId, elem.pointMax)
+                                                            console.log(players.get(r.userId))
                                                         }
                                                     }
                                                 }
