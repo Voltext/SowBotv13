@@ -307,7 +307,7 @@ module.exports = {
                         mongooserank.connection.close();
                     }
                 })
-                await mongo().then(async (mongooseresetbattle) => {
+                /* await mongo().then(async (mongooseresetbattle) => {
                     try {
                         await battleSchema.deleteMany({})
                     } finally {
@@ -344,7 +344,7 @@ module.exports = {
                     } catch (error) {
                         mongoosseaddbattle.connection.close()
                     }
-                })
+                }) */
                 break
             }
         }
