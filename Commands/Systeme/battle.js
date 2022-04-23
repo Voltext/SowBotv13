@@ -236,8 +236,10 @@ module.exports = {
                                         if (Util.cleanVar(r.reponse).toLowerCase() === arr[r.pronoId - 1].toLowerCase()) {
                                             if (!players.get(r.userId)) {
                                                 players.set(r.userId, elem.pointMax)
+                                                console.log(r.pronoId)
                                             } else {
                                                 const actualPoint = players.get(r.userId) + elem.pointMax
+                                                console.log(r.pronoId)
                                                 players.set(r.userId, actualPoint)
                                             }
                                         }
@@ -247,8 +249,10 @@ module.exports = {
                                         const ptsFinaux = elem.pointMax - ptsPerdu
                                         if (ptsFinaux > 0) {
                                             if (!players.get(r.userId)) {
+                                                console.log(r.pronoId)
                                                 players.set(r.userId, ptsFinaux)
                                             } else {
+                                                console.log(r.pronoId)
                                                 const actualPoint = players.get(r.userId) + ptsFinaux
                                                 players.set(r.userId, actualPoint)
                                             }
@@ -272,8 +276,6 @@ module.exports = {
                                     } else {
                                         const embed = new MessageEmbed();
                                         results.forEach(async battle => {
-                                            console.log(battle)
-                                            console.log(players)
                                             embed.setTitle(`Vainqueur de sa battle`);
                                             if (players.get(battle.userId1) > players.get(battle.userId2)) {
                                                 const memberonew = await guild.members.fetch(battle.userId1);
