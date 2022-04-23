@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const pronoSchema = mongoose.Schema({
   id: {
-    type: String,
+    type: Number,
     required: true
   },
   libelle: {
