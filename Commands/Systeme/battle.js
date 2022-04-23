@@ -7,6 +7,7 @@ const reponseSchema = require('../../Schemas/reponseSchema');
 const battleSchema = require('../../Schemas/battleSchema');
 const pronoSchema = require('../../Schemas/pronoSchema');
 const counterSchema = require('../../Schemas/counterSchema');
+const { collection } = require("../../Schemas/reponseSchema");
 
 module.exports = {
         name: "battle",
@@ -202,6 +203,9 @@ module.exports = {
                     const resultfive = options.getString("result5")
                     const resultsix = options.getString("result6")
 
+                    const players = new Collection();
+
+
                     await mongo().then(async (mongooserank) => {
                             try {
                                 const results = await pronoSchema.aggregate([
@@ -225,7 +229,17 @@ module.exports = {
                                     }
                                     else {
                                         results.forEach(async elem => {
-                                            console.log(elem)
+                                            const allReponses = elem.prono_reponses
+                                            allReponses.forEach(async r => {
+                                                if(!players.get(r.userId)) {
+                                                    if(elem.isPerfect === true) {
+                                                        if(r.reponse.toLowerCase() === `${resultone}\n`) {
+                                                            players.set(r.userId, elem.pointMax)
+                                                            console.log(players.get(r.userId))
+                                                        }
+                                                    }
+                                                }
+                                            })
                                         })
                                     }
 
