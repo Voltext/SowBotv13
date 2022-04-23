@@ -204,7 +204,29 @@ module.exports = {
 
                     await mongo().then(async (mongooserank) => {
                             try {
-                                const results = await reponseSchema.find({}, {
+                                pronoSchema.aggregate([
+                                    {
+                                      $lookup: {
+                                        from: "reponses",
+                                        localField: "id",
+                                        foreignField: "pronoId",
+                                        as: "prono_reponses",
+                                      },
+                                    },
+                                    // Deconstructs the array field from the
+                                    // input document to output a document
+                                    // for each element
+                                    {
+                                      $unwind: "$prono_reponses",
+                                    },
+                                  ])
+                                    .then((result) => {
+                                      console.log(result);
+                                    })
+                                    .catch((error) => {
+                                      console.log(error);
+                                    });
+                                /* const results = await reponseSchema.find({}, {
                                     userId: 1,
                                     reponses: 1,
                                     pronoId: 1,
@@ -220,7 +242,7 @@ module.exports = {
                                     results.forEach(async elemen => {
                                         console.log(elem)
                                     })
-                                }
+                                } */
 
 
                             } finally {
