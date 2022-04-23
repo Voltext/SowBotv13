@@ -371,19 +371,19 @@ module.exports = {
                 if(userthree !== '') {
                     newBattle = [{
                         id: 1,
-                        userId1: userone.user.username,
-                        userId2: usertwo.user.username
+                        userId1: userone.user.id,
+                        userId2: usertwo.user.id
                     }, {
                         id: 2,
-                        userId1: userthree.user.username,
-                        userId2: userfour.user.username
+                        userId1: userthree.user.id,
+                        userId2: userfour.user.id
                     }]
                 }
                 else {
                     newBattle = [{
                         id: 1,
-                        userId1: userone.user.username,
-                        userId2: usertwo.user.username
+                        userId1: userone.user.id,
+                        userId2: usertwo.user.id
                     }]
                 }
 
