@@ -299,43 +299,42 @@ module.exports = {
                                     mongooserank.connection.close();
                                 }
                             })
-                            await mongo().then(async (mongooseresetbattle) => {
-                                try {
-                                    await battleSchema.deleteMany({})
-                                } finally {
-                                    mongooseresetbattle.connection.close()
-                                }
-                            })
-                            var arr = []
-                            if(winners.get(3)) {
-                                arr = [{
-                                    id: 1,
-                                    userId1: winners.get(1),
-                                    userId2: winners.get(2)
-                                }, {
-                                    id: 2,
-                                    userId1: winners.get(3),
-                                    userId2: winners.get(4)
-                                }]
-                            }
-                            else {
-                                arr = [{
-                                    id: 1,
-                                    userId1: winners.get(1),
-                                    userId2: winners.get(2)
-                                }]
-                            }
-
-                            await mongo().then(async (mongoosseaddbattle) => {
-                                try {
-                                    await battleSchema.insertMany(arr);
-                                } catch (error) {
-                                    mongoosseaddbattle.connection.close()
-                                }
-                            })
                         }
                     } catch {
                         mongooserank.connection.close();
+                    }
+                })
+                await mongo().then(async (mongooseresetbattle) => {
+                    try {
+                        await battleSchema.deleteMany({})
+                    } finally {
+                        mongooseresetbattle.connection.close()
+                    }
+                })
+                var arra = []
+                if (winners.get(3)) {
+                    arra = [{
+                        id: 1,
+                        userId1: winners.get(1),
+                        userId2: winners.get(2)
+                    }, {
+                        id: 2,
+                        userId1: winners.get(3),
+                        userId2: winners.get(4)
+                    }]
+                } else {
+                    arra = [{
+                        id: 1,
+                        userId1: winners.get(1),
+                        userId2: winners.get(2)
+                    }]
+                }
+
+                await mongo().then(async (mongoosseaddbattle) => {
+                    try {
+                        await battleSchema.insertMany(arr);
+                    } catch (error) {
+                        mongoosseaddbattle.connection.close()
                     }
                 })
                 break
