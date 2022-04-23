@@ -204,7 +204,7 @@ module.exports = {
 
                     await mongo().then(async (mongooserank) => {
                             try {
-                                const results = await reponseSchema.find({}).populate({path:"pronoId"})
+                                reponseSchema.find({}).populate({path:"pronoId"})
                                 .exec((error, result) => {
                                     if(error) {
                                         console.log(error);
