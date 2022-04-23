@@ -243,15 +243,17 @@ module.exports = {
                                         }
                                     } else {
                                         const ecart = (parseInt(Util.cleanVar(r.reponse)) - parseInt(arr[r.pronoId - 1]))
+                                        console.log(ecart)
                                         const ptsPerdu = ecart * elem.ecart
                                         const ptsFinaux = elem.pointMax - ptsPerdu
                                         if (ptsFinaux > 0) {
                                             if (!players.get(r.userId)) {
                                                 players.set(r.userId, ptsFinaux)
                                             } else {
-                                                const actualPoint = players.get(r.userId) + ptsFinaux
+                                                let actualPoint = players.get(r.userId) + ptsFinaux
                                                 console.log(actualPoint)
                                                 players.set(r.userId, actualPoint)
+                                                actualPoint = 0
                                                 console.log(players.get(r.userId))
                                             }
                                         }
