@@ -368,7 +368,7 @@ module.exports = {
 
                 var newBattle = []    
 
-                if(userthree !== '') {
+                if(userthree) {
                     newBattle = [{
                         id: 1,
                         userId1: userone.user.id,
@@ -400,7 +400,7 @@ module.exports = {
                 var members = ""
                 var balls = ""
 
-                if(userthree !== '') {
+                if(userthree) {
                     members = `${userone.user.username}\n${usertwo.user.username}\n${userthree.user.username}\n${userfour.user.username}`
                     balls = "🔴\n🔴\n🔴\n🔴";
                 }
