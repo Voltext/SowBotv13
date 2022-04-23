@@ -237,11 +237,9 @@ module.exports = {
                                         if (Util.cleanVar(r.reponse).toLowerCase() === arr[r.pronoId - 1].toLowerCase()) {
                                             if(!players.get(r.userId)) {
                                                 players.set(r.userId, elem.pointMax)
-                                                console.log(players.get(r.userId))
                                             }
                                             else {
                                                 const actualPoint = players.get(r.userId) + elem.pointMax
-                                                console.log(actualPoint)
                                                 players.set(r.userId, actualPoint)
                                             }
                                         }
@@ -256,17 +254,36 @@ module.exports = {
                                             }
                                             else {
                                                 const actualPoint = players.get(r.userId) + ptsFinaux
-                                                console.log(actualPoint)
                                                 players.set(r.userId, actualPoint)
                                             }
                                         }
                                     }
                                 })
                             })
+                            await mongo().then(async (mongooserank) => {
+                                try {
+                                    const results = await battleSchema.find({}, {
+                                        userId1: 1,
+                                        userid2: 1,
+                                        _id: 0
+                                    });
+                                    if(results === null) {
+                                        interaction.reply({
+                                            content:"Aucune Battle en cours",
+                                            ephemeral: true
+                                        })
+                                    }
+                                    else {
+                                        results.forEach(async battle => {
+                                            console.log(battle)
+                                        })
+                                    }
+                                } catch {
+                                    mongooserank.connection.close();
+                                }
+                            })
                             console.log(players)
                         }
-
-
                     } catch {
                         mongooserank.connection.close();
                     }
