@@ -232,9 +232,13 @@ module.exports = {
                                         results.forEach(async elem => {
                                             const allReponses = elem.prono_reponses
                                             allReponses.forEach(async r => {
+                                                console.log("1")
                                                 if(!players.get(r.userId)) {
+                                                    console.log("2")
                                                     if(elem.isPerfect === true) {
+                                                        console.log("3")
                                                         if(r.reponse.toLowerCase() === `${resultone}\n`) {
+                                                            console.log("4")
                                                             players.set(r.userId, elem.pointMax)
                                                             console.log(players.get(r.userId))
                                                         }
