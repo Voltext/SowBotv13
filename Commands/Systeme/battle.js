@@ -306,8 +306,9 @@ module.exports = {
                                     mongooseresetbattle.connection.close()
                                 }
                             })
+                            var arr = []
                             if(winners.get(3)) {
-                                const arr = [{
+                                arr = [{
                                     id: 1,
                                     userId1: winners.get(1),
                                     userId2: winners.get(2)
@@ -318,7 +319,7 @@ module.exports = {
                                 }]
                             }
                             else {
-                                const arr = [{
+                                arr = [{
                                     id: 1,
                                     userId1: winners.get(1),
                                     userId2: winners.get(2)
