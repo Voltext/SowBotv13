@@ -364,6 +364,37 @@ module.exports = {
                         }
                     })
                 })
+
+                var members = ""
+                var balls = ""
+
+                if(winners.get(3)) {
+                    const memberone = await guild.members.fetch(winners.get(1));
+                    const membertwo = await guild.members.fetch(winners.get(2));
+                    const memberthree = await guild.members.fetch(winners.get(3));
+                    const memberfour = await guild.members.fetch(winners.get(4));
+                    members = `${memberone.user.username}\n${membertwo.user.username}\n${memberthree.user.username}\n${memberfour.user.username}\n`
+                    balls = "🔴\n🔴\n🔴\n🔴";
+                }
+
+                const battleEmbed = new MessageEmbed()
+                .setColor("GOLD")
+                .setTitle(`BATTLE`)
+                .setDescription(`Félicitations pour votre qualification pour les battle. Vous trouverez ci-dessous, les battle, ainsi que vos adversaires. Bonne chance à tous !`);
+                battleEmbed.addFields({
+                    name: 'Réponse ?',
+                    value: balls,
+                    inline: true
+                }, {
+                    name: '❯ Joueurs',
+                    value: members,
+                    inline: true
+                },);
+                battleEmbed.setFooter({text: "Lorsqu'un joueur enverra sa réponse, son pseudo passera en vert"})
+                guild.channels.cache.get(process.env.BATTLE_TEXT).send({
+                    content: "#BATTLE",
+                    embeds: [battleEmbed]
+                })
                 break;
             }
         }
