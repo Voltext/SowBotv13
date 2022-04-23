@@ -205,9 +205,12 @@ module.exports = {
                     await mongo().then(async (mongooserank) => {
                             try {
                                 const results = await reponseSchema.find({}).populate({path:"pronoId"})
-                                .exec(function (error, result) {
-                                    console.log(result)
-                                    console.log(error)
+                                .exec((error, result) => {
+                                    if(error) {
+                                        console.log(error);
+                                    } else {
+                                        console.log(result);
+                                    }
                                 });
 
                                 /* if(results.length === 0) {
