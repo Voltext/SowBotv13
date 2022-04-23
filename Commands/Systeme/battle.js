@@ -232,8 +232,6 @@ module.exports = {
                                 const allReponses = elem.prono_reponses
                                 allReponses.forEach(async r => {
                                     if (elem.isPerfect === true) {
-                                        console.log(arr)
-                                        console.log(arr[r.pronoId - 1])
                                         if (Util.cleanVar(r.reponse).toLowerCase() === arr[r.pronoId - 1].toLowerCase()) {
                                             if(!players.get(r.userId)) {
                                                 players.set(r.userId, elem.pointMax)
@@ -287,7 +285,7 @@ module.exports = {
                                                 embed.setDescription(`Félicitations à ${member.user.username} !`)
                                             }
                                             guild.channels.cache.get(process.env.BATTLE_TEXT).send({
-                                                embeds: `${embed}`
+                                                embeds: [embed]
                                             })
                                         })
                                     }
