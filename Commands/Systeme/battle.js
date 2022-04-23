@@ -205,6 +205,7 @@ module.exports = {
                 const resultfive = options.getString("result5")
                 const resultsix = options.getString("result6")
 
+                const arr = [resultone, resulttwo, resultthree, resultfour, resultfive, resultsix]
 
                 await mongo().then(async (mongooserank) => {
                     try {
@@ -230,7 +231,7 @@ module.exports = {
                                 const allReponses = elem.prono_reponses
                                 allReponses.forEach(async r => {
                                     if (elem.isPerfect === true) {
-                                        if (Util.cleanVar(r.reponse).toLowerCase() === `${resultone.toLowerCase()}`) {
+                                        if (Util.cleanVar(r.reponse).toLowerCase() === `${arr[r.pronoId - 1]}`) {
                                             if(!players.get(r.userId)) {
                                                 players.set(r.userId, elem.pointMax)
                                             }
@@ -238,10 +239,12 @@ module.exports = {
                                                 const actualPoint = players.get(r.userId) + elem.pointMax
                                                 players.set(r.userId, actualPoint)
                                             }
-                                            console.log(r.userId)
-                                            console.log(players.get(r.userId))
                                         }
                                     } 
+                                    else {
+                                        const ecart = (parseInt(Util.cleanVar(r.reponse)) - parseInt(arr[r.pronoId - 1]))
+                                        console.log(ecart)
+                                    }
                                 })
                             })
                         }
