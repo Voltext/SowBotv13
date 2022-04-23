@@ -8,7 +8,7 @@ const reponseSchema = require('../../Schemas/reponseSchema');
 const battleSchema = require('../../Schemas/battleSchema');
 const pronoSchema = require('../../Schemas/pronoSchema');
 const counterSchema = require('../../Schemas/counterSchema');
-const { collection } = require("../../Schemas/reponseSchema");
+const Util = require('../../Utils/function')
 
 module.exports = {
         name: "battle",
@@ -113,6 +113,7 @@ module.exports = {
             } = interaction;
 
             const subCommand = options.getSubcommand();
+            const players = new Collection();
 
             switch (subCommand) {
                 case "reset": {
@@ -204,8 +205,6 @@ module.exports = {
                     const resultfive = options.getString("result5")
                     const resultsix = options.getString("result6")
 
-                    const players = new Collection();
-
 
                     await mongo().then(async (mongooserank) => {
                             try {
@@ -232,15 +231,10 @@ module.exports = {
                                         results.forEach(async elem => {
                                             const allReponses = elem.prono_reponses
                                             allReponses.forEach(async r => {
-                                                console.log("1")
                                                 if(!players.get(r.userId)) {
-                                                    console.log("2")
                                                     if(elem.isPerfect === true) {
-                                                        const uneReponse = r.reponse.replace('\n', '')
-                                                        if(uneReponse.replace(' ', '').toLowerCase() === `${resultone.toLowerCase()}`) {
-                                                            console.log("4")
+                                                        if(Util.cleanVar(r.reponse).toLowerCase() === `${resultone.toLowerCase()}`) {
                                                             players.set(r.userId, elem.pointMax)
-                                                            console.log(players.get(r.userId))
                                                         }
                                                     }
                                                 }

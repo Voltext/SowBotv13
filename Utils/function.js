@@ -40,6 +40,10 @@ module.exports = class Utils {
         return c / b;
     }
 
+    static cleanVar(value) {
+        return value.replace(' ', '').replace('\n', '')
+    }
+
     /* static getInfoReset(guild, userId) {
         let battleRole = guild.roles.cache.get(process.env.BATTLE);
         const member = guild.members.fetch(userId)
