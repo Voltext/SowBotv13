@@ -5,7 +5,8 @@ const {
 const mongo = require('../../mongo');
 const reponseSchema = require('../../Schemas/reponseSchema');
 const battleSchema = require('../../Schemas/battleSchema');
-const pronoSchema = require('../../Schemas/pronoSchema')
+const pronoSchema = require('../../Schemas/pronoSchema');
+const counterSchema = require('../../Schemas/counterSchema');
 
 module.exports = {
         name: "battle",
@@ -132,6 +133,13 @@ module.exports = {
                             await reponseSchema.deleteMany({})
                         } finally {
                             mongooseresetreponse.connection.close()
+                        }
+                    })
+                    await mongo().then(async (mongooseresetcounter) => {
+                        try {
+                            await counterSchema.deleteMany({})
+                        } finally {
+                            mongooseresetcounter.connection.close()
                         }
                     })
                     const embed = new MessageEmbed()
