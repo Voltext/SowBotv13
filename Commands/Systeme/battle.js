@@ -24,6 +24,31 @@ module.exports = {
             name: "create",
             type: "SUB_COMMAND",
             description: "Create Battle",
+            options: [{
+                name: "user1",
+                type: "USER",
+                required: true,
+                description: "Saisissez la réponse 1"
+            },
+            {
+                name: "user2",
+                type: "USER",
+                required: true,
+                description: "Saisissez la réponse 2"
+            },
+            {
+                name: "user3",
+                type: "USER",
+                required: true,
+                description: "Saisissez la réponse 3"
+            },
+            {
+                name: "user4",
+                type: "USER",
+                required: true,
+                description: "Saisissez la réponse 4"
+            },
+        ]
         },
         {
             name: "prono",
@@ -314,7 +339,26 @@ module.exports = {
                         mongooserank.connection.close();
                     }
                 })
-                /* await mongo().then(async (mongooseresetbattle) => {
+                break
+            }
+            case "create": {
+
+                const userone = interaction.options.getMember("user1")
+                const usertwo = interaction.options.getMember("user2")
+                const userthree = interaction.options.getMember("user3")
+                const userfour = interaction.options.getMember("user4")
+
+
+                const channel = await guild.channels.fetch(process.env.BATTLE_TEXT);
+                channel.messages.fetch().then((messages) => {
+                    messages.forEach(m => {
+                        if (m.content === "#BATTLE") {
+                            m.delete();
+                        }
+                    })
+                })
+
+                await mongo().then(async (mongooseresetbattle) => {
                     try {
                         await battleSchema.deleteMany({})
                     } finally {
@@ -324,22 +368,22 @@ module.exports = {
 
                 var newBattle = []    
 
-                if(winners.get(3)) {
+                if(userthree !== '') {
                     newBattle = [{
                         id: 1,
-                        userId1: winners.get(1),
-                        userId2: winners.get(2)
+                        userId1: userone.user.username,
+                        userId2: usertwo.user.username
                     }, {
                         id: 2,
-                        userId1: winners.get(3),
-                        userId2: winners.get(4)
+                        userId1: userthree.user.username,
+                        userId2: userfour.user.username
                     }]
                 }
                 else {
                     newBattle = [{
                         id: 1,
-                        userId1: winners.get(1),
-                        userId2: winners.get(2)
+                        userId1: userone.user.username,
+                        userId2: usertwo.user.username
                     }]
                 }
 
@@ -351,36 +395,17 @@ module.exports = {
                     } catch (error) {
                         mongoosseaddbattle.connection.close()
                     }
-                }) */
-                break
-            }
-            case "create": {
-
-                const channel = await guild.channels.fetch(process.env.BATTLE_TEXT);
-                channel.messages.fetch().then((messages) => {
-                    messages.forEach(m => {
-                        if (m.content === "#BATTLE") {
-                            m.delete();
-                        }
-                    })
-                })
+                }) 
 
                 var members = ""
                 var balls = ""
 
-                console.log(winners)
-                if(winners.get(3)) {
-                    const memberone = await guild.members.fetch(winners.get(1));
-                    const membertwo = await guild.members.fetch(winners.get(2));
-                    const memberthree = await guild.members.fetch(winners.get(3));
-                    const memberfour = await guild.members.fetch(winners.get(4));
-                    members = `${memberone.user.username}\n${membertwo.user.username}\n${memberthree.user.username}\n${memberfour.user.username}`
+                if(userthree !== '') {
+                    members = `${userone.user.username}\n${usertwo.user.username}\n${userthree.user.username}\n${userfour.user.username}`
                     balls = "🔴\n🔴\n🔴\n🔴";
                 }
                 else {
-                    const memberone = await guild.members.fetch(winners.get(1));
-                    const membertwo = await guild.members.fetch(winners.get(2));
-                    members = `${memberone.user.username}\n${membertwo.user.username}`
+                    members = `${userone.user.username}\n${usertwo.user.username}`
                     balls = "🔴\n🔴";
                 }
 
