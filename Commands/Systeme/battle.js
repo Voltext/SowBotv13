@@ -272,6 +272,7 @@ module.exports = {
                                     } else {
                                         const embed = new MessageEmbed();
                                         results.forEach(async battle => {
+                                            console.log(battle)
                                             embed.setTitle(`Vainqueur de sa battle`);
                                             if (players.get(battle.userId1) > players.get(battle.userId2)) {
                                                 const member1 = await guild.members.fetch(battle.userId1);
