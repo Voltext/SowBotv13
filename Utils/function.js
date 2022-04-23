@@ -54,7 +54,7 @@ module.exports = class Utils {
         return Math.abs(a - b);
       }
 
-      static clearAll() {
+      static async clearAll() {
         await mongo().then(async (mongooseresetprono) => {
             try {
                 await pronoSchema.deleteMany({})
