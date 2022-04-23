@@ -212,6 +212,7 @@ module.exports = {
                                 },).populate('Pronos')
                                 .exec(function (error, result) {
                                     console.log(result)
+                                    console.log(error)
                                 });
 
                                 /* if(results.length === 0) {
