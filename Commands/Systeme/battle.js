@@ -236,10 +236,9 @@ module.exports = {
                                         if (Util.cleanVar(r.reponse).toLowerCase() === arr[r.pronoId - 1].toLowerCase()) {
                                             if (!players.get(r.userId)) {
                                                 players.set(r.userId, elem.pointMax)
-                                                console.log(r.pronoId)
+                                                console.log(players)
                                             } else {
                                                 const actualPoint = players.get(r.userId) + elem.pointMax
-                                                console.log(r.pronoId)
                                                 players.set(r.userId, actualPoint)
                                             }
                                         }
@@ -249,10 +248,9 @@ module.exports = {
                                         const ptsFinaux = elem.pointMax - ptsPerdu
                                         if (ptsFinaux > 0) {
                                             if (!players.get(r.userId)) {
-                                                console.log(r.pronoId)
+                                                console.log(players)
                                                 players.set(r.userId, ptsFinaux)
                                             } else {
-                                                console.log(r.pronoId)
                                                 const actualPoint = players.get(r.userId) + ptsFinaux
                                                 players.set(r.userId, actualPoint)
                                             }
