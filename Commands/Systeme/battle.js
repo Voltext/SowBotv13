@@ -209,18 +209,21 @@ module.exports = {
                                     reponses: 1,
                                     pronoId: 1,
                                     _id: 0
-                                },);
+                                },).populate('Pronos')
+                                .exec(function (error, result) {
+                                    console.log(result)
+                                });
 
-                                if(results.length === 0) {
+                                /* if(results.length === 0) {
                                     interaction.reply({
                                         content: "Aucune réponse n'est disponible"
                                     })
                                 }
                                 else {
-                                    results.forEach(function name(elem) {
-                                        console.log(elem)
+                                    results.forEach(async element => {
+                                        console.log(element)
                                     })
-                                }
+                                } */
 
 
                             } finally {
