@@ -207,10 +207,9 @@ module.exports = {
                                 const results = await reponseSchema.find({}, {
                                     userId: 1,
                                     reponses: 1,
+                                    pronoId: 1,
                                     _id: 0
-                                }, {
-                                    limit: 8
-                                });
+                                },);
 
                                 if(results.length === 0) {
                                     interaction.reply({
@@ -219,7 +218,7 @@ module.exports = {
                                 }
                                 else {
                                     results.forEach(function name(elem) {
-                                        console.log(elem.reponses)
+                                        console.log(elem)
                                     })
                                 }
 
