@@ -23,24 +23,4 @@ const pronoSchema = mongoose.Schema({
   }
 })
 
-const reponseSchema = mongoose.Schema({
-  userId:  {
-    type: String,
-    required: true
-  }, 
-  prono: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Pronos"
- },
-  reponse: {
-    type: String,
-    required: true
-  },
-
-})
-
-const Reponses = mongoose.model('Reponses', reponseSchema);
-const Pronos = mongoose.model('Pronos', pronoSchema);
-
-module.exports = {Reponses, Pronos}
-
+module.exports = mongoose.model('Pronos', pronoSchema);
