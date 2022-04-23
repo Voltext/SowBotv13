@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const pronoSchema = mongoose.Schema({
+  id: {
+    type: String,
+    required: true
+  },
   libelle: {
     type: String,
     required: true

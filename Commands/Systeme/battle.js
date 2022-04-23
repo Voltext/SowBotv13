@@ -169,7 +169,7 @@ module.exports = {
 
                     await mongo().then(async (mongoosseaddprono) => {
                         try {
-                            await pronoSchema.insertMany(arr);
+                            await pronoSchema.insertMany(arr, {$inc: {id: 1}});
                         } catch (error) {
                             console.log(error)
                             mongoosseaddprono.connection.close()
