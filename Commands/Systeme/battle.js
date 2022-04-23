@@ -149,34 +149,7 @@ module.exports = {
 
         switch (subCommand) {
             case "reset": {
-                await mongo().then(async (mongooseresetprono) => {
-                    try {
-                        await pronoSchema.deleteMany({})
-                    } finally {
-                        mongooseresetprono.connection.close()
-                    }
-                })
-                await mongo().then(async (mongooseresetbattle) => {
-                    try {
-                        await battleSchema.deleteMany({})
-                    } finally {
-                        mongooseresetbattle.connection.close()
-                    }
-                })
-                await mongo().then(async (mongooseresetreponse) => {
-                    try {
-                        await reponseSchema.deleteMany({})
-                    } finally {
-                        mongooseresetreponse.connection.close()
-                    }
-                })
-                await mongo().then(async (mongooseresetcounter) => {
-                    try {
-                        await counterSchema.deleteMany({})
-                    } finally {
-                        mongooseresetcounter.connection.close()
-                    }
-                })
+                Util.clearAll();
                 const embed = new MessageEmbed()
                     .setColor("GREEN")
                     .setTitle("Battle reset")
@@ -356,14 +329,6 @@ module.exports = {
                             m.delete();
                         }
                     })
-                })
-
-                await mongo().then(async (mongooseresetbattle) => {
-                    try {
-                        await battleSchema.deleteMany({})
-                    } finally {
-                        mongooseresetbattle.connection.close()
-                    }
                 })
 
                 var newBattle = []    

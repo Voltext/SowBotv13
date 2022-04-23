@@ -1,4 +1,10 @@
 require('dotenv').config();
+const mongo = require('../mongo');
+const reponseSchema = require('../Schemas/reponseSchema');
+const battleSchema = require('../Schemas/battleSchema');
+const pronoSchema = require('../Schemas/pronoSchema');
+const counterSchema = require('../Schemas/counterSchema');
+
 module.exports = class Utils {
     static async getMemberRole(user) {
         const roles = user._roles
@@ -46,6 +52,37 @@ module.exports = class Utils {
 
     static difference(a, b) {
         return Math.abs(a - b);
+      }
+
+      static clearAll() {
+        await mongo().then(async (mongooseresetprono) => {
+            try {
+                await pronoSchema.deleteMany({})
+            } finally {
+                mongooseresetprono.connection.close()
+            }
+        })
+        await mongo().then(async (mongooseresetbattle) => {
+            try {
+                await battleSchema.deleteMany({})
+            } finally {
+                mongooseresetbattle.connection.close()
+            }
+        })
+        await mongo().then(async (mongooseresetreponse) => {
+            try {
+                await reponseSchema.deleteMany({})
+            } finally {
+                mongooseresetreponse.connection.close()
+            }
+        })
+        await mongo().then(async (mongooseresetcounter) => {
+            try {
+                await counterSchema.deleteMany({})
+            } finally {
+                mongooseresetcounter.connection.close()
+            }
+        })
       }
 
     /* static getInfoReset(guild, userId) {
