@@ -14,8 +14,8 @@ const reponseSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  reponse: [{ type: Schema.Types.ObjectId, ref:'Pronos' }],
+  reponses: [{ type: Schema.Types.ObjectId, ref:'Pronos' }],
 
 })
 
-module.exports = mongoose.model('reponses', reponseSchema);
+module.exports = mongoose.model('Reponses', reponseSchema);
