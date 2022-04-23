@@ -264,7 +264,8 @@ module.exports = {
                                 try {
                                     const results = await battleSchema.find({}, {
                                         userId1: 1,
-                                        userid2: 1,
+                                        userId2: 1,
+                                        id: 1,
                                         _id: 0
                                     });
                                     if(results === null) {
@@ -274,15 +275,26 @@ module.exports = {
                                         })
                                     }
                                     else {
+                                        const embed = new MessageEmbed();
                                         results.forEach(async battle => {
-                                            console.log(battle)
+                                            embed.setTitle(`Vainqueur de la battle n°${battle.id}`);
+                                            if(players.get(battle.userId1) > players.get(battle.userId2)) {
+                                                const member = await guild.members.fetch(battle.userId1);
+                                                embed.setDescription(`Félicitations à ${member.user.username} !`)
+                                            }
+                                            else {
+                                                const member = await guild.members.fetch(battle.userId2);
+                                                embed.setDescription(`Félicitations à ${member.user.username} !`)
+                                            }
+                                            guild.channels.cache.get(process.env.BATTLE_TEXT).send({
+                                                embeds: `${embed}`
+                                            })
                                         })
                                     }
                                 } catch {
                                     mongooserank.connection.close();
                                 }
                             })
-                            console.log(players)
                         }
                     } catch {
                         mongooserank.connection.close();
