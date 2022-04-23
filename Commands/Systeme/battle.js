@@ -352,6 +352,7 @@ module.exports = {
                         mongoosseaddbattle.connection.close()
                     }
                 }) */
+                console.log(winners)
                 break
             }
             case "create": {
@@ -373,8 +374,14 @@ module.exports = {
                     const membertwo = await guild.members.fetch(winners.get(2));
                     const memberthree = await guild.members.fetch(winners.get(3));
                     const memberfour = await guild.members.fetch(winners.get(4));
-                    members = `${memberone.user.username}\n${membertwo.user.username}\n${memberthree.user.username}\n${memberfour.user.username}\n`
+                    members = `${memberone.user.username}\n${membertwo.user.username}\n${memberthree.user.username}\n${memberfour.user.username}`
                     balls = "🔴\n🔴\n🔴\n🔴";
+                }
+                else {
+                    const memberone = await guild.members.fetch(winners.get(1));
+                    const membertwo = await guild.members.fetch(winners.get(2));
+                    members = `${memberone.user.username}\n${membertwo.user.username}`
+                    balls = "🔴\n🔴";
                 }
 
                 const battleEmbed = new MessageEmbed()
