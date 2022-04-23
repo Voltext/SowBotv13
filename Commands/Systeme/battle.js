@@ -21,6 +21,11 @@ module.exports = {
             description: "Reset les battle, reponses et pronos",
         },
         {
+            name: "create",
+            type: "SUB_COMMAND",
+            description: "Create Battle",
+        },
+        {
             name: "prono",
             type: "SUB_COMMAND",
             description: "Créer un pronostique",
@@ -240,9 +245,8 @@ module.exports = {
                                                 const actualPoint = players.get(r.userId) + elem.pointMax
                                                 players.set(r.userId, actualPoint)
                                             }
-                                        }
-                                        else {
-                                            
+                                        } else {
+
                                         }
                                     } else {
                                         const ecart = Util.difference(parseInt(Util.cleanVar(r.reponse)), parseInt(arr[r.pronoId - 1]))
@@ -349,6 +353,18 @@ module.exports = {
                     }
                 }) */
                 break
+            }
+            case "create": {
+
+                const channel = await guild.channels.fetch(process.env.BATTLE_TEXT);
+                channel.messages.fetch().then((messages) => {
+                    messages.forEach(m => {
+                        if (m.content === "#BATTLE") {
+                            m.delete();
+                        }
+                    })
+                })
+                break;
             }
         }
     }
