@@ -209,7 +209,7 @@ module.exports = {
                                     reponses: 1,
                                     pronoId: 1,
                                     _id: 0
-                                },).populate('Pronos')
+                                },).populate('reponses')
                                 .exec(function (error, result) {
                                     console.log(result)
                                     console.log(error)

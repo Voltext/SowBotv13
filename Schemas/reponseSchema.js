@@ -9,10 +9,11 @@ const reponseSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  reponses: {
+  reponse: {
     type: String,
     required: true
-  }
+  },
+  reponses: [{ type: Schema.Types.ObjectId, ref:'Pronos' }],
 
 })
 
