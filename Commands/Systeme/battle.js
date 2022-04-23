@@ -1,7 +1,8 @@
 const {
     CommandInteraction,
     MessageEmbed,
-    Collection
+    Collection,
+    CommandInteractionOptionResolver
 } = require("discord.js");
 const mongo = require('../../mongo');
 const reponseSchema = require('../../Schemas/reponseSchema');
@@ -243,7 +244,8 @@ module.exports = {
                                     } 
                                     else {
                                         const ecart = (parseInt(Util.cleanVar(r.reponse)) - parseInt(arr[r.pronoId - 1]))
-                                        console.log(ecart)
+                                        const ptsPerdu = ecart * elem.ecart
+                                        console.log(ptsPerdu)
                                     }
                                 })
                             })
