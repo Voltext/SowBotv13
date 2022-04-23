@@ -115,6 +115,7 @@ module.exports = {
 
         const subCommand = options.getSubcommand();
         const players = new Collection();
+        const winners = new Collection();
 
         switch (subCommand) {
             case "reset": {
@@ -281,12 +282,14 @@ module.exports = {
                                                 const member2 = await guild.members.fetch(battle.userId2);
                                                 embed.setDescription(`Félicitations à ${member1.user.username} qui gagne son duel sur ${member2.user.username}!`)
                                                 .setFooter({text: `${member1.user.username} gagne sur le score de ${players.get(battle.userId1)} - ${players.get(battle.userId2)}`})
+                                                winners.set(battle.userId1)
                                             }
                                             else {
                                                 const member1 = await guild.members.fetch(battle.userId1);
                                                 const member2 = await guild.members.fetch(battle.userId2);
                                                 embed.setDescription(`Félicitations à ${member2.user.username} qui gagne son duel sur ${member1.user.username}!`)
                                                 .setFooter({text: `${member2.user.username} gagne sur le score de ${players.get(battle.userId2)} - ${players.get(battle.userId1)}`})
+                                                winners.set(battle.userId1)
                                             }
                                             guild.channels.cache.get(process.env.BATTLE_TEXT).send({
                                                 embeds: [embed]
@@ -297,6 +300,7 @@ module.exports = {
                                     mongooserank.connection.close();
                                 }
                             })
+                            console.log(winners)
                         }
                     } catch {
                         mongooserank.connection.close();
