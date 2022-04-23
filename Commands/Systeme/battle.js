@@ -204,7 +204,7 @@ module.exports = {
 
                     await mongo().then(async (mongooserank) => {
                             try {
-                                pronoSchema.aggregate([
+                                const results = await pronoSchema.aggregate([
                                     {
                                       $lookup: {
                                         from: "reponses",
@@ -217,29 +217,17 @@ module.exports = {
                                     // input document to output a document
                                     // for each element
                                   ])
-                                    .then((result) => {
-                                      console.log(result);
-                                    })
-                                    .catch((error) => {
-                                      console.log(error);
-                                    });
-                                /* const results = await reponseSchema.find({}, {
-                                    userId: 1,
-                                    reponses: 1,
-                                    pronoId: 1,
-                                    _id: 0
-                                },);
-
-                                if(results.length === 0) {
-                                    interaction.reply({
-                                        content: "Aucune réponse n'est disponible"
-                                    })
-                                }
-                                else {
-                                    results.forEach(async elemen => {
-                                        console.log(elem)
-                                    })
-                                } */
+                                    if(results === null) {
+                                        interaction.reply({
+                                            content: "Aucune réponse n'a été envoyée. Impossible d'afficher le résultat",
+                                            ephemeral: true
+                                        })
+                                    }
+                                    else {
+                                        results.forEach(async elem => {
+                                            console.log(elem)
+                                        })
+                                    }
 
 
                             } catch {
