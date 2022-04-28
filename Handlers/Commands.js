@@ -79,9 +79,6 @@ module.exports = async (client) => {
                     },
                 ];
             }, []);
-            await MainGuild.commands.permissions.set({
-                fullPermissions,
-            });
         });
     });
 };
