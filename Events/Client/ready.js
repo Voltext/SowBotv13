@@ -235,7 +235,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 			const card = await getUsers.getUserCard()
 			console.log(card)
-			if (card.data !== null) {
+			if (card.data.length !== 0) {
 				const data = card.data
 
 				data.forEach(async function (elem) {
