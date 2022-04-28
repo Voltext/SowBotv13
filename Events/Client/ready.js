@@ -18,18 +18,18 @@ const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
 const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
 const axios = require('axios')
 const {
-    registerFont,
-    createCanvas,
-    loadImage
+	registerFont,
+	createCanvas,
+	loadImage
 } = require("canvas")
 registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
-    family: 'DINNextLTPro-Black'
+	family: 'DINNextLTPro-Black'
 })
 registerFont('./Assets/Fonts/DINNextLTPro-UltraLightIt.ttf', {
-    family: 'DINNextLTPro-UltraLightIt'
+	family: 'DINNextLTPro-UltraLightIt'
 })
 registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
-    family: 'DINNextRoundedLTPro-Bold'
+	family: 'DINNextRoundedLTPro-Bold'
 })
 
 module.exports = {
@@ -195,27 +195,27 @@ ${'↓ LOGS ↓'.bgBlue}`,
 						ctx.drawImage(background, x, y)
 						results.forEach(function (elem) {
 							ctx.fillStyle = '#ffffff'
-                        ctx.font = '30px DINNextLTPro-Black'
-                        let name1 = `${elem.userName}`
-                        ctx.fillText(name1, xp, yp)
+							ctx.font = '30px DINNextLTPro-Black'
+							let name1 = `${elem.userName}`
+							ctx.fillText(name1, xp, yp)
 
-                        ctx.fillStyle = '#ffffff'
-                        ctx.font = '30px DINNextLTPro-Black'
-                        let points = `${elem.points}`
-                        ctx.fillText(points, x1, y1)
-                        
-                        yp = yp + 65;
-                        y1 = y1 + 65;
+							ctx.fillStyle = '#ffffff'
+							ctx.font = '30px DINNextLTPro-Black'
+							let points = `${elem.points}`
+							ctx.fillText(points, x1, y1)
 
-                        if (placement === 10) {
-                            xp = 1060
-                            yp = 340
+							yp = yp + 65;
+							y1 = y1 + 65;
 
-                            x1 = 1590
-                            y1 = 340
-                        }
+							if (placement === 10) {
+								xp = 1060
+								yp = 340
 
-                        placement = placement + 1;
+								x1 = 1590
+								y1 = 340
+							}
+
+							placement = placement + 1;
 						})
 						const attachment = new MessageAttachment(canvas.toBuffer())
 						client.channels.cache.get(process.env.RANK_CHANNEL).send({
@@ -231,70 +231,71 @@ ${'↓ LOGS ↓'.bgBlue}`,
 		schedule.scheduleJob('*/1 * * * *', async () => {
 			const getUsers = new Cards()
 
-        const ArrId = []
+			const ArrId = []
 
-        const card = await getUsers.getUserCard()
-        if (card.data !== null) {
-            const data = card.data
+			const card = await getUsers.getUserCard()
+			console.log(card)
+			if (card.data !== null) {
+				const data = card.data
 
-            data.forEach(async function (elem) {
-                const userName = elem.user_name
+				data.forEach(async function (elem) {
+					const userName = elem.user_name
 
-                await mongo().then(async (mongoosepredi) => {
-                    try {
-                        const results = await linkTwitchSchema.findOne({
-                            userName,
-                        });
-                        if (results === null) {
-                            client.channels.cache.get(process.env.ADMIN_FEED).send({
-                                content: `Le compte ${userName} n'est link à aucun compte`,
-                            })
-                        } else {
-                            const userId = results.userId
+					await mongo().then(async (mongoosepredi) => {
+						try {
+							const results = await linkTwitchSchema.findOne({
+								userName,
+							});
+							if (results === null) {
+								client.channels.cache.get(process.env.ADMIN_FEED).send({
+									content: `Le compte ${userName} n'est link à aucun compte`,
+								})
+							} else {
+								const userId = results.userId
 
-                            const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
-                            let chosenFile = files[Math.floor(Math.random() * files.length)]
+								const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
+								let chosenFile = files[Math.floor(Math.random() * files.length)]
 
-                            await mongo().then(async (mongooselock) => {
-                                try {
-                                    await cardCollectionSchema.findOneAndUpdate({
-                                        userId,
-                                    }, {
-                                        userId,
-                                        $push: {
-                                            cards: [chosenFile],
-                                        },
-                                    }, {
-                                        upsert: true,
-                                    })
-                                } finally {
-                                    mongooselock.connection.close()
-                                }
-                            })
-                            await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
-                                'status': 'FULFILLED'
-                            }, {
-                                headers: {
-                                    'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
-                                    'client-id': process.env.CLIENT_ID_SOW,
-                                    'Content-Type': 'application/json'
-                                }
-                            });
-                            console.log(elem.id)
-                        }
-                    } finally {
-                        mongoosepredi.connection.close();
-                    }
-                });
+								await mongo().then(async (mongooselock) => {
+									try {
+										await cardCollectionSchema.findOneAndUpdate({
+											userId,
+										}, {
+											userId,
+											$push: {
+												cards: [chosenFile],
+											},
+										}, {
+											upsert: true,
+										})
+									} finally {
+										mongooselock.connection.close()
+									}
+								})
+								await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
+									'status': 'FULFILLED'
+								}, {
+									headers: {
+										'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+										'client-id': process.env.CLIENT_ID_SOW,
+										'Content-Type': 'application/json'
+									}
+								});
+								console.log(elem.id)
+							}
+						} finally {
+							mongoosepredi.connection.close();
+						}
+					});
 
-            })
+				})
 
 
-        } else {
-            client.channels.cache.get(process.env.ADMIN_FEED).send({
-				content: `Aucune demande de carte n'a été faites recemment`,
-			})
-        }
+			} else {
+				client.channels.cache.get(process.env.ADMIN_FEED).send({
+					content: `Aucune demande de carte n'a été faites recemment`,
+				})
+			}
 		})
 
 
