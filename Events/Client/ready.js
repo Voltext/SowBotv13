@@ -10,6 +10,13 @@ const schedule = require('node-schedule');
 const colors = require('colors');
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema')
+const Cards = require("../../Api/card");
+require('dotenv').config();
+const fs = require('fs')
+const path = require('path');
+const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
+const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
+const axios = require('axios')
 const {
     registerFont,
     createCanvas,
@@ -223,7 +230,72 @@ ${'↓ LOGS ↓'.bgBlue}`,
 		})
 
 		schedule.scheduleJob('*/1 * * * *', async () => {
-			console.log("Ok")
+			const getUsers = new Cards()
+
+        const ArrId = []
+
+        const card = await getUsers.getUserCard()
+        if (card.data !== null) {
+            const data = card.data
+
+            data.forEach(async function (elem) {
+                const userName = elem.user_name
+
+                await mongo().then(async (mongoosepredi) => {
+                    try {
+                        const results = await linkTwitchSchema.findOne({
+                            userName,
+                        });
+                        if (results === null) {
+                            client.channels.cache.get(process.env.ADMIN_FEED).send({
+                                content: `Le compte ${userName} n'est link à aucun compte`,
+                            })
+                        } else {
+                            const userId = results.userId
+
+                            const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
+                            let chosenFile = files[Math.floor(Math.random() * files.length)]
+
+                            await mongo().then(async (mongooselock) => {
+                                try {
+                                    await cardCollectionSchema.findOneAndUpdate({
+                                        userId,
+                                    }, {
+                                        userId,
+                                        $push: {
+                                            cards: [chosenFile],
+                                        },
+                                    }, {
+                                        upsert: true,
+                                    })
+                                } finally {
+                                    mongooselock.connection.close()
+                                }
+                            })
+                            await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
+                                'status': 'FULFILLED'
+                            }, {
+                                headers: {
+                                    'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+                                    'client-id': process.env.CLIENT_ID_SOW,
+                                    'Content-Type': 'application/json'
+                                }
+                            });
+                            console.log(elem.id)
+                        }
+                    } finally {
+                        mongoosepredi.connection.close();
+                    }
+                });
+
+            })
+
+
+        } else {
+            client.channels.cache.get(process.env.ADMIN_FEED).send({
+				content: `Aucune demande de carte n'a été faites recemment`,
+			})
+        }
 		})
 
 
