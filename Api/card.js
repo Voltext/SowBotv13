@@ -1,7 +1,7 @@
 const got = require('got');
 require('dotenv').config()
 
-const makeURL = () => `https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f&status=UNFULFILLED&sort=NEWEST`;
+const makeURL = () => `https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f&status=UNFULFILLED&sort=NEWEST&first=5`;
 
 class Card {
     async getUserCard() {
