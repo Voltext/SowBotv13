@@ -246,7 +246,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 								userName,
 							});
 							if (results === null) {
-								client.channels.cache.get(process.env.ADMIN_FEED).send({
+								client.channels.cache.get(process.env.MANAGE_CARD).send({
 									content: `Le compte ${userName} n'est link à aucun compte`,
 								})
 							} else {
@@ -280,6 +280,10 @@ ${'↓ LOGS ↓'.bgBlue}`,
 										'Content-Type': 'application/json'
 									}
 								});
+								client.channels.cache.get(process.env.MANAGE_CARD).send({
+									content: `Nouvelle récupération`,
+									embeds: [new MessageEmbed().setTitle("Nouvelle carte récupérée").setDescription(`${userName} a récupérée la carte ${chosenFile}`)],
+								})
 							}
 						} finally {
 							mongoosepredi.connection.close();
@@ -290,7 +294,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 
 			} else {
-				client.channels.cache.get(process.env.ADMIN_FEED).send({
+				client.channels.cache.get(process.env.MANAGE_CARD).send({
 					content: `Aucune demande de carte n'a été faites recemment`,
 				})
 			}
