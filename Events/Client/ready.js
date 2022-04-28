@@ -222,6 +222,10 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			});
 		})
 
+		schedule.scheduleJob('*/1 * * * *', async () => {
+			console.log("Ok")
+		})
+
 
 
 		mongoose.connect(process.env.MONGO_PATH, {
