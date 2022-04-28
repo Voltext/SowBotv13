@@ -22,7 +22,6 @@ const {
     createCanvas,
     loadImage
 } = require("canvas")
-const path = require('path');
 registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
     family: 'DINNextLTPro-Black'
 })
