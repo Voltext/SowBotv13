@@ -234,7 +234,6 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			const ArrId = []
 
 			const card = await getUsers.getUserCard()
-			console.log(card)
 			if (card.data.length !== 0) {
 				const data = card.data
 
@@ -281,7 +280,6 @@ ${'↓ LOGS ↓'.bgBlue}`,
 										'Content-Type': 'application/json'
 									}
 								});
-								console.log(elem.id)
 							}
 						} finally {
 							mongoosepredi.connection.close();
