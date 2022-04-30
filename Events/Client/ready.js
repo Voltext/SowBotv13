@@ -289,10 +289,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 							mongoosepredi.connection.close();
 						}
 					});
-
 				})
-
-
 			}
 		})
 

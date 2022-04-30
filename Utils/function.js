@@ -84,15 +84,4 @@ module.exports = class Utils {
             }
         })
       }
-
-    /* static getInfoReset(guild, userId) {
-        let battleRole = guild.roles.cache.get(process.env.BATTLE);
-        const member = guild.members.fetch(userId)
-        //member.roles.add(battleRole)
-
-        return member.user.displayAvatarURL({
-            format: 'png',
-          })
-
-    } */
 }

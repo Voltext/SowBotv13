@@ -1,4 +1,3 @@
-const { CommandInteraction } = require("discord.js");
 const ms = require("ms")
 
 module.exports = {

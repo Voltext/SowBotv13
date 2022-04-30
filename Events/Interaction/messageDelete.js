@@ -1,13 +1,10 @@
 const {
-    Client,
-    CommandInteraction,
     MessageEmbed
 } = require("discord.js");
 
 module.exports = {
     name: "messageDelete",
     async execute(message) {
-
         const logDelete = new MessageEmbed()
         .setColor("RED")
         .setDescription(`Un [message](${message.url}) a été supprimé par ${message.author} dans ${message.channel}.

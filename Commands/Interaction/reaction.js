@@ -1,9 +1,6 @@
 const {
-  ContextMenuInteraction,
-  MessageEmbed
+  ContextMenuInteraction
 } = require("discord.js");
-const mongo = require('../../mongo');
-const prediSchema = require('../../Schemas/prediSchema')
 
 module.exports = {
   name: "Tirer au sort un membre",

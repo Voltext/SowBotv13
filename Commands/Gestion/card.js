@@ -1,7 +1,3 @@
-const {
-    MessageEmbed,
-    MessageAttachment
-} = require("discord.js");
 const Cards = require("../../Api/card");
 require('dotenv').config();
 const fs = require('fs')

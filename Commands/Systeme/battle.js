@@ -1,14 +1,11 @@
 const {
     CommandInteraction,
     MessageEmbed,
-    Collection,
-    CommandInteractionOptionResolver
+    Collection
 } = require("discord.js");
 const mongo = require('../../mongo');
-const reponseSchema = require('../../Schemas/reponseSchema');
 const battleSchema = require('../../Schemas/battleSchema');
 const pronoSchema = require('../../Schemas/pronoSchema');
-const counterSchema = require('../../Schemas/counterSchema');
 const Util = require('../../Utils/function')
 
 module.exports = {
@@ -139,7 +136,6 @@ module.exports = {
     async execute(interaction) {
         const {
             options,
-            member,
             guild
         } = interaction;
 
@@ -232,38 +228,37 @@ module.exports = {
                                 ephemeral: true
                             })
                         } else {
-                            results.forEach(async elem => {
-                                const allReponses = elem.prono_reponses
-                                allReponses.forEach(async r => {
-                                    if (elem.isPerfect === true) {
-                                        if (Util.cleanVar(r.reponse).toLowerCase() === arr[r.pronoId - 1].toLowerCase()) {
-                                            if (!players.get(r.userId)) {
-                                                players.set(r.userId, elem.pointMax)
+                            results.forEach(async (elem) => {
+                                    const allReponses = elem.prono_reponses;
+                                    allReponses.forEach(async (r) => {
+                                        if (elem.isPerfect === true) {
+                                            if (Util.cleanVar(r.reponse).toLowerCase() === arr[r.pronoId - 1].toLowerCase()) {
+                                                if (!players.get(r.userId)) {
+                                                    players.set(r.userId, elem.pointMax);
+                                                } else {
+                                                    const actualPoint = players.get(r.userId) + elem.pointMax;
+                                                    players.set(r.userId, actualPoint);
+                                                }
                                             } else {
-                                                const actualPoint = players.get(r.userId) + elem.pointMax
-                                                players.set(r.userId, actualPoint)
                                             }
                                         } else {
-
-                                        }
-                                    } else {
-                                        const ecart = Util.difference(parseInt(Util.cleanVar(r.reponse)), parseInt(arr[r.pronoId - 1]))
-                                        const ptsPerdu = ecart * elem.ecart
-                                        const ptsFinaux = elem.pointMax - ptsPerdu
-                                        if (ptsFinaux > 0) {
-                                            if (!players.get(r.userId)) {
-                                                players.set(r.userId, ptsFinaux)
-                                            } else {
-                                                let actualPoint = players.get(r.userId) + ptsFinaux
-                                                console.log(actualPoint)
-                                                players.set(r.userId, actualPoint)
-                                                actualPoint = 0
-                                                console.log(players.get(r.userId))
+                                            const ecart = Util.difference(parseInt(Util.cleanVar(r.reponse)), parseInt(arr[r.pronoId - 1]));
+                                            const ptsPerdu = ecart * elem.ecart;
+                                            const ptsFinaux = elem.pointMax - ptsPerdu;
+                                            if (ptsFinaux > 0) {
+                                                if (!players.get(r.userId)) {
+                                                    players.set(r.userId, ptsFinaux);
+                                                } else {
+                                                    let actualPoint = players.get(r.userId) + ptsFinaux;
+                                                    console.log(actualPoint);
+                                                    players.set(r.userId, actualPoint);
+                                                    actualPoint = 0;
+                                                    console.log(players.get(r.userId));
+                                                }
                                             }
                                         }
-                                    }
+                                    });
                                 })
-                            })
                             await mongo().then(async (mongooserank) => {
                                 try {
                                     const results = await battleSchema.find({}, {

@@ -1,6 +1,4 @@
 const {
-    CommandInteraction,
-    MessageEmbed,
     MessageAttachment
 } = require("discord.js");
 const fs = require('fs')
@@ -13,7 +11,6 @@ module.exports = {
     description: "Récupère ta carte",
 
     async execute(interaction) {
-
 
         const userId = interaction.user.id
 

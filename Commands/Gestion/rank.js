@@ -1,5 +1,4 @@
 const {
-    MessageEmbed,
     MessageAttachment
 } = require("discord.js");
 require('dotenv').config();

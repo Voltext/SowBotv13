@@ -1,10 +1,6 @@
 const {
-	MessageActionRow,
 	MessageEmbed,
-	MessageSelectMenu,
-	MessageAttachment
 } = require("discord.js");
-const ms = require("ms");
 const mongo = require('../../mongo');
 const prediSchema = require('../../Schemas/prediSchema')
 
@@ -143,12 +139,9 @@ module.exports = {
 		]
 	}],
 
-	async execute(interaction, client) {
+	async execute(interaction) {
 		const {
 			options,
-			member,
-			guild,
-			channel
 		} = interaction;
 
 		try {

@@ -7,12 +7,6 @@ const teamBDD = require("../../Game/Json/team.json")
 const clubBDD = require("../../Game/Json/club.json")
 //const goalStrikerBDD = require("../../Game/Json/goalstriker.json")
 
-function filtreTexte(arr, requete) {
-  return arr.filter(function (el) {
-    return el.toLowerCase().indexOf(requete.toLowerCase()) !== -1;
-  })
-}
-
 module.exports = {
   name: "event",
   description: "Permet de lancer un evenement d'animation",

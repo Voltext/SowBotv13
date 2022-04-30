@@ -56,29 +56,6 @@ module.exports = async (client) => {
 
                 return MainGuild.roles.cache.filter((r) => r.permissions.has(cmdPerms));
             };
-
-            const fullPermissions = command.reduce((accumulator, r) => {
-                const roles = Roles(r.name);
-                if (!roles) return accumulator;
-
-                const permissions = roles.reduce((a, r) => {
-                    return [
-                        ...a,
-                        {
-                            id: r.id,
-                            type: "ROLE",
-                            permission: true,
-                        },
-                    ];
-                }, []);
-                return [
-                    ...accumulator,
-                    {
-                        id: r.id,
-                        permissions,
-                    },
-                ];
-            }, []);
         });
     });
 };

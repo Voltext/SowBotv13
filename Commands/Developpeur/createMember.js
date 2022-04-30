@@ -1,9 +1,4 @@
 const {
-  CommandInteraction,
-  MessageEmbed,
-  MessageAttachment
-} = require("discord.js");
-const {
   registerFont,
   createCanvas,
   loadImage
@@ -55,9 +50,6 @@ module.exports = {
   ],
 
   async execute(interaction) {
-    const {
-      guild
-    } = interaction
     
 
     const member = interaction.options.getMember('user');
@@ -183,6 +175,10 @@ module.exports = {
       const buffer = canvas.toBuffer('image/png')
       fs.writeFileSync(`./Assets/Cards/${member.user.id}.png`, buffer)
     }
+    interaction.reply({
+      content: "La carte a bien été crée",
+      ephemeral: true
+    })
 
   }
 }

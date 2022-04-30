@@ -88,7 +88,9 @@ module.exports = {
                     }, );
                     rankEmbed.addField("Play-Off", "Voici les duels pour ce mois de Play-Off !");
 
-                    rankEmbed.setFooter("Félicitation !")
+                    rankEmbed.setFooter({
+                        text: "Félicitations !"
+                    })
                 }
 
                 const canvas = createCanvas(1920, 1080)

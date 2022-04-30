@@ -1,6 +1,4 @@
 const {
-  CommandInteraction,
-  MessageEmbed,
   MessageAttachment
 } = require("discord.js");
 const {

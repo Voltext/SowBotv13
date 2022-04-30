@@ -7,7 +7,7 @@ const fs = require('fs')
 
 module.exports = {
   name: "guildMemberRemove",
-  async execute(interaction, member) {
+  async execute(interaction) {
     const {
       options,
       guild,
@@ -24,10 +24,5 @@ module.exports = {
       name: `${memberCount} Membres`,
     });
 
-    fs.unlink(`./Assets/Cards/${interaction.user.id}.png`, function (err) {
-      if (err) throw err;
-      // if no error, file has been deleted successfully
-      console.log('Carte supprimée');
-  });
   }
 }

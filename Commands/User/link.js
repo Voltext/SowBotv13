@@ -1,10 +1,3 @@
-const {
-    CommandInteraction,
-    MessageEmbed,
-    MessageAttachment
-  } = require("discord.js");
-  const fs = require('fs')
-  const path = require('path');
   const mongo = require('../../mongo');
   const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
   
@@ -19,9 +12,6 @@ const {
     }, ],
   
     async execute(interaction) {
-      const {
-        guild
-      } = interaction
 
       const userName = interaction.options.getString("username")
       const userId = interaction.user.id
