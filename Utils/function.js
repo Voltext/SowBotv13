@@ -58,28 +58,28 @@ module.exports = class Utils {
         await mongo().then(async (mongooseresetprono) => {
             try {
                 await pronoSchema.deleteMany({})
-            } finally {
+            } catch {
                 mongooseresetprono.connection.close()
             }
         })
         await mongo().then(async (mongooseresetbattle) => {
             try {
                 await battleSchema.deleteMany({})
-            } finally {
+            } catch {
                 mongooseresetbattle.connection.close()
             }
         })
         await mongo().then(async (mongooseresetreponse) => {
             try {
                 await reponseSchema.deleteMany({})
-            } finally {
+            } catch {
                 mongooseresetreponse.connection.close()
             }
         })
         await mongo().then(async (mongooseresetcounter) => {
             try {
                 await counterSchema.deleteMany({})
-            } finally {
+            } catch {
                 mongooseresetcounter.connection.close()
             }
         })
