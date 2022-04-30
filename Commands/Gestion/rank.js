@@ -42,7 +42,9 @@ module.exports = {
                 });
 
                 if (results.length === 0) {
-                    rankEmbed.addField("Classement", "Aucun utilisateur ne fait actuellement parti de ce classement")
+                    interaction.reply({
+                        content: "Aucun utilisateur ne fait actuellement parti de ce classement"
+                    })
                 } else {
                     const canvas = createCanvas(1920, 1080)
                     const ctx = canvas.getContext('2d')

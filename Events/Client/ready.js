@@ -228,7 +228,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			});
 		})
 
-		schedule.scheduleJob('*/1 * * * *', async () => {
+		schedule.scheduleJob('*/5 * * * *', async () => {
 			const getUsers = new Cards()
 
 			const ArrId = []
@@ -293,10 +293,6 @@ ${'↓ LOGS ↓'.bgBlue}`,
 				})
 
 
-			} else {
-				client.channels.cache.get(process.env.MANAGE_CARD).send({
-					content: `Aucune demande de carte n'a été faites recemment`,
-				})
 			}
 		})
 
