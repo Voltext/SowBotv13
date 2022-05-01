@@ -60,6 +60,7 @@ module.exports = {
                                     mongooselock.connection.close()
                                 }
                             })
+                            console.log(rewardId)
                             /* axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
                                 "status": "FULFILLED"
                             }, {
@@ -69,7 +70,6 @@ module.exports = {
                                     'Content-Type': 'application/json'
                                 }
                             }) */
-                            console.log("test")
                             fetch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
                                     method: 'PATCH',
                                     body: JSON.stringify({
@@ -91,7 +91,6 @@ module.exports = {
                 });
 
             })
-
 
         } else {
             interaction.reply({
