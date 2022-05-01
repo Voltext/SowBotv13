@@ -60,16 +60,29 @@ module.exports = {
                                     mongooselock.connection.close()
                                 }
                             })
-                            await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
-                                status: 'FULFILLED'
+                            /* axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
+                                "status": "FULFILLED"
                             }, {
                                 headers: {
                                     'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
                                     'client-id': process.env.CLIENT_ID_SOW,
                                     'Content-Type': 'application/json'
                                 }
-                            });
-                            console.log(elem.id)
+                            }) */
+                            fetch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
+                                    method: 'PATCH',
+                                    body: JSON.stringify({
+                                        status: 'FULFILLED',
+                                    }),
+                                    headers: {
+                                        'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+                                        'client-id': process.env.CLIENT_ID_SOW,
+                                        'Content-Type': 'application/json'
+                                    },
+                                })
+                                .then((response) => response.json())
+                                .then((json) => console.log(json))
+                                .catch((error) => console.log(error))
                         }
                     } catch {
                         mongoosepredi.connection.close();
