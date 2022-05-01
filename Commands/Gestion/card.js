@@ -83,6 +83,7 @@ module.exports = {
                                 .then((response) => response.json())
                                 .then((json) => console.log(json))
                                 .catch((error) => console.log(error))
+                                console.log("test")
                         }
                     } catch {
                         mongoosepredi.connection.close();
