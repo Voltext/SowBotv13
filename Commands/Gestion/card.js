@@ -38,6 +38,7 @@ module.exports = {
                                 content: `Le compte ${userName} n'est link à aucun compte`,
                             })
                         } else {
+                            const rewardId = elem.id;
                             const userId = results.userId
 
                             const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
@@ -59,7 +60,7 @@ module.exports = {
                                     mongooselock.connection.close()
                                 }
                             })
-                            await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
+                            await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
                                 status: 'FULFILLED'
                             }, {
                                 headers: {
