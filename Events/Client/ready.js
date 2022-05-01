@@ -229,6 +229,9 @@ ${'↓ LOGS ↓'.bgBlue}`,
 		})
 
 		schedule.scheduleJob('*/5 * * * *', async () => {
+			client.channels.cache.get(process.env.MANAGE_CARD).send({
+				content: `-------------------`,
+			})
 			const getUsers = new Cards()
 
 			const ArrId = []
