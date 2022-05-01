@@ -60,7 +60,7 @@ module.exports = {
                                 }
                             })
                             await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
-                                'status': 'FULFILLED'
+                                status: 'FULFILLED'
                             }, {
                                 headers: {
                                     'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
