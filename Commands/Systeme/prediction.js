@@ -214,7 +214,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebuteur.connection.close()
 								}
 							})
@@ -289,7 +289,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosefinal.connection.close()
 								}
 							})
@@ -361,7 +361,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -433,7 +433,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosemedaille.connection.close()
 								}
 							})
@@ -508,7 +508,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoose45.connection.close()
 								}
 							})
@@ -583,7 +583,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoose90.connection.close()
 								}
 							})
@@ -655,7 +655,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosecarton.connection.close()
 								}
 							})
@@ -727,7 +727,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -806,7 +806,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -878,7 +878,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -951,7 +951,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -1022,7 +1022,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosefinal.connection.close()
 								}
 							})
@@ -1094,7 +1094,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebuteur.connection.close()
 								}
 							})
@@ -1166,7 +1166,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebuteur.connection.close()
 								}
 							})
@@ -1238,7 +1238,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -1313,7 +1313,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebutday.connection.close()
 								}
 							})

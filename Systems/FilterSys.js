@@ -10,7 +10,7 @@ module.exports = async (client) => {
           client.filtersLog.set(doc.Guild, doc.Log);
         });
       });
-    } finally {
+    } catch {
       mongoosefiltre.connection.close();
     }
   });

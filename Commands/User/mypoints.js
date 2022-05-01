@@ -32,7 +32,7 @@ module.exports = {
                 rankEmbed.addField('Vos points actuels', `${userObj.points} points`, true)
             }
             interaction.reply({embeds: [rankEmbed] , ephemeral: true });
-        } finally {
+        } catch {
             mongoosepoints.connection.close()
         }
     })

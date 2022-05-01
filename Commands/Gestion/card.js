@@ -55,7 +55,7 @@ module.exports = {
                                     }, {
                                         upsert: true,
                                     })
-                                } finally {
+                                } catch {
                                     mongooselock.connection.close()
                                 }
                             })
@@ -70,7 +70,7 @@ module.exports = {
                             });
                             console.log(elem.id)
                         }
-                    } finally {
+                    } catch {
                         mongoosepredi.connection.close();
                     }
                 });

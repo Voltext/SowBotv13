@@ -435,7 +435,7 @@ module.exports = {
                             }
                         })
                     }
-                } finally {
+                } catch {
                     mongoosepredi.connection.close();
                 }
             });

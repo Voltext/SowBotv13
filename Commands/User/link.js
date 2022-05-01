@@ -26,7 +26,7 @@
             }, {
                 upsert: true,
             })
-        } finally {
+        } catch {
             mongooselock.connection.close()
         }
     })

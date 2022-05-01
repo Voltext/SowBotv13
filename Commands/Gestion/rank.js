@@ -91,7 +91,7 @@ module.exports = {
                     })
                 }
                 
-            } finally {
+            } catch {
                 mongooserank.connection.close();
             }
         });

@@ -26,7 +26,7 @@ module.exports = {
 				}, {
 					upsert: true,
 				})
-			} finally {
+			} catch {
 				mongooselock.connection.close()
 			}
 		})

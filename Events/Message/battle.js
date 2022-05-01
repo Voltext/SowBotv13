@@ -110,13 +110,13 @@ module.exports = {
                                         message.reply("Vous avez déjà envoyé votre participation")
                                     }
 
-                                } finally {
+                                } catch {
                                     mongoosefindreponse.connection.close()
                                 }
                             })
 
                         }
-                    } finally {
+                    } catch {
                         mongoosefindbattle.connection.close();
                     }
                 });

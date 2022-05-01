@@ -83,7 +83,7 @@ module.exports = {
               new: true,
               upsert: true
             });
-          } finally {
+          } catch {
             mongoosesettings.connection.close()
           }
         })
@@ -155,7 +155,7 @@ module.exports = {
                     ephemeral: true
                   });
                 });
-              } finally {
+              } catch {
                 mongoosechat.connection.close()
               }
             })
@@ -195,7 +195,7 @@ module.exports = {
 
                   data.save();
                 });
-              } finally {
+              } catch {
                 mongoosechatr.connection.close()
               }
             })

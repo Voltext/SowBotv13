@@ -87,7 +87,7 @@ module.exports = {
 				}, {
 					upsert: true,
 				})
-			} finally {
+			} catch {
 				mongooseban.connection.close()
 			}
 		})

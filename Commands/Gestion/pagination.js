@@ -54,7 +54,7 @@ module.exports = {
                     const timeout = 10000;
                     paginationEmbed(interaction, ArrEmb, ArrImg, userName, buttonList, timeout);
                 }
-            } finally {
+            } catch {
                 mongoosepredi.connection.close();
             }
         })

@@ -187,7 +187,7 @@ module.exports = {
                 await mongo().then(async (mongoosereset2) => {
                     try {
                         await rankPrediSchema.deleteMany({})
-                    } finally {
+                    } catch {
                         mongoosereset2.connection.close()
                     }
                 })
@@ -238,7 +238,7 @@ module.exports = {
                     content: "#BATTLE",
                     embeds: [battleEmbed]
                 })
-            } finally {
+            } catch {
                 mongoosereset1.connection.close();
             }
         });

@@ -38,7 +38,7 @@ module.exports = {
                     files: [attachmentBasic],
                     ephemeral: true
                 })
-            } finally {
+            } catch {
                 mongoosepredi.connection.close();
             }
         });

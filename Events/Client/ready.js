@@ -222,7 +222,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 							files: [attachment]
 						});
 					}
-				} finally {
+				} catch {
 					mongooseclassement.connection.close();
 				}
 			});
@@ -267,7 +267,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 										}, {
 											upsert: true,
 										})
-									} finally {
+									} catch {
 										mongooselock.connection.close()
 									}
 								})
@@ -285,7 +285,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 									embeds: [new MessageEmbed().setTitle("Nouvelle carte récupérée").setDescription(`${userName} a récupérée la carte ${chosenFile}`)],
 								})
 							}
-						} finally {
+						} catch {
 							mongoosepredi.connection.close();
 						}
 					});
