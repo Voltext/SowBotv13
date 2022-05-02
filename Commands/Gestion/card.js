@@ -5,7 +5,7 @@ const path = require('path');
 const mongo = require('../../mongo');
 const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
 const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
-const request = require('request');
+const axios = require('axios')
 
 module.exports = {
     name: "card",
@@ -58,29 +58,25 @@ module.exports = {
                                         upsert: true,
                                     })
 
-                                    request.patch(
-                                        //First parameter API to make post request
-                                        `https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`,
-                                    
-                                        //The second parameter, DATA which has to be sent to API
-                                        { json: {
-                                            status: "FULFILLED",
-                                          } 
-                                        },
-                                        
-                                        //The third parameter is a Callback function 
-                                        function (error, response, body) {
-                                            if (!error && response.statusCode == 200) {
-                                                console.log(body);
-                                                console.log(response.statusCode);
-                                            }
-                                        }
-                                    );
-                                    
                                 } catch {
                                     mongooselock.connection.close()
                                 }
                             })
+                            headers = {
+                                'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+                                'Client-Id': process.env.CLIENT_ID_SOW,
+                                'Content-Type': 'application/json'
+                            }
+
+                            dataCards = {
+                                'status': 'FULFILLED'
+                            }
+
+                            axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, dataCards, {
+                                'headers': headers
+                            }).then(resp => {
+                                console.log(resp.data);
+                            }).catch(err => console.error(err))
                             /* axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
                                 "status": "FULFILLED"
                             }, {
