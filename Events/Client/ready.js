@@ -253,6 +253,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 									content: `Le compte ${userName} n'est link à aucun compte`,
 								})
 							} else {
+								const rewardId = elem.id;
 								const userId = results.userId
 
 								const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
