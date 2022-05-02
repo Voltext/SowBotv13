@@ -32,6 +32,20 @@ module.exports = {
         ArrImg.push(attachmentBasic)
         ArrEmb.push(embed)
 
+        try {
+            const pathImg = path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`)
+            if (fs.existsSync(pathImg)) {
+                const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
+                const attachmentBoost = new MessageAttachment(imageBoost)
+                const embeds = new MessageEmbed().setImage(`attachment://${userId}`)
+                
+                ArrImg.push(attachmentBoost)
+                ArrEmb.push(embeds)
+            }
+        } catch (err) {
+            console.error(err)
+        }
+
         await mongo().then(async (mongoosepredi) => {
             try {
                 const results = await cardCollectionSchema.findOne({
@@ -89,20 +103,6 @@ module.exports = {
                 mongoosepredi.connection.close();
             }
         });
-        try {
-            const pathImg = path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`)
-            if (fs.existsSync(pathImg)) {
-                const imageBoost = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`))
-                const attachmentBoost = new MessageAttachment(imageBoost)
-                interaction.followUp({
-                    content: `Vous possedez une carte Boost !`,
-                    files: [attachmentBoost],
-                    ephemeral: true
-                })
-            }
-        } catch (err) {
-            console.error(err)
-        }
 
     }
 }
