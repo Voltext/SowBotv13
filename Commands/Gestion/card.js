@@ -24,6 +24,7 @@ module.exports = {
         const card = await getUsers.getUserCard()
         if (card.data !== null) {
             const data = card.data
+            console.log(data)
 
             data.forEach(async function (elem) {
                 const userName = elem.user_name
@@ -60,7 +61,6 @@ module.exports = {
                                     mongooselock.connection.close()
                                 }
                             })
-                            console.log(rewardId)
                             /* axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
                                 "status": "FULFILLED"
                             }, {
