@@ -5,7 +5,7 @@ const path = require('path');
 const mongo = require('../../mongo');
 const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
 const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
-const axios = require('axios')
+const request = require('request');
 
 module.exports = {
     name: "card",
@@ -58,20 +58,25 @@ module.exports = {
                                         upsert: true,
                                     })
 
-                                    fetch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
-                                            method: 'PATCH',
-                                            body: JSON.stringify({
-                                                "status": 'FULFILLED',
-                                            }),
-                                            headers: {
-                                                'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
-                                                'client-id': process.env.CLIENT_ID_SOW,
-                                                'Content-Type': 'application/json'
-                                            },
-                                        })
-                                        .then((response) => response.json())
-                                        .then((json) => console.log(json))
-                                        .catch((error) => console.log(error))
+                                    request.patch(
+                                        //First parameter API to make post request
+                                        `https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`,
+                                    
+                                        //The second parameter, DATA which has to be sent to API
+                                        { json: {
+                                            status: "FULFILLED",
+                                          } 
+                                        },
+                                        
+                                        //The third parameter is a Callback function 
+                                        function (error, response, body) {
+                                            if (!error && response.statusCode == 200) {
+                                                console.log(body);
+                                                console.log(response.statusCode);
+                                            }
+                                        }
+                                    );
+                                    
                                 } catch {
                                     mongooselock.connection.close()
                                 }
