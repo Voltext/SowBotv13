@@ -11,7 +11,7 @@ const mongo = require('../../mongo');
 const paginationEmbed = require('discordjs-button-pagination')
 
 module.exports = {
-    name: "mycollection",
+    name: "mycards",
     description: "Affiche la collection d'un membre",
 
     async execute(interaction) {
