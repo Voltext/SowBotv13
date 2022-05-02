@@ -275,20 +275,21 @@ ${'↓ LOGS ↓'.bgBlue}`,
 										mongooselock.connection.close()
 									}
 								})
-								fetch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
-                                    method: 'PATCH',
-                                    body: JSON.stringify({
-                                        status: 'FULFILLED',
-                                    }),
-                                    headers: {
-                                        'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
-                                        'client-id': process.env.CLIENT_ID_SOW,
-                                        'Content-Type': 'application/json'
-                                    },
-                                })
-                                .then((response) => response.json())
-                                .then((json) => console.log(json))
-                                .catch((error) => console.log(error))
+								headers = {
+									'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+									'Client-Id': process.env.CLIENT_ID_SOW,
+									'Content-Type': 'application/json'
+								}
+	
+								dataCards = {
+									'status': 'FULFILLED'
+								}
+	
+								axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, dataCards, {
+									'headers': headers
+								}).then(resp => {
+									console.log(resp.data);
+								}).catch(err => console.error(err))
 								client.channels.cache.get(process.env.MANAGE_CARD).send({
 									content: `Nouvelle récupération`,
 									embeds: [new MessageEmbed().setTitle("Nouvelle carte récupérée").setDescription(`${userName} a récupérée la carte ${chosenFile}`)],
