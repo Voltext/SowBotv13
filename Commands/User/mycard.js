@@ -83,5 +83,26 @@ module.exports = {
             }
         })
 
+        await mongo().then(async (mongoosepredi) => {
+            try {
+                const results = await cardCollectionSchema.findOne({
+                    userId,
+                });
+                if (results === null) {
+                    nbCards = 1
+                }
+                else {
+                    nbCards = results.cards.length
+                }
+                await interaction.reply({
+                    content: `${nbCards}/${length} cartes collectionnées en plus de la/les vôtre(s)`,
+                    files: [attachmentBasic],
+                    ephemeral: true
+                })
+            } catch {
+                mongoosepredi.connection.close();
+            }
+        });
+
     }
 }
