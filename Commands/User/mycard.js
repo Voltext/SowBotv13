@@ -66,12 +66,12 @@ module.exports = {
                     })
                     const button1 = new MessageButton()
                         .setCustomId("previousbtn")
-                        .setLabel("Previous")
+                        .setLabel("⬅️")
                         .setStyle("DANGER");
 
                     const button2 = new MessageButton()
                         .setCustomId("nextbtn")
-                        .setLabel("Next")
+                        .setLabel("➡️")
                         .setStyle("SUCCESS");
 
                     const buttonList = [button1, button2];
