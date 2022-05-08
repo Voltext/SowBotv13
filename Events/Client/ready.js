@@ -228,7 +228,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			});
 		})
 
-		schedule.scheduleJob('*/2 17-23 * * *', async () => {
+		schedule.scheduleJob('*/30 17-23 * * *', async () => {
 			client.channels.cache.get(process.env.MANAGE_CARD).send({
 				content: `-------------------`,
 			})
