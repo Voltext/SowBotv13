@@ -1,14 +1,11 @@
 const {
     Message,
     MessageEmbed,
-    MessageButton,
-    MessageActionRow,
     Client
 } = require('discord.js');
 const mongo = require('../../mongo');
 const reponseSchema = require('../../Schemas/reponseSchema');
 const battleSchema = require('../../Schemas/battleSchema');
-const pronoSchema = require('../../Schemas/pronoSchema');
 
 module.exports = {
     name: "messageCreate",
@@ -25,10 +22,7 @@ module.exports = {
             if (content.startsWith("#BATTLE")) {
                 const answers = content.split("-");
                 answers.shift()
-                const arr = [{
-                    userId: message.author.id,
-                    reponses: answers
-                }]
+                const arr = [{userId: message.author.id, pronoId: 1, reponse: answers[0]}, {userId: message.author.id, pronoId: 2, reponse: answers[1]}, {userId: message.author.id, pronoId: 3, reponse: answers[2]}, {userId: message.author.id, pronoId: 4, reponse: answers[3]}, {userId: message.author.id, pronoId: 5, reponse: answers[4]}, {userId: message.author.id, pronoId: 6, reponse: answers[5]}]
 
                 const userId = message.author.id
 
@@ -116,13 +110,13 @@ module.exports = {
                                         message.reply("Vous avez déjà envoyé votre participation")
                                     }
 
-                                } finally {
+                                } catch {
                                     mongoosefindreponse.connection.close()
                                 }
                             })
 
                         }
-                    } finally {
+                    } catch {
                         mongoosefindbattle.connection.close();
                     }
                 });

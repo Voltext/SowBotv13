@@ -1,10 +1,6 @@
 const {
-	MessageActionRow,
 	MessageEmbed,
-	MessageSelectMenu,
-	MessageAttachment
 } = require("discord.js");
-const ms = require("ms");
 const mongo = require('../../mongo');
 const prediSchema = require('../../Schemas/prediSchema')
 
@@ -143,12 +139,9 @@ module.exports = {
 		]
 	}],
 
-	async execute(interaction, client) {
+	async execute(interaction) {
 		const {
 			options,
-			member,
-			guild,
-			channel
 		} = interaction;
 
 		try {
@@ -221,7 +214,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebuteur.connection.close()
 								}
 							})
@@ -296,7 +289,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosefinal.connection.close()
 								}
 							})
@@ -368,7 +361,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -440,7 +433,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosemedaille.connection.close()
 								}
 							})
@@ -515,7 +508,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoose45.connection.close()
 								}
 							})
@@ -590,7 +583,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoose90.connection.close()
 								}
 							})
@@ -662,7 +655,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosecarton.connection.close()
 								}
 							})
@@ -734,7 +727,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -813,7 +806,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -885,7 +878,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -958,7 +951,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -1029,7 +1022,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosefinal.connection.close()
 								}
 							})
@@ -1101,7 +1094,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebuteur.connection.close()
 								}
 							})
@@ -1173,7 +1166,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebuteur.connection.close()
 								}
 							})
@@ -1245,7 +1238,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebut.connection.close()
 								}
 							})
@@ -1320,7 +1313,7 @@ module.exports = {
 									}, {
 										upsert: true,
 									})
-								} finally {
+								} catch {
 									mongoosebutday.connection.close()
 								}
 							})

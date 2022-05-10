@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed } = require("discord.js");
+const { MessageEmbed } = require("discord.js");
 const mongo = require('../../mongo');
 const warnSchema = require('../../Schemas/warnSchema');
 
@@ -22,7 +22,7 @@ module.exports = {
     ],
 
     async execute(interaction) {
-        const {guild, options} = interaction
+        const {guild} = interaction
         const user = interaction.options.getUser('user');
         const reason = interaction.options.getString('raison');
         const member = interaction.options.getMember('user');
@@ -48,7 +48,7 @@ module.exports = {
 			value: `${reason}`,
 			inline: true,
 		});
-		BanEmbedUser.setFooter("Pour toute demande de deban, veuillez vous adresser au modérateur qui vous a banni par message privé. Aucun bannissement ne sera annulé avant la fin de la période donnée")
+		BanEmbedUser.setFooter({text: "Pour toute demande de deban, veuillez vous adresser au modérateur qui vous a banni par message privé. Aucun bannissement ne sera annulé avant la fin de la période donnée"})
 
 		await member.send({embeds: [BanEmbedUser]});
 
@@ -87,7 +87,7 @@ module.exports = {
 				}, {
 					upsert: true,
 				})
-			} finally {
+			} catch {
 				mongooseban.connection.close()
 			}
 		})

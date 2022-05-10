@@ -1,6 +1,4 @@
 const {
-    Client,
-    CommandInteraction,
     MessageEmbed
 } = require("discord.js");
 const mongo = require('../../mongo')
@@ -437,7 +435,7 @@ module.exports = {
                             }
                         })
                     }
-                } finally {
+                } catch {
                     mongoosepredi.connection.close();
                 }
             });

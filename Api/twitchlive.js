@@ -7,8 +7,8 @@ class TwitchLive {
     async isLive() {
         const res = await got(makeURL(), {
              headers: {
-                 'Authorization': 'Bearer ' + process.env.TWITCH_AUTH,
-                 'Client-Id': process.env.CLIENT_ID
+                 'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+                 'Client-Id': process.env.CLIENT_ID_SOW
              },
              responseType: 'json'
         })

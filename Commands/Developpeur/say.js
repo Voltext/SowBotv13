@@ -1,8 +1,3 @@
-const {
-    CommandInteraction,
-    MessageEmbed
-} = require("discord.js");
-
 module.exports = {
     name: "say",
     description: "Permet de faire dire ce qu'on veut au bot",

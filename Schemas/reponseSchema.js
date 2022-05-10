@@ -5,11 +5,15 @@ const reponseSchema = mongoose.Schema({
     type: String,
     required: true
   }, 
-  reponses: {
-    type: [String],
+  pronoId: {
+    type: Number,
     required: true
-  }
+  },
+  reponse: {
+    type: String,
+    required: true
+  },
 
 })
 
-module.exports = mongoose.model('reponses', reponseSchema);
+module.exports = mongoose.model('Reponses', reponseSchema);

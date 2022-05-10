@@ -1,4 +1,4 @@
-const { CommandInteraction, MessageEmbed, MessageAttachment } = require("discord.js");
+const { MessageAttachment } = require("discord.js");
 const fs = require('fs')
 const path = require('path');
 

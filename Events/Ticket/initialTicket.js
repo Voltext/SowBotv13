@@ -56,7 +56,7 @@ module.exports = {
                         Modo: "Aucun"
                     });
                 }
-                finally {
+                catch {
                     mongooseticketinit.connection.close();
                 }
             });

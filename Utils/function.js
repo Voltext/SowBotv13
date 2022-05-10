@@ -1,4 +1,10 @@
 require('dotenv').config();
+const mongo = require('../mongo');
+const reponseSchema = require('../Schemas/reponseSchema');
+const battleSchema = require('../Schemas/battleSchema');
+const pronoSchema = require('../Schemas/pronoSchema');
+const counterSchema = require('../Schemas/counterSchema');
+
 module.exports = class Utils {
     static async getMemberRole(user) {
         const roles = user._roles
@@ -40,14 +46,42 @@ module.exports = class Utils {
         return c / b;
     }
 
-    /* static getInfoReset(guild, userId) {
-        let battleRole = guild.roles.cache.get(process.env.BATTLE);
-        const member = guild.members.fetch(userId)
-        //member.roles.add(battleRole)
+    static cleanVar(value) {
+        return value.replace(' ', '').replace('\n', '')
+    }
 
-        return member.user.displayAvatarURL({
-            format: 'png',
-          })
+    static difference(a, b) {
+        return Math.abs(a - b);
+      }
 
-    } */
+      static async clearAll() {
+        await mongo().then(async (mongooseresetprono) => {
+            try {
+                await pronoSchema.deleteMany({})
+            } catch {
+                mongooseresetprono.connection.close()
+            }
+        })
+        await mongo().then(async (mongooseresetbattle) => {
+            try {
+                await battleSchema.deleteMany({})
+            } catch {
+                mongooseresetbattle.connection.close()
+            }
+        })
+        await mongo().then(async (mongooseresetreponse) => {
+            try {
+                await reponseSchema.deleteMany({})
+            } catch {
+                mongooseresetreponse.connection.close()
+            }
+        })
+        await mongo().then(async (mongooseresetcounter) => {
+            try {
+                await counterSchema.deleteMany({})
+            } catch {
+                mongooseresetcounter.connection.close()
+            }
+        })
+      }
 }

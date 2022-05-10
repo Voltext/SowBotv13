@@ -1,6 +1,4 @@
 const {
-  CommandInteraction,
-  MessageEmbed,
   MessageAttachment
 } = require("discord.js");
 const {
@@ -23,11 +21,9 @@ registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
 
 module.exports = {
   name: "guildMemberAdd",
-  async execute(interaction, member) {
+  async execute(interaction) {
     const {
-      options,
-      guild,
-      channel
+      guild
     } = interaction;
 
     let memberCount = interaction.guild.memberCount

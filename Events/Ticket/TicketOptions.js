@@ -132,7 +132,7 @@ module.exports = {
                         break;
 
                 }
-            } finally {
+            } catch {
                 mongooseticketopt.connection.close();
             }
         })

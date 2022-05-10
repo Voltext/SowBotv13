@@ -1,7 +1,3 @@
-const {
-    MessageEmbed,
-    MessageAttachment
-} = require("discord.js");
 const Cards = require("../../Api/card");
 require('dotenv').config();
 const fs = require('fs')
@@ -28,6 +24,7 @@ module.exports = {
         const card = await getUsers.getUserCard()
         if (card.data !== null) {
             const data = card.data
+            console.log(data)
 
             data.forEach(async function (elem) {
                 const userName = elem.user_name
@@ -42,6 +39,7 @@ module.exports = {
                                 content: `Le compte ${userName} n'est link à aucun compte`,
                             })
                         } else {
+                            const rewardId = elem.id;
                             const userId = results.userId
 
                             const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
@@ -59,28 +57,33 @@ module.exports = {
                                     }, {
                                         upsert: true,
                                     })
-                                } finally {
+
+                                } catch {
                                     mongooselock.connection.close()
                                 }
                             })
-                            await axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${elem.id}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, {
+                            headers = {
+                                'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+                                'Client-Id': process.env.CLIENT_ID_SOW,
+                                'Content-Type': 'application/json'
+                            }
+
+                            dataCards = {
                                 'status': 'FULFILLED'
-                            }, {
-                                headers: {
-                                    'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
-                                    'client-id': process.env.CLIENT_ID_SOW,
-                                    'Content-Type': 'application/json'
-                                }
-                            });
-                            console.log(elem.id)
+                            }
+
+                            axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, dataCards, {
+                                'headers': headers
+                            }).then(resp => {
+                                console.log(resp.data);
+                            }).catch(err => console.error(err))
                         }
-                    } finally {
+                    } catch {
                         mongoosepredi.connection.close();
                     }
                 });
 
             })
-
 
         } else {
             interaction.reply({
