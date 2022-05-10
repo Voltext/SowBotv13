@@ -1,8 +1,8 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 
 module.exports = {
-    name: "createForum",
-    description: "Souhaiter un bon anniversaire",
+    name: "createforum",
+    description: "Creer un forum",
     permission: "ADMINISTRATOR",
     options: [
         {
