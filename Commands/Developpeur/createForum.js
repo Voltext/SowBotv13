@@ -13,7 +13,7 @@ module.exports = {
         },
     ],
 
-    execute(interaction) {
+    async execute(interaction) {
       const { guild } = interaction
       const newChannel = interaction.options.getChannel("channel")
 
