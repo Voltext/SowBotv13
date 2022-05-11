@@ -34,6 +34,10 @@ module.exports = {
                     allow: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"],
                 },
                 {
+                    id: process.env.MOD_TEST,
+                    allow: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"],
+                },
+                {
                     id: process.env.RESPONSABLE,
                     allow: ["SEND_MESSAGES", "VIEW_CHANNEL", "READ_MESSAGE_HISTORY"],
                 },

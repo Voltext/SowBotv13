@@ -20,7 +20,7 @@ module.exports = {
             member
         } = interaction;
 
-        if (!member.permissions.has("BAN_MEMBERS")) return interaction.reply({
+        if (!member.permissions.has("KICK_MEMBERS")) return interaction.reply({
             content: 'Vous ne pouvez pas utiliser ces boutons',
             ephemeral: true
         })
