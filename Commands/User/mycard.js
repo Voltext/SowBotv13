@@ -57,26 +57,13 @@ module.exports = {
                     const ArrCards = results.cards
 
                     ArrCards.forEach(function (elem) {
-                        const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${elem}`))
-                        const embed = new MessageEmbed().setImage(`attachment://${elem}`)
-                        const img = new MessageAttachment(image);
+                        const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${elem}`)
 
                         ArrEmb.push(embed)
-                        ArrImg.push(img)
                     })
-                    const button1 = new MessageButton()
-                        .setCustomId("previousbtn")
-                        .setLabel("⬅️")
-                        .setStyle("DANGER");
 
-                    const button2 = new MessageButton()
-                        .setCustomId("nextbtn")
-                        .setLabel("➡️")
-                        .setStyle("SUCCESS");
-
-                    const buttonList = [button1, button2];
-                    const timeout = 10000;
-                    paginationEmbed(interaction, ArrEmb, ArrImg, userName, buttonList, timeout);
+                    pagination.setEmbeds(ArrEmb);
+                    pagination.render();
                 }
             } catch {
                 mongoosepredi.connection.close();
