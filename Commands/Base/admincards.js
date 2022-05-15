@@ -34,17 +34,12 @@ module.exports = {
                     const ArrCards = results.cards
 
                     ArrCards.forEach(function (elem) {
-                        const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${elem}`))
                         const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${elem}`)
-                        const img = `http://141.94.78.72/Cards/${elem}`;
-
-                        console.log(img)
 
                         ArrEmb.push(embed)
-                        ArrImg.push(img)
                     })
-                    console.log(ArrImg)
-                    pagination.setImages(ArrImg);
+
+                    pagination.setEmbeds(ArrEmb);
                     pagination.render();
                 }
             } catch {
