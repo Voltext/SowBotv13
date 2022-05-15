@@ -20,6 +20,8 @@ module.exports = {
             member
         } = interaction;
 
+        if(interaction.customId === "close" || interaction.customId === "lock" || interaction.customId === "unlock" || interaction.customId === "charge")
+
         if (!member.permissions.has("KICK_MEMBERS")) return interaction.reply({
             content: 'Vous ne pouvez pas utiliser ces boutons',
             ephemeral: true
