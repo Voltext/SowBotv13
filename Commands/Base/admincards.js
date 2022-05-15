@@ -63,12 +63,12 @@ module.exports = {
                     ArrCards.forEach(function (elem) {
                         const image = fs.readFileSync(path.join(__dirname, `../../Assets/Cards/${elem}`))
                         const embed = new MessageEmbed().setImage(`attachment://${elem}`)
-                        const img = new MessageAttachment(image);
+                        const img = `http://141.94.78.72/Cards/${elem}`;
 
                         ArrEmb.push(embed)
                         ArrImg.push(img)
                     })
-                    pagination.setEmbeds(ArrEmb);
+                    pagination.setImages(ArrImg);
                     pagination.render();
                 }
             } catch {
