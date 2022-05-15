@@ -7,13 +7,17 @@ const fs = require('fs')
 const path = require('path');
 const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
 const mongo = require('../../mongo');
-const paginationEmbed = require('discordjs-button-pagination')
+const {
+    Pagination
+} = require('pagination.djs');
 
 module.exports = {
     name: "mycard",
     description: "Récupère ta carte",
 
     async execute(interaction) {
+
+        const pagination = new Pagination(interaction);
 
         const userId = interaction.user.id
         var ArrEmb = []
@@ -45,27 +49,6 @@ module.exports = {
                 mongoosepredi.connection.close();
             }
         })
-
-        await mongo().then(async (mongoosepredi) => {
-            try {
-                const results = await cardCollectionSchema.findOne({
-                    userId,
-                });
-                if (results === null) {
-                    nbCards = 1
-                }
-                else {
-                    nbCards = results.cards.length
-                }
-                await interaction.reply({
-                    content: `${nbCards}/${length} cartes collectionnées en plus de la/les vôtre(s)`,
-                    files: [attachmentBasic],
-                    ephemeral: true
-                })
-            } catch {
-                mongoosepredi.connection.close();
-            }
-        });
 
     }
 }
