@@ -116,5 +116,6 @@ module.exports = {
 
     const buffer = canvas.toBuffer('image/png')
     fs.writeFileSync(`./Assets/Cards/${interaction.user.id}.png`, buffer)
+    fs.writeFileSync(`C:/wamp64/www/Cards/${interaction.user.id}.png`, buffer)
   }
 }
