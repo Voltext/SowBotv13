@@ -65,9 +65,12 @@ module.exports = {
                         const embed = new MessageEmbed().setImage(`attachment://${elem}`)
                         const img = `http://141.94.78.72/Cards/${elem}`;
 
+                        console.log(img)
+
                         ArrEmb.push(embed)
                         ArrImg.push(img)
                     })
+                    console.log(ArrImg)
                     pagination.setImages(ArrImg);
                     pagination.render();
                 }
