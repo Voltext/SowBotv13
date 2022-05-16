@@ -57,15 +57,16 @@ module.exports = {
         reponses.push(score.content);
       })
       reponses.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
-      console.log(counts)
+      const keysChart = Object.keys(counts);
+      const valueChart = Object.values(counts);
       const configuration = {
         type: "bar",
         data: {
-          labels: [1, 2, 3],
+          labels: keysChart,
           datasets: [{
             label: "Scores",
-            data: [4, 5, 6],
-            backgroundColor: 'red',
+            data: valueChart,
+            backgroundColor: '#14171f',
           }]
         }
       }
