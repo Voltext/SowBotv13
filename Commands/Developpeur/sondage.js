@@ -64,7 +64,7 @@ module.exports = {
         data: {
           labels: keysChart,
           datasets: [{
-            label: "Scores",
+            label: `Score : ${libelle}`,
             data: valueChart,
             backgroundColor: '#14171f',
           }]
