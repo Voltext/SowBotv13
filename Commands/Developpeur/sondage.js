@@ -41,7 +41,7 @@ module.exports = {
       backgroundColour: 'white'
     })
 
-    client.channels.cache.get("975823893673701426").send({
+    client.channels.cache.get("975834966816612372").send({
       content: `Sondage lancé : Quel sera le score selon vous de ${libelle} ?`
     })
 
@@ -80,7 +80,7 @@ module.exports = {
 
       const attachement = new MessageAttachment(image)
 
-      client.channels.cache.get("975823893673701426").send({
+      client.channels.cache.get("975834966816612372").send({
         files: [attachement]
       })
     });
