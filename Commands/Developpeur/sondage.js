@@ -38,7 +38,7 @@ module.exports = {
     const timing = interaction.options.getNumber("timing");
     const regexPatern = interaction.options.getString("regex");
 
-    const canvas = new ChartJSNodeCanvas(800, 600, 'white')
+    const canvas = new ChartJSNodeCanvas({width: 800, height: 600, backgroundColour: 'white'})
 
     if (regexPatern) {
       const filter = m => Utils.validRegex(regexPatern, m.content) === true
