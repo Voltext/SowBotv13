@@ -8,8 +8,6 @@ const {
 } = require("chartjs-node-canvas");
 const Utils = require("../../Utils/function")
 
-const chartCallback = (ChartJS) => {}
-
 module.exports = {
   name: "sondage",
   description: "Lancer un sondage",
@@ -40,7 +38,7 @@ module.exports = {
     const timing = interaction.options.getNumber("timing");
     const regexPatern = interaction.options.getString("regex");
 
-    const canvas = new ChartJSNodeCanvas(800, 600, chartCallback)
+    const canvas = new ChartJSNodeCanvas(800, 600, white)
 
     if (regexPatern) {
       const filter = m => Utils.validRegex(regexPatern, m.content) === true
