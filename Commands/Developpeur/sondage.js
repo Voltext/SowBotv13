@@ -39,40 +39,38 @@ module.exports = {
       backgroundColour: 'white'
     })
 
-    if (regexPatern) {
-      const filter = m => Utils.validRegex(m.content) === true
+    const filter = m => Utils.validScoreRegex(m.content) === true
 
-      const collector = interaction.channel.createMessageCollector({
-        filter,
-        time: timing
-      });
+    const collector = interaction.channel.createMessageCollector({
+      filter,
+      time: timing
+    });
 
-      collector.on('collect', m => {
-        console.log(`Collected ${m.content}`);
-      });
+    collector.on('collect', m => {
+      console.log(`Collected ${m.content}`);
+    });
 
-      collector.on('end', async collected => {
-        console.log(collected)
-        const configuration = {
-          type: "doughnut",
-          data: {
-            labels: [1, 2, 3],
-            datasets: [{
-              label: "Scores",
-              data: [4, 5, 6]
-            }]
-          }
+    collector.on('end', async collected => {
+      console.log(collected)
+      const configuration = {
+        type: "doughnut",
+        data: {
+          labels: [1, 2, 3],
+          datasets: [{
+            label: "Scores",
+            data: [4, 5, 6]
+          }]
         }
+      }
 
-        const image = await canvas.renderToBuffer(configuration)
+      const image = await canvas.renderToBuffer(configuration)
 
-        const attachement = new MessageAttachment(image)
+      const attachement = new MessageAttachment(image)
 
-        interaction.reply({
-          files: [attachement]
-        })
-      });
-    }
+      interaction.reply({
+        files: [attachement]
+      })
+    });
 
 
   }
