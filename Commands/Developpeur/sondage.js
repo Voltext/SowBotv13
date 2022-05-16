@@ -39,7 +39,11 @@ module.exports = {
     const timing = interaction.options.getNumber("timing");
     const regexPatern = interaction.options.getString("regex");
 
-    const canvas = new ChartJSNodeCanvas({width: 800, height: 600, backgroundColour: 'white'})
+    const canvas = new ChartJSNodeCanvas({
+      width: 800,
+      height: 600,
+      backgroundColour: 'white'
+    })
 
     if (regexPatern) {
       const filter = m => Utils.validRegex(regexPatern, m.content) === true
@@ -58,8 +62,11 @@ module.exports = {
         const configuration = {
           type: "doughnut",
           data: {
-            labels: [1,2,3],
-            datasets: [{ label: "Scores", data: [4,5,6] }]
+            labels: [1, 2, 3],
+            datasets: [{
+              label: "Scores",
+              data: [4, 5, 6]
+            }]
           }
         }
 
@@ -73,6 +80,6 @@ module.exports = {
       });
     }
 
-    
+
   }
 }

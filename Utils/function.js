@@ -55,7 +55,9 @@ module.exports = class Utils {
       }
 
       static validRegex(regexPatern, regexValue) {
-        const regex = regexPatern
+          console.log(regexPatern)
+          console.log(regexValue)
+        const regex = regexPatern;
         return regex.test(regexValue);
     }
 
