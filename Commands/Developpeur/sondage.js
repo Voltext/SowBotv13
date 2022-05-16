@@ -27,7 +27,7 @@ module.exports = {
     },
   ],
 
-  execute(interaction) {
+  execute(interaction, client) {
 
     const libelle = interaction.options.getString("libelle");
     const timing = interaction.options.getNumber("timing");
@@ -67,7 +67,7 @@ module.exports = {
 
       const attachement = new MessageAttachment(image)
 
-      interaction.reply({
+      client.channels.cache.get("796022491688337408").send({
         files: [attachement]
       })
     });
