@@ -32,7 +32,8 @@ module.exports = {
     const libelle = interaction.options.getString("libelle");
     const timing = interaction.options.getNumber("timing");
     
-    const reponses = []
+    const reponses = [];
+    const counts = {};
 
     const canvas = new ChartJSNodeCanvas({
       width: 800,
@@ -55,7 +56,8 @@ module.exports = {
       collected.map((score) => {
         reponses.push(score.content);
       })
-      console.log(reponses)
+      reponses.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+      console.log(counts)
       const configuration = {
         type: "bar",
         data: {
