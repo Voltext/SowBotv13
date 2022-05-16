@@ -54,10 +54,8 @@ module.exports = class Utils {
         return Math.abs(a - b);
       }
 
-      static validRegex(regexPatern, regexValue) {
-          console.log(regexPatern)
-          console.log(regexValue)
-        const regex = regexPatern;
+      static validScoreRegex(regexValue) {
+        const regex = /\b\d+-\d+\b/i;
         return regex.test(regexValue);
     }
 

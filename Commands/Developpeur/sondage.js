@@ -25,12 +25,6 @@ module.exports = {
       type: "NUMBER",
       required: true
     },
-    {
-      name: 'regex',
-      description: "Potentielle regex a respecter",
-      type: "STRING",
-      required: false
-    },
   ],
 
   execute(interaction) {
