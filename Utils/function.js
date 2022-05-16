@@ -54,6 +54,11 @@ module.exports = class Utils {
         return Math.abs(a - b);
       }
 
+      static validRegex(regexPatern, regexValue) {
+        const regex = regexPatern
+        return regex.test(regexValue);
+    }
+
       static async clearAll() {
         await mongo().then(async (mongooseresetprono) => {
             try {
