@@ -31,7 +31,8 @@ module.exports = {
 
     const libelle = interaction.options.getString("libelle");
     const timing = interaction.options.getNumber("timing");
-    const regexPatern = interaction.options.getString("regex");
+    
+    const reponses = []
 
     const canvas = new ChartJSNodeCanvas({
       width: 800,
@@ -51,7 +52,10 @@ module.exports = {
     });
 
     collector.on('end', async collected => {
-      console.log(collected)
+      collected.map((score) => {
+        reponses.push(score);
+      })
+      console.log(reponses)
       const configuration = {
         type: "bar",
         data: {
