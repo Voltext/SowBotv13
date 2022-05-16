@@ -40,7 +40,7 @@ module.exports = {
     })
 
     if (regexPatern) {
-      const filter = m => Utils.validRegex(regexPatern, m.content) === true
+      const filter = m => Utils.validRegex(m.content) === true
 
       const collector = interaction.channel.createMessageCollector({
         filter,
