@@ -41,6 +41,10 @@ module.exports = {
       backgroundColour: 'white'
     })
 
+    client.channels.cache.get("975823893673701426").send({
+      content: `Sondage lancé : Quel sera le score selon vous de ${libelle} ?`
+    })
+
     const filter = m => Utils.validScoreRegex(m.content) === true
 
     const collector = interaction.channel.createMessageCollector({
@@ -59,6 +63,7 @@ module.exports = {
       reponses.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
       const keysChart = Object.keys(counts);
       const valueChart = Object.values(counts);
+
       const configuration = {
         type: "bar",
         data: {
@@ -75,7 +80,7 @@ module.exports = {
 
       const attachement = new MessageAttachment(image)
 
-      client.channels.cache.get("796022491688337408").send({
+      client.channels.cache.get("975823893673701426").send({
         files: [attachement]
       })
     });
