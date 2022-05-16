@@ -53,7 +53,7 @@ module.exports = {
 
     collector.on('end', async collected => {
       collected.map((score) => {
-        reponses.push(score);
+        reponses.push(score.content);
       })
       console.log(reponses)
       const configuration = {
