@@ -53,12 +53,13 @@ module.exports = {
     collector.on('end', async collected => {
       console.log(collected)
       const configuration = {
-        type: "doughnut",
+        type: "bar",
         data: {
           labels: [1, 2, 3],
           datasets: [{
             label: "Scores",
-            data: [4, 5, 6]
+            data: [4, 5, 6],
+            backgroundColor: 'red',
           }]
         }
       }
