@@ -4,7 +4,7 @@ const {
 } = require("discord.js");
 const Chart = require('chart.js');
 const {
-  CanvasRenderService
+  ChartJSNodeCanvas
 } = require("chartjs-node-canvas");
 const Utils = require("../../Utils/function")
 
@@ -40,11 +40,11 @@ module.exports = {
     const timing = interaction.options.getNumber("timing");
     const regexPatern = interaction.options.getString("regex");
 
-    const canvas = new CanvasRenderService(800, 600, chartCallback)
+    const canvas = new ChartJSNodeCanvas(800, 600, chartCallback)
 
     if (regexPatern) {
       const filter = m => Utils.validRegex(regexPatern, m.content) === true
-      
+
       const collector = interaction.channel.createMessageCollector({
         filter,
         time: timing
