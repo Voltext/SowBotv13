@@ -28,13 +28,29 @@ module.exports = {
                     userId,
                 });
                 if (results === null) {
-                    
+                    const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${userId}.png`)
+                        
+                    ArrEmb.push(embed)
+                    pagination.setEmbeds(ArrEmb);
+                    pagination.render();
                 } else {
                     const ArrCards = results.cards
 
                     const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${userId}.png`)
                         
                     ArrEmb.push(embed)
+
+                    try {
+                        const pathImg = path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`)
+                        if(fs.existsSync(pathImg)) {
+                            const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${userId}_boost.png`)
+                        
+                            ArrEmb.push(embed)
+                        }
+                    }
+                    catch (e) {
+                        console.error(e)
+                    }
 
                     ArrCards.forEach(function (elem) {
                         const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${elem}`)
