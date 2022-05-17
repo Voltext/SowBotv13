@@ -170,10 +170,12 @@ module.exports = {
     if(isBoost == 'oui') {
       const buffer = canvas.toBuffer('image/png')
       fs.writeFileSync(`./Assets/Cards/${member.user.id}_boost.png`, buffer)
+      fs.writeFileSync(`C:/wamp64/www/Cards/${member.user.id}_boost.png`, buffer)
     }
     else {
       const buffer = canvas.toBuffer('image/png')
       fs.writeFileSync(`./Assets/Cards/${member.user.id}.png`, buffer)
+      fs.writeFileSync(`C:/wamp64/www/Cards/${member.user.id}.png`, buffer)
     }
     interaction.reply({
       content: "La carte a bien été crée",
