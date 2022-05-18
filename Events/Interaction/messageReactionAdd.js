@@ -31,11 +31,7 @@ module.exports = {
     name: "messageReactionAdd",
     async execute(reaction, member, client) {
         if (member.bot) return
-
-        if (member.roles.cache.has(process.env.BAN_PREDI) === true) {
-            reaction.users.remove(member)
-            return member.send({content: "Vous ne pouvez pas participez aux prédictions car vous avez été bannis du système"})
-        }
+        
 
         //
         //const { guild } = member;
@@ -325,6 +321,10 @@ module.exports = {
 
 
                         message.guild.members.fetch(member.id).then(member => {
+                            if (member.roles.cache.has(process.env.BAN_PREDI) === true) {
+                                reaction.users.remove(member)
+                                return member.send({content: "Vous ne pouvez pas participez aux prédictions car vous avez été bannis du système"})
+                            }
                             if (status === "close") {
                                 reaction.users.remove(member)
                                 if (reaction.emoji.name === "1️⃣" || reaction.emoji.name === "❌" || reaction.emoji.name === "2️⃣") {
