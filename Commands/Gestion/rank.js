@@ -64,7 +64,7 @@ module.exports = {
                     results.forEach(function (elem) {
                         ctx.fillStyle = '#ffffff'
                         ctx.font = '30px DINNextLTPro-Black'
-                        let name1 = `${elem.userName}`
+                        let name1 = `${elem.userName.substr(0,18)}`
                         ctx.fillText(name1, xp, yp)
 
                         ctx.fillStyle = '#ffffff'
@@ -79,7 +79,7 @@ module.exports = {
                             xp = 830
                             yp = 340
 
-                            x1 = 1170
+                            x1 = 1180
                             y1 = 340
                         }
 
