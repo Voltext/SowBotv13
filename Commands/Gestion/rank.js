@@ -79,7 +79,7 @@ module.exports = {
                             xp = 830
                             yp = 340
 
-                            x1 = 1120
+                            x1 = 1150
                             y1 = 340
                         }
 
