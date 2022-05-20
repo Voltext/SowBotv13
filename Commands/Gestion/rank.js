@@ -35,7 +35,7 @@ module.exports = {
                     userName: 1,
                     _id: 0
                 }, {
-                    limit: 20
+                    limit: 30
                 }).sort({
                     "points": -1
                 });
@@ -49,7 +49,7 @@ module.exports = {
                     const ctx = canvas.getContext('2d')
 
                     const background = await loadImage(
-                        path.join(__dirname, `../../Assets/Base/Classement.png`)
+                        path.join(__dirname, `../../Assets/Base/Classement30.png`)
                     )
                     let x = 0
                     let y = 0
@@ -57,7 +57,7 @@ module.exports = {
                     let xp = 350
                     let yp = 340
 
-                    let x1 = 890
+                    let x1 = 600
                     let y1 = 340
 
                     ctx.drawImage(background, x, y)
@@ -76,7 +76,15 @@ module.exports = {
                         y1 = y1 + 65;
 
                         if (placement === 10) {
-                            xp = 1060
+                            xp = 880
+                            yp = 340
+
+                            x1 = 1060
+                            y1 = 340
+                        }
+
+                        if (placement === 20) {
+                            xp = 1300
                             yp = 340
 
                             x1 = 1590
