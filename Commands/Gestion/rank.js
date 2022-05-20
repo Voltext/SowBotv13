@@ -57,7 +57,7 @@ module.exports = {
                     let xp = 350
                     let yp = 340
 
-                    let x1 = 600
+                    let x1 = 650
                     let y1 = 340
 
                     ctx.drawImage(background, x, y)
@@ -76,10 +76,10 @@ module.exports = {
                         y1 = y1 + 65;
 
                         if (placement === 10) {
-                            xp = 880
+                            xp = 830
                             yp = 340
 
-                            x1 = 1060
+                            x1 = 1120
                             y1 = 340
                         }
 
@@ -87,7 +87,7 @@ module.exports = {
                             xp = 1300
                             yp = 340
 
-                            x1 = 1590
+                            x1 = 1650
                             y1 = 340
                         }
 
