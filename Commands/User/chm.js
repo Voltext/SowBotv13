@@ -220,11 +220,11 @@ module.exports = {
         .addComponents(
           new TextInputComponent() // We create a Text Input Component
           .setCustomId('textinput-customid')
-          .setLabel('Some text Here')
-          .setStyle('SHORT') //IMPORTANT: Text Input Component Style can be 'SHORT' or 'LONG'
+          .setLabel('Raison')
+          .setStyle('LONG') //IMPORTANT: Text Input Component Style can be 'SHORT' or 'LONG'
           .setMinLength(4)
-          .setMaxLength(10)
-          .setPlaceholder('Write a text here')
+          .setMaxLength(500)
+          .setPlaceholder('Expliquez pourquoi vous souhaitez supprimer votre équipe')
           .setRequired(true) // If it's required or not
         );
 
