@@ -216,7 +216,8 @@ module.exports = {
       case "removeteam": {
         const modal = new Modal()
         .setCustomId('teamModal')
-        .setTitle("Supprimer votre équipe");
+        .setTitle("Supprimer votre équipe")
+        .addComponents();
 
         showModal(modal, {
           client: client,

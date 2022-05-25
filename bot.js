@@ -1,6 +1,8 @@
 const { Client, Collection } = require("discord.js");
 const client = new Client({ partials: ["CHANNEL", "MESSAGE"], intents: 98303});
 require('dotenv').config();
+const discordModals = require('discord-modals'); // Define the discord-modals package!
+discordModals(client);
 
 client.commands = new Collection();
 client.filters = new Collection();
