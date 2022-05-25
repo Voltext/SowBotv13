@@ -5,6 +5,10 @@ const playerSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  poste: {
+    type: String,
+    required: true
+  },
   stat1: {
     type: Number,
     required: true
