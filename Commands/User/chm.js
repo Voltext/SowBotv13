@@ -7,7 +7,11 @@ const playerSchema = require('../../Schemas/playerSchema')
 const teamsSchema = require('../../Schemas/teamsSchema')
 const Util = require('../../Utils/function')
 const mongo = require('../../mongo');
-const { Modal, TextInputComponent, showModal } = require('discord-modals');
+const {
+  Modal,
+  TextInputComponent,
+  showModal
+} = require('discord-modals');
 
 module.exports = {
   name: "chm",
@@ -109,6 +113,7 @@ module.exports = {
       guild
     } = interaction;
     const userId = interaction.user.id
+    let recruteurRole = guild.roles.cache.get(process.env.RECRUTEURS);
 
     const subCommand = options.getSubcommand();
 
@@ -173,6 +178,9 @@ module.exports = {
               _id: 0,
             });
             if (teamObj.length === 0) {
+              const capitaine = await guild.members.fetch(userId);
+              capitaine.roles.add(recruteurRole)
+
               const newMember = [userId.toString()]
               teamsSchema.create({
                 idCapitaine: userId,
@@ -180,31 +188,33 @@ module.exports = {
                 teamMembers: newMember
               })
               interaction.reply({
-                embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
+                embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon #info-recruteurs`)],
                 ephemeral: true
               })
             } else {
               teamObj.forEach(async team => {
                 const memberArr = team.teamMembers
                 memberArr.forEach(member => {
-                if(team.idCapitaine !== userId && member !== userId) {
-                  const newMember = [userId.toString()]
+                  if (team.idCapitaine !== userId && member !== userId) {
+                    const capitaine = await guild.members.fetch(userId);
+                    capitaine.roles.add(recruteurRole)
+
+                    const newMember = [userId.toString()]
                     teamsSchema.create({
                       idCapitaine: userId,
                       teamName: teamName,
                       teamMembers: newMember
                     })
                     interaction.reply({
-                      embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
+                      embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon #info-recruteurs`)],
                       ephemeral: true
                     })
-                }
-                else {
-                  interaction.reply({
-                    embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${team.teamName}**`)],
-                    ephemeral: true
-                  })
-                }
+                  } else {
+                    interaction.reply({
+                      embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${team.teamName}**`)],
+                      ephemeral: true
+                    })
+                  }
                 })
               })
             }
@@ -216,18 +226,18 @@ module.exports = {
       }
       case "removeteam": {
         const modal = new Modal()
-        .setCustomId('modal-customid')
-        .setTitle("Supprimer votre équipe")
-        .addComponents(
-          new TextInputComponent() // We create a Text Input Component
-          .setCustomId('textinput-customid')
-          .setLabel('Raison')
-          .setStyle('LONG') //IMPORTANT: Text Input Component Style can be 'SHORT' or 'LONG'
-          .setMinLength(4)
-          .setMaxLength(500)
-          .setPlaceholder('Expliquez pourquoi vous souhaitez supprimer votre équipe')
-          .setRequired(true) // If it's required or not
-        );
+          .setCustomId('modal-customid')
+          .setTitle("Quitter votre équipe")
+          .addComponents(
+            new TextInputComponent() // We create a Text Input Component
+            .setCustomId('textinput-customid')
+            .setLabel('Raison')
+            .setStyle('LONG') //IMPORTANT: Text Input Component Style can be 'SHORT' or 'LONG'
+            .setMinLength(4)
+            .setMaxLength(500)
+            .setPlaceholder('Expliquez pourquoi vous souhaitez quitter votre équipe')
+            .setRequired(true) // If it's required or not
+          );
 
         showModal(modal, {
           client: client,
