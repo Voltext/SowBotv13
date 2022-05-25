@@ -22,7 +22,7 @@ module.exports = {
                     description: "Saisissez l'@ du membre que vous souhaitez affronter"
                 },
                 {
-                  name: "isTeam",
+                  name: "isteam",
                   type: "STRING",
                   required: true,
                   description: "Souhaitez vous jouer contre une equipe",
