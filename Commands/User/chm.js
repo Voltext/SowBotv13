@@ -188,7 +188,7 @@ module.exports = {
                 teamMembers: newMember
               })
               interaction.reply({
-                embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon #info-recruteurs`)],
+                embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
                 ephemeral: true
               })
             } else {
@@ -206,7 +206,7 @@ module.exports = {
                       teamMembers: newMember
                     })
                     interaction.reply({
-                      embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon #info-recruteurs`)],
+                      embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
                       ephemeral: true
                     })
                   } else {
