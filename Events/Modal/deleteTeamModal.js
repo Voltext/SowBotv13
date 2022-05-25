@@ -15,7 +15,8 @@ module.exports = {
       modal.member.guild.channels.cache.get(process.env.ADMIN_FEED).send({
         embeds: [new MessageEmbed().setTitle("Suppressiond 'équipe").setDescription(`${modal.user.username} vient de supprimer son équipe pour la raison suivante : ${Formatters.codeBlock('markdown', firstResponse)}`).setColor('RED')]
       })
-      modal.reply({ content: 'La suppression de votre équipe a bien été prise en compte pour la raison : ' + Formatters.codeBlock('markdown', firstResponse), ephemeral: true });
+      
+      modal.reply({ content: `La suppression de votre équipe a bien été prise en compte pour la raison : ${Formatters.codeBlock('markdown', firstResponse)}`, ephemeral: true });
     } 
 
     
