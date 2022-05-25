@@ -172,7 +172,7 @@ module.exports = {
               teamMembers: 1,
               _id: 0,
             });
-            if (teamObj === null) {
+            if (teamObj.length === 0) {
               console.log("Test2")
               interaction.reply({
                 embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
