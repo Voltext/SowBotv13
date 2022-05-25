@@ -12,11 +12,11 @@ module.exports = {
     console.log(modal)
     if(modal.customId === 'modal-customid') {
       const firstResponse = modal.getTextInputValue('textinput-customid');
-      modal.reply('Congrats! Powered by discord-modals.' + Formatters.codeBlock('markdown', firstResponse));
+      modal.member.guild.channels.cache.get(process.env.ADMIN_FEED).send({
+        content: `${modal.user.username} vient de supprimer son équipe pour la raison suivante : ${Formatters.codeBlock('markdown', firstResponse)}`
+      })
     } 
 
-    guild.channels.cache.get(process.env.ADMIN_FEED).send({
-      content: `vient de supprimer son équipe pour la raison : ${value}`
-    })
+    
   }
 };
