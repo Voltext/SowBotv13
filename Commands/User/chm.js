@@ -184,37 +184,11 @@ module.exports = {
                 ephemeral: true
               })
             } else {
-              console.log("Test3")
               teamObj.forEach(async team => {
                 const memberArr = team.teamMembers
-                if(team.idCapitaine === userId) {
-                  interaction.reply({
-                    embeds: [Util.errorEmbed("Création impossible", `Vous possédez déjà une équipe : **${team.teamName}**`)],
-                    ephemeral: true
-                  })
-                }
-                else {
-                  const newMember = [userId.toString()]
-                  teamsSchema.create({
-                    idCapitaine: userId,
-                    teamName: teamName,
-                    teamMembers: newMember
-                  })
-                  interaction.reply({
-                    embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
-                    ephemeral: true
-                  })
-                }
                 memberArr.forEach(member => {
-                  if(member === userId) {
-                    console.log("Test6")
-                    interaction.reply({
-                      embeds: [Util.errorEmbed("Création impossible", `Vous faites déjà parti d'une équipe : **${team.teamName}**`)],
-                      ephemeral: true
-                    })
-                  }
-                  else {
-                    const newMember = [userId.toString()]
+                if(team.idCapitaine !== userId && member !== userId) {
+                  const newMember = [userId.toString()]
                     teamsSchema.create({
                       idCapitaine: userId,
                       teamName: teamName,
@@ -224,7 +198,13 @@ module.exports = {
                       embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
                       ephemeral: true
                     })
-                  }
+                }
+                else {
+                  interaction.reply({
+                    embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${team.teamName}**`)],
+                    ephemeral: true
+                  })
+                }
                 })
               })
             }
