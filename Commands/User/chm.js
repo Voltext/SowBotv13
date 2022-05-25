@@ -173,7 +173,7 @@ module.exports = {
               _id: 0,
             });
             if (teamObj.length === 0) {
-              const newMember = [userId]
+              const newMember = [userId.toString()]
               teamsSchema.create({
                 idCapitaine: userId,
                 teamName: teamName,
@@ -195,6 +195,7 @@ module.exports = {
                   })
                 }
                 else {
+                  const newMember = [userId.toString()]
                   teamsSchema.create({
                     idCapitaine: userId,
                     teamName: teamName,
@@ -214,6 +215,7 @@ module.exports = {
                     })
                   }
                   else {
+                    const newMember = [userId.toString()]
                     teamsSchema.create({
                       idCapitaine: userId,
                       teamName: teamName,
