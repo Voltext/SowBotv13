@@ -161,6 +161,7 @@ module.exports = {
         break;
       }
       case "createteam": {
+        console.log("Test1")
         const teamName = interaction.options.getString("teamname")
         const idCapitaine = userId
         mongo().then(async (mongooseteam) => {
@@ -172,20 +173,24 @@ module.exports = {
               _id: 0,
             });
             if (teamObj === null) {
+              console.log("Test2")
               interaction.reply({
                 embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
                 ephemeral: true
               })
             } else {
+              console.log("Test3")
               teamObj.forEach(async team => {
                 const memberArr = team.teamMembers
                 if(team.idCapitaine === userId) {
+                  console.log("Test4")
                   interaction.reply({
                     embeds: [Util.errorEmbed("Création impossible", `Vous possédez déjà une équipe : **${teamObj.teamName}**`)],
                     ephemeral: true
                   })
                 }
                 else {
+                  console.log("Test5")
                   interaction.reply({
                     embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
                     ephemeral: true
@@ -193,12 +198,14 @@ module.exports = {
                 }
                 memberArr.forEach(member => {
                   if(member === userId) {
+                    console.log("Test6")
                     interaction.reply({
                       embeds: [Util.errorEmbed("Création impossible", `Vous faites déjà parti d'une équipe : **${team.teamName}**`)],
                       ephemeral: true
                     })
                   }
                   else {
+                    console.log("Test7")
                     interaction.reply({
                       embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
                       ephemeral: true
