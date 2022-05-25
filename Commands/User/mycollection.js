@@ -12,7 +12,7 @@ const {
 } = require('pagination.djs');
 
 module.exports = {
-    name: "mycard",
+    name: "mycollection",
     description: "Récupère ta carte",
 
     async execute(interaction) {
