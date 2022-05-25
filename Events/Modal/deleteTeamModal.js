@@ -1,6 +1,7 @@
 const { Modal } = require('discord-modals')
 const { Formatters, MessageEmbed } = require('discord.js');
 const teamsSchema = require('../../Schemas/teamsSchema')
+const mongo = require('../../mongo');
 
 module.exports = {
   name: "modalSubmit",
