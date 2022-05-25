@@ -9,7 +9,6 @@ module.exports = {
   */
 
   async execute(modal) {
-    console.log(modal)
     if(modal.customId === 'modal-customid') {
       const firstResponse = modal.getTextInputValue('textinput-customid');
       modal.member.guild.channels.cache.get(process.env.ADMIN_FEED).send({
