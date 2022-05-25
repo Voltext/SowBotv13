@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const teamsSchema = mongoose.Schema({
-  name: {
+  teamName: {
     type: String,
     required: true
   },

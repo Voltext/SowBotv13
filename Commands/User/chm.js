@@ -176,7 +176,7 @@ module.exports = {
                   });
                   if (teamMembreObj === null) {
                     teamsSchema.create({
-                      name: teamName,
+                      teamName: teamName,
                       idCapitaine: userId,
                     });
                     interaction.reply({
