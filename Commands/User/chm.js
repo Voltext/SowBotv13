@@ -1,12 +1,14 @@
 const {
   CommandInteraction,
-  MessageEmbed
+  MessageEmbed,
+  MessageButton
 } = require("discord.js");
 const playerSchema = require('../../Schemas/playerSchema')
 const teamsSchema = require('../../Schemas/teamsSchema')
 const teamMembreSchema = require('../../Schemas/teamMembreSchema')
 const Util = require('../../Utils/function')
 const mongo = require('../../mongo');
+const { Modal, showModal } = require('discord-modals');
 
 module.exports = {
   name: "chm",
@@ -90,12 +92,18 @@ module.exports = {
       }, ]
     },
 
+    {
+      name: "removeteam",
+      type: "SUB_COMMAND",
+      description: "Supprimer votre équipe",
+    },
+
   ],
   /**
    * 
    * @param {CommandInteraction} interaction 
    */
-  async execute(interaction) {
+  async execute(interaction, client) {
     const {
       options,
       member,
@@ -203,6 +211,27 @@ module.exports = {
             mongooseteam.connection.close()
           }
         })
+        break;
+      }
+      case "removeteam": {
+        const modal = new Modal()
+        .setCustomId('teamModal')
+        .setTitle("Supprimer votre équipe")
+        .addComponents(
+          new MessageButton()
+          .setCustomId('btnValidSuppr')
+          .setLabel("Confirmer")
+          .setStyle("SUCCESS"),
+          new MessageButton()
+          .setCustomId('btnDenySuppr')
+          .setLabel("Annuler")
+          .setStyle("DANGER"),
+        );
+
+        showModal(modal, {
+          client: client,
+          interaction: interaction,
+        });
         break;
       }
     }
