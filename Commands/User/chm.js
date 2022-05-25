@@ -1,6 +1,7 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
 const playerSchema = require('../../Schemas/playerSchema')
 const Util = require('../../Utils/function')
+const mongo = require('../../mongo');
 
 module.exports = {
     name: "chm",
