@@ -177,7 +177,7 @@ module.exports = {
               teamsSchema.create({
                 idCapitaine: userId,
                 teamName: teamName,
-                teamMembers = newMember
+                teamMembers: newMember
               })
               interaction.reply({
                 embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
@@ -199,7 +199,7 @@ module.exports = {
                   teamsSchema.create({
                     idCapitaine: userId,
                     teamName: teamName,
-                    teamMembers = newMember
+                    teamMembers: newMember
                   })
                   interaction.reply({
                     embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
@@ -219,7 +219,7 @@ module.exports = {
                     teamsSchema.create({
                       idCapitaine: userId,
                       teamName: teamName,
-                      teamMembers = newMember
+                      teamMembers: newMember
                     })
                     interaction.reply({
                       embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
