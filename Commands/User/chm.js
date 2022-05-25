@@ -8,7 +8,7 @@ const teamsSchema = require('../../Schemas/teamsSchema')
 const teamMembreSchema = require('../../Schemas/teamMembreSchema')
 const Util = require('../../Utils/function')
 const mongo = require('../../mongo');
-const { Modal, showModal } = require('discord-modals');
+const { Modal, TextInputComponent, showModal } = require('discord-modals');
 
 module.exports = {
   name: "chm",
@@ -217,7 +217,16 @@ module.exports = {
         const modal = new Modal()
         .setCustomId('teamModal')
         .setTitle("Supprimer votre équipe")
-        .addComponents();
+        .addComponents(
+          new TextInputComponent() // We create a Text Input Component
+          .setCustomId('textinput-customid')
+          .setLabel('Some text Here')
+          .setStyle('SHORT') //IMPORTANT: Text Input Component Style can be 'SHORT' or 'LONG'
+          .setMinLength(4)
+          .setMaxLength(10)
+          .setPlaceholder('Write a text here')
+          .setRequired(true) // If it's required or not
+        );
 
         showModal(modal, {
           client: client,
