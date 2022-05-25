@@ -48,9 +48,9 @@ module.exports = {
                 description: "Choisissez le poste de votre joueur",
                 choices: [
                     {name: "Gardien", value: "gardien"},
-                    {name: "Défenseur", value: "defenseur"}
-                    {name: "Milieu", value: "milieu"}
-                    {name: "Attaquant", value: "attaquant"}
+                    {name: "Défenseur", value: "defenseur"},
+                    {name: "Milieu", value: "milieu"},
+                    {name: "Attaquant", value: "attaquant"},
                 ]
             }
           ]
