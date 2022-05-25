@@ -154,7 +154,7 @@ module.exports = {
         break;
       }
       case "createteam": {
-        const teamName = interaction.options.getString("poste")
+        const teamName = interaction.options.getString("teamname")
         const idCapitaine = userId
         mongo().then(async (mongooseteam) => {
           try {
