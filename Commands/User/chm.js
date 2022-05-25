@@ -173,7 +173,12 @@ module.exports = {
               _id: 0,
             });
             if (teamObj.length === 0) {
-              console.log("Test2")
+              const newMember = [userId]
+              teamsSchema.create({
+                idCapitaine: userId,
+                teamName: teamName,
+                teamMembers = newMember
+              })
               interaction.reply({
                 embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
                 ephemeral: true
@@ -190,7 +195,11 @@ module.exports = {
                   })
                 }
                 else {
-                  console.log("Test5")
+                  teamsSchema.create({
+                    idCapitaine: userId,
+                    teamName: teamName,
+                    teamMembers = newMember
+                  })
                   interaction.reply({
                     embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
                     ephemeral: true
@@ -205,7 +214,11 @@ module.exports = {
                     })
                   }
                   else {
-                    console.log("Test7")
+                    teamsSchema.create({
+                      idCapitaine: userId,
+                      teamName: teamName,
+                      teamMembers = newMember
+                    })
                     interaction.reply({
                       embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
                       ephemeral: true
