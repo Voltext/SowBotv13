@@ -24,7 +24,7 @@ module.exports = {
           });
           
           if(results.length === 0) {
-            interaction.reply({
+            modal.reply({
               embeds: [Util.errorEmbed("Opération impossible", `Vous ne faites partie d'aucune équipe.`)],
               ephemeral: true
             })
@@ -33,7 +33,7 @@ module.exports = {
             results.forEach(async result => {
               if(result.idCapitaine === modal.user.id) {
                 teamsSchema.deleteOne({_id : result._id})
-                interaction.reply({
+                modal.reply({
                   embeds: [Util.errorEmbed("Vous avez quitté votre équipe", `En quittant l'équipe dont vous étiez détenteur, tous les joueurs qui composaient aussi votre équipe ont été exlu.`)],
                   ephemeral: true
                 })
