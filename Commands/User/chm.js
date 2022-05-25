@@ -1,4 +1,6 @@
 const { CommandInteraction, MessageEmbed } = require("discord.js");
+const playerSchema = require('../../Schemas/playerSchema')
+const Util = require('../../Utils/function')
 
 module.exports = {
     name: "chm",
@@ -60,6 +62,7 @@ module.exports = {
      */
   async execute(interaction) {
     const { options, member, guild } = interaction;
+    const userId = interaction.user.id
         
     const subCommand = options.getSubcommand();
 
@@ -71,6 +74,41 @@ module.exports = {
         break;
       }
       case "createplayer": {
+        mongo().then(async (mongoosecplayer) => {
+          try {
+              const userObj = await playerSchema.findOne({
+                  userId,
+              }, {
+                  userId: 1,
+                  _id: 0,
+              });
+              if (userObj === null) {
+                playerSchema.create({
+                  userId: userId,
+                  stat1: 65,
+                  stat2: 65,
+                  stat3: 65,
+                  stat4: 65,
+                  stat5: 65,
+                  stat6: 65,
+                  stamina: 100,
+                });
+                interaction.reply({
+                  embeds: [Util.successEmbed("Joueur créer", "Votre joueur a bien été créer")]
+                })
+              }
+              else {
+                  interaction.reply({
+                    embeds: [Util.errorEmbed("Création impossible", "Vous possedez déjà un joueur")]
+                  })
+              }
+          } catch {
+            mongoosecplayer.connection.close()
+          }
+      })
+        break;
+      }
+      case "createteam": {
         break;
       }
     }

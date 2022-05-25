@@ -4,6 +4,7 @@ const reponseSchema = require('../Schemas/reponseSchema');
 const battleSchema = require('../Schemas/battleSchema');
 const pronoSchema = require('../Schemas/pronoSchema');
 const counterSchema = require('../Schemas/counterSchema');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class Utils {
     static async getMemberRole(user) {
@@ -57,6 +58,14 @@ module.exports = class Utils {
       static validScoreRegex(regexValue) {
         const regex = /\b\d+-\d+\b/i;
         return regex.test(regexValue);
+    }
+
+    static errorEmbed(titre, description) {
+        return new MessageEmbed().setColor("RED").setTitle(titre).setDescription(description);
+    }
+
+    static successEmbed(titre, description) {
+        return new MessageEmbed().setColor("GREEN").setTitle(titre).setDescription(description);
     }
 
       static async clearAll() {
