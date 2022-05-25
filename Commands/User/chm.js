@@ -5,7 +5,6 @@ const {
 } = require("discord.js");
 const playerSchema = require('../../Schemas/playerSchema')
 const teamsSchema = require('../../Schemas/teamsSchema')
-const teamMembreSchema = require('../../Schemas/teamMembreSchema')
 const Util = require('../../Utils/function')
 const mongo = require('../../mongo');
 const { Modal, TextInputComponent, showModal } = require('discord-modals');
@@ -166,45 +165,46 @@ module.exports = {
         const idCapitaine = userId
         mongo().then(async (mongooseteam) => {
           try {
-            const teamObj = await teamsSchema.findOne({
-              idCapitaine,
-            }, {
+            const teamObj = await teamsSchema.find({}, {
               idCapitaine: 1,
               teamName: 1,
+              teamMembers: 1,
               _id: 0,
             });
             if (teamObj === null) {
-              mongo().then(async (mongoosecteam) => {
-                try {
-                  const teamMembreObj = await teamMembreSchema.findOne({
-                    userId,
-                  }, {
-                    userId: 1,
-                    _id: 0,
-                  });
-                  if (teamMembreObj === null) {
-                    teamsSchema.create({
-                      teamName: teamName,
-                      idCapitaine: userId,
-                    });
+              interaction.reply({
+                embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
+                ephemeral: true
+              })
+            } else {
+              teamObj.forEach(async team => {
+                const memberArr = team.teamMembers
+                if(team.idCapitaine === userId) {
+                  interaction.reply({
+                    embeds: [Util.errorEmbed("Création impossible", `Vous possédez déjà une équipe : **${teamObj.teamName}**`)],
+                    ephemeral: true
+                  })
+                }
+                else {
+                  interaction.reply({
+                    embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
+                    ephemeral: true
+                  })
+                }
+                memberArr.forEach(member => {
+                  if(member === userId) {
                     interaction.reply({
-                      embeds: [Util.successEmbed("Equipe créée", "Votre équipe a bien été créée")],
-                      ephemeral: true
-                    })
-                  } else {
-                    interaction.reply({
-                      embeds: [Util.errorEmbed("Création impossible", `Vous faites déjà partie d'une équipe`)],
+                      embeds: [Util.errorEmbed("Création impossible", `Vous faites déjà parti d'une équipe : **${team.teamName}**`)],
                       ephemeral: true
                     })
                   }
-                } catch {
-                  mongoosecteam.connection.close()
-                }
-              })
-            } else {
-              interaction.reply({
-                embeds: [Util.errorEmbed("Création impossible", `Vous possédez déjà une équipe : **${teamObj.teamName}**`)],
-                ephemeral: true
+                  else {
+                    interaction.reply({
+                      embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée`)],
+                      ephemeral: true
+                    })
+                  }
+                })
               })
             }
           } catch {

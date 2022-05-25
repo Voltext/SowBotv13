@@ -1,5 +1,6 @@
 const { Modal } = require('discord-modals')
 const { Formatters, MessageEmbed } = require('discord.js');
+const teamsSchema = require('../../Schemas/teamsSchema')
 
 module.exports = {
   name: "modalSubmit",
@@ -11,6 +12,9 @@ module.exports = {
   async execute(modal) {
     if(modal.customId === 'modal-customid') {
       const firstResponse = modal.getTextInputValue('textinput-customid');
+        
+      
+
       modal.member.guild.channels.cache.get(process.env.ADMIN_FEED).send({
         embeds: [new MessageEmbed().setTitle("Suppression d'équipe").setDescription(`${modal.user.username} vient de supprimer son équipe pour la raison suivante : ${Formatters.codeBlock('markdown', firstResponse)}`).setColor('RED')]
       })
