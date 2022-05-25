@@ -219,7 +219,7 @@ module.exports = {
         .setTitle("Supprimer votre équipe")
         .addComponents(
           new TextInputComponent() // We create a Text Input Component
-          .setCustomId('textinput-customid')
+          .setCustomId('raisonRemove')
           .setLabel('Raison')
           .setStyle('LONG') //IMPORTANT: Text Input Component Style can be 'SHORT' or 'LONG'
           .setMinLength(4)
