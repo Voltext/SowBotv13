@@ -215,7 +215,7 @@ module.exports = {
       }
       case "removeteam": {
         const modal = new Modal()
-        .setCustomId('teamModal')
+        .setCustomId('modal-customid')
         .setTitle("Supprimer votre équipe")
         .addComponents(
           new TextInputComponent() // We create a Text Input Component

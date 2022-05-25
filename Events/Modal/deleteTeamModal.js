@@ -9,7 +9,8 @@ module.exports = {
   */
 
   async execute(modal) {
-    if(modal.customId === 'teamModal') {
+    console.log(modal)
+    if(modal.customId === 'modal-customid') {
       const firstResponse = modal.getTextInputValue('textinput-customid');
       modal.reply('Congrats! Powered by discord-modals.' + Formatters.codeBlock('markdown', firstResponse));
     } 
