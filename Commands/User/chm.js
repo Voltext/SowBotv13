@@ -194,7 +194,7 @@ module.exports = {
             } else {
               teamObj.forEach(async team => {
                 const memberArr = team.teamMembers
-                memberArr.forEach(member => {
+                memberArr.forEach(async member => {
                   if (team.idCapitaine !== userId && member !== userId) {
                     const capitaine = await guild.members.fetch(userId);
                     capitaine.roles.add(recruteurRole)
