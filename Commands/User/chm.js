@@ -194,6 +194,7 @@ module.exports = {
                 }
               })
             } else {
+              console.log(teamObj)
               interaction.reply({
                 embeds: [Util.errorEmbed("Création impossible", `Vous possédez déjà une équipe : ${teamObj.teamName}`)],
                 ephemeral: true
