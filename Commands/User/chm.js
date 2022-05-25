@@ -188,9 +188,8 @@ module.exports = {
               teamObj.forEach(async team => {
                 const memberArr = team.teamMembers
                 if(team.idCapitaine === userId) {
-                  console.log("Test4")
                   interaction.reply({
-                    embeds: [Util.errorEmbed("Création impossible", `Vous possédez déjà une équipe : **${teamObj.teamName}**`)],
+                    embeds: [Util.errorEmbed("Création impossible", `Vous possédez déjà une équipe : **${team.teamName}**`)],
                     ephemeral: true
                   })
                 }
