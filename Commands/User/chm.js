@@ -162,7 +162,7 @@ module.exports = {
               idCapitaine,
             }, {
               idCapitaine: 1,
-              name: 1,
+              teamName: 1,
               _id: 0,
             });
             if (teamObj === null) {
@@ -194,9 +194,8 @@ module.exports = {
                 }
               })
             } else {
-              console.log(teamObj)
               interaction.reply({
-                embeds: [Util.errorEmbed("Création impossible", `Vous possédez déjà une équipe : ${teamObj.teamName}`)],
+                embeds: [Util.errorEmbed("Création impossible", `Vous possédez déjà une équipe : **${teamObj.teamName}**`)],
                 ephemeral: true
               })
             }
