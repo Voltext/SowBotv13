@@ -53,7 +53,7 @@ module.exports = {
         embeds: [new MessageEmbed().setTitle("Suppression d'équipe").setDescription(`${modal.user.username} vient de supprimer son équipe pour la raison suivante : ${Formatters.codeBlock('markdown', firstResponse)}`).setColor('RED')]
       })
 
-      modal.reply({ 
+      modal.followUp({ 
         embeds: [new MessageEmbed().setTitle("Suppression d'équipe").setDescription(`La suppression de votre équipe a bien été prise en compte pour la raison suivante : ${Formatters.codeBlock('markdown', firstResponse)}`).setColor('GREEN')],
         ephemeral: true
       });

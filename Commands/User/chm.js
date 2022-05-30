@@ -96,7 +96,7 @@ module.exports = {
     },
 
     {
-      name: "removeteam",
+      name: "leaveteam",
       type: "SUB_COMMAND",
       description: "Supprimer votre équipe",
     },
@@ -225,7 +225,7 @@ module.exports = {
         })
         break;
       }
-      case "removeteam": {
+      case "leaveteam": {
         const modal = new Modal()
           .setCustomId('modal-customid')
           .setTitle("Quitter votre équipe")
