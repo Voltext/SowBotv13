@@ -326,7 +326,6 @@ module.exports = {
                     })
                 })
 
-                Util.clearAll();
 
                 var newBattle = []    
 
