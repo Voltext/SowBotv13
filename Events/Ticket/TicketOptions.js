@@ -135,6 +135,7 @@ module.exports = {
 
                 }
             } catch {
+                console.log("Erreur event ticket: TicketOptions(138)")
                 mongooseticketopt.connection.close();
             }
         })

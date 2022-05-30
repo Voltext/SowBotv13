@@ -160,6 +160,7 @@ module.exports = {
               })
             }
           } catch {
+            console.log("Erreur commande club house manager: chm(163)")
             mongoosecplayer.connection.close()
           }
         })
@@ -218,6 +219,7 @@ module.exports = {
               })
             }
           } catch {
+            console.log("Erreur commande club house manager: chm(222)")
             mongooseteam.connection.close()
           }
         })

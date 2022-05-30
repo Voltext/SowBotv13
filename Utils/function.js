@@ -73,6 +73,7 @@ module.exports = class Utils {
             try {
                 await pronoSchema.deleteMany({})
             } catch {
+                console.log("Erreur function clearAll: function(76)")
                 mongooseresetprono.connection.close()
             }
         })
@@ -80,6 +81,7 @@ module.exports = class Utils {
             try {
                 await battleSchema.deleteMany({})
             } catch {
+                console.log("Erreur function clearAll: function(84)")
                 mongooseresetbattle.connection.close()
             }
         })
@@ -87,6 +89,7 @@ module.exports = class Utils {
             try {
                 await reponseSchema.deleteMany({})
             } catch {
+                console.log("Erreur function clearAll: function(92)")
                 mongooseresetreponse.connection.close()
             }
         })
@@ -94,6 +97,7 @@ module.exports = class Utils {
             try {
                 await counterSchema.deleteMany({})
             } catch {
+                console.log("Erreur function clearAll: function(100)")
                 mongooseresetcounter.connection.close()
             }
         })

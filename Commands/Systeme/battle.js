@@ -184,6 +184,7 @@ module.exports = {
                         await pronoSchema.insertMany(arr);
                     } catch (error) {
                         console.log(error)
+                        console.log("Erreur commande battle: battle(187)")
                         mongoosseaddprono.connection.close()
                     }
                 })
@@ -299,11 +300,13 @@ module.exports = {
                                         })
                                     }
                                 } catch {
+                                    console.log("Erreur commande battle: battle(303)")
                                     mongooserank.connection.close();
                                 }
                             })
                         }
                     } catch {
+                        console.log("Erreur commande battle: battle(309)")
                         mongooserank.connection.close();
                     }
                 })
@@ -355,6 +358,7 @@ module.exports = {
                     try {
                         await battleSchema.insertMany(newBattle);
                     } catch (error) {
+                        console.log("Erreur commande battle: battle(361)")
                         mongoosseaddbattle.connection.close()
                     }
                 }) 

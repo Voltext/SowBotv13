@@ -215,6 +215,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(218)")
 									mongoosebuteur.connection.close()
 								}
 							})
@@ -290,6 +291,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(294)")
 									mongoosefinal.connection.close()
 								}
 							})
@@ -362,6 +364,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(367)")
 									mongoosebut.connection.close()
 								}
 							})
@@ -434,6 +437,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(440)")
 									mongoosemedaille.connection.close()
 								}
 							})
@@ -509,6 +513,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(516)")
 									mongoose45.connection.close()
 								}
 							})
@@ -584,6 +589,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(592)")
 									mongoose90.connection.close()
 								}
 							})
@@ -656,6 +662,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(665)")
 									mongoosecarton.connection.close()
 								}
 							})
@@ -728,6 +735,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(738)")
 									mongoosebut.connection.close()
 								}
 							})
@@ -807,6 +815,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(818)")
 									mongoosebut.connection.close()
 								}
 							})
@@ -879,6 +888,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(891)")
 									mongoosebut.connection.close()
 								}
 							})
@@ -952,6 +962,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(965)")
 									mongoosebut.connection.close()
 								}
 							})
@@ -1023,6 +1034,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(1037)")
 									mongoosefinal.connection.close()
 								}
 							})
@@ -1095,6 +1107,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(1110)")
 									mongoosebuteur.connection.close()
 								}
 							})
@@ -1167,6 +1180,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(1183)")
 									mongoosebuteur.connection.close()
 								}
 							})
@@ -1239,6 +1253,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(1256)")
 									mongoosebut.connection.close()
 								}
 							})
@@ -1314,6 +1329,7 @@ module.exports = {
 										upsert: true,
 									})
 								} catch {
+									console.log("Erreur commande prediction: prediction(1332)")
 									mongoosebutday.connection.close()
 								}
 							})

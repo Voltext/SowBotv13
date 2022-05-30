@@ -84,6 +84,7 @@ module.exports = {
               upsert: true
             });
           } catch {
+            console.log("Erreur commande chatfilter: chatfilter(87)")
             mongoosesettings.connection.close()
           }
         })
@@ -156,6 +157,7 @@ module.exports = {
                   });
                 });
               } catch {
+                console.log("Erreur commande chatfilter: chatfilter(160)")
                 mongoosechat.connection.close()
               }
             })
@@ -196,6 +198,7 @@ module.exports = {
                   data.save();
                 });
               } catch {
+                console.log("Erreur commande chatfilter: chatfilter(201)")
                 mongoosechatr.connection.close()
               }
             })

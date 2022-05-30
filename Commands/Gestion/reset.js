@@ -188,6 +188,7 @@ module.exports = {
                     try {
                         await rankPrediSchema.deleteMany({})
                     } catch {
+                        console.log("Erreur script reset classement : reset(191)")
                         mongoosereset2.connection.close()
                     }
                 })
@@ -214,6 +215,7 @@ module.exports = {
                     try {
                         await battleSchema.insertMany(arr);
                     } catch (error) {
+                        console.log("Erreur script reset classement: reset(218)")
                         mongoosseaddbattle.connection.close()
                     }
                 })
@@ -239,6 +241,7 @@ module.exports = {
                     embeds: [battleEmbed]
                 })
             } catch {
+                console.log("Erreur script reset classement: reset(244)")
                 mongoosereset1.connection.close();
             }
         });

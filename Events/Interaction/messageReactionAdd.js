@@ -22,6 +22,7 @@ function addPoint(client, userId, userName, points) {
         } catch (error) {
             console.log(error)
             console.log(`${points} points n'ont pas pu être donné à ${userName}`)
+            console.log("Erreur event reactionAdd: messageReactionAdd(25)")
             mongooseaddpoint.connection.close()
         }
     })
@@ -441,6 +442,7 @@ module.exports = {
                         })
                     }
                 } catch {
+                    console.log("Erreur event reactionAdd: messageReactionAdd(445)")
                     mongoosepredi.connection.close();
                 }
             });

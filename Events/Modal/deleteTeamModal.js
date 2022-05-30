@@ -44,6 +44,7 @@ module.exports = {
 
         }
         catch {
+          console.log("Erreur suppression équipe : deleteTeamModal(47)")
           mongooseteam.connection.close();
         }
       })

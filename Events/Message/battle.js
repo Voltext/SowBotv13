@@ -102,6 +102,7 @@ module.exports = {
                                                     })
 
                                                 } catch (error) {
+                                                    console.log("Erreur event battle: battle(105)")
                                                     mongoosseaddreponse.connection.close()
                                                 }
                                             })
@@ -111,12 +112,14 @@ module.exports = {
                                     }
 
                                 } catch {
+                                    console.log("Erreur event battle: battle(115)")
                                     mongoosefindreponse.connection.close()
                                 }
                             })
 
                         }
                     } catch {
+                        console.log("Erreur event battle: battle(122)")
                         mongoosefindbattle.connection.close();
                     }
                 });

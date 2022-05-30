@@ -11,6 +11,7 @@ module.exports = async (client) => {
         });
       });
     } catch {
+      console.log("Erreur event filtre: FilterSys(14)")
       mongoosefiltre.connection.close();
     }
   });

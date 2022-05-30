@@ -88,6 +88,7 @@ module.exports = {
 					upsert: true,
 				})
 			} catch {
+				console.log("Erreur commande bannissement: ban(91)")
 				mongooseban.connection.close()
 			}
 		})
