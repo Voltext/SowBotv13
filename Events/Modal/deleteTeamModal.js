@@ -33,6 +33,7 @@ module.exports = {
           else {
             results.forEach(async result => {
               if(result.idCapitaine === modal.user.id) {
+                console.log(result._id)
                 teamsSchema.deleteOne({_id : result._id})
                 modal.reply({
                   embeds: [Util.errorEmbed("Vous avez quitté votre équipe", `En quittant l'équipe dont vous étiez détenteur, tous les joueurs qui composaient aussi votre équipe ont été exlu.`)],
