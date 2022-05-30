@@ -61,6 +61,7 @@ module.exports = {
                     });
                 }
                 catch {
+                    console.log("Erreur event ticket: initialTicket(64)")
                     mongooseticketinit.connection.close();
                 }
             });

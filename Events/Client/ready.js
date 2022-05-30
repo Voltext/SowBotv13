@@ -223,6 +223,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 						});
 					}
 				} catch {
+					console.log("Erreur event ready: ready(226)")
 					mongooseclassement.connection.close();
 				}
 			});
@@ -272,6 +273,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 											upsert: true,
 										})
 									} catch {
+										console.log("Erreur event ready: ready(276)")
 										mongooselock.connection.close()
 									}
 								})
@@ -296,6 +298,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 								})
 							}
 						} catch {
+							console.log("Erreur event ready: ready(301)")
 							mongoosepredi.connection.close();
 						}
 					});

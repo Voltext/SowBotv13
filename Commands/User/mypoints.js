@@ -33,6 +33,7 @@ module.exports = {
             }
             interaction.reply({embeds: [rankEmbed] , ephemeral: true });
         } catch {
+            console.log("Erreur commande points joueur: mypoints(36)")
             mongoosepoints.connection.close()
         }
     })

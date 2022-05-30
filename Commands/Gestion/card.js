@@ -59,6 +59,7 @@ module.exports = {
                                     })
 
                                 } catch {
+                                    console.log("Erreur script assignation carte : card(62)")
                                     mongooselock.connection.close()
                                 }
                             })
@@ -79,6 +80,7 @@ module.exports = {
                             }).catch(err => console.error(err))
                         }
                     } catch {
+                        console.log("Erreur script assignation carte : card(83)")
                         mongoosepredi.connection.close();
                     }
                 });

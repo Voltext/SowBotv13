@@ -12,7 +12,7 @@ const {
 } = require('pagination.djs');
 
 module.exports = {
-    name: "mycard",
+    name: "mycollection",
     description: "Récupère ta carte",
 
     async execute(interaction) {
@@ -62,6 +62,7 @@ module.exports = {
                     pagination.render();
                 }
             } catch {
+                console.log("Erreur commande collection carte: mycollection(65)")
                 mongoosepredi.connection.close();
             }
         })

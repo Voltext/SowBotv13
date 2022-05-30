@@ -43,6 +43,7 @@ module.exports = {
                     pagination.render();
                 }
             } catch {
+                console.log("Erreur affichage pagination cards : admincards(46)")
                 mongoosepredi.connection.close();
             }
         })

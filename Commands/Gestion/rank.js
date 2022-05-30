@@ -100,6 +100,7 @@ module.exports = {
                 }
                 
             } catch {
+                console.log("Erreur création du classement : rank(103)")
                 mongooserank.connection.close();
             }
         });

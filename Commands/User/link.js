@@ -27,7 +27,8 @@
                 upsert: true,
             })
         } catch {
-            mongooselock.connection.close()
+          console.log("Erreur commande link twitch -> bot: link(30)")
+          mongooselock.connection.close()
         }
     })
 

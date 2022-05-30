@@ -27,6 +27,7 @@ module.exports = {
 					upsert: true,
 				})
 			} catch {
+                console.log("Erreur script delock prediction: openpredi(30)")
 				mongooseopen.connection.close()
 			}
 		})

@@ -4,6 +4,7 @@ const reponseSchema = require('../Schemas/reponseSchema');
 const battleSchema = require('../Schemas/battleSchema');
 const pronoSchema = require('../Schemas/pronoSchema');
 const counterSchema = require('../Schemas/counterSchema');
+const { MessageEmbed } = require('discord.js');
 
 module.exports = class Utils {
     static async getMemberRole(user) {
@@ -59,11 +60,20 @@ module.exports = class Utils {
         return regex.test(regexValue);
     }
 
+    static errorEmbed(titre, description) {
+        return new MessageEmbed().setColor("RED").setTitle(titre).setDescription(description);
+    }
+
+    static successEmbed(titre, description) {
+        return new MessageEmbed().setColor("GREEN").setTitle(titre).setDescription(description);
+    }
+
       static async clearAll() {
         await mongo().then(async (mongooseresetprono) => {
             try {
                 await pronoSchema.deleteMany({})
             } catch {
+                console.log("Erreur function clearAll: function(76)")
                 mongooseresetprono.connection.close()
             }
         })
@@ -71,6 +81,7 @@ module.exports = class Utils {
             try {
                 await battleSchema.deleteMany({})
             } catch {
+                console.log("Erreur function clearAll: function(84)")
                 mongooseresetbattle.connection.close()
             }
         })
@@ -78,6 +89,7 @@ module.exports = class Utils {
             try {
                 await reponseSchema.deleteMany({})
             } catch {
+                console.log("Erreur function clearAll: function(92)")
                 mongooseresetreponse.connection.close()
             }
         })
@@ -85,6 +97,7 @@ module.exports = class Utils {
             try {
                 await counterSchema.deleteMany({})
             } catch {
+                console.log("Erreur function clearAll: function(100)")
                 mongooseresetcounter.connection.close()
             }
         })
