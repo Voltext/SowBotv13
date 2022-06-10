@@ -56,7 +56,7 @@ module.exports = class Utils {
       }
 
       static validScoreRegex(regexValue) {
-        const regex = /\b\d+-\d+\b/i;
+        const regex = /[a-zA-Z]+/i;
         return regex.test(regexValue);
     }
 

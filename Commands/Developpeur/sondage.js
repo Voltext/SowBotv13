@@ -14,8 +14,8 @@ module.exports = {
   description: "Lancer un sondage",
   permission: "ADMINISTRATOR",
   options: [{
-      name: 'libelle',
-      description: "Libelle du sondage",
+      name: 'equipe',
+      description: "equipe du transfert",
       type: "STRING",
       required: true
     },
@@ -25,13 +25,20 @@ module.exports = {
       type: "NUMBER",
       required: true
     },
+    {
+      name: 'salon',
+      description: "Salon où envoye le message",
+      type: "CHANNEL",
+      required: true
+  },
   ],
 
   execute(interaction, client) {
 
-    const libelle = interaction.options.getString("libelle");
+    const equipe = interaction.options.getString("equipe");
     const timing = interaction.options.getNumber("timing");
-    
+    const loggingChannel = interaction.options.getChannel("salon").id;
+
     const reponses = [];
     const counts = {};
 
@@ -41,8 +48,8 @@ module.exports = {
       backgroundColour: 'white'
     })
 
-    client.channels.cache.get("975835307314413598").send({
-      content: `Sondage lancé : Quel sera le score selon vous de ${libelle} ?`
+    client.channels.cache.get(loggingChannel).send({
+      content: `Sondage lancé : Quel serait pour vous la recrue idéale pour : ${equipe} ?`
     })
 
     const filter = m => Utils.validScoreRegex(m.content) === true
@@ -60,7 +67,9 @@ module.exports = {
       collected.map((score) => {
         reponses.push(score.content);
       })
-      reponses.forEach(function (x) { counts[x] = (counts[x] || 0) + 1; });
+      reponses.forEach(function (x) {
+        counts[x] = (counts[x] || 0) + 1;
+      });
       const keysChart = Object.keys(counts);
       const valueChart = Object.values(counts);
 
@@ -78,9 +87,9 @@ module.exports = {
 
       const image = await canvas.renderToBuffer(configuration)
 
-      const attachement = new MessageAttachment(image)
+      const attachement = new MessageAttSachment(image)
 
-      client.channels.cache.get("975835307314413598").send({
+      client.channels.cache.get(loggingChannel).send({
         files: [attachement]
       })
     });
