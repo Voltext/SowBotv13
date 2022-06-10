@@ -52,7 +52,7 @@ module.exports = {
       content: `Sondage lancé : Quel serait pour vous la recrue idéale pour : ${equipe} ?`
     })
 
-    const filter = m => Utils.validScoreRegex(m.content) === true
+    const filter = m => i.user.bot === false
 
     const collector = interaction.channel.createMessageCollector({
       filter,
