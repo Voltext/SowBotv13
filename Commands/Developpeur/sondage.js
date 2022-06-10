@@ -52,7 +52,7 @@ module.exports = {
       content: `Sondage lancé : Quel serait pour vous la recrue idéale pour : ${equipe} ?`
     })
 
-    const filter = m => i.user.id !== "907244439037169685"
+    const filter = m => m.user.id !== "907244439037169685"
 
     const collector = interaction.channel.createMessageCollector({
       filter,
