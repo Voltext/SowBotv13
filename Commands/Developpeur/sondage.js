@@ -87,7 +87,7 @@ module.exports = {
 
       const image = await canvas.renderToBuffer(configuration)
 
-      const attachement = new MessageAttSachment(image)
+      const attachement = new MessageAttachment(image)
 
       client.channels.cache.get(loggingChannel).send({
         files: [attachement]
