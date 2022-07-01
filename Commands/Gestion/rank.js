@@ -49,7 +49,7 @@ module.exports = {
                     const ctx = canvas.getContext('2d')
 
                     const background = await loadImage(
-                        path.join(__dirname, `../../Assets/Base/Classement30.png`)
+                        path.join(__dirname, `../../Assets/Base/Classement.png`)
                     )
                     let x = 0
                     let y = 0
