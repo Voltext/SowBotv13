@@ -35,7 +35,7 @@ module.exports = {
                     userName: 1,
                     _id: 0
                 }, {
-                    limit: 30
+                    limit: 20
                 }).sort({
                     "points": -1
                 });
@@ -57,7 +57,7 @@ module.exports = {
                     let xp = 350
                     let yp = 340
 
-                    let x1 = 670
+                    let x1 = 890
                     let y1 = 340
 
                     ctx.drawImage(background, x, y)
@@ -76,18 +76,10 @@ module.exports = {
                         y1 = y1 + 65;
 
                         if (placement === 10) {
-                            xp = 830
+                            xp = 1060
                             yp = 340
 
-                            x1 = 1160
-                            y1 = 340
-                        }
-
-                        if (placement === 20) {
-                            xp = 1310
-                            yp = 340
-
-                            x1 = 1670
+                            x1 = 1590
                             y1 = 340
                         }
 
