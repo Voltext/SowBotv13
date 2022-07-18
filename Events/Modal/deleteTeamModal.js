@@ -35,11 +35,21 @@ module.exports = {
               if(result.idCapitaine === modal.user.id) {
                 await teamsSchema.deleteOne({idCapitaine: result.idCapitaine})
                 modal.reply({
-                  embeds: [Util.errorEmbed("Vous avez quitté votre équipe", `En quittant l'équipe dont vous étiez détenteur, tous les joueurs qui composaient aussi votre équipe ont été exlu.`)],
+                  embeds: [Util.errorEmbed("Vous avez quitté votre équipe", `En quittant l'équipe dont vous étiez détenteur, tous les joueurs qui composaient aussi votre équipe seront exlu.`)],
                   ephemeral: true
                 })
               }
             })
+
+            modal.member.guild.channels.cache.get(process.env.ADMIN_FEED).send({
+              embeds: [new MessageEmbed().setTitle("Suppression d'équipe").setDescription(`${modal.user.username} vient de supprimer son équipe pour la raison suivante : ${Formatters.codeBlock('markdown', firstResponse)}`).setColor('RED')],
+              ephemeral: true
+            })
+      
+            modal.followUp({ 
+              embeds: [new MessageEmbed().setTitle("Suppression d'équipe").setDescription(`La suppression de votre équipe a bien été prise en compte pour la raison suivante : ${Formatters.codeBlock('markdown', firstResponse)}`).setColor('GREEN')],
+              ephemeral: true
+            });
           }
 
         }
@@ -48,15 +58,6 @@ module.exports = {
           mongooseteam.connection.close();
         }
       })
-
-      modal.member.guild.channels.cache.get(process.env.ADMIN_FEED).send({
-        embeds: [new MessageEmbed().setTitle("Suppression d'équipe").setDescription(`${modal.user.username} vient de supprimer son équipe pour la raison suivante : ${Formatters.codeBlock('markdown', firstResponse)}`).setColor('RED')]
-      })
-
-      modal.followUp({ 
-        embeds: [new MessageEmbed().setTitle("Suppression d'équipe").setDescription(`La suppression de votre équipe a bien été prise en compte pour la raison suivante : ${Formatters.codeBlock('markdown', firstResponse)}`).setColor('GREEN')],
-        ephemeral: true
-      });
     } 
 
     
