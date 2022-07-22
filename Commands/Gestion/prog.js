@@ -1,6 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const TwitchSchedule = require("../../Api/twitchschedule");
 require('dotenv').config();
+import Moment from "moment";
 
 module.exports = {
   name: "prog",
@@ -8,6 +9,7 @@ module.exports = {
   permission: "ADMINISTRATOR",
 
   async execute(interaction) {
+    Moment.locale("fr");
     const getSchedule = new TwitchSchedule();
 
     const prog = await getSchedule.Schedule()
@@ -20,11 +22,10 @@ module.exports = {
         .setThumbnail("https://static-cdn.jtvnw.net/jtv_user_pictures/191aab0a-e1ac-40c7-bfe5-e86a1257d598-profile_image-300x300.png")
         .setURL("http://twitch.tv/sowdred");
       programmation.forEach(function (elem) {
-        const date = elem.start_time.split("T")[0];
-        const heure = elem.start_time.split("T")[1];
+        const date = Moment(elem.start_time).format('DD-MM-YYYY HH:MM')
         embed.addFields({
           name: "Date début",
-          value: `${date} ${heure}`,
+          value: `${date}`,
           inline: true,
         }, {
           name: "Titre",
