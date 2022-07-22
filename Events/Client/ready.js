@@ -31,11 +31,13 @@ registerFont('./Assets/Fonts/DINNextLTPro-UltraLightIt.ttf', {
 registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
 	family: 'DINNextRoundedLTPro-Bold'
 })
+const Moment = require("moment");
 
 module.exports = {
 	name: "ready",
 	once: true,
 	execute(client) {
+		Moment.locale("fr");
 		console.log(
 			`
 ██████ ██████ ██      ██  ██  ███████  ████████  ██████████
@@ -119,11 +121,10 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					.setThumbnail("https://static-cdn.jtvnw.net/jtv_user_pictures/191aab0a-e1ac-40c7-bfe5-e86a1257d598-profile_image-300x300.png")
 					.setURL("http://twitch.tv/sowdred");
 				programmation.forEach(function (elem) {
-					const date = elem.start_time.split("T")[0];
-					const heure = elem.start_time.split("T")[1];
+					const date = Moment(elem.start_time).format('DD-MM-YYYY HH:MM')
 					embed.addFields({
 						name: "Date début",
-						value: `${date} ${heure}`,
+						value: `${date}`,
 						inline: true,
 					}, {
 						name: "Titre",
