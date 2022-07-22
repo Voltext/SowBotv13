@@ -1,7 +1,7 @@
 const { MessageEmbed } = require("discord.js");
 const TwitchSchedule = require("../../Api/twitchschedule");
 require('dotenv').config();
-import Moment from "moment";
+const Moment = require("moment");
 
 module.exports = {
   name: "prog",
