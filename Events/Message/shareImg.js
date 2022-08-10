@@ -25,7 +25,7 @@ module.exports = {
       .setImage(message.attachments.first().url)
 			.setColor('RED');
 
-      guild.channels.cache.get(process.env.ADMIN_FEED).send({
+      client.channels.cache.get(process.env.ADMIN_FEED).send({
         content: `<@${message.author.id}> a partagé un fichier :`,
         embeds: [predictEmbed],
       });
