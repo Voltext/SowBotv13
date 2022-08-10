@@ -15,8 +15,20 @@ module.exports = {
   async execute(message, client) {
     if (message.author.bot) return
 
-    if(message.author.id == '246595347101515776') {
-      console.log(message)
+    if(message.content == '#PREDICTSEASON') {
+
+      const predictEmbed = new MessageEmbed()
+			.setTitle('Nouveau fichier partagé')
+			.setDescription(
+				`<@${message.author.id}> a partagé ses prédictions pour la saison.`,
+      )
+      .setImage(message.attachments.first().url)
+			.setColor('RED');
+
+      guild.channels.cache.get(process.env.ADMIN_FEED).send({
+        content: `<@${message.author.id}> a partagé un fichier :`,
+        embeds: [predictEmbed],
+      });
     }
   }
 }
