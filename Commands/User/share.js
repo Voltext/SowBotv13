@@ -1,5 +1,4 @@
-const mongo = require('../../mongo');
-const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
+const isImage = require('is-image');
 
 module.exports = {
   name: "share",
@@ -16,16 +15,25 @@ module.exports = {
 
     const lien = interaction.options.getString("lien")
     const userId = interaction.user.id
-
-    guild.channels.cache.get(process.env.ADMIN_FEED).send({
-			content: `<@${userId}> a partagé un fichier :` + lien,
-		});
+   
+    if(isImage('source/unicorn.png')) {
+      guild.channels.cache.get(process.env.ADMIN_FEED).send({
+        content: `<@${userId}> a partagé un fichier :` + lien,
+      });
+      
+  
+    interaction.reply({
+        content: `Votre fichier a bien été partagé. Merci`,
+        ephemeral: true
+    })
+    }
+    else {
+      interaction.reply({
+        content: `Le fichier envoyé n'est pas une image, Attention, toute tentative d'envoyer des virus sera sévéremet puni. Les administrateurs ont été prévenu.`,
+        ephemeral: true
+    })
+    }
     
-
-  interaction.reply({
-      content: `Votre fichier a bien été partagé. Merci`,
-      ephemeral: true
-  })
     
 
 
