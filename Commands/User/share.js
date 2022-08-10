@@ -16,7 +16,7 @@ module.exports = {
     const lien = interaction.options.getString("lien")
     const userId = interaction.user.id
    
-    if(isImage('source/unicorn.png')) {
+    if(isImage(lien)) {
       guild.channels.cache.get(process.env.ADMIN_FEED).send({
         content: `<@${userId}> a partagé un fichier :` + lien,
       });
