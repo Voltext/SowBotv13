@@ -15,6 +15,8 @@ module.exports = {
 
     const lien = interaction.options.getString("lien")
     const userId = interaction.user.id
+
+    console.log(interaction)
    
     if(isImage(lien)) {
       guild.channels.cache.get(process.env.ADMIN_FEED).send({
