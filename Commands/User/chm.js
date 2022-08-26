@@ -247,16 +247,9 @@ module.exports = {
 
         mongo().then(async (mongooseteam) => {
           try {
-            const teamObj = await teamsSchema.find({}, {
-              idCapitaine: 1,
-              teamName: 1,
-              teamMembers: 1,
-              _id: 1,
-            });
-            if (teamObj.length !== 0) {
-              console.log(teamObj)
-              console.log(teamObj._id)
-            }
+            teamsSchema.find({}).exec(function(records) {
+              console.log(records.map(record => record._id))
+          });
           } catch(err) {
             console.log("Erreur commande club house manager: chm(222)")
             console.log(err)
