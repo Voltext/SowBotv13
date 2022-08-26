@@ -244,6 +244,25 @@ module.exports = {
           client: client,
           interaction: interaction,
         });
+
+        mongo().then(async (mongooseteam) => {
+          try {
+            const teamObj = await teamsSchema.find({}, {
+              idCapitaine: 1,
+              teamName: 1,
+              teamMembers: 1,
+              _id: 1,
+            });
+            if (teamObj.length === 0) {c
+              console.log(teamObj)
+            }
+          } catch {
+            console.log("Erreur commande club house manager: chm(222)")
+            mongooseteam.connection.close()
+          }
+        })
+
+
         break;
       }
     }
