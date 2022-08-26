@@ -256,8 +256,9 @@ module.exports = {
             if (teamObj.length === 0) {c
               console.log(teamObj)
             }
-          } catch {
+          } catch(err) {
             console.log("Erreur commande club house manager: chm(222)")
+            console.log(err)
             mongooseteam.connection.close()
           }
         })
