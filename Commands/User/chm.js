@@ -251,13 +251,11 @@ module.exports = {
               idCapitaine: 1,
               teamName: 1,
               teamMembers: 1,
-              _id: {
-                "$toString": "$_id"
-              }
+              _id: 1,
             }).exec();
             if (teamObj.length !== 0) {
               console.log(teamObj)
-              console.log(teamObj[0]._id)
+              console.log(teamObj[0]._id.toString())
               console.log(teamObj._id)
             }
           } catch(err) {
