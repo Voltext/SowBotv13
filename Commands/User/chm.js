@@ -254,10 +254,11 @@ module.exports = {
               _id: {
                 "$toString": "$_id"
               }
-            });
+            }).exec();
             if (teamObj.length !== 0) {
               console.log(teamObj)
               console.log(teamObj[0]._id)
+              console.log(teamObj._id)
             }
           } catch(err) {
             console.log("Erreur commande club house manager: chm(222)")
