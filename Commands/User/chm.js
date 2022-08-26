@@ -253,7 +253,7 @@ module.exports = {
               teamMembers: 1,
               _id: 1,
             });
-            if (teamObj.length === 0) {c
+            if (teamObj.length === 0) {
               console.log(teamObj)
             }
           } catch(err) {
