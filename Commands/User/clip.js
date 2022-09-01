@@ -1,5 +1,10 @@
 const mongo = require('../../mongo');
 const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
+const {
+  CommandInteraction,
+  MessageEmbed,
+  MessageButton
+} = require("discord.js");
 
 module.exports = {
   name: "clip",
@@ -20,7 +25,7 @@ module.exports = {
 			process.env.CLIPADMIN_FEED,
 		);
     
-    const embedClip = new Discord.MessageEmbed()
+    const embedClip = new MessageEmbed()
 					.setColor('BLUE')
 					.setTitle(`Nouveau clip !`)
 					.setDescription('Utilisez les réactions pour valider ou non ce clip')
