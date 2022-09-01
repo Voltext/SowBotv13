@@ -21,9 +21,6 @@ module.exports = {
     const { guild } = interaction
 
     const lien = interaction.options.getString("lien")
-    const clipChannelAdmin = guild.channels.cache.get(
-			process.env.CLIPADMIN_FEED,
-		);
     
     const embedClip = new MessageEmbed()
 					.setColor('BLUE')
@@ -31,7 +28,10 @@ module.exports = {
 					.setDescription('Utilisez les réactions pour valider ou non ce clip')
 					.setURL(lien);
 
-				clipChannelAdmin.send(embedClip).then(message => {
+          guild.channels.cache.get(process.env.CLIPADMIN_FEED).send({
+            content: "Nouveau clip",
+            embeds: [embedClip]
+        }).then(message => {
 					message.react(process.env.CHECK_ID);
 					message.react(process.env.CROSS_ID);
 				});
