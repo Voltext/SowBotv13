@@ -12,6 +12,7 @@ const {
   TextInputComponent,
   showModal
 } = require('discord-modals');
+const { display, generate } = require("facesjs");
 
 module.exports = {
   name: "chm",
@@ -119,6 +120,8 @@ module.exports = {
 
     switch (subCommand) {
       case "myplayer": {
+        const face = generate();
+        console.log(face);
         break;
       }
       case "entrainement": {
