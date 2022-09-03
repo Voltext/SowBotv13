@@ -121,7 +121,8 @@ module.exports = {
     switch (subCommand) {
       case "myplayer": {
         const face = generate();
-        console.log(face);
+        const img = display(null, face);
+        console.log(img);
         break;
       }
       case "entrainement": {
