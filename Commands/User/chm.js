@@ -12,7 +12,7 @@ const {
   TextInputComponent,
   showModal
 } = require('discord-modals');
-const faces = require("facesjs");
+const toonavatar = require('cartoon-avatar');
 
 module.exports = {
   name: "chm",
@@ -120,8 +120,7 @@ module.exports = {
 
     switch (subCommand) {
       case "myplayer": {
-        const face = faces.generate(null, {race: "white"});
-        console.log(face);
+        console.log(toonavatar.generate_avatar());
         break;
       }
       case "entrainement": {
