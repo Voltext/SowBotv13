@@ -134,6 +134,7 @@ module.exports = {
       guild
     } = interaction;
     const userId = interaction.user.id
+    const username = interaction.user.username
     let recruteurRole = guild.roles.cache.get(process.env.RECRUTEURS);
 
     const subCommand = options.getSubcommand();
@@ -182,13 +183,31 @@ module.exports = {
                   }]
                 }
               }
+              const configurationS = {
+                type: "bar",
+                data: {
+                  labels: "Stamina",
+                  datasets: [{
+                    axis: 'y',
+                    label: `Votre stamina`,
+                    data: [userObj.stamina],
+                    backgroundColor: [
+                      'rgb(255, 99, 132)'
+                    ]
+                  }]
+                }
+              }
+
+              const imageS = await canvas.renderToBuffer(configurationS)
+
+              const attachementS = new MessageAttachment(imageS, "stamina.png")
 
               const image = await canvas.renderToBuffer(configuration)
 
               const attachement = new MessageAttachment(image, "graph.png")
 
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("Vos statistiques").setThumbnail(userObj.profil).setImage("attachment://graph.png").addFields(
+                embeds: [new MessageEmbed().setTitle("Les statistiques de votre joueur : " + username).setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`").setThumbnail(userObj.profil).setImage("attachment://graph.png").setImage("attachment://stamina.png").addFields(
                   { name: keysChart[0], value: userObj.stat1.toString(), inline: true },
                   { name: keysChart[1], value: userObj.stat2.toString(), inline: true },
                   { name: keysChart[2], value: userObj.stat3.toString(), inline: true },
@@ -196,7 +215,7 @@ module.exports = {
                   { name: keysChart[4], value: userObj.stat5.toString(), inline: true },
                   { name: keysChart[5], value: userObj.stat6.toString(), inline: true }
                 )],
-                files: [attachement],
+                files: [attachement, attachementS],
                 ephemeral: true,
               })
             } else {
