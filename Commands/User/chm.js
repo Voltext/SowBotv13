@@ -192,17 +192,23 @@ module.exports = {
 
               const attachement = new MessageAttachment(image, "graph.png")
 
-              console.log(progressbar.filledBar(total, current)[0])
+              const statEmbed = new MessageEmbed()
+              .setTitle("Les statistiques de votre joueur : " + username)
+              .setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`")
+              .setThumbnail(userObj.profil)
+              .setFooter({text: "Stamina actuelle : " + progressbar.filledBar(total, current)[0] + " " + progressbar.filledBar(total, current)[1] + "/100"})
+              .setImage("attachment://graph.png")
+              .addFields(
+                { name: keysChart[0], value: userObj.stat1.toString(), inline: true },
+                { name: keysChart[1], value: userObj.stat2.toString(), inline: true },
+                { name: keysChart[2], value: userObj.stat3.toString(), inline: true },
+                { name: keysChart[3], value: userObj.stat4.toString(), inline: true },
+                { name: keysChart[4], value: userObj.stat5.toString(), inline: true },
+                { name: keysChart[5], value: userObj.stat6.toString(), inline: true }
+              );
 
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("Les statistiques de votre joueur : " + username).setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`").setThumbnail(userObj.profil).setFooter({text: "Stamina actuelle : " + progressbar.filledBar(total, current)[0] + progressbar.filledBar(total, current)[1] + "/100"}).setImage("attachment://graph.png").addFields(
-                  { name: keysChart[0], value: userObj.stat1.toString(), inline: true },
-                  { name: keysChart[1], value: userObj.stat2.toString(), inline: true },
-                  { name: keysChart[2], value: userObj.stat3.toString(), inline: true },
-                  { name: keysChart[3], value: userObj.stat4.toString(), inline: true },
-                  { name: keysChart[4], value: userObj.stat5.toString(), inline: true },
-                  { name: keysChart[5], value: userObj.stat6.toString(), inline: true }
-                )],
+                embeds: [statEmbed],
                 files: [attachement],
                 ephemeral: true,
               })
