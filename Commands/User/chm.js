@@ -180,8 +180,11 @@ module.exports = {
 
               const attachement = new MessageAttachment(image)
 
+              console.log(image)
+              console.log(attachement)
+
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("Test").setThumbnail(userObj.profil).setImage(image)],
+                embeds: [new MessageEmbed().setTitle("Test").setThumbnail(userObj.profil)],
                 files: [attachement],
                 ephemeral: true,
               })
