@@ -189,7 +189,7 @@ module.exports = {
               const attachement = new MessageAttachment(image, "graph.png")
 
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("Les statistiques de votre joueur : " + username).setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`").setThumbnail(userObj.profil).setImage("attachment://graph.png").setImage("attachment://stamina.png").addFields(
+                embeds: [new MessageEmbed().setTitle("Les statistiques de votre joueur : " + username).setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`").setThumbnail(userObj.profil).setImage("attachment://graph.png").addFields(
                   { name: keysChart[0], value: userObj.stat1.toString(), inline: true },
                   { name: keysChart[1], value: userObj.stat2.toString(), inline: true },
                   { name: keysChart[2], value: userObj.stat3.toString(), inline: true },
