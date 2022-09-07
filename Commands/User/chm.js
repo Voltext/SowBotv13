@@ -189,12 +189,12 @@ module.exports = {
 
               interaction.reply({
                 embeds: [new MessageEmbed().setTitle("Vos statistiques").setThumbnail(userObj.profil).setImage("attachment://graph.png").addFields(
-                  { name: keysChart[0], value: userObj.stat1, inline: true },
-                  { name: keysChart[1], value: userObj.stat2, inline: true },
-                  { name: keysChart[2], value: userObj.stat3, inline: true },
-                  { name: keysChart[3], value: userObj.stat4, inline: true },
-                  { name: keysChart[4], value: userObj.stat5, inline: true },
-                  { name: keysChart[5], value: userObj.stat6, inline: true },
+                  { name: keysChart[0], value: userObj.stat1.toString(), inline: true },
+                  { name: keysChart[1], value: userObj.stat2.toString(), inline: true },
+                  { name: keysChart[2], value: userObj.stat3.toString(), inline: true },
+                  { name: keysChart[3], value: userObj.stat4.toString(), inline: true },
+                  { name: keysChart[4], value: userObj.stat5.toString(), inline: true },
+                  { name: keysChart[5], value: userObj.stat6.toString(), inline: true }
                 )],
                 files: [attachement],
                 ephemeral: true,
