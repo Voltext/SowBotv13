@@ -9,6 +9,14 @@ const playerSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  genre: {
+    type: String,
+    required: true
+  },
+  profil: {
+    type: String,
+    required: true
+  },
   stat1: {
     type: Number,
     required: true

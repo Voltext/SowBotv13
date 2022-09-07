@@ -81,6 +81,21 @@ module.exports = {
             value: "attaquant"
           },
         ]
+      },
+      {
+          name: "genre",
+          type: "STRING",
+          required: true,
+          description: "Saisissez une description de votre event",
+          choices: [{
+            name: "Homme",
+            value: "homme"
+          },
+          {
+            name: "Femme",
+            value: "femme"
+          }
+        ]
       }]
     },
 
@@ -120,8 +135,31 @@ module.exports = {
 
     switch (subCommand) {
       case "myplayer": {
-        console.log(toonavatar.generate_avatar());
-        break;
+        mongo().then(async (mongoosecplayer) => {
+          try {
+            const userObj = await playerSchema.findOne({
+              userId,
+            }, {
+              userId: 1,
+              _id: 0,
+            });
+            if (userObj !== null) {
+              console.log(userObj);
+              interaction.reply({
+                embeds: [Util.successEmbed("Joueur créer", "Votre joueur a bien été créer")],
+                ephemeral: true
+              })
+            } else {
+              interaction.reply({
+                embeds: [Util.errorEmbed("Création impossible", "Vous possedez déjà un joueur")],
+                ephemeral: true
+              })
+            }
+          } catch {
+            console.log("Erreur commande club house manager: chm(183)")
+            mongoosecplayer.connection.close()
+          }
+        })
       }
       case "entrainement": {
         break;
@@ -131,6 +169,8 @@ module.exports = {
       }
       case "createplayer": {
         const poste = interaction.options.getString("poste")
+        const genre = interaction.options.getString("genre")
+        const profil = toonavatar.generate_avatar();
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await playerSchema.findOne({
@@ -143,6 +183,8 @@ module.exports = {
               playerSchema.create({
                 userId: userId,
                 poste: poste,
+                genre: genre,
+                profil: profil,
                 stat1: 65,
                 stat2: 65,
                 stat3: 65,
@@ -162,7 +204,7 @@ module.exports = {
               })
             }
           } catch {
-            console.log("Erreur commande club house manager: chm(163)")
+            console.log("Erreur commande club house manager: chm(183)")
             mongoosecplayer.connection.close()
           }
         })
