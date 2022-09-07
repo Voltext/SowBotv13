@@ -156,7 +156,7 @@ module.exports = {
             if (userObj !== null) {
               var total = 100;
               var current = userObj.stamina;
-// First two arguments are mandatory
+              
               if(userObj.poste === "attaquant") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
@@ -192,6 +192,8 @@ module.exports = {
 
               const attachement = new MessageAttachment(image, "graph.png")
 
+              console.log(progressbar.filledBar(total, current))
+
               interaction.reply({
                 embeds: [new MessageEmbed().setTitle("Les statistiques de votre joueur : " + username).setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`").setThumbnail(userObj.profil).setImage("attachment://graph.png").addFields(
                   { name: keysChart[0], value: userObj.stat1.toString(), inline: true },
@@ -200,7 +202,7 @@ module.exports = {
                   { name: keysChart[3], value: userObj.stat4.toString(), inline: true },
                   { name: keysChart[4], value: userObj.stat5.toString(), inline: true },
                   { name: keysChart[5], value: userObj.stat6.toString(), inline: true }
-                ).setFooter({text: progressbar.splitBar(total, current)})],
+                ).setFooter({text: progressbar.filledBar(total, current)})],
                 files: [attachement],
                 ephemeral: true,
               })
