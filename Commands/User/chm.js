@@ -182,8 +182,9 @@ module.exports = {
                 ephemeral: true
               })
             }
-          } catch {
+          } catch(err) {
             console.log("Erreur commande club house manager: chm(183)")
+            console.log(err)
             mongoosecplayer.connection.close()
           }
         })
