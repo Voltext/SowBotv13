@@ -171,7 +171,14 @@ module.exports = {
                   datasets: [{
                     label: `Vos statistiques`,
                     data: [userObj.stat1, userObj.stat2, userObj.stat3, userObj.stat4, userObj.stat5, userObj.stat6],
-                    backgroundColor: '#14171f',
+                    backgroundColor: [
+                      'rgb(255, 99, 132)',
+                      'rgb(75, 192, 192)',
+                      'rgb(255, 205, 86)',
+                      'rgb(201, 203, 207)',
+                      'rgb(195, 95, 207)',
+                      'rgb(54, 162, 235)'
+                    ]
                   }]
                 }
               }
@@ -179,9 +186,6 @@ module.exports = {
               const image = await canvas.renderToBuffer(configuration)
 
               const attachement = new MessageAttachment(image, "graph.png")
-
-              console.log(image)
-              console.log(attachement)
 
               interaction.reply({
                 embeds: [new MessageEmbed().setTitle("Test").setThumbnail(userObj.profil).setImage("attachment://graph.png")],
