@@ -196,7 +196,7 @@ module.exports = {
               .setTitle("Les statistiques de votre joueur : " + username)
               .setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`")
               .setThumbnail(userObj.profil)
-              .setFooter({text: "Stamina actuelle : " + progressbar.filledBar(total, current, [{size: 20}])[0] + " " + progressbar.filledBar(total, current)[1] + "/100"})
+              .setFooter({text: "Stamina actuelle : " + progressbar.filledBar(total, current, 20)[0] + " " + progressbar.filledBar(total, current)[1] + "/100"})
               .setImage("attachment://graph.png")
               .addFields(
                 { name: keysChart[0], value: userObj.stat1.toString(), inline: true },
