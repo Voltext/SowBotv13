@@ -202,7 +202,7 @@ module.exports = {
                   { name: keysChart[3], value: userObj.stat4.toString(), inline: true },
                   { name: keysChart[4], value: userObj.stat5.toString(), inline: true },
                   { name: keysChart[5], value: userObj.stat6.toString(), inline: true }
-                ).setFooter({text: progressbar.filledBar(total, current)[0]})],
+                ).setFooter({text: "Stamina actuelle : " + progressbar.filledBar(total, current)[0] + progressbar.filledBar(total, current)[1] + "/100"})],
                 files: [attachement],
                 ephemeral: true,
               })
