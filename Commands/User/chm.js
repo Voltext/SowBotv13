@@ -178,13 +178,13 @@ module.exports = {
 
               const image = await canvas.renderToBuffer(configuration)
 
-              const attachement = new MessageAttachment(image)
+              const attachement = new MessageAttachment(image, "graph.png")
 
               console.log(image)
               console.log(attachement)
 
               interaction.reply({
-                embeds: [new MessageEmbed().setTitle("Test").setThumbnail(userObj.profil)],
+                embeds: [new MessageEmbed().setTitle("Test").setThumbnail(userObj.profil).setImage("attachment://graph.png")],
                 files: [attachement],
                 ephemeral: true,
               })
