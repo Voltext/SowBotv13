@@ -139,10 +139,7 @@ module.exports = {
           try {
             const userObj = await playerSchema.findOne({
               userId,
-            }, {
-              userId: 1,
-              _id: 0,
-            });
+            }, {});
             if (userObj !== null) {
               console.log(userObj);
               interaction.reply({
