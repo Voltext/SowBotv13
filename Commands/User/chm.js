@@ -18,6 +18,7 @@ const {
   ChartJSNodeCanvas
 } = require("chartjs-node-canvas");
 const toonavatar = require('cartoon-avatar');
+const progressbar = require('string-progressbar');
 
 module.exports = {
   name: "chm",
@@ -153,6 +154,9 @@ module.exports = {
               userId,
             }, {});
             if (userObj !== null) {
+              var total = 100;
+              var current = userObj.stamina;
+// First two arguments are mandatory
               if(userObj.poste === "attaquant") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
@@ -196,7 +200,7 @@ module.exports = {
                   { name: keysChart[3], value: userObj.stat4.toString(), inline: true },
                   { name: keysChart[4], value: userObj.stat5.toString(), inline: true },
                   { name: keysChart[5], value: userObj.stat6.toString(), inline: true }
-                )],
+                ).setFooter({text: progressbar.splitBar(total, current)})],
                 files: [attachement],
                 ephemeral: true,
               })
