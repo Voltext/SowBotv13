@@ -183,24 +183,6 @@ module.exports = {
                   }]
                 }
               }
-              const configurationS = {
-                type: "bar",
-                data: {
-                  labels: "Stamina",
-                  datasets: [{
-                    axis: 'y',
-                    label: `Votre stamina`,
-                    data: [userObj.stamina],
-                    backgroundColor: [
-                      'rgb(255, 99, 132)'
-                    ]
-                  }]
-                }
-              }
-
-              const imageS = await canvas.renderToBuffer(configurationS)
-
-              const attachementS = new MessageAttachment(imageS, "stamina.png")
 
               const image = await canvas.renderToBuffer(configuration)
 
@@ -215,7 +197,7 @@ module.exports = {
                   { name: keysChart[4], value: userObj.stat5.toString(), inline: true },
                   { name: keysChart[5], value: userObj.stat6.toString(), inline: true }
                 )],
-                files: [attachement, attachementS],
+                files: [attachement],
                 ephemeral: true,
               })
             } else {
