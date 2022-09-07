@@ -1,7 +1,8 @@
 const {
   CommandInteraction,
   MessageEmbed,
-  MessageButton
+  MessageButton,
+  MessageAttachment
 } = require("discord.js");
 const playerSchema = require('../../Schemas/playerSchema')
 const teamsSchema = require('../../Schemas/teamsSchema')
@@ -135,16 +136,45 @@ module.exports = {
 
     switch (subCommand) {
       case "myplayer": {
+        let keysChart = "";
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await playerSchema.findOne({
               userId,
             }, {});
             if (userObj !== null) {
-              console.log(userObj);
+              if(userObj.poste === "attaquant") {
+                keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
+              }
+              if(userObj.poste === "milieu") {
+                keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
+              }
+              if(userObj.poste === "defenseur") {
+                keysChart = ["Vitesse", "Passe", "Tacle", "Physique", "Drible", "Défense"];
+              }
+              if(userObj.poste === "gardien") {
+                keysChart = ["Plongeon", "Jeu main", "Dégagement", "Reflexes", "Vitesse", "Placement"];
+              }
+              const configuration = {
+                type: "polarArea",
+                data: {
+                  labels: keysChart,
+                  datasets: [{
+                    label: `Vos statistiques`,
+                    data: [userObj.stat1, userObj.stat2, userObj.stat3, userObj.stat4, userObj.stat5, userObj.stat6],
+                    backgroundColor: '#14171f',
+                  }]
+                }
+              }
+
+              const image = await canvas.renderToBuffer(configuration)
+
+              const attachement = new MessageAttachment(image)
+
               interaction.reply({
-                embeds: [Util.successEmbed("Joueur créer", "Votre joueur a bien été créer")],
-                ephemeral: true
+                embeds: [new MessageEmbed().setTitle().setThumbnail(userObj.profil).setImage(attachement)],
+                files: [attachement],
+                ephemeral: true,
               })
             } else {
               interaction.reply({
