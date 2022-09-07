@@ -13,6 +13,10 @@ const {
   TextInputComponent,
   showModal
 } = require('discord-modals');
+const Chart = require('chart.js');
+const {
+  ChartJSNodeCanvas
+} = require("chartjs-node-canvas");
 const toonavatar = require('cartoon-avatar');
 
 module.exports = {
@@ -137,6 +141,11 @@ module.exports = {
     switch (subCommand) {
       case "myplayer": {
         let keysChart = "";
+        const canvas = new ChartJSNodeCanvas({
+          width: 800,
+          height: 600,
+          backgroundColour: 'white'
+        })
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await playerSchema.findOne({
