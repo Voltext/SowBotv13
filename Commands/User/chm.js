@@ -300,6 +300,10 @@ module.exports = {
                   if (userObj.poste === "gardien") {
                     keysChart = ["Plongeon", "Jeu main", "Dégagement", "Reflexes", "Vitesse", "Placement"];
                   }
+                  interaction.reply({
+                    components: [row],
+                    ephemeral: true
+                  })
                 } else {
                   interaction.reply({
                     components: [row],
