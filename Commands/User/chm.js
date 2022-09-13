@@ -252,12 +252,7 @@ module.exports = {
           .addComponents(
             new MessageSelectMenu()
             .setCustomId('select')
-            .setPlaceholder('Nothing selected')
-            .addOptions({
-              label: 'Select me',
-              description: 'This is a description',
-              value: 'first_option',
-            }));
+            .setPlaceholder('Choisissez la statistique que vous souhaitez travailler'));
             mongo().then(async (mongoosecplayer) => {
               try {
                 const userObj = await playerSchema.findOne({
@@ -282,9 +277,9 @@ module.exports = {
                       description: `Augmenter le physique de son joueur`,
                       value: `physique`,
                     }, {
-                      label: `Drible`,
-                      description: `Augmenter les dribles de son joueur`,
-                      value: `drible`,
+                      label: `Dribble`,
+                      description: `Augmenter les dribbles de son joueur`,
+                      value: `dribble`,
                     }, {
                       label: `Défense`,
                       description: `Augmenter la défense de son joueur`,
@@ -292,13 +287,85 @@ module.exports = {
                     }, ]);
                   }
                   if (userObj.poste === "milieu") {
-                    keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
+                    row.components[0].addOptions([{
+                      label: `Vitesse`,
+                      description: `Augmenter la vitesse de son joueur`,
+                      value: `vitesse`,
+                    }, {
+                      label: `Passe`,
+                      description: `Augmenter les passes de son joueur`,
+                      value: `passe`,
+                    }, {
+                      label: `Tirs`,
+                      description: `Augmenter les tirs de son joueur`,
+                      value: `tirs`,
+                    }, {
+                      label: `Physique`,
+                      description: `Augmenter le physique de son joueur`,
+                      value: `physique`,
+                    }, {
+                      label: `Dribble`,
+                      description: `Augmenter les dribbles de son joueur`,
+                      value: `dribble`,
+                    }, {
+                      label: `Défense`,
+                      description: `Augmenter la défense de son joueur`,
+                      value: `defense`,
+                    }, ]);
                   }
                   if (userObj.poste === "defenseur") {
-                    keysChart = ["Vitesse", "Passe", "Tacle", "Physique", "Drible", "Défense"];
+                    row.components[0].addOptions([{
+                      label: `Vitesse`,
+                      description: `Augmenter la vitesse de son joueur`,
+                      value: `vitesse`,
+                    }, {
+                      label: `Passe`,
+                      description: `Augmenter les passes de son joueur`,
+                      value: `passe`,
+                    }, {
+                      label: `Tacle`,
+                      description: `Augmenter les tacles de son joueur`,
+                      value: `tacle`,
+                    }, {
+                      label: `Physique`,
+                      description: `Augmenter le physique de son joueur`,
+                      value: `physique`,
+                    }, {
+                      label: `Dribble`,
+                      description: `Augmenter les dribbles de son joueur`,
+                      value: `dribble`,
+                    }, {
+                      label: `Défense`,
+                      description: `Augmenter la défense de son joueur`,
+                      value: `defense`,
+                    }, ]);
                   }
                   if (userObj.poste === "gardien") {
-                    keysChart = ["Plongeon", "Jeu main", "Dégagement", "Reflexes", "Vitesse", "Placement"];
+                    row.components[0].addOptions([{
+                      label: `Plongeon`,
+                      description: `Augmenter les plongeons de son joueur`,
+                      value: `plongeon`,
+                    }, {
+                      label: `Jeu main`,
+                      description: `Augmenter le jeu de main de son joueur`,
+                      value: `passe`,
+                    }, {
+                      label: `Dégagement`,
+                      description: `Augmenter les dégagements de son joueur`,
+                      value: `tirs`,
+                    }, {
+                      label: `Reflexes`,
+                      description: `Augmenter les reflexes de son joueur`,
+                      value: `physique`,
+                    }, {
+                      label: `Vitesse`,
+                      description: `Augmenter la vitesse de son joueur`,
+                      value: `drible`,
+                    }, {
+                      label: `Placement`,
+                      description: `Augmenter le placement de son joueur`,
+                      value: `defense`,
+                    }, ]);
                   }
                   interaction.reply({
                     components: [row],
@@ -306,12 +373,12 @@ module.exports = {
                   })
                 } else {
                   interaction.reply({
-                    components: [row],
+                    embed: [Util.errorEmbed("Entrainement impossible", "Vous ne possedez pas de joueur.")],
                     ephemeral: true
                   })
                 }
               } catch (err) {
-                console.log("Erreur commande club house manager: chm(183)")
+                console.log("Erreur commande club house manager: chm(381)")
                 console.log(err)
                 mongoosecplayer.connection.close()
               }
