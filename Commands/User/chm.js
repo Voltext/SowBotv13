@@ -246,6 +246,7 @@ module.exports = {
             mongoosecplayer.connection.close()
           }
         })
+        break;
       }
       case "entrainement": {
         const row = new MessageActionRow()
