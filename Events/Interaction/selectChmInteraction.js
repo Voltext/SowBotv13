@@ -5,10 +5,10 @@ const {
 module.exports = {
   name: "interactionCreate",
   async execute(interaction) {
-    console.log(interaction.member.user.id)
     if (!interaction.isSelectMenu()) return;
 
     if (interaction.customId === 'select') {
+      console.log(interaction.member.user.id)
       interaction.update({ content: 'Entrainement en cours...', components: [] })
       .then(()=> {
         setTimeout(function(){
