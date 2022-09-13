@@ -11,7 +11,7 @@ module.exports = {
       interaction.update({ content: 'Entrainement en cours...', components: [] })
       .then((msg)=> {
         setTimeout(function(){
-          msg.edit('Entrainement terminé !');
+          msg.update({ content: 'Entrainement terminé !', components: [] });
         }, 5000)
       }); ;
     }
