@@ -25,7 +25,7 @@ const progressbar = require('string-progressbar');
 module.exports = {
   name: "chm",
   description: "Club house manager",
-  permission: "SEND_MESSAGES",
+  permission: "KICK_MEMBERS",
   options: [{
       name: "myplayer",
       type: "SUB_COMMAND",
