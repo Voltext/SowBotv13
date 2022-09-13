@@ -257,7 +257,7 @@ module.exports = {
               label: 'Select me',
               description: 'This is a description',
               value: 'first_option',
-            }),
+            }));
             mongo().then(async (mongoosecplayer) => {
               try {
                 const userObj = await playerSchema.findOne({
@@ -312,7 +312,6 @@ module.exports = {
                 mongoosecplayer.connection.close()
               }
             })
-          );
         break;
       }
       case "match": {
