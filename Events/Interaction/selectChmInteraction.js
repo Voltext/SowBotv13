@@ -9,9 +9,9 @@ module.exports = {
 
     if (interaction.customId === 'select') {
       interaction.update({ content: 'Entrainement en cours...', components: [] })
-      .then((msg)=> {
+      .then(()=> {
         setTimeout(function(){
-          msg.update({ content: 'Entrainement terminé !', components: [] });
+          interaction.update({ content: 'Entrainement terminé !', components: [] });
         }, 5000)
       }); ;
     }
