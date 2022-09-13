@@ -2,7 +2,9 @@ const {
   CommandInteraction,
   MessageEmbed,
   MessageButton,
-  MessageAttachment
+  MessageAttachment,
+  MessageActionRow,
+  MessageSelectMenu
 } = require("discord.js");
 const playerSchema = require('../../Schemas/playerSchema')
 const teamsSchema = require('../../Schemas/teamsSchema')
@@ -66,43 +68,44 @@ module.exports = {
       type: "SUB_COMMAND",
       description: "Créez votre joueur",
       options: [{
-        name: "poste",
-        type: "STRING",
-        required: true,
-        description: "Choisissez le poste de votre joueur",
-        choices: [{
-            name: "Gardien",
-            value: "gardien"
-          },
-          {
-            name: "Défenseur",
-            value: "defenseur"
-          },
-          {
-            name: "Milieu",
-            value: "milieu"
-          },
-          {
-            name: "Attaquant",
-            value: "attaquant"
-          },
-        ]
-      },
-      {
+          name: "poste",
+          type: "STRING",
+          required: true,
+          description: "Choisissez le poste de votre joueur",
+          choices: [{
+              name: "Gardien",
+              value: "gardien"
+            },
+            {
+              name: "Défenseur",
+              value: "defenseur"
+            },
+            {
+              name: "Milieu",
+              value: "milieu"
+            },
+            {
+              name: "Attaquant",
+              value: "attaquant"
+            },
+          ]
+        },
+        {
           name: "genre",
           type: "STRING",
           required: true,
           description: "Saisissez une description de votre event",
           choices: [{
-            name: "Homme",
-            value: "homme"
-          },
-          {
-            name: "Femme",
-            value: "femme"
-          }
-        ]
-      }]
+              name: "Homme",
+              value: "homme"
+            },
+            {
+              name: "Femme",
+              value: "femme"
+            }
+          ]
+        }
+      ]
     },
 
     {
@@ -157,16 +160,16 @@ module.exports = {
               var total = 100;
               var current = userObj.stamina;
 
-              if(userObj.poste === "attaquant") {
+              if (userObj.poste === "attaquant") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
-              if(userObj.poste === "milieu") {
+              if (userObj.poste === "milieu") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
-              if(userObj.poste === "defenseur") {
+              if (userObj.poste === "defenseur") {
                 keysChart = ["Vitesse", "Passe", "Tacle", "Physique", "Drible", "Défense"];
               }
-              if(userObj.poste === "gardien") {
+              if (userObj.poste === "gardien") {
                 keysChart = ["Plongeon", "Jeu main", "Dégagement", "Reflexes", "Vitesse", "Placement"];
               }
               const configuration = {
@@ -193,19 +196,38 @@ module.exports = {
               const attachement = new MessageAttachment(image, "graph.png")
 
               const statEmbed = new MessageEmbed()
-              .setTitle("Les statistiques de votre joueur : " + username)
-              .setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`")
-              .setThumbnail(userObj.profil)
-              .setFooter({text: "Stamina actuelle : " + progressbar.filledBar(total, current, 20)[0] + " " + progressbar.filledBar(total, current)[1] + "/100"})
-              .setImage("attachment://graph.png")
-              .addFields(
-                { name: keysChart[0], value: userObj.stat1.toString(), inline: true },
-                { name: keysChart[1], value: userObj.stat2.toString(), inline: true },
-                { name: keysChart[2], value: userObj.stat3.toString(), inline: true },
-                { name: keysChart[3], value: userObj.stat4.toString(), inline: true },
-                { name: keysChart[4], value: userObj.stat5.toString(), inline: true },
-                { name: keysChart[5], value: userObj.stat6.toString(), inline: true }
-              );
+                .setTitle("Les statistiques de votre joueur : " + username)
+                .setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`")
+                .setThumbnail(userObj.profil)
+                .setFooter({
+                  text: "Stamina actuelle : " + progressbar.filledBar(total, current, 20)[0] + " " + progressbar.filledBar(total, current)[1] + "/100"
+                })
+                .setImage("attachment://graph.png")
+                .addFields({
+                  name: keysChart[0],
+                  value: userObj.stat1.toString(),
+                  inline: true
+                }, {
+                  name: keysChart[1],
+                  value: userObj.stat2.toString(),
+                  inline: true
+                }, {
+                  name: keysChart[2],
+                  value: userObj.stat3.toString(),
+                  inline: true
+                }, {
+                  name: keysChart[3],
+                  value: userObj.stat4.toString(),
+                  inline: true
+                }, {
+                  name: keysChart[4],
+                  value: userObj.stat5.toString(),
+                  inline: true
+                }, {
+                  name: keysChart[5],
+                  value: userObj.stat6.toString(),
+                  inline: true
+                });
 
               interaction.reply({
                 embeds: [statEmbed],
@@ -218,7 +240,7 @@ module.exports = {
                 ephemeral: true
               })
             }
-          } catch(err) {
+          } catch (err) {
             console.log("Erreur commande club house manager: chm(183)")
             console.log(err)
             mongoosecplayer.connection.close()
@@ -226,7 +248,71 @@ module.exports = {
         })
       }
       case "entrainement": {
-        console.log(interaction);
+        const row = new MessageActionRow()
+          .addComponents(
+            new MessageSelectMenu()
+            .setCustomId('select')
+            .setPlaceholder('Nothing selected')
+            .addOptions({
+              label: 'Select me',
+              description: 'This is a description',
+              value: 'first_option',
+            }),
+            mongo().then(async (mongoosecplayer) => {
+              try {
+                const userObj = await playerSchema.findOne({
+                  userId,
+                }, {});
+                if (userObj !== null) {
+                  if (userObj.poste === "attaquant") {
+                    row.components[0].addOptions([{
+                      label: `Vitesse`,
+                      description: `Augmenter la vitesse de son joueur`,
+                      value: `vitesse`,
+                    }, {
+                      label: `Passe`,
+                      description: `Augmenter les passes de son joueur`,
+                      value: `passe`,
+                    }, {
+                      label: `Tirs`,
+                      description: `Augmenter les tirs de son joueur`,
+                      value: `tirs`,
+                    }, {
+                      label: `Physique`,
+                      description: `Augmenter le physique de son joueur`,
+                      value: `physique`,
+                    }, {
+                      label: `Drible`,
+                      description: `Augmenter les dribles de son joueur`,
+                      value: `drible`,
+                    }, {
+                      label: `Défense`,
+                      description: `Augmenter la défense de son joueur`,
+                      value: `defense`,
+                    }, ]);
+                  }
+                  if (userObj.poste === "milieu") {
+                    keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
+                  }
+                  if (userObj.poste === "defenseur") {
+                    keysChart = ["Vitesse", "Passe", "Tacle", "Physique", "Drible", "Défense"];
+                  }
+                  if (userObj.poste === "gardien") {
+                    keysChart = ["Plongeon", "Jeu main", "Dégagement", "Reflexes", "Vitesse", "Placement"];
+                  }
+                } else {
+                  interaction.reply({
+                    components: [row],
+                    ephemeral: true
+                  })
+                }
+              } catch (err) {
+                console.log("Erreur commande club house manager: chm(183)")
+                console.log(err)
+                mongoosecplayer.connection.close()
+              }
+            })
+          );
         break;
       }
       case "match": {
@@ -367,7 +453,7 @@ module.exports = {
               console.log(teamObj[0]._id.toString())
               console.log(teamObj._id)
             }
-          } catch(err) {
+          } catch (err) {
             console.log("Erreur commande club house manager: chm(222)")
             console.log(err)
             mongooseteam.connection.close()
