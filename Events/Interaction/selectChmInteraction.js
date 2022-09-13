@@ -8,7 +8,12 @@ module.exports = {
     if (!interaction.isSelectMenu()) return;
 
     if (interaction.customId === 'select') {
-      await interaction.update({ content: 'Something was selected!', components: [] });
+      interaction.update({ content: 'Entrainement en cours...', components: [] })
+      .then((msg)=> {
+        setTimeout(function(){
+          msg.edit('Entrainement terminé !');
+        }, 5000)
+      }); ;
     }
   }
 }
