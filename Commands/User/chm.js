@@ -392,7 +392,14 @@ module.exports = {
       case "createplayer": {
         const poste = interaction.options.getString("poste")
         const genre = interaction.options.getString("genre")
-        const profil = toonavatar.generate_avatar();
+        let gender = ""
+        if(genre === "homme") {
+          gender = "male"
+        }
+        else {
+          gender = "female"
+        }
+        const profil = toonavatar.generate_avatar({"gender": gender});
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await playerSchema.findOne({
