@@ -226,6 +226,7 @@ module.exports = {
         })
       }
       case "entrainement": {
+        console.log(interaction);
         break;
       }
       case "match": {
