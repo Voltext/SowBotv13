@@ -308,7 +308,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			}
 		})
 
-		schedule.scheduleJob('24 * * * *', async () => {
+		schedule.scheduleJob('25 * * * *', async () => {
 			mongo().then(async (mongooserank) => {
 				try {
 					const results = await playerSchema.find({}, {
@@ -321,7 +321,8 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 
 
-				} catch {
+				} catch(err) {
+					console.log(err)
 					console.log("Erreur création du classement : rank(103)")
 					mongooserank.connection.close();
 				}
