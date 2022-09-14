@@ -72,6 +72,7 @@ module.exports = class Utils {
                 [stat]: userObj[stat] + point
             }
         }
+        console.log(update)
         mongo().then(async (mongooselock) => {
             try {
                 await playerSchema.findOneAndUpdate({

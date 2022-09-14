@@ -442,7 +442,7 @@ module.exports = {
                 stamina: 100,
               });
               interaction.reply({
-                embeds: [Util.successEmbed("Joueur créer", "Votre joueur a bien été créer")],
+                embeds: [Util.successEmbed("Joueur crée", "Votre joueur a bien été crée")],
                 ephemeral: true
               })
             } else {
