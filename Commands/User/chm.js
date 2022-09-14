@@ -493,7 +493,7 @@ module.exports = {
             const userObj = await playerSchema.findOne({
               userId,
             });
-            if (userObj === null) {
+            if (userObj !== null) {
               if(userObj.succes < 50) {
                 interaction.reply({
                   embeds: [Util.errorEmbed("Création impossible", "Vous n'avez pas suffisamment de point de succès pour créer votre équipe. Il vous faut minimum 50 points de succès")],
@@ -556,6 +556,12 @@ module.exports = {
                   }
                 })
               }
+            }
+            else {
+              interaction.reply({
+                embeds: [Util.errorEmbed("Création impossible", `Vous n'avez pas de joueur crée`)],
+                ephemeral: true
+              })
             }
             
           } catch {
