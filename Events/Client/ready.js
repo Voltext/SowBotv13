@@ -313,7 +313,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 				try {
 					const results = await playerSchema.find({
 						stamina: {
-							$lte: 100
+							$lt: 100
 						}
 					});
 
