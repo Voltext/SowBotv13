@@ -22,7 +22,7 @@ module.exports = {
             _id: 0,
           });
           if (userObj !== null) {
-            if(stamina < 20) {
+            if(userObj.stamina < 20) {
               blessure = "Oui"
             }
             else {
