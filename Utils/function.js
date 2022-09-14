@@ -56,12 +56,23 @@ module.exports = class Utils {
       }
 
       static addStat(userId, stat, point, stamina, userObj) {
-          console.log(userObj[stat])
+          const update = {
+              stamina: stamina - 20,
+              [stat]: userObj[stat] + point 
+          }
+        mongo().then(async (mongooselock) => {
+            try {
+              await playerSchema.findOneAndUpdate({
+                userId,
+              }, update)
+              console.log("Ok")
+            } catch {
+                console.log("Erreur script lock prediction: lockpredi(30)")
+                mongooselock.connection.close()
+            }
+          })
       }
-
-      static findValueByPrefix(object, prefix) {
-        
-      }
+      
 
       static validScoreRegex(regexValue) {
         const regex = /[a-zA-Z]+/i;
