@@ -257,7 +257,7 @@ module.exports = {
             }, {});
             if (userObj !== null) {
               if(userObj.stamina === 0 || userObj.isInjured === true) {
-                embedSelect.setTitle("Attention !").setDescription("Votre état de forme ne vous permet pas de vous entrainer").setColor("RED");
+                embedSelect.setTitle("Attention !").setDescription("Votre état de forme ne vous permet pas de vous entrainer").addField("Votre stamina", userObj.stamina).addField("Blessé ?", userObj.isInjured).setColor("RED");
                 interaction.reply({
                   embeds: [embedSelect],
                   ephemeral: true
