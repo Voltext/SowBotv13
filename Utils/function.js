@@ -56,7 +56,7 @@ module.exports = class Utils {
       }
 
       static addStat(userId, stat, point, stamina, userObj) {
-          console.log(findValueByPrefix(userObj, stat))
+          console.log(this.findValueByPrefix(userObj, stat))
       }
 
       static findValueByPrefix(object, prefix) {
