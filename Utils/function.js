@@ -56,10 +56,12 @@ module.exports = class Utils {
       }
 
       static addStat(userId, stat, point, stamina, userObj) {
+          console.log(stat)
+          console.log(userObj)
         var item;
         if( userObj.hasOwnProperty(stat) ) {
             item = userObj[stat];
-            console.log( item );
+            console.log(item);
         }
       }
 
