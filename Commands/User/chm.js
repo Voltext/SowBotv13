@@ -239,8 +239,15 @@ module.exports = {
                   name: keysChart[5],
                   value: userObj.stat6.toString(),
                   inline: true
+                }, {
+                  name: "Etat de santé",
+                  value: etat,
+                  inline: true
+                }, {
+                  name: "Succès",
+                  value: userObj.succes.toString(),
+                  inline: true
                 })
-                .addField("Votre Etat de Santé :", etat);
 
               interaction.reply({
                 embeds: [statEmbed],
@@ -452,6 +459,7 @@ module.exports = {
                 genre: genre,
                 profil: profil,
                 isInjured: false,
+                succes: 0,
                 stat1: 65,
                 stat2: 65,
                 stat3: 65,

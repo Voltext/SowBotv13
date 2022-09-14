@@ -21,6 +21,10 @@ const playerSchema = mongoose.Schema({
     type: Boolean,
     required: true
   },
+  succes: {
+    type: Number,
+    required: true
+  },
   stat1: {
     type: Number,
     required: true
