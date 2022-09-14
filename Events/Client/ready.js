@@ -16,7 +16,6 @@ const fs = require('fs')
 const path = require('path');
 const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
 const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
-const playerSchema = require('../../Schemas/playerSchema')
 const axios = require('axios')
 const {
 	registerFont,
@@ -309,7 +308,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			}
 		})
 
-		schedule.scheduleJob('23 * * * *', async () => {
+		schedule.scheduleJob('24 * * * *', async () => {
 			mongo().then(async (mongooserank) => {
 				try {
 					const results = await playerSchema.find({}, {
