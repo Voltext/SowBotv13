@@ -59,6 +59,7 @@ module.exports = class Utils {
     }
 
     static addStat(userId, stat, point, stamina, userObj) {
+
         let update = {}
         if (stamina < 20) {
             update = {
