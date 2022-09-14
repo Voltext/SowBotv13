@@ -14,8 +14,6 @@ module.exports = {
       const userId = interaction.member.user.id;
       const stat = interaction.values[0].split("_")[0]
       const idStat = interaction.values[0].split("_")[1]
-      console.log(stat)
-      console.log(idStat)
       let blessure = "Non"
       mongo().then(async (mongoosecplayer) => {
         try {
@@ -70,6 +68,9 @@ module.exports = {
                     })
                     .setColor("GREEN")
                     .setThumbnail(userObj.profil);
+
+                    Util.addStat(userId, idStat, 1, userObj.stat1, userObj.stat2, userObj.stat3, userObj.stat4, userObj.stat5, userObj.stat6, userObj.stamina)
+                    
                   interaction.followUp({
                     embeds: [embedTrainingEnd],
                     components: [],

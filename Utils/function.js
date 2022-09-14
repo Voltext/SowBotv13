@@ -55,6 +55,14 @@ module.exports = class Utils {
         return Math.abs(a - b);
       }
 
+      static addStat(userId, stat, point, stat1, stat2, stat3, stat4, stat5, stat6, stamina) {
+        var item;
+        if( jsObject.hasOwnProperty(stat) ) {
+            item = jsObject[stat];
+            console.log( item );
+        }
+      }
+
       static validScoreRegex(regexValue) {
         const regex = /[a-zA-Z]+/i;
         return regex.test(regexValue);
