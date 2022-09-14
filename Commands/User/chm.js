@@ -264,108 +264,108 @@ module.exports = {
                     row.components[0].addOptions([{
                       label: `Vitesse`,
                       description: `Augmenter la vitesse de son joueur`,
-                      value: `vitesse`,
+                      value: `vitesse_stat1`,
                     }, {
                       label: `Passe`,
                       description: `Augmenter les passes de son joueur`,
-                      value: `passe`,
+                      value: `passe_stat2`,
                     }, {
                       label: `Tirs`,
                       description: `Augmenter les tirs de son joueur`,
-                      value: `tirs`,
+                      value: `tirs_stat3`,
                     }, {
                       label: `Physique`,
                       description: `Augmenter le physique de son joueur`,
-                      value: `physique`,
+                      value: `physique_stat4`,
                     }, {
                       label: `Dribble`,
                       description: `Augmenter les dribbles de son joueur`,
-                      value: `dribble`,
+                      value: `dribble_stat5`,
                     }, {
                       label: `Défense`,
                       description: `Augmenter la défense de son joueur`,
-                      value: `defense`,
+                      value: `defense_stat6`,
                     }, ]);
                   }
                   if (userObj.poste === "milieu") {
                     row.components[0].addOptions([{
                       label: `Vitesse`,
                       description: `Augmenter la vitesse de son joueur`,
-                      value: `vitesse`,
+                      value: `vitesse_stat1`,
                     }, {
                       label: `Passe`,
                       description: `Augmenter les passes de son joueur`,
-                      value: `passe`,
+                      value: `passe_stat2`,
                     }, {
                       label: `Tirs`,
                       description: `Augmenter les tirs de son joueur`,
-                      value: `tirs`,
+                      value: `tirs_stat3`,
                     }, {
                       label: `Physique`,
                       description: `Augmenter le physique de son joueur`,
-                      value: `physique`,
+                      value: `physique_stat4`,
                     }, {
                       label: `Dribble`,
                       description: `Augmenter les dribbles de son joueur`,
-                      value: `dribble`,
+                      value: `dribble_stat5`,
                     }, {
                       label: `Défense`,
                       description: `Augmenter la défense de son joueur`,
-                      value: `defense`,
+                      value: `defense_stat6`,
                     }, ]);
                   }
                   if (userObj.poste === "defenseur") {
                     row.components[0].addOptions([{
                       label: `Vitesse`,
                       description: `Augmenter la vitesse de son joueur`,
-                      value: `vitesse`,
+                      value: `vitesse_stat1`,
                     }, {
                       label: `Passe`,
                       description: `Augmenter les passes de son joueur`,
-                      value: `passe`,
+                      value: `passe_stat2`,
                     }, {
                       label: `Tacle`,
                       description: `Augmenter les tacles de son joueur`,
-                      value: `tacle`,
+                      value: `tacle_stat3`,
                     }, {
                       label: `Physique`,
                       description: `Augmenter le physique de son joueur`,
-                      value: `physique`,
+                      value: `physique_stat4`,
                     }, {
                       label: `Dribble`,
                       description: `Augmenter les dribbles de son joueur`,
-                      value: `dribble`,
+                      value: `dribble_stat5`,
                     }, {
                       label: `Défense`,
                       description: `Augmenter la défense de son joueur`,
-                      value: `defense`,
+                      value: `defense_stat6`,
                     }, ]);
                   }
                   if (userObj.poste === "gardien") {
                     row.components[0].addOptions([{
                       label: `Plongeon`,
                       description: `Augmenter les plongeons de son joueur`,
-                      value: `plongeon`,
+                      value: `plongeon_stat1`,
                     }, {
                       label: `Jeu main`,
                       description: `Augmenter le jeu de main de son joueur`,
-                      value: `passe`,
+                      value: `jeu main_stat2`,
                     }, {
                       label: `Dégagement`,
                       description: `Augmenter les dégagements de son joueur`,
-                      value: `tirs`,
+                      value: `dégagement_stat3`,
                     }, {
                       label: `Reflexes`,
                       description: `Augmenter les reflexes de son joueur`,
-                      value: `physique`,
+                      value: `reflexes_stat4`,
                     }, {
                       label: `Vitesse`,
                       description: `Augmenter la vitesse de son joueur`,
-                      value: `drible`,
+                      value: `vitesse_stat5`,
                     }, {
                       label: `Placement`,
                       description: `Augmenter le placement de son joueur`,
-                      value: `defense`,
+                      value: `placement_stat6`,
                     }, ]);
                   }
                   interaction.reply({

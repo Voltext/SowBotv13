@@ -12,6 +12,10 @@ module.exports = {
 
     if (interaction.customId === 'select') {
       const userId = interaction.member.user.id;
+      const stat = interaction.values[0].split("_")[0]
+      const idStat = interaction.values[0].split("_")[1]
+      console.log(stat)
+      console.log(idStat)
       let blessure = "Non"
       mongo().then(async (mongoosecplayer) => {
         try {
@@ -30,10 +34,10 @@ module.exports = {
             }
             const embedTrainingProgress = new MessageEmbed()
               .setTitle("Entrainement en cours...")
-              .setDescription("Vous venez de lancer un entrainement pour votre joueur dans la catégorie : `" + interaction.values[0] + "`")
+              .setDescription("Vous venez de lancer un entrainement pour votre joueur dans la catégorie : `" + stat + "`")
               .addFields({
                 name: "Stats après entrainement",
-                value: "+1 (" + interaction.values[0] + ")",
+                value: "+1 (" + stat + ")",
                 inline: true
               }, {
                 name: "Stamina après entrainement",
