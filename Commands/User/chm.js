@@ -249,141 +249,152 @@ module.exports = {
         break;
       }
       case "entrainement": {
-        const row = new MessageActionRow()
-          .addComponents(
-            new MessageSelectMenu()
-            .setCustomId('select')
-            .setPlaceholder('Choisissez la statistique que vous souhaitez travailler'));
-            mongo().then(async (mongoosecplayer) => {
-              try {
-                const userObj = await playerSchema.findOne({
-                  userId,
-                }, {});
-                if (userObj !== null) {
-                  if (userObj.poste === "attaquant") {
-                    row.components[0].addOptions([{
-                      label: `Vitesse`,
-                      description: `Augmenter la vitesse de son joueur`,
-                      value: `vitesse_stat1`,
-                    }, {
-                      label: `Passe`,
-                      description: `Augmenter les passes de son joueur`,
-                      value: `passe_stat2`,
-                    }, {
-                      label: `Tirs`,
-                      description: `Augmenter les tirs de son joueur`,
-                      value: `tirs_stat3`,
-                    }, {
-                      label: `Physique`,
-                      description: `Augmenter le physique de son joueur`,
-                      value: `physique_stat4`,
-                    }, {
-                      label: `Dribble`,
-                      description: `Augmenter les dribbles de son joueur`,
-                      value: `dribble_stat5`,
-                    }, {
-                      label: `Défense`,
-                      description: `Augmenter la défense de son joueur`,
-                      value: `defense_stat6`,
-                    }, ]);
-                  }
-                  if (userObj.poste === "milieu") {
-                    row.components[0].addOptions([{
-                      label: `Vitesse`,
-                      description: `Augmenter la vitesse de son joueur`,
-                      value: `vitesse_stat1`,
-                    }, {
-                      label: `Passe`,
-                      description: `Augmenter les passes de son joueur`,
-                      value: `passe_stat2`,
-                    }, {
-                      label: `Tirs`,
-                      description: `Augmenter les tirs de son joueur`,
-                      value: `tirs_stat3`,
-                    }, {
-                      label: `Physique`,
-                      description: `Augmenter le physique de son joueur`,
-                      value: `physique_stat4`,
-                    }, {
-                      label: `Dribble`,
-                      description: `Augmenter les dribbles de son joueur`,
-                      value: `dribble_stat5`,
-                    }, {
-                      label: `Défense`,
-                      description: `Augmenter la défense de son joueur`,
-                      value: `defense_stat6`,
-                    }, ]);
-                  }
-                  if (userObj.poste === "defenseur") {
-                    row.components[0].addOptions([{
-                      label: `Vitesse`,
-                      description: `Augmenter la vitesse de son joueur`,
-                      value: `vitesse_stat1`,
-                    }, {
-                      label: `Passe`,
-                      description: `Augmenter les passes de son joueur`,
-                      value: `passe_stat2`,
-                    }, {
-                      label: `Tacle`,
-                      description: `Augmenter les tacles de son joueur`,
-                      value: `tacle_stat3`,
-                    }, {
-                      label: `Physique`,
-                      description: `Augmenter le physique de son joueur`,
-                      value: `physique_stat4`,
-                    }, {
-                      label: `Dribble`,
-                      description: `Augmenter les dribbles de son joueur`,
-                      value: `dribble_stat5`,
-                    }, {
-                      label: `Défense`,
-                      description: `Augmenter la défense de son joueur`,
-                      value: `defense_stat6`,
-                    }, ]);
-                  }
-                  if (userObj.poste === "gardien") {
-                    row.components[0].addOptions([{
-                      label: `Plongeon`,
-                      description: `Augmenter les plongeons de son joueur`,
-                      value: `plongeon_stat1`,
-                    }, {
-                      label: `Jeu main`,
-                      description: `Augmenter le jeu de main de son joueur`,
-                      value: `jeu main_stat2`,
-                    }, {
-                      label: `Dégagement`,
-                      description: `Augmenter les dégagements de son joueur`,
-                      value: `dégagement_stat3`,
-                    }, {
-                      label: `Reflexes`,
-                      description: `Augmenter les reflexes de son joueur`,
-                      value: `reflexes_stat4`,
-                    }, {
-                      label: `Vitesse`,
-                      description: `Augmenter la vitesse de son joueur`,
-                      value: `vitesse_stat5`,
-                    }, {
-                      label: `Placement`,
-                      description: `Augmenter le placement de son joueur`,
-                      value: `placement_stat6`,
-                    }, ]);
-                  }
-                  interaction.reply({
-                    components: [row],
-                    ephemeral: true
-                  })
-                } else {
-                  interaction.reply({
-                    embed: [Util.errorEmbed("Entrainement impossible", "Vous ne possedez pas de joueur.")],
-                    ephemeral: true
-                  })
-                }
-              } catch (err) {
-                console.log("Erreur commande club house manager: chm(381)")
-                console.log(err)
-                mongoosecplayer.connection.close()
+        const embedSelect = new MessageEmbed();
+        mongo().then(async (mongoosecplayer) => {
+          try {
+            const userObj = await playerSchema.findOne({
+              userId,
+            }, {});
+            if (userObj !== null) {
+              if(userObj.stamina < 20 && userObj > 0) {
+                embedSelect.setTitle("Attention !").setDescription("Votre niveau de Stamina est faible, vous risquez de vous blesser à l'issu de votre entraînement...").setColor("RED");
               }
-            })
+              else if(userObj.stamina === 0) {
+                embedSelect.setTitle("Attention !").setDescription("Votre niveau de Stamina ne vous permet pas de vous entrainer").setColor("RED");
+                break;
+              }
+              else {
+                embedSelect.setTitle("Tout est bon !").setDescription("Vous êtes dans une forme correcte pour vous entrainer").setColor("GREEN");
+              }
+              const row = new MessageActionRow()
+                .addComponents(
+                  new MessageSelectMenu()
+                  .setCustomId('select')
+                  .setPlaceholder('Choisissez la statistique que vous souhaitez travailler'));
+              if (userObj.poste === "attaquant") {
+                row.components[0].addOptions([{
+                  label: `Vitesse`,
+                  description: `Augmenter la vitesse de son joueur`,
+                  value: `vitesse_stat1`,
+                }, {
+                  label: `Passe`,
+                  description: `Augmenter les passes de son joueur`,
+                  value: `passe_stat2`,
+                }, {
+                  label: `Tirs`,
+                  description: `Augmenter les tirs de son joueur`,
+                  value: `tirs_stat3`,
+                }, {
+                  label: `Physique`,
+                  description: `Augmenter le physique de son joueur`,
+                  value: `physique_stat4`,
+                }, {
+                  label: `Dribble`,
+                  description: `Augmenter les dribbles de son joueur`,
+                  value: `dribble_stat5`,
+                }, {
+                  label: `Défense`,
+                  description: `Augmenter la défense de son joueur`,
+                  value: `defense_stat6`,
+                }, ]);
+              }
+              if (userObj.poste === "milieu") {
+                row.components[0].addOptions([{
+                  label: `Vitesse`,
+                  description: `Augmenter la vitesse de son joueur`,
+                  value: `vitesse_stat1`,
+                }, {
+                  label: `Passe`,
+                  description: `Augmenter les passes de son joueur`,
+                  value: `passe_stat2`,
+                }, {
+                  label: `Tirs`,
+                  description: `Augmenter les tirs de son joueur`,
+                  value: `tirs_stat3`,
+                }, {
+                  label: `Physique`,
+                  description: `Augmenter le physique de son joueur`,
+                  value: `physique_stat4`,
+                }, {
+                  label: `Dribble`,
+                  description: `Augmenter les dribbles de son joueur`,
+                  value: `dribble_stat5`,
+                }, {
+                  label: `Défense`,
+                  description: `Augmenter la défense de son joueur`,
+                  value: `defense_stat6`,
+                }, ]);
+              }
+              if (userObj.poste === "defenseur") {
+                row.components[0].addOptions([{
+                  label: `Vitesse`,
+                  description: `Augmenter la vitesse de son joueur`,
+                  value: `vitesse_stat1`,
+                }, {
+                  label: `Passe`,
+                  description: `Augmenter les passes de son joueur`,
+                  value: `passe_stat2`,
+                }, {
+                  label: `Tacle`,
+                  description: `Augmenter les tacles de son joueur`,
+                  value: `tacle_stat3`,
+                }, {
+                  label: `Physique`,
+                  description: `Augmenter le physique de son joueur`,
+                  value: `physique_stat4`,
+                }, {
+                  label: `Dribble`,
+                  description: `Augmenter les dribbles de son joueur`,
+                  value: `dribble_stat5`,
+                }, {
+                  label: `Défense`,
+                  description: `Augmenter la défense de son joueur`,
+                  value: `defense_stat6`,
+                }, ]);
+              }
+              if (userObj.poste === "gardien") {
+                row.components[0].addOptions([{
+                  label: `Plongeon`,
+                  description: `Augmenter les plongeons de son joueur`,
+                  value: `plongeon_stat1`,
+                }, {
+                  label: `Jeu main`,
+                  description: `Augmenter le jeu de main de son joueur`,
+                  value: `jeu main_stat2`,
+                }, {
+                  label: `Dégagement`,
+                  description: `Augmenter les dégagements de son joueur`,
+                  value: `dégagement_stat3`,
+                }, {
+                  label: `Reflexes`,
+                  description: `Augmenter les reflexes de son joueur`,
+                  value: `reflexes_stat4`,
+                }, {
+                  label: `Vitesse`,
+                  description: `Augmenter la vitesse de son joueur`,
+                  value: `vitesse_stat5`,
+                }, {
+                  label: `Placement`,
+                  description: `Augmenter le placement de son joueur`,
+                  value: `placement_stat6`,
+                }, ]);
+              }
+              interaction.reply({
+                components: [row],
+                ephemeral: true
+              })
+            } else {
+              interaction.reply({
+                embed: [Util.errorEmbed("Entrainement impossible", "Vous ne possedez pas de joueur.")],
+                ephemeral: true
+              })
+            }
+          } catch (err) {
+            console.log("Erreur commande club house manager: chm(381)")
+            console.log(err)
+            mongoosecplayer.connection.close()
+          }
+        })
         break;
       }
       case "match": {
@@ -393,13 +404,14 @@ module.exports = {
         const poste = interaction.options.getString("poste")
         const genre = interaction.options.getString("genre")
         let gender = ""
-        if(genre === "homme") {
+        if (genre === "homme") {
           gender = "male"
-        }
-        else {
+        } else {
           gender = "female"
         }
-        const profil = toonavatar.generate_avatar({"gender": gender});
+        const profil = toonavatar.generate_avatar({
+          "gender": gender
+        });
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await playerSchema.findOne({
