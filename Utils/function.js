@@ -55,10 +55,10 @@ module.exports = class Utils {
         return Math.abs(a - b);
       }
 
-      static addStat(userId, stat, point, stat1, stat2, stat3, stat4, stat5, stat6, stamina) {
+      static addStat(userId, stat, point, stamina, userObj) {
         var item;
-        if( jsObject.hasOwnProperty(stat) ) {
-            item = jsObject[stat];
+        if( userObj.hasOwnProperty(stat) ) {
+            item = userObj[stat];
             console.log( item );
         }
       }
