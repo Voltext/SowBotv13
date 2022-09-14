@@ -11,7 +11,7 @@ module.exports = {
     if (!interaction.isSelectMenu()) return;
 
     if (interaction.customId === 'select') {
-      const userId = interaction.user.id;
+      const userId = interaction.member.user.id;
       let blessure = "Non"
       mongo().then(async (mongoosecplayer) => {
         try {
@@ -79,7 +79,8 @@ module.exports = {
               ephemeral: true
             })
           }
-        } catch {
+        } catch(err) {
+          console.log(err)
           console.log("Erreur commande club house manager: selectChmInteraction(83)")
           mongoosecplayer.connection.close()
         }
