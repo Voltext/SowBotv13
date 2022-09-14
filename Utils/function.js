@@ -5,7 +5,9 @@ const battleSchema = require('../Schemas/battleSchema');
 const pronoSchema = require('../Schemas/pronoSchema');
 const counterSchema = require('../Schemas/counterSchema');
 const playerSchema = require('../Schemas/playerSchema')
-const { MessageEmbed } = require('discord.js');
+const {
+    MessageEmbed
+} = require('discord.js');
 
 module.exports = class Utils {
     static async getMemberRole(user) {
@@ -54,29 +56,37 @@ module.exports = class Utils {
 
     static difference(a, b) {
         return Math.abs(a - b);
-      }
+    }
 
-      static addStat(userId, stat, point, stamina, userObj) {
-          const update = {
-              stamina: stamina - 20,
-              [stat]: userObj[stat] + point
-          }
+    static addStat(userId, stat, point, stamina, userObj) {
+        let update = {}
+        if (stamina < 20) {
+            update = {
+                stamina: stamina - stamina,
+                [stat]: userObj[stat] + point
+            }
+        } else {
+            update = {
+                stamina: stamina - 20,
+                [stat]: userObj[stat] + point
+            }
+        }
         mongo().then(async (mongooselock) => {
             try {
-              await playerSchema.findOneAndUpdate({
-                userId,
-              }, update)
-              console.log("Ok")
-            } catch(err) {
+                await playerSchema.findOneAndUpdate({
+                    userId,
+                }, update)
+                console.log("Ok")
+            } catch (err) {
                 console.log(err)
                 console.log("Erreur script lock prediction: lockpredi(30)")
                 mongooselock.connection.close()
             }
-          })
-      }
-      
+        })
+    }
 
-      static validScoreRegex(regexValue) {
+
+    static validScoreRegex(regexValue) {
         const regex = /[a-zA-Z]+/i;
         return regex.test(regexValue);
     }
@@ -89,7 +99,7 @@ module.exports = class Utils {
         return new MessageEmbed().setColor("GREEN").setTitle(titre).setDescription(description);
     }
 
-      static async clearAll() {
+    static async clearAll() {
         await mongo().then(async (mongooseresetprono) => {
             try {
                 await pronoSchema.deleteMany({})
@@ -122,5 +132,5 @@ module.exports = class Utils {
                 mongooseresetcounter.connection.close()
             }
         })
-      }
+    }
 }
