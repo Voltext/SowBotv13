@@ -19,9 +19,6 @@ module.exports = {
         try {
           const userObj = await playerSchema.findOne({
             userId,
-          }, {
-            userId: 1,
-            _id: 0,
           });
           if (userObj !== null) {
             if(userObj.stamina < 20) {
