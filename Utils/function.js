@@ -58,7 +58,7 @@ module.exports = class Utils {
       static addStat(userId, stat, point, stamina, userObj) {
           const update = {
               stamina: stamina - 20,
-              [stat]: userObj[stat] + point 
+              [stat]: userObj[stat] + point
           }
         mongo().then(async (mongooselock) => {
             try {
@@ -66,7 +66,8 @@ module.exports = class Utils {
                 userId,
               }, update)
               console.log("Ok")
-            } catch {
+            } catch(err) {
+                console.log(err)
                 console.log("Erreur script lock prediction: lockpredi(30)")
                 mongooselock.connection.close()
             }
