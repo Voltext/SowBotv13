@@ -264,7 +264,7 @@ module.exports = {
                 })
               }
               else {
-                if(userObj.stamina < 20 && userObj > 0) {
+                if(userObj.stamina < 20 && userObj.stamina > 0) {
                   embedSelect.setTitle("Attention !").setDescription("Votre niveau de Stamina est faible, vous risquez de vous blesser à l'issu de votre entraînement...").setColor("RED");
                 }
                 else {
