@@ -308,7 +308,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			}
 		})
 
-		schedule.scheduleJob('29 * * * *', async () => {
+		schedule.scheduleJob('37 * * * *', async () => {
 			mongo().then(async (mongooserank) => {
 				try {
 					const results = await playerSchema.find({
@@ -317,11 +317,34 @@ ${'↓ LOGS ↓'.bgBlue}`,
 						}
 					});
 
-					console.log(results)
+					results.forEach(function (member) {
+						const userId = member.userId
+						let update = {}
+						if (member.stamina > 90) {
+							update = {
+								stamina: 100
+							}
+						} else {
+							update = {
+								stamina: member.stamina + 10
+							}
+						}
+						mongo().then(async (mongooselock) => {
+							try {
+								await playerSchema.findOneAndUpdate({
+									userId
+								}, update)
+
+							} catch {
+								console.log("Erreur script assignation carte : card(62)")
+								mongooselock.connection.close()
+							}
+						})
+					})
 
 
 
-				} catch(err) {
+				} catch (err) {
 					console.log(err)
 					console.log("Erreur création du classement : rank(103)")
 					mongooserank.connection.close();
