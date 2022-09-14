@@ -308,14 +308,14 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			}
 		})
 
-		schedule.scheduleJob('25 * * * *', async () => {
+		schedule.scheduleJob('27 * * * *', async () => {
 			mongo().then(async (mongooserank) => {
 				try {
-					const results = await playerSchema.find({}, {
+					const results = await playerSchema.find({
 						stamina: {
 							$lte: 100
 						}
-					}, {});
+					});
 
 					console.log(results)
 
