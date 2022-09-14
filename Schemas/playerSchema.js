@@ -17,6 +17,10 @@ const playerSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  isInjured: {
+    type: Boolean,
+    required: true
+  },
   stat1: {
     type: Number,
     required: true

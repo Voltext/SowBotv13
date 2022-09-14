@@ -63,7 +63,8 @@ module.exports = class Utils {
         if (stamina < 20) {
             update = {
                 stamina: stamina - stamina,
-                [stat]: userObj[stat] + point
+                [stat]: userObj[stat] + point,
+                isInjured: true
             }
         } else {
             update = {
@@ -76,7 +77,6 @@ module.exports = class Utils {
                 await playerSchema.findOneAndUpdate({
                     userId,
                 }, update)
-                console.log("Ok")
             } catch (err) {
                 console.log(err)
                 console.log("Erreur script lock prediction: lockpredi(30)")

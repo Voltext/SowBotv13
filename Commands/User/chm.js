@@ -432,6 +432,7 @@ module.exports = {
                 poste: poste,
                 genre: genre,
                 profil: profil,
+                isInjured: false,
                 stat1: 65,
                 stat2: 65,
                 stat3: 65,
