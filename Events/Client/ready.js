@@ -16,6 +16,7 @@ const fs = require('fs')
 const path = require('path');
 const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
 const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
+const playerSchema = require('../../Schemas/playerSchema')
 const axios = require('axios')
 const {
 	registerFont,
@@ -32,6 +33,7 @@ registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
 	family: 'DINNextRoundedLTPro-Bold'
 })
 const Moment = require("moment");
+const playerSchema = require('../../Schemas/playerSchema');
 
 module.exports = {
 	name: "ready",
@@ -283,11 +285,11 @@ ${'↓ LOGS ↓'.bgBlue}`,
 									'Client-Id': process.env.CLIENT_ID_SOW,
 									'Content-Type': 'application/json'
 								}
-	
+
 								dataCards = {
 									'status': 'FULFILLED'
 								}
-	
+
 								axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, dataCards, {
 									'headers': headers
 								}).then(resp => {
@@ -305,6 +307,26 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					});
 				})
 			}
+		})
+
+		schedule.scheduleJob('23 * * * *', async () => {
+			mongo().then(async (mongooserank) => {
+				try {
+					const results = await playerSchema.find({}, {
+						stamina: {
+							$lte: 100
+						}
+					}, {});
+
+					console.log(results)
+
+
+
+				} catch {
+					console.log("Erreur création du classement : rank(103)")
+					mongooserank.connection.close();
+				}
+			});
 		})
 
 
