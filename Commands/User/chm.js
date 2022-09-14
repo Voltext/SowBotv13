@@ -147,6 +147,7 @@ module.exports = {
       case "myplayer": {
         let keysChart = "";
         let etat = ""
+        let color = ""
         const canvas = new ChartJSNodeCanvas({
           width: 800,
           height: 600,
@@ -163,9 +164,11 @@ module.exports = {
 
               if(userObj.isInjured === true) {
                 etat = "Blessé"
+                color = "RED"
               }
               else {
                 etat = "En forme"
+                color = "GREEN"
               }
 
               if (userObj.poste === "attaquant") {
@@ -207,6 +210,7 @@ module.exports = {
                 .setTitle("Les statistiques de votre joueur : " + username)
                 .setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`")
                 .setThumbnail(userObj.profil)
+                .setColor(color)
                 .setFooter({
                   text: "Stamina actuelle : " + progressbar.filledBar(total, current, 20)[0] + " " + progressbar.filledBar(total, current)[1] + "/100"
                 })
