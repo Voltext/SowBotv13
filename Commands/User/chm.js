@@ -385,6 +385,7 @@ module.exports = {
               }
               interaction.reply({
                 components: [row],
+                embeds: [embedSelect],
                 ephemeral: true
               })
             }
