@@ -261,7 +261,6 @@ module.exports = {
               }
               else if(userObj.stamina === 0) {
                 embedSelect.setTitle("Attention !").setDescription("Votre niveau de Stamina ne vous permet pas de vous entrainer").setColor("RED");
-                break;
               }
               else {
                 embedSelect.setTitle("Tout est bon !").setDescription("Vous êtes dans une forme correcte pour vous entrainer").setColor("GREEN");
