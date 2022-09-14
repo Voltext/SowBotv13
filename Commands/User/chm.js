@@ -256,7 +256,7 @@ module.exports = {
               })
             } else {
               interaction.reply({
-                embeds: [Util.errorEmbed("Création impossible", "Vous possedez déjà un joueur")],
+                embeds: [Util.errorEmbed("Création impossible", "Vous ne possedez pas de joueur")],
                 ephemeral: true
               })
             }
@@ -417,7 +417,7 @@ module.exports = {
             }
             } else {
               interaction.reply({
-                embed: [Util.errorEmbed("Entrainement impossible", "Vous ne possedez pas de joueur.")],
+                embeds: [Util.errorEmbed("Entrainement impossible", "Vous ne possedez pas de joueur.")],
                 ephemeral: true
               })
             }
@@ -600,11 +600,6 @@ module.exports = {
               teamMembers: 1,
               _id: 1,
             }).exec();
-            if (teamObj.length !== 0) {
-              console.log(teamObj)
-              console.log(teamObj[0]._id.toString())
-              console.log(teamObj._id)
-            }
           } catch (err) {
             console.log("Erreur commande club house manager: chm(222)")
             console.log(err)
