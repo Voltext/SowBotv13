@@ -256,15 +256,20 @@ module.exports = {
               userId,
             }, {});
             if (userObj !== null) {
-              if(userObj.stamina < 20 && userObj > 0) {
-                embedSelect.setTitle("Attention !").setDescription("Votre niveau de Stamina est faible, vous risquez de vous blesser à l'issu de votre entraînement...").setColor("RED");
-              }
-              else if(userObj.stamina === 0) {
+              if(userObj.stamina === 0) {
                 embedSelect.setTitle("Attention !").setDescription("Votre niveau de Stamina ne vous permet pas de vous entrainer").setColor("RED");
+                interaction.reply({
+                  embeds: [embedSelect],
+                  ephemeral: true
+                })
               }
               else {
-                embedSelect.setTitle("Tout est bon !").setDescription("Vous êtes dans une forme correcte pour vous entrainer").setColor("GREEN");
-              }
+                if(userObj.stamina < 20 && userObj > 0) {
+                  embedSelect.setTitle("Attention !").setDescription("Votre niveau de Stamina est faible, vous risquez de vous blesser à l'issu de votre entraînement...").setColor("RED");
+                }
+                else {
+                  embedSelect.setTitle("Tout est bon !").setDescription("Vous êtes dans une forme correcte pour vous entrainer").setColor("GREEN");
+                }
               const row = new MessageActionRow()
                 .addComponents(
                   new MessageSelectMenu()
@@ -382,6 +387,7 @@ module.exports = {
                 components: [row],
                 ephemeral: true
               })
+            }
             } else {
               interaction.reply({
                 embed: [Util.errorEmbed("Entrainement impossible", "Vous ne possedez pas de joueur.")],
