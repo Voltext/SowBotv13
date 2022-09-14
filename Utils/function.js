@@ -56,12 +56,15 @@ module.exports = class Utils {
       }
 
       static addStat(userId, stat, point, stamina, userObj) {
-          console.log(stat)
-          console.log(userObj)
-        var item;
-        if( userObj.hasOwnProperty(stat) ) {
-            item = userObj[stat];
-            console.log(item);
+          console.log(findValueByPrefix(userObj, stat))
+      }
+
+      static findValueByPrefix(object, prefix) {
+        for (var property in object) {
+          if (object.hasOwnProperty(property) && 
+             property.toString().startsWith(prefix)) {
+             return object[property];
+          }
         }
       }
 
