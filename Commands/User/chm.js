@@ -488,60 +488,82 @@ module.exports = {
       case "createteam": {
         const teamName = interaction.options.getString("teamname")
         const idCapitaine = userId
-        mongo().then(async (mongooseteam) => {
+        mongo().then(async (mongoosecplayer) => {
           try {
-            const teamObj = await teamsSchema.find({}, {
-              idCapitaine: 1,
-              teamName: 1,
-              teamMembers: 1,
-              _id: 0,
+            const userObj = await playerSchema.findOne({
+              userId,
             });
-            if (teamObj.length === 0) {
-              const capitaine = await guild.members.fetch(userId);
-              capitaine.roles.add(recruteurRole)
-
-              const newMember = [userId.toString()]
-              teamsSchema.create({
-                idCapitaine: userId,
-                teamName: teamName,
-                teamMembers: newMember
-              })
-              interaction.reply({
-                embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
-                ephemeral: true
-              })
-            } else {
-              teamObj.forEach(async team => {
-                const memberArr = team.teamMembers
-                memberArr.forEach(async member => {
-                  if (team.idCapitaine !== userId && member !== userId) {
-                    const capitaine = await guild.members.fetch(userId);
-                    capitaine.roles.add(recruteurRole)
-
-                    const newMember = [userId.toString()]
-                    teamsSchema.create({
-                      idCapitaine: userId,
-                      teamName: teamName,
-                      teamMembers: newMember
-                    })
-                    interaction.reply({
-                      embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
-                      ephemeral: true
-                    })
-                  } else {
-                    interaction.reply({
-                      embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${team.teamName}**`)],
-                      ephemeral: true
-                    })
+            if (userObj === null) {
+              if(userObj.succes < 50) {
+                interaction.reply({
+                  embeds: [Util.errorEmbed("Création impossible", "Vous n'avez pas suffisamment de point de succès pour créer votre équipe. Il vous faut minimum 50 points de succès")],
+                  ephemeral: true
+                })
+              }
+              else {
+                mongo().then(async (mongooseteam) => {
+                  try {
+                    const teamObj = await teamsSchema.find({}, {
+                      idCapitaine: 1,
+                      teamName: 1,
+                      teamMembers: 1,
+                      _id: 0,
+                    });
+                    if (teamObj.length === 0) {
+                      const capitaine = await guild.members.fetch(userId);
+                      capitaine.roles.add(recruteurRole)
+        
+                      const newMember = [userId.toString()]
+                      teamsSchema.create({
+                        idCapitaine: userId,
+                        teamName: teamName,
+                        teamMembers: newMember
+                      })
+                      interaction.reply({
+                        embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
+                        ephemeral: true
+                      })
+                    } else {
+                      teamObj.forEach(async team => {
+                        const memberArr = team.teamMembers
+                        memberArr.forEach(async member => {
+                          if (team.idCapitaine !== userId && member !== userId) {
+                            const capitaine = await guild.members.fetch(userId);
+                            capitaine.roles.add(recruteurRole)
+        
+                            const newMember = [userId.toString()]
+                            teamsSchema.create({
+                              idCapitaine: userId,
+                              teamName: teamName,
+                              teamMembers: newMember
+                            })
+                            interaction.reply({
+                              embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
+                              ephemeral: true
+                            })
+                          } else {
+                            interaction.reply({
+                              embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${team.teamName}**`)],
+                              ephemeral: true
+                            })
+                          }
+                        })
+                      })
+                    }
+                  } catch {
+                    console.log("Erreur commande club house manager: chm(222)")
+                    mongooseteam.connection.close()
                   }
                 })
-              })
+              }
             }
+            
           } catch {
-            console.log("Erreur commande club house manager: chm(222)")
-            mongooseteam.connection.close()
+            console.log("Erreur commande club house manager: chm(183)")
+            mongoosecplayer.connection.close()
           }
         })
+        
         break;
       }
       case "leaveteam": {
