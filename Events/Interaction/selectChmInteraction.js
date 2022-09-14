@@ -69,7 +69,7 @@ module.exports = {
                     .setColor("GREEN")
                     .setThumbnail(userObj.profil);
 
-                    Util.addStat(userId, idStat, 1, userObj.stat1, userObj.stat2, userObj.stat3, userObj.stat4, userObj.stat5, userObj.stat6, userObj.stamina)
+                    Util.addStat(userId, idStat, 1, userObj.stamina, userObj)
                     
                   interaction.followUp({
                     embeds: [embedTrainingEnd],
