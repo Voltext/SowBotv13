@@ -146,6 +146,7 @@ module.exports = {
     switch (subCommand) {
       case "myplayer": {
         let keysChart = "";
+        let etat = ""
         const canvas = new ChartJSNodeCanvas({
           width: 800,
           height: 600,
@@ -159,6 +160,13 @@ module.exports = {
             if (userObj !== null) {
               var total = 100;
               var current = userObj.stamina;
+
+              if(userObj.isInjured === true) {
+                etat = "Blessé"
+              }
+              else {
+                etat = "En forme"
+              }
 
               if (userObj.poste === "attaquant") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
@@ -227,7 +235,8 @@ module.exports = {
                   name: keysChart[5],
                   value: userObj.stat6.toString(),
                   inline: true
-                });
+                })
+                .addField("Votre Etat de Santé :", etat);
 
               interaction.reply({
                 embeds: [statEmbed],
@@ -257,7 +266,7 @@ module.exports = {
             }, {});
             if (userObj !== null) {
               if(userObj.stamina === 0 || userObj.isInjured === true) {
-                embedSelect.setTitle("Attention !").setDescription("Votre état de forme ne vous permet pas de vous entrainer").addField("Votre stamina", userObj.stamina.toString()).addField("Blessé ?", userObj.isInjured).setColor("RED");
+                embedSelect.setTitle("Attention !").setDescription("Votre état de forme ne vous permet pas de vous entrainer").addField("Votre stamina", userObj.stamina.toString()).addField("Blessé ?", userObj.isInjured.toString()).setColor("RED");
                 interaction.reply({
                   embeds: [embedSelect],
                   ephemeral: true
