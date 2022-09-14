@@ -51,7 +51,7 @@ module.exports = {
                     .setTitle("Entrainement terminé")
                     .setDescription("Voici le récapitulatif de votre entraînement :")
                     .addFields({
-                      name: interaction.values[0],
+                      name: Util.strUcFirst(stat),
                       value: "+1",
                       inline: true
                     }, {

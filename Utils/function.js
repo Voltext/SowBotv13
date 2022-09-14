@@ -32,6 +32,10 @@ module.exports = class Utils {
         return [type, min, max]
     }
 
+    static strUcFirst(a){
+        return (a+'').charAt(0).toUpperCase()+a.substr(1);
+    }
+
     static getRandomNumbers(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min)
     }
@@ -73,7 +77,6 @@ module.exports = class Utils {
                 [stat]: userObj[stat] + point
             }
         }
-        console.log(update)
         mongo().then(async (mongooselock) => {
             try {
                 await playerSchema.findOneAndUpdate({
