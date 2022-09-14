@@ -308,7 +308,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			}
 		})
 
-		schedule.scheduleJob('37 * * * *', async () => {
+		schedule.scheduleJob('30 * * * *', async () => {
 			mongo().then(async (mongooserank) => {
 				try {
 					const results = await playerSchema.find({

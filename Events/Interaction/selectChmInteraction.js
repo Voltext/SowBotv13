@@ -59,7 +59,7 @@ module.exports = {
                       value: "-20",
                       inline: true
                     }, {
-                      name: "Bléssé ?",
+                      name: "Blessé ?",
                       value: blessure,
                       inline: true
                     })
