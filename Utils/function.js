@@ -4,6 +4,7 @@ const reponseSchema = require('../Schemas/reponseSchema');
 const battleSchema = require('../Schemas/battleSchema');
 const pronoSchema = require('../Schemas/pronoSchema');
 const counterSchema = require('../Schemas/counterSchema');
+const playerSchema = require('../Schemas/playerSchema')
 const { MessageEmbed } = require('discord.js');
 
 module.exports = class Utils {
