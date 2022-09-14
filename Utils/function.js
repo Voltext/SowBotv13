@@ -74,7 +74,8 @@ module.exports = class Utils {
         } else {
             update = {
                 stamina: stamina - 20,
-                [stat]: userObj[stat] + point
+                [stat]: userObj[stat] + point, 
+                succes: userObj.succes + 1
             }
         }
         mongo().then(async (mongooselock) => {
