@@ -604,9 +604,23 @@ module.exports = {
       }
 
       case "transfert": {
-        const insertForum = new Thread()
+        headers = {
+          'Authorization': 'Bot ' + process.env.TOKEN_SOW,
+          'Content-Type': 'application/json'
+        }
 
-        insertForum.insertThreadForum("Message forum", "Pour tester")
+        dataCards = {
+          "message" : {
+              "content": "Test"
+          },
+          "name": "En cours..."
+      }
+
+        axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
+          'headers': headers
+        }).then(resp => {
+          console.log(resp.data);
+        }).catch(err => console.error(err))
 
         break;
       }
