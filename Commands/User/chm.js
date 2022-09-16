@@ -551,9 +551,8 @@ module.exports = {
                         })
                       }
                       else {
-                        console.log(userObj)
                         interaction.reply({
-                          embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${userObj.teamName}**`)],
+                          embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${userObj.team.teamName}**`)],
                           ephemeral: true
                         })
                       }
