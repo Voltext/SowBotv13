@@ -6,7 +6,7 @@ const teamsPlayerSchema = mongoose.Schema({
     required: true
   },
   userId: {
-    type: String,
+    type: mongoose.Types.ObjectId,
     required: true
   },
 })
