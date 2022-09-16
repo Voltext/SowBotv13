@@ -534,36 +534,29 @@ module.exports = {
                       });
 
                       if(userObj.length === 0) {
-                        console.log("Aucun")
+                        Teams.create({
+                          idCapitaine: userId,
+                          teamName: teamName,
+                          budget: 10000000
+                        }).then(team => {
+                          teamPlayerSchema.create({
+                            team: team,
+                            userId: userId,
+                          })
+                        })
+
+                        interaction.reply({
+                          embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
+                          ephemeral: true
+                        })
                       }
                       else {
-                        console.log("Y'en a 1")
-                      }
-                      teamObj.forEach(async team => {
-                        const memberArr = team.teamMembers
-                        memberArr.forEach(async member => {
-                          if (team.idCapitaine !== userId && member !== userId) {
-                            const capitaine = await guild.members.fetch(userId);
-                            capitaine.roles.add(recruteurRole)
-        
-                            const newMember = [userId.toString()]
-                            Teams.create({
-                              idCapitaine: userId,
-                              teamName: teamName,
-                              budget: 10000000
-                            })
-                            interaction.reply({
-                              embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
-                              ephemeral: true
-                            })
-                          } else {
-                            interaction.reply({
-                              embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${team.teamName}**`)],
-                              ephemeral: true
-                            })
-                          }
+                        console.log(userObj)
+                        interaction.reply({
+                          embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${userObj.teamName}**`)],
+                          ephemeral: true
                         })
-                      })
+                      }
                     }
                   } catch(err) {
                     console.log(err)
