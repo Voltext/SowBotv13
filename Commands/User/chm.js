@@ -518,8 +518,9 @@ module.exports = {
                         teamName: teamName,
                         budget: 10000000
                       }).then(team => {
+                        console.log(team)
                         teamPlayerSchema.create({
-                          teamId: team,
+                          team: team,
                           userId: userId,
                         })
                       })

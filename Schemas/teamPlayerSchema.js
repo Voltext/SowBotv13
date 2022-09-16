@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const teamsSchema = require("../Schemas/teamsSchema").teamsSchema;
 
 const teamsPlayerSchema = mongoose.Schema({
-  teamId: teamsSchema,
+  team: teamsSchema,
   userId: {
     type: String,
     required: true
