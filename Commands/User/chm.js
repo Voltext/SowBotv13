@@ -605,7 +605,7 @@ module.exports = {
 
       case "transfert": {
         headers = {
-          'Authorization': 'Bot ' + process.env.TOKEN_SOW,
+          'Authorization': 'Bot ' + process.env.BOT_TOKEN,
           'Content-Type': 'application/json'
         }
 
