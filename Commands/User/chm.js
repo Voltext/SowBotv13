@@ -610,10 +610,10 @@ module.exports = {
         }
 
         dataCards = {
-          message : {
+          "message" : {
               "content": "Test"
           },
-          name: "En cours..."
+          "name": "En cours..."
       }
 
         axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
