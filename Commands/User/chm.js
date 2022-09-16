@@ -131,11 +131,6 @@ module.exports = {
           required: true,
           description: "Saisissez la personne à vendre"
         }, {
-          name: "channel",
-          type: "CHANNEL",
-          required: true,
-          description: "Saisissez la personne à vendre"
-        },{
           name: "valeur",
           type: "STRING",
           required: true,
@@ -604,6 +599,7 @@ module.exports = {
       }
 
       case "transfert": {
+        const user = interaction.options.getUser('member');
         headers = {
           'Authorization': 'Bot ' + process.env.BOT_TOKEN,
           'Content-Type': 'application/json'
@@ -619,7 +615,7 @@ module.exports = {
         axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
           'headers': headers
         }).then(resp => {
-          console.log(resp.data);
+          resp.permissionOverwrites.edit(user, {SEND_MESSAGES: true});
         }).catch(err => console.error(err))
 
         break;
