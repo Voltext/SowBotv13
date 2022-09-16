@@ -519,11 +519,11 @@ module.exports = {
                         budget: 10000000
                       }).then(team => {
                         teamPlayerSchema.create({
-                          teamId: team._id.toString(),
+                          teamId: team,
                           userId: userId,
                         })
                       })
-                      const allTeams = await teamPlayerSchema.find().populate("teamId");
+                      const allTeams = await teamPlayerSchema.find()
                         
                       console.log("> All Teams\n", allTeams);
                       interaction.reply({

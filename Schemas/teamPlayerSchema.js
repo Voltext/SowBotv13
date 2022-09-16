@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
+const teamsSchema = require("../Schemas/teamsSchema").teamsSchema;
 
 const teamsPlayerSchema = mongoose.Schema({
-  teamId: {
-    type: mongoose.Types.ObjectId,
-    required: true
-  },
+  teamId: teamsSchema,
   userId: {
     type: String,
     required: true
