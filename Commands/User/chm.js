@@ -22,6 +22,7 @@ const {
 } = require("chartjs-node-canvas");
 const toonavatar = require('cartoon-avatar');
 const progressbar = require('string-progressbar');
+const axios = require('axios')
 
 module.exports = {
   name: "chm",
