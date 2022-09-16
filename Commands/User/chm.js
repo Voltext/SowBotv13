@@ -603,7 +603,7 @@ module.exports = {
       }
 
       case "transfert": {
-        const loggingChannel = interaction.options.getChannel("salon").id;
+        const loggingChannel = interaction.options.getChannel("channel").id;
         
         const channel = guild.channels.cache.get('1020265346877374534').threads.create;
 
