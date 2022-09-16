@@ -7,7 +7,7 @@ const {
   MessageSelectMenu
 } = require("discord.js");
 const playerSchema = require('../../Schemas/playerSchema')
-const {teamsSchema} = require('../../Schemas/teamsSchema')
+const {Teams} = require('../../Schemas/teamsSchema')
 const teamPlayerSchema = require('../../Schemas/teamPlayerSchema')
 const Util = require('../../Utils/function')
 const mongo = require('../../mongo');
@@ -503,7 +503,7 @@ module.exports = {
               else {
                 mongo().then(async (mongooseteam) => {
                   try {
-                    const teamObj = await teamsSchema.find({}, {
+                    const teamObj = await Teams.find({}, {
                       idCapitaine: 1,
                       teamName: 1,
                       budget: 1,
@@ -513,7 +513,7 @@ module.exports = {
                       const capitaine = await guild.members.fetch(userId);
                       capitaine.roles.add(recruteurRole)
 
-                      teamsSchema.create({
+                      Teams.create({
                         idCapitaine: userId,
                         teamName: teamName,
                         budget: 10000000
@@ -539,7 +539,7 @@ module.exports = {
                             capitaine.roles.add(recruteurRole)
         
                             const newMember = [userId.toString()]
-                            teamsSchema.create({
+                            Teams.create({
                               idCapitaine: userId,
                               teamName: teamName,
                               budget: 10000000
