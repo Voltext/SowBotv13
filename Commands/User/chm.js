@@ -523,6 +523,9 @@ module.exports = {
                           userId: userId,
                         })
                       })
+                      const allTeams = await teamPlayerSchema.find().populate("teamId");
+                        
+                      console.log("> All Teams\n", allTeams);
                       interaction.reply({
                         embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
                         ephemeral: true
