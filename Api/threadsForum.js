@@ -10,13 +10,14 @@ class Thread {
                  'Authorization': 'Bot ' + process.env.BOT_TOKEN,
                  'Content-Type': "application/json"
              },
-             body : {
-              "message" : {
-                  "content": message
+             body: {
+              message : {
+                  content: message
               },
-              "name": name
+              name: name
           },
-             responseType: 'json'
+          json: true,
+          responseType: 'json'
         })
 
         if (!res || !res.body) {
