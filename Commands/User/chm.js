@@ -8,6 +8,7 @@ const {
 } = require("discord.js");
 const playerSchema = require('../../Schemas/playerSchema')
 const teamsSchema = require('../../Schemas/teamsSchema')
+const teamPlayerSchema = require('../../Schemas/teamPlayerSchema')
 const Util = require('../../Utils/function')
 const mongo = require('../../mongo');
 const {
@@ -516,7 +517,12 @@ module.exports = {
                         idCapitaine: userId,
                         teamName: teamName,
                         budget: 10000000
-                      }).then(team => console.log(team._id.toString()))
+                      }).then(team => {
+                        teamPlayerSchema.create({
+                          teamId: team._id.toString(),
+                          userId: userId,
+                        })
+                      })
                       interaction.reply({
                         embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
                         ephemeral: true
