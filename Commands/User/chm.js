@@ -130,6 +130,11 @@ module.exports = {
           required: true,
           description: "Saisissez la personne à vendre"
         }, {
+          name: "channel",
+          type: "CHANNEL",
+          required: true,
+          description: "Saisissez la personne à vendre"
+        },{
           name: "valeur",
           type: "STRING",
           required: true,
@@ -598,9 +603,11 @@ module.exports = {
       }
 
       case "transfert": {
-        const channel = guild.channels.cache.get('1020265346877374534');
+        const loggingChannel = interaction.options.getChannel("salon").id;
+        
+        const channel = guild.channels.cache.get('1020265346877374534').threads.create;
 
-        console.log(channel)
+        console.log(loggingChannel)
 
         break;
       }
