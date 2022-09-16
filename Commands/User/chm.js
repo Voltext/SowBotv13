@@ -22,6 +22,7 @@ const {
 } = require("chartjs-node-canvas");
 const toonavatar = require('cartoon-avatar');
 const progressbar = require('string-progressbar');
+const Thread = require("../../Api/threadsForum")
 
 module.exports = {
   name: "chm",
@@ -603,11 +604,9 @@ module.exports = {
       }
 
       case "transfert": {
-        const loggingChannel = interaction.options.getChannel("channel").id;
-        const Channel = interaction.options.getChannel("channel");
+        const insertForum = new Thread()
 
-        console.log(loggingChannel)
-        console.log(Channel)
+        insertForum.insertThreadForum("Message forum", "Pour tester")
 
         break;
       }
