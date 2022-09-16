@@ -9,8 +9,8 @@ const teamsSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  teamMembers: {
-    type: [String],
+  budget: {
+    type: Number,
     required: true
   }
 })

@@ -606,8 +606,6 @@ module.exports = {
             mongooseteam.connection.close()
           }
         })
-
-
         break;
       }
     }
