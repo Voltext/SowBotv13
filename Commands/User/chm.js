@@ -518,7 +518,6 @@ module.exports = {
                         teamName: teamName,
                         budget: 10000000
                       }).then(team => {
-                        console.log(team)
                         teamPlayerSchema.create({
                           team: team,
                           userId: userId,
@@ -558,7 +557,8 @@ module.exports = {
                         })
                       })
                     }
-                  } catch {
+                  } catch(err) {
+                    console.log(err)
                     console.log("Erreur commande club house manager: chm(222)")
                     mongooseteam.connection.close()
                   }
