@@ -600,10 +600,7 @@ module.exports = {
       case "transfert": {
         const channel = guild.channels.cache.get('1020265346877374534');
 
-        const thread = await channel.threads.create({
-          name: 'food-talk',
-          reason: 'Needed a separate thread for food',
-        });
+        console.log(channel)
 
         break;
       }
