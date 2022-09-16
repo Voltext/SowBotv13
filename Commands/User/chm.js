@@ -22,7 +22,6 @@ const {
 } = require("chartjs-node-canvas");
 const toonavatar = require('cartoon-avatar');
 const progressbar = require('string-progressbar');
-const Thread = require("../../Api/threadsForum")
 
 module.exports = {
   name: "chm",
