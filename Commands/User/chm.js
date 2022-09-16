@@ -606,12 +606,6 @@ module.exports = {
         const loggingChannel = interaction.options.getChannel("channel").id;
         const Channel = interaction.options.getChannel("channel");
 
-        Channel.threads.create({
-          name: 'Votre avis sur le live ?',
-          autoArchiveDuration: 60,
-          reason: "Qu'avez vous pensez de ce match ?",
-        });
-
         console.log(loggingChannel)
         console.log(Channel)
 
