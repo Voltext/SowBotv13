@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
-console.log(require("../Schemas/teamsSchema").teamsSchema)
+const teamsSchema = require("../Schemas/teamsSchema").teamsSchema;
+
+console.log(teamsSchema)
 
 const teamsPlayerSchema = mongoose.Schema({
   team: {
