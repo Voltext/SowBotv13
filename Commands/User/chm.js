@@ -523,14 +523,21 @@ module.exports = {
                           userId: userId,
                         })
                       })
-                      const allTeams = await teamPlayerSchema.find()
-                        
-                      console.log("> All Teams\n", allTeams);
+
                       interaction.reply({
                         embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
                         ephemeral: true
                       })
                     } else {
+                      const userObj = await teamPlayerSchema.findOne({
+                        userId,
+                      });
+
+                      console.log(userObj)
+
+                      if(userObj.length === 0) {
+                        
+                      }
                       teamObj.forEach(async team => {
                         const memberArr = team.teamMembers
                         memberArr.forEach(async member => {
