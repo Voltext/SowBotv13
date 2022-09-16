@@ -604,10 +604,10 @@ module.exports = {
 
       case "transfert": {
         const loggingChannel = interaction.options.getChannel("channel").id;
-        
-        const channel = guild.channels.cache.get('1020265346877374534').threads.create;
+        const Channel = interaction.options.getChannel("channel");
 
         console.log(loggingChannel)
+        console.log(Channel)
 
         break;
       }
