@@ -120,6 +120,22 @@ module.exports = {
         description: "Saisissez le nom de votre équipe"
       }, ]
     },
+      {
+         name: "transfert",
+         type: "SUB_COMMAND",
+         description: "Supprimer votre équipe",
+         options: [{
+          name: "member",
+          type: "MEMBER",
+          required: true,
+          description: "Saisissez la personne à vendre",
+        }, {
+          name: "valeur",
+          type: "STRING",
+          required: true,
+          description: "Saisissez la personne à vendre",
+        }, ]
+       },
 
     // {
     //   name: "leaveteam",
@@ -578,6 +594,17 @@ module.exports = {
           }
         })
         
+        break;
+      }
+
+      case "transfert": {
+        const channel = guild.channels.cache.get('1020265346877374534');
+
+        const thread = await channel.threads.create({
+          name: 'food-talk',
+          reason: 'Needed a separate thread for food',
+        });
+
         break;
       }
       // case "leaveteam": {
