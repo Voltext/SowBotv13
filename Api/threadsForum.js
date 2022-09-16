@@ -17,6 +17,7 @@ class Thread {
               name: name
           },
           json: true,
+          form: true,
           responseType: 'json'
         })
 
