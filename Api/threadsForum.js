@@ -5,23 +5,19 @@ const makeURL = () => `https://discord.com/api/channels/1020265346877374534/thre
 
 class Thread {
     async insertThreadForum(message, name) {
-      requestOptions = [
-        {
-          headers: {
-            'Authorization': 'Bot ' + process.env.BOT_TOKEN,
-            'Content-Type': "application/json"
-          },
-            method: "POST",
-            form: true,
-            body: {
+        const res = await got.post(makeURL(), {
+             headers: {
+                 'Authorization': 'Bot ' + process.env.BOT_TOKEN,
+                 'Content-Type': "application/json"
+             },
+             form: {
               message : {
-                content: message
-            },
-            name: name
-            }
-        }
-    ];
-        const res = await got(makeURL(), requestOptions)
+                  content: message
+              },
+              name: name
+          },
+          responseType: 'json'
+        })
 
         if (!res || !res.body) {
             throw new Error('Il y a une erreur dans la requête.')
