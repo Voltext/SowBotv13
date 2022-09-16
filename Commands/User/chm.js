@@ -120,11 +120,11 @@ module.exports = {
       }, ]
     },
 
-    {
-      name: "leaveteam",
-      type: "SUB_COMMAND",
-      description: "Supprimer votre équipe",
-    },
+    // {
+    //   name: "leaveteam",
+    //   type: "SUB_COMMAND",
+    //   description: "Supprimer votre équipe",
+    // },
 
   ],
   /**
@@ -487,7 +487,6 @@ module.exports = {
       }
       case "createteam": {
         const teamName = interaction.options.getString("teamname")
-        const idCapitaine = userId
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await playerSchema.findOne({
@@ -506,19 +505,18 @@ module.exports = {
                     const teamObj = await teamsSchema.find({}, {
                       idCapitaine: 1,
                       teamName: 1,
-                      teamMembers: 1,
+                      budget: 1,
                       _id: 0,
                     });
                     if (teamObj.length === 0) {
                       const capitaine = await guild.members.fetch(userId);
                       capitaine.roles.add(recruteurRole)
-        
-                      const newMember = [userId.toString()]
+
                       teamsSchema.create({
                         idCapitaine: userId,
                         teamName: teamName,
-                        teamMembers: newMember
-                      })
+                        budget: 10000000
+                      }).then(team => console.log(team._id.toString()))
                       interaction.reply({
                         embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
                         ephemeral: true
@@ -535,7 +533,7 @@ module.exports = {
                             teamsSchema.create({
                               idCapitaine: userId,
                               teamName: teamName,
-                              teamMembers: newMember
+                              budget: 10000000
                             })
                             interaction.reply({
                               embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
@@ -572,42 +570,42 @@ module.exports = {
         
         break;
       }
-      case "leaveteam": {
-        const modal = new Modal()
-          .setCustomId('modal-customid')
-          .setTitle("Quitter votre équipe")
-          .addComponents(
-            new TextInputComponent() // We create a Text Input Component
-            .setCustomId('textinput-customid')
-            .setLabel('Raison')
-            .setStyle('LONG') //IMPORTANT: Text Input Component Style can be 'SHORT' or 'LONG'
-            .setMinLength(4)
-            .setMaxLength(500)
-            .setPlaceholder('Expliquez pourquoi vous souhaitez quitter votre équipe')
-            .setRequired(true) // If it's required or not
-          );
+      // case "leaveteam": {
+      //   const modal = new Modal()
+      //     .setCustomId('modal-customid')
+      //     .setTitle("Quitter votre équipe")
+      //     .addComponents(
+      //       new TextInputComponent() // We create a Text Input Component
+      //       .setCustomId('textinput-customid')
+      //       .setLabel('Raison')
+      //       .setStyle('LONG') //IMPORTANT: Text Input Component Style can be 'SHORT' or 'LONG'
+      //       .setMinLength(4)
+      //       .setMaxLength(500)
+      //       .setPlaceholder('Expliquez pourquoi vous souhaitez quitter votre équipe')
+      //       .setRequired(true) // If it's required or not
+      //     );
 
-        showModal(modal, {
-          client: client,
-          interaction: interaction,
-        });
+      //   showModal(modal, {
+      //     client: client,
+      //     interaction: interaction,
+      //   });
 
-        mongo().then(async (mongooseteam) => {
-          try {
-            const teamObj = await teamsSchema.find({}, {
-              idCapitaine: 1,
-              teamName: 1,
-              teamMembers: 1,
-              _id: 1,
-            }).exec();
-          } catch (err) {
-            console.log("Erreur commande club house manager: chm(222)")
-            console.log(err)
-            mongooseteam.connection.close()
-          }
-        })
-        break;
-      }
+      //   mongo().then(async (mongooseteam) => {
+      //     try {
+      //       const teamObj = await teamsSchema.find({}, {
+      //         idCapitaine: 1,
+      //         teamName: 1,
+      //         teamMembers: 1,
+      //         _id: 1,
+      //       }).exec();
+      //     } catch (err) {
+      //       console.log("Erreur commande club house manager: chm(222)")
+      //       console.log(err)
+      //       mongooseteam.connection.close()
+      //     }
+      //   })
+      //   break;
+      // }
     }
 
   }
