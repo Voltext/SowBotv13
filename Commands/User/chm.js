@@ -7,7 +7,7 @@ const {
   MessageSelectMenu
 } = require("discord.js");
 const playerSchema = require('../../Schemas/playerSchema')
-const teamsSchema = require('../../Schemas/teamsSchema')
+const {teamsSchema} = require('../../Schemas/teamsSchema')
 const teamPlayerSchema = require('../../Schemas/teamPlayerSchema')
 const Util = require('../../Utils/function')
 const mongo = require('../../mongo');
