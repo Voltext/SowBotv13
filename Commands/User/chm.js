@@ -126,14 +126,14 @@ module.exports = {
          description: "Supprimer votre équipe",
          options: [{
           name: "member",
-          type: "MEMBER",
+          type: "USER",
           required: true,
-          description: "Saisissez la personne à vendre",
+          description: "Saisissez la personne à vendre"
         }, {
           name: "valeur",
           type: "STRING",
           required: true,
-          description: "Saisissez la personne à vendre",
+          description: "Saisissez la personne à vendre"
         }, ]
        },
 
