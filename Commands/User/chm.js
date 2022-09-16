@@ -533,10 +533,11 @@ module.exports = {
                         userId,
                       });
 
-                      console.log(userObj)
-
                       if(userObj.length === 0) {
-                        
+                        console.log("Aucun")
+                      }
+                      else {
+                        console.log("Y'en a 1")
                       }
                       teamObj.forEach(async team => {
                         const memberArr = team.teamMembers
