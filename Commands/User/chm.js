@@ -4,7 +4,8 @@ const {
   MessageButton,
   MessageAttachment,
   MessageActionRow,
-  MessageSelectMenu
+  MessageSelectMenu,
+  ChannelType
 } = require("discord.js");
 const playerSchema = require('../../Schemas/playerSchema')
 const {Teams} = require('../../Schemas/teamsSchema')
@@ -601,6 +602,7 @@ module.exports = {
       case "transfert": {
         const user = interaction.options.getUser('member');
         const budget = interaction.options.getString('valeur');
+        const channel = client.channels.cache.get(process.env.CHMJOUEUR);
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await Teams.findOne({
@@ -615,14 +617,19 @@ module.exports = {
                 ephemeral: true
               })
             } else {
-              headers = {
+               await channel.threads.create({
+                name: `${username} souhaite transférer ${user.username} pour ${budget}`,
+                type: ChannelType.GuildPrivateThread,
+                reason: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
+              });
+              /* headers = {
                 'Authorization': 'Bot ' + process.env.BOT_TOKEN,
                 'Content-Type': 'application/json'
               }
       
               dataCards = {
                 "message" : {
-                    "content": `Les discussions sont lancées entre <@${userId}> et.`
+                    "content": `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
                 },
                 "name": `${username} souhaite transférer ${user.username} pour ${budget}`
             }
@@ -636,7 +643,8 @@ module.exports = {
                 embeds: [Util.successEmbed("Demande de transfert envoyée", "Un fil vient de se créer dans <#1020265346877374534>")],
                 ephemeral: true
               })
-            }
+              */
+            } 
           } catch {
             console.log("Erreur commande club house manager: chm(183)")
             mongoosecplayer.connection.close()
