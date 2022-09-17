@@ -134,7 +134,7 @@ module.exports = {
           name: "valeur",
           type: "STRING",
           required: true,
-          description: "Saisissez la personne à vendre"
+          description: "Saisissez la vakeur de la personne à vendre"
         }, ]
        },
 
@@ -600,6 +600,7 @@ module.exports = {
 
       case "transfert": {
         const user = interaction.options.getUser('member');
+        const budget = interaction.options.getString('valeur');
         headers = {
           'Authorization': 'Bot ' + process.env.BOT_TOKEN,
           'Content-Type': 'application/json'
@@ -607,9 +608,9 @@ module.exports = {
 
         dataCards = {
           "message" : {
-              "content": "Test"
+              "content": "Les discussions sont lancées."
           },
-          "name": "En cours..."
+          "name": `${username} souhaite transférer ${user.username} pour ${budget}`
       }
 
         axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
