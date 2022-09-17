@@ -735,13 +735,10 @@ module.exports = {
         const user = interaction.options.getUser('member');
         const reponse = interaction.options.getString('reponse');
 
-        const receveur = user.id  
-
         mongo().then(async (mongoosectransfert) => {
           try {
             const userObj = await transfertSchema.findOne({
-              demandeurId : userId,
-              receveurId: receveur
+              receveurId: userId
             });
             if (userObj !== null) {
               if(reponse === "valide") {
