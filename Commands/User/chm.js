@@ -643,7 +643,7 @@ module.exports = {
                 ephemeral: true
               })
             } else {
-              mongo().then(async (mongoosecplayer) => {
+              mongo().then(async (mongoosecplayerteam) => {
                 try {
                   const userObjPlayer = await teamPlayerSchema.findOne({
                     receveur,
@@ -695,7 +695,7 @@ module.exports = {
                 } catch (err) {
                   console.log(err)
                   console.log("Erreur commande club house manager: chm(183)")
-                  mongoosecplayer.connection.close()
+                  mongoosecplayerteam.connection.close()
                 }
               })
               /* headers = {
