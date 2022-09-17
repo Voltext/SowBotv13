@@ -647,6 +647,7 @@ module.exports = {
                     receveur,
                   });
                   if (userObjPlayer === null) {
+                    console.log(userObjPlayer)
                     const thread = await channel.threads.create({
                       name: `${username} souhaite transférer ${user.username} pour ${budget}`,
                       type: 'GUILD_PRIVATE_THREAD',
