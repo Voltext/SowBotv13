@@ -625,6 +625,8 @@ module.exports = {
         const user = interaction.options.getUser('member');
         const budget = interaction.options.getString('valeur');
         const channel = guild.channels.cache.get(process.env.CHMJOUEUR);
+
+        const receveur = user.id
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await Teams.findOne({
@@ -642,7 +644,7 @@ module.exports = {
               mongo().then(async (mongoosecplayer) => {
                 try {
                   const userObjPlayer = await teamPlayerSchema.findOne({
-                    userId,
+                    receveur,
                   });
                   if (userObjPlayer === null) {
                     const thread = await channel.threads.create({
