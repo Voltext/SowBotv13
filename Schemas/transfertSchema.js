@@ -9,6 +9,10 @@ const transfertSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  joueurId: {
+    type: String,
+    required: true
+  },
   montant: {
     type: Number,
     required: true

@@ -150,7 +150,7 @@ module.exports = {
         name: "member",
         type: "USER",
         required: true,
-        description: "Saisissez la personne dont vous souhaitez accepter le transfert"
+        description: "Joueur concerné par le transfert"
       }, {
         name: "reponse",
         type: "STRING",
@@ -662,6 +662,7 @@ module.exports = {
                     transfertSchema.create({
                       demandeurId: userId,
                       receveurId: user.id,
+                      joueurId: user.id,
                       montant: budget
                     })
 
@@ -684,6 +685,7 @@ module.exports = {
                     transfertSchema.create({
                       demandeurId: userId,
                       receveurId: userObjPlayer.team.idCapitaine,
+                      joueurId: user.id,
                       montant: budget
                     })
 
@@ -732,13 +734,16 @@ module.exports = {
       }
 
       case "transfert" : {
-        const user = interaction.options.getUser('member');
+        const joueur = interaction.option.getUser("member")
         const reponse = interaction.options.getString('reponse');
+
+        const joueurId = joueur.id
 
         mongo().then(async (mongoosectransfert) => {
           try {
             const userObj = await transfertSchema.findOne({
-              receveurId: userId
+              receveurId: userId,
+              joueurId
             });
             if (userObj !== null) {
               if(reponse === "valide") {
