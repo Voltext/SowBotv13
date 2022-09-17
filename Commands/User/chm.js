@@ -735,6 +735,39 @@ module.exports = {
         const user = interaction.options.getUser('member');
         const reponse = interaction.options.getString('reponse');
 
+        const receveur = user.id  
+
+        mongo().then(async (mongoosectransfert) => {
+          try {
+            const userObj = await transfertSchema.findOne({
+              demandeurId : userId,
+              receveurId: receveur
+            });
+            if (userObj !== null) {
+              if(reponse === "valide") {
+                interaction.reply({
+                  embeds: [Util.successEmbed("Transfert validé", "Le joueur a bien été transferé")],
+                  ephemeral: true
+                })
+              }
+              else {
+                interaction.reply({
+                  embeds: [Util.errorEmbed("Transfert refusé", "Le transfert n'a pas abouti à une réponse positive. Le joueur reste donc dans son club actuel.")],
+                  ephemeral: true
+                })
+              }
+              
+            } else {
+              interaction.reply({
+                embeds: [Util.errorEmbed("Transfert impossible", "Le transfert que vous tentez d'accepter n'existe pas / plus")],
+                ephemeral: true
+              })
+            }
+          } catch {
+            console.log("Erreur commande club house manager: chm(183)")
+            mongoosectransfert.connection.close()
+          }
+        })
 
         break;
       }
