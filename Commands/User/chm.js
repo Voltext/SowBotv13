@@ -601,23 +601,47 @@ module.exports = {
       case "transfert": {
         const user = interaction.options.getUser('member');
         const budget = interaction.options.getString('valeur');
-        headers = {
-          'Authorization': 'Bot ' + process.env.BOT_TOKEN,
-          'Content-Type': 'application/json'
-        }
-
-        dataCards = {
-          "message" : {
-              "content": "Les discussions sont lancées."
-          },
-          "name": `${username} souhaite transférer ${user.username} pour ${budget}`
-      }
-
-        axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
-          'headers': headers
-        }).then(resp => {
-          resp.permissionOverwrites.edit(user, {SEND_MESSAGES: true});
-        }).catch(err => console.error(err))
+        mongo().then(async (mongoosecplayer) => {
+          try {
+            const userObj = await Teams.findOne({
+              userId,
+            }, {
+              userId: 1,
+              _id: 0,
+            });
+            if (userObj === null) {
+              interaction.reply({
+                embeds: [Util.errorEmbed("Transfert impossible", "Vous ne possedez pas d'équipe")],
+                ephemeral: true
+              })
+            } else {
+              headers = {
+                'Authorization': 'Bot ' + process.env.BOT_TOKEN,
+                'Content-Type': 'application/json'
+              }
+      
+              dataCards = {
+                "message" : {
+                    "content": `Les discussions sont lancées entre <@${userId}> et.`
+                },
+                "name": `${username} souhaite transférer ${user.username} pour ${budget}`
+            }
+      
+              axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
+                'headers': headers
+              }).then(resp => {
+                resp.permissionOverwrites.edit(user, {SEND_MESSAGES: true});
+              }).catch(err => console.error(err))
+              interaction.reply({
+                embeds: [Util.successEmbed("Demande de transfert envoyée", "Un fil vient de se créer dans <#1020265346877374534>")],
+                ephemeral: true
+              })
+            }
+          } catch {
+            console.log("Erreur commande club house manager: chm(183)")
+            mongoosecplayer.connection.close()
+          }
+        })
 
         break;
       }
