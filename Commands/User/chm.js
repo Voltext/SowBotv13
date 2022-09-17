@@ -617,11 +617,14 @@ module.exports = {
                 ephemeral: true
               })
             } else {
-               await channel.threads.create({
+               const thread = await channel.threads.create({
                 name: `${username} souhaite transférer ${user.username} pour ${budget}`,
                 type: 'GUILD_PRIVATE_THREAD',
                 reason: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
               });
+
+              await thread.members.add(userId);
+              await thread.members.add(user.id);
               /* headers = {
                 'Authorization': 'Bot ' + process.env.BOT_TOKEN,
                 'Content-Type': 'application/json'
