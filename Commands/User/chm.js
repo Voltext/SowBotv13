@@ -617,14 +617,40 @@ module.exports = {
                 ephemeral: true
               })
             } else {
-               const thread = await channel.threads.create({
-                name: `${username} souhaite transférer ${user.username} pour ${budget}`,
-                type: 'GUILD_PRIVATE_THREAD',
-                reason: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
-              });
-
-              await thread.members.add(userId);
-              await thread.members.add(user.id);
+              mongo().then(async (mongoosecplayer) => {
+                try {
+                  const userObjPlayer = await teamPlayerSchema.findOne({
+                    userId,
+                  }, {
+                    userId: 1,
+                    _id: 0,
+                  });
+                  if (userObjPlayer === null) {
+                    const thread = await channel.threads.create({
+                      name: `${username} souhaite transférer ${user.username} pour ${budget}`,
+                      type: 'GUILD_PRIVATE_THREAD',
+                      content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
+                    });
+      
+                    await thread.members.add(userId);
+                    await thread.members.add(user.id);
+                  } else {
+                    const thread = await channel.threads.create({
+                      name: `${username} souhaite transférer ${user.username} pour ${budget}`,
+                      type: 'GUILD_PRIVATE_THREAD',
+                      content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
+                    });
+      
+                    await thread.members.add(userId);
+                    await thread.members.add(user.id);
+                    await thread.members.add(userObjPlayer.team.idCapitaine);
+                  } 
+                } catch(err) {
+                  console.log(err)
+                  console.log("Erreur commande club house manager: chm(183)")
+                  mongoosecplayer.connection.close()
+                }
+              })
               /* headers = {
                 'Authorization': 'Bot ' + process.env.BOT_TOKEN,
                 'Content-Type': 'application/json'
