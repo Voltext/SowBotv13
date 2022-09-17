@@ -643,9 +643,6 @@ module.exports = {
                 try {
                   const userObjPlayer = await teamPlayerSchema.findOne({
                     userId,
-                  }, {
-                    userId: 1,
-                    _id: 0,
                   });
                   if (userObjPlayer === null) {
                     const thread = await channel.threads.create({
