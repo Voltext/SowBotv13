@@ -602,7 +602,7 @@ module.exports = {
       case "transfert": {
         const user = interaction.options.getUser('member');
         const budget = interaction.options.getString('valeur');
-        const channel = client.channels.cache.get(process.env.CHMJOUEUR);
+        const channel = guild.channels.cache.get(process.env.CHMJOUEUR);
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await Teams.findOne({
@@ -645,7 +645,8 @@ module.exports = {
               })
               */
             } 
-          } catch {
+          } catch(err) {
+            console.log(err)
             console.log("Erreur commande club house manager: chm(183)")
             mongoosecplayer.connection.close()
           }
