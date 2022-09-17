@@ -619,7 +619,7 @@ module.exports = {
             } else {
                await channel.threads.create({
                 name: `${username} souhaite transférer ${user.username} pour ${budget}`,
-                type: ChannelType.GuildPrivateThread,
+                type: GUILD_PRIVATE_THREAD,
                 reason: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
               });
               /* headers = {
