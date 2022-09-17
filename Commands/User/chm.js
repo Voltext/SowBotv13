@@ -634,6 +634,11 @@ module.exports = {
       
                     await thread.members.add(userId);
                     await thread.members.add(user.id);
+
+                    interaction.reply({
+                      embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous et le joueur libre")],
+                      ephemeral: true
+                    })
                   } else {
                     const thread = await channel.threads.create({
                       name: `${username} souhaite transférer ${user.username} pour ${budget}`,
@@ -644,6 +649,11 @@ module.exports = {
                     await thread.members.add(userId);
                     await thread.members.add(user.id);
                     await thread.members.add(userObjPlayer.team.idCapitaine);
+
+                    interaction.reply({
+                      embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous, le joueur et son capitaine")],
+                      ephemeral: true
+                    })
                   } 
                 } catch(err) {
                   console.log(err)
