@@ -627,6 +627,8 @@ module.exports = {
         const channel = guild.channels.cache.get(process.env.CHMJOUEUR);
 
         const receveur = user.id
+
+        console.log(receveur)
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await Teams.findOne({
