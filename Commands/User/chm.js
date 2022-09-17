@@ -646,7 +646,7 @@ module.exports = {
               mongo().then(async (mongoosecplayerteam) => {
                 try {
                   const userObjPlayer = await teamPlayerSchema.findOne({
-                    receveur,
+                    userId : receveur,
                   });
                   if (userObjPlayer === null) {
                     console.log(userObjPlayer)
