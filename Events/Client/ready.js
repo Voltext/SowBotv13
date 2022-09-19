@@ -382,10 +382,6 @@ ${'↓ LOGS ↓'.bgBlue}`,
 						SEND_MESSAGES: true
 					});
 				}).catch(err => console.error(err))
-				interaction.reply({
-					embeds: [Util.successEmbed("Demande de transfert envoyée", "Un fil vient de se créer dans <#1020265346877374534>")],
-					ephemeral: true
-				})
 
 			}
 
