@@ -11,6 +11,7 @@ const colors = require('colors');
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema')
 const Cards = require("../../Api/card");
+const Prog = require("../../Api/programme");
 require('dotenv').config();
 const fs = require('fs')
 const path = require('path');
@@ -350,6 +351,18 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					mongooserank.connection.close();
 				}
 			});
+		})
+
+		//0 15 * * 1
+		schedule.scheduleJob('* * * * *', async () => {
+			const getSchedule = new TwitchSchedule()
+			const prog = await getSchedule.Schedule()
+
+			if (prog.data.segments !== null) {
+				const programmation = prog.data.segments;
+				console.log(programmation)
+			}
+			
 		})
 
 
