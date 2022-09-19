@@ -371,8 +371,8 @@ ${'↓ LOGS ↓'.bgBlue}`,
 						"location": "https://twitch.tv/sowdred"
 					},
 					"entity_type": "EXTERNAL",
-					"scheduled_start_time" :  programmation[0].start_time,
-					"scheduled_end_time" : programmation[0].end_time
+					"scheduled_start_time" :  programmation[0].start_time.toISOString(),
+					"scheduled_end_time" : programmation[0].end_time.toISOString()
 				}
 
 				axios.post(`https://discord.com/api/guilds/796015674513686548/scheduled-events`, dataCards, {
