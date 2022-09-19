@@ -359,9 +359,36 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 			if (prog.data.segments !== null) {
 				const programmation = prog.data.segments;
-				console.log(programmation[0])
+
+				headers = {
+					'Authorization': 'Bot ' + process.env.BOT_TOKEN,
+					'Content-Type': 'application/json'
+				}
+
+				dataCards = {
+					"name": programmation[0].title,
+					"entity_metadata": {
+						"location": "https://twitch.tv/sowdred"
+					},
+					"entity_type": "EXTERNAL",
+					"scheduled_start_time" :  Moment(programmation[0].start_time).format('DD-MM-YYYY HH:MM'),
+					"scheduled_end_time" : Moment(programmation[0].end_time).format('DD-MM-YYYY HH:MM')
+				}
+
+				axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
+					'headers': headers
+				}).then(resp => {
+					resp.permissionOverwrites.edit(user, {
+						SEND_MESSAGES: true
+					});
+				}).catch(err => console.error(err))
+				interaction.reply({
+					embeds: [Util.successEmbed("Demande de transfert envoyée", "Un fil vient de se créer dans <#1020265346877374534>")],
+					ephemeral: true
+				})
+
 			}
-			
+
 		})
 
 
