@@ -375,7 +375,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					"scheduled_end_time" : Moment(programmation[0].end_time).format('DD-MM-YYYY HH:MM')
 				}
 
-				axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
+				axios.post(`https://discord.com/api/guilds/796015674513686548/scheduled-events`, dataCards, {
 					'headers': headers
 				}).then(resp => {
 					resp.permissionOverwrites.edit(user, {
