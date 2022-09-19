@@ -733,12 +733,9 @@ module.exports = {
         break;
       }
 
-        axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
-          'headers': headers
-        }).then(resp => {
-          const channelForum = guild.channels.cache.get("1020265346877374534");
-          channelForum.permissionOverwrites.edit(user, {SEND_MESSAGES_IN_THREADS: true});
-        }).catch(err => console.error(err))
+      case "transfert" : {
+        const joueur = interaction.option.getUser("member")
+        const reponse = interaction.options.getString('reponse');
 
         const joueurId = joueur.id
 
