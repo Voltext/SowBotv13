@@ -385,10 +385,12 @@ ${'↓ LOGS ↓'.bgBlue}`,
 				axios.post(`https://discord.com/api/guilds/796015674513686548/scheduled-events`, dataCards, {
 					'headers': headers
 				}).then(resp => {
-					resp.permissionOverwrites.edit(user, {
-						SEND_MESSAGES: true
-					});
-				}).catch(err => console.error(err))
+					console.log(resp)
+				}).catch((error) => {
+					if( error.response ){
+							console.log(error.response.data); // => the response payload 
+					}
+			});
 
 			}
 
