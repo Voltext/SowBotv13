@@ -373,7 +373,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					"entity_metadata": {
 						"location": "https://twitch.tv/sowdred"
 					},
-					"entity_type": "EXTERNAL",
+					"entity_type": 3,
 					"scheduled_start_time" :  startTime.toISOString(),
 					"scheduled_end_time" : endTime.toISOString()
 				}
