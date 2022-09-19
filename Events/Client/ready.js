@@ -360,8 +360,10 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			if (prog.data.segments !== null) {
 				const programmation = prog.data.segments;
 
-				const startTime = new Date(programmation[0].start_time)
-				const endTime = new Date(programmation[0].end_time)
+				programmation.forEach(function (elem) {
+
+				const startTime = new Date(elem.start_time)
+				const endTime = new Date(elem.end_time)
 
 				headers = {
 					'Authorization': 'Bot ' + process.env.BOT_TOKEN,
@@ -371,13 +373,14 @@ ${'↓ LOGS ↓'.bgBlue}`,
 				dataCards = {
 					"channel_id": null,
 					"creator_id": "246595347101515776",
-					"name": "Test",
+					"name": elem.title,
 					"entity_metadata": {
 						"location": "https://twitch.tv/sowdred"
 					},
 					"entity_type": 3,
 					"scheduled_start_time":  startTime.toISOString(),
-					"scheduled_end_time": endTime.toISOString()
+					"scheduled_end_time": endTime.toISOString(),
+					"privacy_level": 2,
 				}
 
 				console.log(dataCards)
@@ -391,6 +394,8 @@ ${'↓ LOGS ↓'.bgBlue}`,
 							console.log(error.response.data); // => the response payload 
 					}
 			});
+
+		})
 
 			}
 
