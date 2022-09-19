@@ -11,7 +11,6 @@ const colors = require('colors');
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema')
 const Cards = require("../../Api/card");
-const Prog = require("../../Api/programme");
 require('dotenv').config();
 const fs = require('fs')
 const path = require('path');
