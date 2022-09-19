@@ -353,7 +353,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 		})
 
 		//0 15 * * 1
-		schedule.scheduleJob('* * * * *', async () => {
+		schedule.scheduleJob('0 15 * * 1', async () => {
 			const getSchedule = new TwitchSchedule()
 			const prog = await getSchedule.Schedule()
 
