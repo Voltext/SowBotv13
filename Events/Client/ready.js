@@ -359,7 +359,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 			if (prog.data.segments !== null) {
 				const programmation = prog.data.segments;
-				console.log(programmation)
+				console.log(programmation[0])
 			}
 			
 		})
