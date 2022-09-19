@@ -369,6 +369,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 				}
 
 				dataCards = {
+					"channel_id": null,
 					"name": programmation[0].title,
 					"entity_metadata": {
 						"location": "https://twitch.tv/sowdred"
@@ -377,6 +378,8 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					"scheduled_start_time" :  startTime.toISOString(),
 					"scheduled_end_time" : endTime.toISOString()
 				}
+
+				console.log(dataCards)
 
 				axios.post(`https://discord.com/api/guilds/796015674513686548/scheduled-events`, dataCards, {
 					'headers': headers
