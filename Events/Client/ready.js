@@ -370,13 +370,14 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 				dataCards = {
 					"channel_id": null,
-					"name": programmation[0].title,
+					"creator_id": "246595347101515776",
+					"name": "Test",
 					"entity_metadata": {
 						"location": "https://twitch.tv/sowdred"
 					},
 					"entity_type": 3,
-					"scheduled_start_time" :  startTime.toISOString(),
-					"scheduled_end_time" : endTime.toISOString()
+					"scheduled_start_time":  startTime.toISOString(),
+					"scheduled_end_time": endTime.toISOString()
 				}
 
 				console.log(dataCards)
