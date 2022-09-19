@@ -360,6 +360,9 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			if (prog.data.segments !== null) {
 				const programmation = prog.data.segments;
 
+				const startTime = new Date(programmation[0].start_time)
+				const endTime = new Date(programmation[0].end_time)
+
 				headers = {
 					'Authorization': 'Bot ' + process.env.BOT_TOKEN,
 					'Content-Type': 'application/json'
@@ -371,8 +374,8 @@ ${'↓ LOGS ↓'.bgBlue}`,
 						"location": "https://twitch.tv/sowdred"
 					},
 					"entity_type": "EXTERNAL",
-					"scheduled_start_time" :  programmation[0].start_time.toISOString(),
-					"scheduled_end_time" : programmation[0].end_time.toISOString()
+					"scheduled_start_time" :  startTime.toISOString(),
+					"scheduled_end_time" : endTime.toISOString()
 				}
 
 				axios.post(`https://discord.com/api/guilds/796015674513686548/scheduled-events`, dataCards, {
