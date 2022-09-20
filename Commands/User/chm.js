@@ -632,9 +632,6 @@ module.exports = {
           try {
             const userObj = await Teams.findOne({
               userId,
-            }, {
-              userId: 1,
-              _id: 0,
             });
             if (userObj === null) {
               interaction.reply({
@@ -642,6 +639,12 @@ module.exports = {
                 ephemeral: true
               })
             } else {
+              if((userObj.budget - Number(budget)) < 0) {
+                interaction.reply({
+                  embeds: [Util.errorEmbed("Transfert impossible", "Vous n'avez pas le budget suffisant pour ce transfert")],
+                  ephemeral: true
+                })
+              }
               mongo().then(async (mongoosecplayerteam) => {
                 try {
                   const userObjPlayer = await teamPlayerSchema.findOne({
@@ -760,9 +763,7 @@ module.exports = {
                         });
                         await Teams.findOneAndUpdate({
                           idCapitaine: userObj.demandeurId,
-                        }, {$inc: {
-                          budget: - userObj.montant,
-                      },});
+                        }, { budget: { $gte: 1 } }, { $inc: { budget: - userObj.montant } });
                         } catch(err) {
                           console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
