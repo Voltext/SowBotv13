@@ -795,6 +795,9 @@ module.exports = {
                           }).then(resp => {
                             const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
+                            resp.send({
+                              content: 'Test'
+                            });
                           }).catch(err => console.error(err))
                         } catch (err) {
                           console.log(err)
