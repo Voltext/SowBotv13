@@ -793,11 +793,11 @@ module.exports = {
                           axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
                             'headers': headers
                           }).then(resp => {
+                            console.log(resp)
                             const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
-                            resp.send({
-                              content: 'Test'
-                            });
+                            //const threadForum = channel.threads.cache.find(x => x.id === userObj.threadId);
+                            //thread.delete();
                           }).catch(err => console.error(err))
                         } catch (err) {
                           console.log(err)
