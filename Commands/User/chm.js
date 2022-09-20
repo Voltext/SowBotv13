@@ -765,7 +765,7 @@ module.exports = {
                         });
                         await Teams.findOneAndUpdate({
                           idCapitaine: userObj.demandeurId,
-                        }, { budget: { $gte: 1 } }, { $inc: { budget: - userObj.montant } });
+                        }, { $inc: { budget: - userObj.montant } });
                         } catch(err) {
                           console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
