@@ -165,7 +165,7 @@ module.exports = {
             value: "refus"
           }
         ]
-      } ]
+      }]
     },
 
     // {
@@ -639,69 +639,69 @@ module.exports = {
                 ephemeral: true
               })
             } else {
-              if((userObj.budget - Number(budget)) < 0) {
+              if ((userObj.budget - Number(budget)) < 0) {
                 interaction.reply({
                   embeds: [Util.errorEmbed("Transfert impossible", "Vous n'avez pas le budget suffisant pour ce transfert. Votre budget actuel est de **" + userObj.budget + "**")],
                   ephemeral: true
                 })
               } else {
-              
-              mongo().then(async (mongoosecplayerteam) => {
-                try {
-                  const userObjPlayer = await teamPlayerSchema.findOne({
-                    userId : receveur,
-                  });
-                  if (userObjPlayer === null) {
-                    const thread = await channel.threads.create({
-                      name: `${username} souhaite transférer ${user.username} pour ${budget}`,
-                      type: 'GUILD_PRIVATE_THREAD',
-                      content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
+
+                mongo().then(async (mongoosecplayerteam) => {
+                  try {
+                    const userObjPlayer = await teamPlayerSchema.findOne({
+                      userId: receveur,
                     });
+                    if (userObjPlayer === null) {
+                      const thread = await channel.threads.create({
+                        name: `${username} souhaite transférer ${user.username} pour ${budget}`,
+                        type: 'GUILD_PRIVATE_THREAD',
+                        content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
+                      });
 
-                    await thread.members.add(userId);
-                    await thread.members.add(user.id);
+                      await thread.members.add(userId);
+                      await thread.members.add(user.id);
 
-                    transfertSchema.create({
-                      demandeurId: userId,
-                      receveurId: user.id,
-                      joueurId: user.id,
-                      montant: budget
-                    })
+                      transfertSchema.create({
+                        demandeurId: userId,
+                        receveurId: user.id,
+                        joueurId: user.id,
+                        montant: budget
+                      })
 
-                    interaction.reply({
-                      embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous et le joueur libre")],
-                      ephemeral: true
-                    })
-                  } else {
-                    const thread = await channel.threads.create({
-                      name: `${username} souhaite transférer ${user.username} pour ${budget}`,
-                      type: 'GUILD_PRIVATE_THREAD',
-                      content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
-                    });
+                      interaction.reply({
+                        embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous et le joueur libre")],
+                        ephemeral: true
+                      })
+                    } else {
+                      const thread = await channel.threads.create({
+                        name: `${username} souhaite transférer ${user.username} pour ${budget}`,
+                        type: 'GUILD_PRIVATE_THREAD',
+                        content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
+                      });
 
-                    await thread.members.add(userId);
-                    await thread.members.add(user.id);
-                    await thread.members.add(userObjPlayer.team.idCapitaine);
+                      await thread.members.add(userId);
+                      await thread.members.add(user.id);
+                      await thread.members.add(userObjPlayer.team.idCapitaine);
 
-                    transfertSchema.create({
-                      demandeurId: userId,
-                      receveurId: userObjPlayer.team.idCapitaine,
-                      joueurId: user.id,
-                      montant: budget
-                    })
+                      transfertSchema.create({
+                        demandeurId: userId,
+                        receveurId: userObjPlayer.team.idCapitaine,
+                        joueurId: user.id,
+                        montant: budget
+                      })
 
-                    interaction.reply({
-                      embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous, le joueur et son capitaine")],
-                      ephemeral: true
-                    })
+                      interaction.reply({
+                        embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous, le joueur et son capitaine")],
+                        ephemeral: true
+                      })
+                    }
+                  } catch (err) {
+                    console.log(err)
+                    console.log("Erreur commande club house manager: chm(183)")
+                    mongoosecplayerteam.connection.close()
                   }
-                } catch (err) {
-                  console.log(err)
-                  console.log("Erreur commande club house manager: chm(183)")
-                  mongoosecplayerteam.connection.close()
-                }
-              })
-              /* headers = {
+                })
+                /* headers = {
                 'Authorization': 'Bot ' + process.env.BOT_TOKEN,
                 'Content-Type': 'application/json'
               }
@@ -723,7 +723,7 @@ module.exports = {
                 ephemeral: true
               })
               */
-            }
+              }
             }
           } catch (err) {
             console.log(err)
@@ -735,9 +735,10 @@ module.exports = {
         break;
       }
 
-      case "transfert" : {
+      case "transfert": {
         const joueur = interaction.options.getUser("member")
         const reponse = interaction.options.getString('reponse')
+        const channel = guild.channels.cache.get(process.env.CHMJOUEUR);
 
         const joueurId = joueur.id
 
@@ -748,7 +749,7 @@ module.exports = {
               joueurId
             });
             if (userObj !== null) {
-              if(reponse === "valide") {
+              if (reponse === "valide") {
                 mongo().then(async (mongoosectransfert) => {
                   try {
                     const userObjTeamPlayer = await teamPlayerSchema.findOne({
@@ -760,13 +761,38 @@ module.exports = {
                         try {
                           await teamPlayerSchema.findOneAndUpdate({
                             userId: userObj.joueurId,
-                          }, {userId : userObj.joueurId, team} , {
+                          }, {
+                            userId: userObj.joueurId,
+                            team
+                          }, {
                             upsert: true,
-                        });
-                        await Teams.findOneAndUpdate({
-                          idCapitaine: userObj.demandeurId,
-                        }, { $inc: { budget: - userObj.montant } });
-                        } catch(err) {
+                          });
+                          await Teams.findOneAndUpdate({
+                            idCapitaine: userObj.demandeurId,
+                          }, {
+                            $inc: {
+                              budget: -userObj.montant
+                            }
+                          });
+                          headers = {
+                            'Authorization': 'Bot ' + process.env.BOT_TOKEN,
+                            'Content-Type': 'application/json'
+                          }
+
+                          dataCards = {
+                            "message": {
+                              "content": `Bienvenue dans ton nouveau club !`
+                            },
+                            "name": `[NOUVEAU TRANSFERT] <@${userObj.joueurId}> rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
+                          }
+
+                          axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
+                            'headers': headers
+                          }).then(resp => {
+                            const thread = channel.threads.cache.find(x => console.log(x));
+                            //await thread.delete();
+                          }).catch(err => console.error(err))
+                        } catch (err) {
                           console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
                           mongoosectransfert.connection.close()
@@ -778,7 +804,7 @@ module.exports = {
                         ephemeral: true
                       })
                     }
-                  } catch(err) {
+                  } catch (err) {
                     console.log(err)
                     console.log("Erreur commande club house manager: chm(183)")
                     mongoosectransfert.connection.close()
@@ -788,21 +814,20 @@ module.exports = {
                   embeds: [Util.successEmbed("Transfert validé", "Le joueur a bien été transferé")],
                   ephemeral: true
                 })
-              }
-              else {
+              } else {
                 interaction.reply({
                   embeds: [Util.errorEmbed("Transfert refusé", "Le transfert n'a pas abouti à une réponse positive. Le joueur reste donc dans son club actuel.")],
                   ephemeral: true
                 })
               }
-              
+
             } else {
               interaction.reply({
                 embeds: [Util.errorEmbed("Transfert impossible", "Le transfert que vous tentez d'accepter n'existe pas / plus")],
                 ephemeral: true
               })
             }
-          } catch(err) {
+          } catch (err) {
             console.log(err)
             console.log("Erreur commande club house manager: chm(183)")
             mongoosectransfert.connection.close()
