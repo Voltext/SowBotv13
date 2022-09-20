@@ -763,7 +763,8 @@ module.exports = {
                         }, {$inc: {
                           budget: -userObj.budget,
                       },});
-                        } catch {
+                        } catch(err) {
+                          console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
                           mongoosectransfert.connection.close()
                         }
@@ -774,7 +775,8 @@ module.exports = {
                         ephemeral: true
                       })
                     }
-                  } catch {
+                  } catch(err) {
+                    console.log(err)
                     console.log("Erreur commande club house manager: chm(183)")
                     mongoosectransfert.connection.close()
                   }
@@ -797,7 +799,8 @@ module.exports = {
                 ephemeral: true
               })
             }
-          } catch {
+          } catch(err) {
+            console.log(err)
             console.log("Erreur commande club house manager: chm(183)")
             mongoosectransfert.connection.close()
           }
