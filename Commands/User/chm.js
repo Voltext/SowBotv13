@@ -761,7 +761,7 @@ module.exports = {
                         await Teams.findOneAndUpdate({
                           idCapitaine: userObj.demandeurId,
                         }, {$inc: {
-                          budget: Number(-userObj.budget),
+                          budget: - userObj.montant,
                       },});
                         } catch(err) {
                           console.log(err)
