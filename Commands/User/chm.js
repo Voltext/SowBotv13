@@ -628,7 +628,6 @@ module.exports = {
 
         const receveur = user.id
 
-        console.log(receveur)
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await Teams.findOne({
@@ -649,7 +648,6 @@ module.exports = {
                     userId : receveur,
                   });
                   if (userObjPlayer === null) {
-                    console.log(userObjPlayer)
                     const thread = await channel.threads.create({
                       name: `${username} souhaite transférer ${user.username} pour ${budget}`,
                       type: 'GUILD_PRIVATE_THREAD',
@@ -671,7 +669,6 @@ module.exports = {
                       ephemeral: true
                     })
                   } else {
-                    console.log(userObjPlayer)
                     const thread = await channel.threads.create({
                       name: `${username} souhaite transférer ${user.username} pour ${budget}`,
                       type: 'GUILD_PRIVATE_THREAD',
@@ -747,6 +744,36 @@ module.exports = {
             });
             if (userObj !== null) {
               if(reponse === "valide") {
+                mongo().then(async (mongoosectransfert) => {
+                  try {
+                    const userObjTeamPlayer = await teamPlayerSchema.findOne({
+                      userId: userObj.demandeurId,
+                    });
+                    if (userObjTeamPlayer !== null) {
+                      const team = userObjTeamPlayer.team
+                      mongo().then(async (mongoosectransfert) => {
+                        try {
+                          await teamPlayerSchema.findOneAndUpdate({
+                            userId: userObj.joueurId,
+                          }, {userId : userObj.joueurId, team} , {
+                            upsert: true,
+                        });
+                        } catch {
+                          console.log("Erreur commande club house manager: chm(183)")
+                          mongoosectransfert.connection.close()
+                        }
+                      })
+                    } else {
+                      interaction.reply({
+                        embeds: [Util.errorEmbed("Transfert impossible", "La personne à l'initative de ce transfert n'a pas d'équipe")],
+                        ephemeral: true
+                      })
+                    }
+                  } catch {
+                    console.log("Erreur commande club house manager: chm(183)")
+                    mongoosectransfert.connection.close()
+                  }
+                })
                 interaction.reply({
                   embeds: [Util.successEmbed("Transfert validé", "Le joueur a bien été transferé")],
                   ephemeral: true

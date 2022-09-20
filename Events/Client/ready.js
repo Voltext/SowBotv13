@@ -383,8 +383,6 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					"privacy_level": 2,
 				}
 
-				console.log(dataCards)
-
 				axios.post(`https://discord.com/api/guilds/796015674513686548/scheduled-events`, dataCards, {
 					'headers': headers
 				}).then(resp => {

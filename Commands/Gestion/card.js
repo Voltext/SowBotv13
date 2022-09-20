@@ -24,7 +24,6 @@ module.exports = {
         const card = await getUsers.getUserCard()
         if (card.data !== null) {
             const data = card.data
-            console.log(data)
 
             data.forEach(async function (elem) {
                 const userName = elem.user_name

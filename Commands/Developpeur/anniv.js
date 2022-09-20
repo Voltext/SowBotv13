@@ -15,7 +15,6 @@ module.exports = {
 
     execute(interaction) {
         const member = interaction.options.getMember('user');
-        console.log(member.user.username)
         const embed = new MessageEmbed()
         .setTitle(`🎁 Bon anniversaire ${member.user.username} !`)
         .setColor('BLUE')

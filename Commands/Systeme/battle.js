@@ -251,10 +251,8 @@ module.exports = {
                                                     players.set(r.userId, ptsFinaux);
                                                 } else {
                                                     let actualPoint = players.get(r.userId) + ptsFinaux;
-                                                    console.log(actualPoint);
                                                     players.set(r.userId, actualPoint);
                                                     actualPoint = 0;
-                                                    console.log(players.get(r.userId));
                                                 }
                                             }
                                         }

@@ -142,7 +142,6 @@ module.exports = {
                   const newWords = [];
 
                   Words.forEach((w) => {
-                    console.log(w);
                     if (data.Words.includes(w)) return;
                     newWords.push(w);
                     data.Words.push(w);
