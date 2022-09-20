@@ -641,7 +641,7 @@ module.exports = {
             } else {
               if((userObj.budget - Number(budget)) < 0) {
                 interaction.reply({
-                  embeds: [Util.errorEmbed("Transfert impossible", "Vous n'avez pas le budget suffisant pour ce transfert")],
+                  embeds: [Util.errorEmbed("Transfert impossible", "Vous n'avez pas le budget suffisant pour ce transfert. Votre budget actuel est de **" + userObj.budget + "**")],
                   ephemeral: true
                 })
               }
