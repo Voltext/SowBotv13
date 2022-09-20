@@ -758,6 +758,11 @@ module.exports = {
                           }, {userId : userObj.joueurId, team} , {
                             upsert: true,
                         });
+                        await Teams.findOneAndUpdate({
+                          idCapitaine: userObj.demandeurId,
+                        }, {$inc: {
+                          budget: -userObj.budget,
+                      },});
                         } catch {
                           console.log("Erreur commande club house manager: chm(183)")
                           mongoosectransfert.connection.close()
