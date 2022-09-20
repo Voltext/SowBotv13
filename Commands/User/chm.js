@@ -665,6 +665,7 @@ module.exports = {
                         demandeurId: userId,
                         receveurId: user.id,
                         joueurId: user.id,
+                        joueurName: user.username,
                         montant: budget,
                         threadId: thread.id
                       })
@@ -688,6 +689,7 @@ module.exports = {
                         demandeurId: userId,
                         receveurId: userObjPlayer.team.idCapitaine,
                         joueurId: user.id,
+                        joueurName: user.username,
                         montant: budget,
                         threadId: thread.id
                       })
@@ -785,7 +787,7 @@ module.exports = {
                             "message": {
                               "content": `Bienvenue dans ton nouveau club !`
                             },
-                            "name": `[NOUVEAU TRANSFERT] <@${userObj.joueurId}> rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
+                            "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
 
                           axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
