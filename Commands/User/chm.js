@@ -644,7 +644,8 @@ module.exports = {
                   embeds: [Util.errorEmbed("Transfert impossible", "Vous n'avez pas le budget suffisant pour ce transfert. Votre budget actuel est de **" + userObj.budget + "**")],
                   ephemeral: true
                 })
-              }
+              } else {
+              
               mongo().then(async (mongoosecplayerteam) => {
                 try {
                   const userObjPlayer = await teamPlayerSchema.findOne({
@@ -722,6 +723,7 @@ module.exports = {
                 ephemeral: true
               })
               */
+            }
             }
           } catch (err) {
             console.log(err)
