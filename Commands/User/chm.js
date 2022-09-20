@@ -665,7 +665,8 @@ module.exports = {
                         demandeurId: userId,
                         receveurId: user.id,
                         joueurId: user.id,
-                        montant: budget
+                        montant: budget,
+                        threadId: thread.id
                       })
 
                       interaction.reply({
@@ -687,7 +688,8 @@ module.exports = {
                         demandeurId: userId,
                         receveurId: userObjPlayer.team.idCapitaine,
                         joueurId: user.id,
-                        montant: budget
+                        montant: budget,
+                        threadId: thread.id
                       })
 
                       interaction.reply({
@@ -789,8 +791,8 @@ module.exports = {
                           axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
                             'headers': headers
                           }).then(resp => {
-                            const thread = channel.threads.cache.find(x => console.log(x));
-                            //await thread.delete();
+                            const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
+                            await thread.delete();
                           }).catch(err => console.error(err))
                         } catch (err) {
                           console.log(err)

@@ -17,6 +17,10 @@ const transfertSchema = mongoose.Schema({
     type: Number,
     required: true
   },
+  threadId: {
+    type: String,
+    required: true
+  }
 
 })
 
