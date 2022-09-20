@@ -792,7 +792,7 @@ module.exports = {
                             'headers': headers
                           }).then(resp => {
                             const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
-                            await thread.delete();
+                            thread.delete();
                           }).catch(err => console.error(err))
                         } catch (err) {
                           console.log(err)
