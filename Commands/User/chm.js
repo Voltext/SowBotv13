@@ -731,8 +731,8 @@ module.exports = {
       }
 
       case "transfert" : {
-        const joueur = interaction.option.getUser("member")
-        const reponse = interaction.options.getString('reponse');
+        const joueur = interaction.options.getUser("member")
+        const reponse = interaction.options.getString('reponse')
 
         const joueurId = joueur.id
 
