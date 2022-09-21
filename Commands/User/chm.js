@@ -833,7 +833,7 @@ module.exports = {
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
 
-                          const image = fs.readFile("../../Assets/ekipe.png");
+                          const image = await readFileSync(path.join(__dirname, "../../Assets/ekipe.png"));
 
                           var formData = new FormData();
                           formData.append('files[0]', image, "file.png");
