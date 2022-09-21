@@ -399,9 +399,16 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 		})
 
+		const environnement = ""
 
+		if(process.env.ENV == "PROD") {
+			environnement = process.env.MONGO_PATH
+		}
+		else {
+			environnement = process.env.MONGO_DEV
+		}
 
-		mongoose.connect(process.env.MONGO_PATH, {
+		mongoose.connect(environnement, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true
 		}).then(() => {
