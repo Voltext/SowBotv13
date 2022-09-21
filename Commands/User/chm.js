@@ -829,13 +829,12 @@ module.exports = {
                           dataCards = {
                             "message": {
                               "embeds": [embed],
-                              "attachments": [{"id": 0}]
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
 
                           var formData = new FormData();
-                          formData.append('files[0]', "../../Assets/ekipe.png");
+                          formData.append('files[0]', "../../Assets/ekipe.png", "file.png");
                           formData.append('payload_json', JSON.stringify(dataCards));
 
                           axios({
