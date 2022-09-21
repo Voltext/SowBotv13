@@ -15,7 +15,7 @@ registerFont('./Assets/Fonts/DINNextLTPro-HeavyItalic.ttf', {
 registerFont('./Assets/Fonts/DINNextLTPro-BlackItalic.ttf', {
   family: 'DINNextLTPro-BlackItalic'
 })
-registerFont('../../Assets/Fonts/DINNextLTPro-BoldCondensed.ttf', {
+registerFont('./Assets/Fonts/DINNextLTPro-BoldCondensed.ttf', {
   family: 'DINNextLTPro-BoldCondensed',
 })
 registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
