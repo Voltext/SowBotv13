@@ -847,7 +847,7 @@ module.exports = {
                             method: 'POST',
                             data: formData,
                             headers: {
-                              ...form.getHeaders(),
+                              ...formData.getHeaders(),
                               headers
                             },
                           }).then((response) => {}).catch(err => console.log(err)) ;
