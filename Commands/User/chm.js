@@ -814,6 +814,12 @@ module.exports = {
                               budget: -userObj.montant
                             }
                           });
+
+                          const embed = new MessageEmbed()
+                          .setTitle("Un aperçu de la presse")
+                          .setDescription("Ce transfert à chamboulé beaucoup de fans de Foot mais également la presse. En voici la Une")
+                          .setImage(`attachment://file.png`);
+
                           headers = {
                             'Authorization': 'Bot ' + process.env.BOT_TOKEN,
                             'Content-Type': 'application/json'
@@ -821,7 +827,7 @@ module.exports = {
 
                           dataCards = {
                             "message": {
-                              "content": "Test"
+                              "embeds": [embed]
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
@@ -829,16 +835,8 @@ module.exports = {
                           axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
                             'headers': headers
                           }).then(resp => {
-                            console.log(resp)
                             const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
-                            const webhooks = channel.fetchWebhooks();
-                            const webhook = webhooks.first();
-                             
-                            webhook.send({
-                              content: 'Look ma! I\'m in a thread!',
-                              threadId: resp.data.id,
-                            });
                           }).catch((error) => {
                             if( error.response ){
                                 console.log(error.response.data); // => the response payload 
