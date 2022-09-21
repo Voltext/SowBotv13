@@ -29,7 +29,7 @@ module.exports = {
 
   async execute(interaction) {
 
-    const titreMot = ["SURPRENANT", "COLOSSAL", "ETONNANT", "ATTENDU", "INCORYABLE"]
+    const titreMot = ["SURPRENANT", "COLOSSAL", "ETONNANT", "ATTENDU", "INCROYABLE"]
 
     const canvas = createCanvas(793, 1020)
     const ctx = canvas.getContext('2d')
@@ -43,7 +43,7 @@ module.exports = {
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
-    ctx.font = '110px DINNextLTPro-BlackItalic'
+    ctx.font = '110px DINNextLTPro-Black'
     let scoreG = titreMot[Math.floor(Math.random() * titreMot.length)]
     ctx.fillText(scoreG, 370, 530)
 
