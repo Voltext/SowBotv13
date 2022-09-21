@@ -42,6 +42,9 @@ registerFont('./Assets/Fonts/DINNextLTPro-UltraLightIt.ttf', {
 registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
   family: 'DINNextRoundedLTPro-Bold'
 })
+const FormData = require('form-data');
+const fs = require('fs');
+
 
 module.exports = {
   name: "chm",
@@ -815,6 +818,7 @@ module.exports = {
                               budget: -userObj.montant
                             }
                           });
+                          
 
                           const embed = new MessageEmbed()
                           .setTitle("Un aperçu de la presse")
@@ -823,24 +827,26 @@ module.exports = {
 
                           headers = {
                             'Authorization': 'Bot ' + process.env.BOT_TOKEN,
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'multipart/form-data',
                           }
 
                           dataCards = {
                             "message": {
                               "embeds": [embed],
-                              "attachments": [{
-                                "filename": "file.png"
-                              }]
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
 
-                          axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
+                          const formData = new FormData();
+                          formData.append('files[0]', canvas.toBuffer);
+                          formData.append('payload_json', JSON.stringify(dataCards));
+
+                          axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, formData, {
                             'headers': headers
                           }).then(resp => {
                             const thread = channelD.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
+                            console.log(resp)
                           }).catch((error) => {
                             if( error.response ){
                                 console.log(error.response.data); // => the response payload 
