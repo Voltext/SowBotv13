@@ -41,11 +41,24 @@ module.exports = {
     let y = 0
     ctx.drawImage(background, x, y)
 
+    ctx.fillStyle = '#969696'
+    ctx.textAlign = "center"
+    ctx.font = '20px DIN Next LT Pro Black Condensed'
+    let present = `${interaction.user.username} va devoir faire ses preuves`
+    ctx.fillText(present, 380, 525)
+
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
     ctx.font = '140px DIN Next LT Pro Black Condensed'
     let scoreG = titreMot[Math.floor(Math.random() * titreMot.length)]
     ctx.fillText(scoreG, 380, 525)
+
+    const pfp = await loadImage(
+      interaction.user.displayAvatarURL({
+        format: 'png',
+      })
+    )
+    ctx.drawImage(pfp, 130, 80, 90, 90)
 
     const attachment = new MessageAttachment(canvas.toBuffer())
     interaction.reply({
