@@ -44,9 +44,9 @@ module.exports = {
 
     ctx.fillStyle = '#4d4d4d'
     ctx.textAlign = "center"
-    ctx.font = '35px DIN Next LT Pro Black Condensed'
+    ctx.font = '25px DIN Next LT Pro Black Condensed'
     let present = `${pseudo.toUpperCase()} VA DEVOIR FAIRE SES PREUVES`
-    ctx.fillText(present, 250, 125)
+    ctx.fillText(present, 300, 125)
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
