@@ -829,7 +829,7 @@ module.exports = {
                           dataCards = {
                             "message": {
                               "embeds": [embed],
-                              "attachement": [{
+                              "attachments": [{
                                 "filename": "file.png"
                               }]
                             },
