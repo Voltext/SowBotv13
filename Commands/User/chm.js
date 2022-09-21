@@ -827,7 +827,7 @@ module.exports = {
 
                           headers = {
                             'Authorization': 'Bot ' + process.env.BOT_TOKEN,
-                            'Content-Type': 'multipart/form-data',
+                            'Content-Type': 'application/json'
                           }
 
                           dataCards = {
@@ -838,19 +838,18 @@ module.exports = {
                           }
 
                           var formData = new FormData();
-                          formData.append('files[0]', fs.createReadStream('./PathToImage1.png'));
-                          formData.append('files[1]', fs.createReadStream('./PathToImage2.png'));
+                          formData.append('files[0]', canvas.toBuffer);
                           formData.append('payload_json', JSON.stringify(dataCards));
 
                           axios({
-                            url: `https://discord.com/api/v10/`,
+                            url: `https://discord.com/api/channels/1020265346877374534/threads`,
                             method: 'POST',
                             data: formData,
                             headers: {
                               ...formData.getHeaders(),
-                              headers
+                              headers,
                             },
-                          }).then((response) => {}).catch(err => console.log(err)) ;
+                          }).then((response) => {console.log(response)}).catch((err) => {console.log(err)});
                         } catch (err) {
                           console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
