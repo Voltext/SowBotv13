@@ -758,6 +758,7 @@ module.exports = {
         const joueur = interaction.options.getUser("member")
         const reponse = interaction.options.getString('reponse')
         const channel = guild.channels.cache.get(process.env.CHMJOUEUR);
+        const forum = guild.channels.cache.get("1020265346877374534");
 
         const joueurId = joueur.id
 
@@ -831,6 +832,12 @@ module.exports = {
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
+
+                          await forum.threads.create({
+                            name: 'food-talk',
+                            autoArchiveDuration: 60,
+                            reason: 'Needed a separate thread for food',
+                          });
 
                           axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
                             'headers': headers
