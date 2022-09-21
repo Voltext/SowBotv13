@@ -835,7 +835,7 @@ module.exports = {
                           }).then(resp => {
                             const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
-                          }).catch(err => console.error(err))
+                          }).catch(err => console.error(err.response.data))
                         } catch (err) {
                           console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
