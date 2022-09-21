@@ -816,12 +816,15 @@ module.exports = {
                           });
                           headers = {
                             'Authorization': 'Bot ' + process.env.BOT_TOKEN,
-                            'Content-Type': 'multipart/form-data'
+                            'Content-Type': 'multipart/form-body'
                           }
 
                           dataCards = {
                             "message": {
-                              "files": [attachment]
+                              "files": [{
+                                "attachment": attachment,
+                                "name": 'file.png'
+                              }]
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
