@@ -43,7 +43,7 @@ module.exports = {
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
-    ctx.font = '110px DIN Next LT Pro Condensed'
+    ctx.font = '110px DINNextLTPro-BlackItalic'
     let scoreG = titreMot[Math.floor(Math.random() * titreMot.length)]
     ctx.fillText(scoreG, 370, 530)
 
