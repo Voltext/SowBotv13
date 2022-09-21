@@ -847,7 +847,11 @@ module.exports = {
                               'Authorization': 'Bot ' + process.env.BOT_TOKEN,
                               'Content-Type': 'multipart/form-data',
                             },
-                          }).then((response) => {console.log(response)}).catch((err) => {console.log(err)});
+                          }).then((response) => {console.log(response)}).catch((error) => {
+                            if( error.response ){
+                                console.log(error.response.data); // => the response payload 
+                            }
+                        });
                         } catch (err) {
                           console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
