@@ -48,6 +48,12 @@ module.exports = {
     let present = `${pseudo.toUpperCase()} VA DEVOIR FAIRE SES PREUVES`
     ctx.fillText(present, 275, 125)
 
+    ctx.fillStyle = '#4d4d4d'
+    ctx.textAlign = "center"
+    ctx.font = '15px DIN Next LT Pro Black Condensed'
+    let present = `La rumeur est confirmée. L'arrivée du talent dans son nouveau club ne devrait plus tarder...`
+    ctx.fillText(present, 175, 165)
+
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
     ctx.font = '140px DIN Next LT Pro Black Condensed'
