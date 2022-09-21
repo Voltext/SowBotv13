@@ -55,13 +55,13 @@ module.exports = {
     ctx.textAlign = "center"
     ctx.font = '20px DINNextLTPro-Regular'
     let desc = `L'arrivée du talent dans son nouveau club ne devrait`
-    ctx.fillText(desc, 325, 165)
+    ctx.fillText(desc, 300, 165)
 
     ctx.fillStyle = '#4d4d4d'
     ctx.textAlign = "center"
     ctx.font = '20px DINNextLTPro-Regular'
     let desc2 = `plus tarder...`
-    ctx.fillText(desc2, 525, 185)
+    ctx.fillText(desc2, 400, 185)
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
