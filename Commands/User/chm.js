@@ -816,7 +816,7 @@ module.exports = {
                           });
                           headers = {
                             'Authorization': 'Bot ' + process.env.BOT_TOKEN,
-                            'Content-Type': 'application/json'
+                            'Content-Type': 'multipart/form-data'
                           }
 
                           dataCards = {
