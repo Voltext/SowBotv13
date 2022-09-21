@@ -43,9 +43,9 @@ module.exports = {
 
     ctx.fillStyle = '#969696'
     ctx.textAlign = "center"
-    ctx.font = '20px DIN Next LT Pro Black Condensed'
+    ctx.font = '35px DIN Next LT Pro Black Condensed'
     let present = `${interaction.user.username} va devoir faire ses preuves`
-    ctx.fillText(present, 380, 525)
+    ctx.fillText(present, 100, 200)
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
@@ -58,7 +58,7 @@ module.exports = {
         format: 'png',
       })
     )
-    ctx.drawImage(pfp, 130, 80, 90, 90)
+    ctx.drawImage(pfp, 600, 80, 180, 180)
 
     const attachment = new MessageAttachment(canvas.toBuffer())
     interaction.reply({
