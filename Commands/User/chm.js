@@ -837,6 +837,8 @@ module.exports = {
                           }).then(resp => {
                             const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
+                            const threadForum = channel.threads.cache.find(x => x.id === resp.user.id);
+                            console.log(threadForum.isThread())
                           }).catch((error) => {
                             if( error.response ){
                                 console.log(error.response.data); // => the response payload 
