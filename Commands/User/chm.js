@@ -834,7 +834,7 @@ module.exports = {
                           }
 
                           var formData = new FormData();
-                          formData.append('files[0]', "../../Assets/ekipe.png", "file.png");
+                          formData.append('files[0]', fs.createReadStream("../../Assets/ekipe.png"), "file.png");
                           formData.append('payload_json', JSON.stringify(dataCards));
 
                           axios({
