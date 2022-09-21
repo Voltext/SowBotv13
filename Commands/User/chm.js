@@ -833,8 +833,8 @@ module.exports = {
                             thread.delete();
                             const webhooks = channel.fetchWebhooks();
                             const webhook = webhooks.first();
-
-                            await webhook.send({
+                             
+                            webhook.send({
                               content: 'Look ma! I\'m in a thread!',
                               threadId: resp.data.id,
                             });
