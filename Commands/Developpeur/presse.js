@@ -21,6 +21,9 @@ registerFont('./Assets/Fonts/DINNextLTPro-BoldCondensed.ttf', {
 registerFont('./Assets/Fonts/DINNextLTPro-BlackCondensed.ttf', {
   family: 'DINNextLTPro-BlackCondensed'
 })
+registerFont('./Assets/Fonts/DINNextLTPro-Regular.ttf', {
+  family: 'DINNextLTPro-Regular'
+})
 
 module.exports = {
   name: "presse",
@@ -50,7 +53,7 @@ module.exports = {
 
     ctx.fillStyle = '#4d4d4d'
     ctx.textAlign = "center"
-    ctx.font = '20px DIN Next LT Pro Black Condensed'
+    ctx.font = '20px DINNextLTPro-Regular'
     let desc = `La rumeur est confirmée. L'arrivée du talent dans son nouveau club ne \n devrait plus tarder...`
     ctx.fillText(desc, 255, 165)
 
