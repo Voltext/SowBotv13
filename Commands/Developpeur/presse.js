@@ -16,7 +16,7 @@ registerFont('./Assets/Fonts/DINNextLTPro-BlackItalic.ttf', {
   family: 'DINNextLTPro-BlackItalic'
 })
 registerFont('./Assets/Fonts/DINNextLTPro-BoldCondensed.ttf', {
-  family: 'DINNextLTPro-BoldCondensed',
+  family: 'DIN Next LT Pro Condensed',
 })
 registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
   family: 'DINNextLTPro-Black'
@@ -43,7 +43,7 @@ module.exports = {
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
-    ctx.font = '110px DINNextLTPro-BoldCondensed'
+    ctx.font = '110px DIN Next LT Pro Condensed'
     let scoreG = titreMot[Math.floor(Math.random() * titreMot.length)]
     ctx.fillText(scoreG, 370, 530)
 
