@@ -27,6 +27,22 @@ const {
 const toonavatar = require('cartoon-avatar');
 const progressbar = require('string-progressbar');
 const axios = require('axios')
+const {
+  registerFont,
+  createCanvas,
+  loadImage
+} = require("canvas")
+const path = require('path');
+const Util = require('../../Utils/function')
+registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
+  family: 'DINNextLTPro-Black'
+})
+registerFont('./Assets/Fonts/DINNextLTPro-UltraLightIt.ttf', {
+  family: 'DINNextLTPro-UltraLightIt'
+})
+registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
+  family: 'DINNextRoundedLTPro-Bold'
+})
 
 module.exports = {
   name: "chm",
@@ -746,6 +762,27 @@ module.exports = {
 
         const joueurId = joueur.id
 
+        const titreMot = ["Surprenant", "Colossal", "Etonnant", "Attendu", "Incroyable"]
+
+        const canvas = createCanvas(793, 1020)
+        const ctx = canvas.getContext('2d')
+
+        const background = await loadImage(
+          path.join(__dirname, `../../Assets/Base/ekipe.png`)
+        )
+
+        let x = 0
+        let y = 0
+        ctx.drawImage(background, x, y)
+
+        ctx.fillStyle = '#ffffff'
+        ctx.textAlign = "center"
+        ctx.font = '50px DINNextLTPro-Black'
+        let scoreG = titremot[Math.floor(Math.random() * titreMot.length)]
+        ctx.fillText(scoreG, 175, 210)
+
+        const attachment = new MessageAttachment(canvas.toBuffer())
+
         mongo().then(async (mongoosectransfert) => {
           try {
             const userObj = await transfertSchema.findOne({
@@ -785,7 +822,7 @@ module.exports = {
 
                           dataCards = {
                             "message": {
-                              "content": `Bienvenue dans ton nouveau club !`
+                              "files": attachment
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
