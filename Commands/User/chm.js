@@ -819,8 +819,6 @@ module.exports = {
                             'Content-Type': 'application/json'
                           }
 
-                          console.log(canvas.toDataURL())
-
                           dataCards = {
                             "message": {
                               "content": "Test"
@@ -833,6 +831,13 @@ module.exports = {
                           }).then(resp => {
                             const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
+                            const webhooks = await channel.fetchWebhooks();
+                            const webhook = webhooks.first();
+
+                            await webhook.send({
+                              content: 'Look ma! I\'m in a thread!',
+                              threadId: resp.data.id,
+                            });
                           }).catch(err => console.error(err.response.data))
                         } catch (err) {
                           console.log(err)

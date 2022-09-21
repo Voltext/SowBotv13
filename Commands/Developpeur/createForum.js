@@ -18,7 +18,7 @@ module.exports = {
       const newChannel = interaction.options.getChannel("channel")
 
       const forumChannel = await guild.channels.create("Forum", {
-        type: "GUILD_FORUM",
+        type: 15,
         parent: newChannel.parent,
       });
 
