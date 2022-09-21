@@ -30,6 +30,7 @@ module.exports = {
   async execute(interaction) {
 
     const titreMot = ["SURPRENANT", "COLOSSAL", "ETONNANT", "ATTENDU", "INCROYABLE"]
+    const pseudo = interaction.user.username
 
     const canvas = createCanvas(793, 1020)
     const ctx = canvas.getContext('2d')
@@ -44,8 +45,8 @@ module.exports = {
     ctx.fillStyle = '#4d4d4d'
     ctx.textAlign = "center"
     ctx.font = '35px DIN Next LT Pro Black Condensed'
-    let present = `${interaction.user.username} VA DEVOIR FAIRE SES PREUVES`
-    ctx.fillText(present, 150, 100)
+    let present = `${pseudo.toUpperCase()} VA DEVOIR FAIRE SES PREUVES`
+    ctx.fillText(present, 250, 125)
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
