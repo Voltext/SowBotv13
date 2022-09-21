@@ -29,7 +29,7 @@ module.exports = {
 
   async execute(interaction) {
 
-    const titreMot = ["Surprenant", "Colossal", "Etonnant", "Attendu", "Incroyable"]
+    const titreMot = ["SURPRENANT", "COLOSSAL", "ETONNANT", "ATTENDU", "INCORYABLE"]
 
     const canvas = createCanvas(793, 1020)
     const ctx = canvas.getContext('2d')
