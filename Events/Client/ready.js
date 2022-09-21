@@ -399,7 +399,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 		})
 
-		const environnement = ""
+		let environnement = ""
 
 		if(process.env.ENV == "PROD") {
 			environnement = process.env.MONGO_PATH
