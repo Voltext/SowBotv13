@@ -12,11 +12,11 @@ const fs = require('fs')
 registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
   family: 'DINNextLTPro-Black'
 })
-registerFont('./Assets/Fonts/DINNextLTPro-UltraLightIt.ttf', {
-  family: 'DINNextLTPro-UltraLightIt'
+registerFont('./Assets/Fonts/DINNextLTPro-BlackItalic.ttf', {
+  family: 'DINNextLTPro-BlackItalic'
 })
-registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
-  family: 'DINNextRoundedLTPro-Bold'
+registerFont('./Assets/Fonts/DINNextLTPro-BoldCondensed.ttf', {
+  family: 'DINNextLTPro-BoldCondensed'
 })
 
 module.exports = {
@@ -40,7 +40,7 @@ module.exports = {
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
-    ctx.font = '90px DINNextRoundedLTPro-Bold'
+    ctx.font = '90px DINNextLTPro-BoldCondensed'
     let scoreG = titreMot[Math.floor(Math.random() * titreMot.length)]
     ctx.fillText(scoreG, 175, 210)
 
