@@ -846,7 +846,9 @@ module.exports = {
                             method: 'POST',
                             data: formData,
                             headers: {
-                              headers,
+                              ...formData.getHeaders(),
+                              'Authorization': 'Bot ' + process.env.BOT_TOKEN,
+                              'Content-Type': 'multipart/form-data',
                             },
                           }).then((response) => {console.log(response)}).catch((err) => {console.log(err)});
                         } catch (err) {
