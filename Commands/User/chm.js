@@ -761,7 +761,6 @@ module.exports = {
         const joueur = interaction.options.getUser("member")
         const reponse = interaction.options.getString('reponse')
         const channelD = guild.channels.cache.get(process.env.CHMJOUEUR);
-        const forum = guild.channels.cache.get("1020265346877374534");
 
         const joueurId = joueur.id
 
@@ -827,7 +826,6 @@ module.exports = {
 
                           headers = {
                             'Authorization': 'Bot ' + process.env.BOT_TOKEN,
-                            'Content-Type': 'application/json'
                           }
 
                           dataCards = {
