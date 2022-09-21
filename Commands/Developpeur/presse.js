@@ -40,9 +40,9 @@ module.exports = {
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
-    ctx.font = '90px DINNextLTPro-BlackItalic'
+    ctx.font = '130px DINNextLTPro-BlackItalic'
     let scoreG = titreMot[Math.floor(Math.random() * titreMot.length)]
-    ctx.fillText(scoreG, 175, 210)
+    ctx.fillText(scoreG, 175, 450)
 
     const attachment = new MessageAttachment(canvas.toBuffer())
     interaction.reply({
