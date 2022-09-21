@@ -757,7 +757,7 @@ module.exports = {
       case "transfert": {
         const joueur = interaction.options.getUser("member")
         const reponse = interaction.options.getString('reponse')
-        const channel = guild.channels.cache.get(process.env.CHMJOUEUR);
+        const channelD = guild.channels.cache.get(process.env.CHMJOUEUR);
         const forum = guild.channels.cache.get("1020265346877374534");
 
         const joueurId = joueur.id
@@ -828,23 +828,18 @@ module.exports = {
 
                           dataCards = {
                             "message": {
-                              "embeds": [embed]
+                              "embeds": [embed],
+                              "files": [attachment]
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
 
-                          await forum.threads.create({
-                            name: 'food-talk',
-                            autoArchiveDuration: 60,
-                            reason: 'Needed a separate thread for food',
-                          });
-
                           axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, dataCards, {
                             'headers': headers
                           }).then(resp => {
-                            const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
+                            const thread = channelD.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
-                            const threadForum = channel.threads.cache.find(x => x.id === resp.user.id);
+                            const threadForum = forum.threads.cache.find(x => x.id === resp.user.id);
                             console.log(threadForum.isThread())
                           }).catch((error) => {
                             if( error.response ){
