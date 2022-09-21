@@ -839,7 +839,14 @@ module.exports = {
                               content: 'Look ma! I\'m in a thread!',
                               threadId: resp.data.id,
                             });
-                          }).catch(err => console.error(err.response.data))
+                          }).catch((error) => {
+                            if( error.response ){
+                                console.log(error.response.data); // => the response payload 
+                            }
+                            else {
+                              console.log(error)
+                            }
+                        });
                         } catch (err) {
                           console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
