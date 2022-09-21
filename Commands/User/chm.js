@@ -825,14 +825,11 @@ module.exports = {
                             .setDescription("Ce transfert à chamboulé beaucoup de fans de Foot mais également la presse. En voici la Une")
                             .setImage(`attachment://file.png`);
 
-                          headers = {
-                            'Authorization': 'Bot ' + process.env.BOT_TOKEN,
-                            'Content-Type': 'multipart/form-data',
-                          }
 
                           dataCards = {
                             "message": {
                               "embeds": [embed],
+                              "attachments": [{"id": 0}]
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
