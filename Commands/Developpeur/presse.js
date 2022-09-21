@@ -1,4 +1,7 @@
 const {
+  MessageAttachment
+} = require("discord.js");
+const {
   registerFont,
   createCanvas,
   loadImage
