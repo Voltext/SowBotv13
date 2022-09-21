@@ -41,11 +41,11 @@ module.exports = {
     let y = 0
     ctx.drawImage(background, x, y)
 
-    ctx.fillStyle = '#969696'
+    ctx.fillStyle = '#4d4d4d'
     ctx.textAlign = "center"
     ctx.font = '35px DIN Next LT Pro Black Condensed'
-    let present = `${interaction.user.username} va devoir faire ses preuves`
-    ctx.fillText(present, 100, 200)
+    let present = `${interaction.user.username} VA DEVOIR FAIRE SES PREUVES`
+    ctx.fillText(present, 150, 100)
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
