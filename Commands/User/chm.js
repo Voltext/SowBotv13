@@ -816,15 +816,14 @@ module.exports = {
                           });
                           headers = {
                             'Authorization': 'Bot ' + process.env.BOT_TOKEN,
-                            'Content-Type': 'multipart/form-data'
+                            'Content-Type': 'application/json'
                           }
+
+                          console.log(canvas.toDataURL())
 
                           dataCards = {
                             "message": {
-                              "files": [{
-                                "attachment": attachment,
-                                "name": 'file.png'
-                              }]
+                              "content": "Test"
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
