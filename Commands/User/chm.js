@@ -829,7 +829,9 @@ module.exports = {
                           dataCards = {
                             "message": {
                               "embeds": [embed],
-                              "files": [attachment]
+                              "attachement": [{
+                                "filename": "file.png"
+                              }]
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
@@ -839,8 +841,6 @@ module.exports = {
                           }).then(resp => {
                             const thread = channelD.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
-                            const threadForum = forum.threads.cache.find(x => x.id === resp.user.id);
-                            console.log(threadForum.isThread())
                           }).catch((error) => {
                             if( error.response ){
                                 console.log(error.response.data); // => the response payload 
