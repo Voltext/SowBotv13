@@ -850,7 +850,7 @@ module.exports = {
                               ...form.getHeaders(),
                               headers
                             },
-                          }).then((response) => {}).catch();
+                          }).then((response) => {}).catch(err => console.log(err)) ;
                         } catch (err) {
                           console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
