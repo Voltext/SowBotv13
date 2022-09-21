@@ -818,12 +818,12 @@ module.exports = {
                               budget: -userObj.montant
                             }
                           });
-                          
+
 
                           const embed = new MessageEmbed()
-                          .setTitle("Un aperçu de la presse")
-                          .setDescription("Ce transfert à chamboulé beaucoup de fans de Foot mais également la presse. En voici la Une")
-                          .setImage(`attachment://file.png`);
+                            .setTitle("Un aperçu de la presse")
+                            .setDescription("Ce transfert à chamboulé beaucoup de fans de Foot mais également la presse. En voici la Une")
+                            .setImage(`attachment://file.png`);
 
                           headers = {
                             'Authorization': 'Bot ' + process.env.BOT_TOKEN,
@@ -837,24 +837,20 @@ module.exports = {
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
 
-                          const formData = new FormData();
-                          formData.append('files[0]', canvas.toBuffer);
+                          var formData = new FormData();
+                          formData.append('files[0]', fs.createReadStream('./PathToImage1.png'));
+                          formData.append('files[1]', fs.createReadStream('./PathToImage2.png'));
                           formData.append('payload_json', JSON.stringify(dataCards));
 
-                          axios.post(`https://discord.com/api/channels/1020265346877374534/threads`, formData, {
-                            'headers': headers
-                          }).then(resp => {
-                            const thread = channelD.threads.cache.find(x => x.id === userObj.threadId);
-                            thread.delete();
-                            console.log(resp)
-                          }).catch((error) => {
-                            if( error.response ){
-                                console.log(error.response.data); // => the response payload 
-                            }
-                            else {
-                              console.log(error)
-                            }
-                        });
+                          axios({
+                            url: `https://discord.com/api/v10/`,
+                            method: 'POST',
+                            data: formData,
+                            headers: {
+                              ...form.getHeaders(),
+                              headers
+                            },
+                          }).then((response) => {}).catch();
                         } catch (err) {
                           console.log(err)
                           console.log("Erreur commande club house manager: chm(183)")
