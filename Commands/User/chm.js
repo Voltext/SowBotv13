@@ -837,7 +837,7 @@ module.exports = {
                           }
 
                           var formData = new FormData();
-                          formData.append('files[0]', canvas.toBuffer);
+                          formData.append('attachments', { "filename": "file.png", "description": "ekipe" });
                           formData.append('payload_json', JSON.stringify(dataCards));
 
                           axios({
