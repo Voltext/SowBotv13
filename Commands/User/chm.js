@@ -831,7 +831,7 @@ module.exports = {
                           }).then(resp => {
                             const thread = channel.threads.cache.find(x => x.id === userObj.threadId);
                             thread.delete();
-                            const webhooks = await channel.fetchWebhooks();
+                            const webhooks = channel.fetchWebhooks();
                             const webhook = webhooks.first();
 
                             await webhook.send({
