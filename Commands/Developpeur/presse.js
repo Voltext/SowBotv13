@@ -59,7 +59,7 @@ module.exports = {
         format: 'png',
       })
     )
-    ctx.drawImage(pfp, 595, 31, 161, 161)
+    ctx.drawImage(pfp, 600, 31, 161, 161)
 
     const attachment = new MessageAttachment(canvas.toBuffer())
     interaction.reply({
