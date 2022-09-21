@@ -821,10 +821,7 @@ module.exports = {
 
                           dataCards = {
                             "message": {
-                              "files": [{
-                                "attachment": attachment,
-                                "name": 'file.png'
-                              }]
+                              "files": [attachment]
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
