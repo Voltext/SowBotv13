@@ -783,7 +783,8 @@ module.exports = {
         let scoreG = titreMot[Math.floor(Math.random() * titreMot.length)]
         ctx.fillText(scoreG, 175, 210)
 
-        const attachment = new MessageAttachment(canvas.toBuffer(), 'file.png')
+        const buffer = canvas.toBuffer('image/png')
+        fs.writeFileSync(`./Assets/ekipe.png`, buffer)
 
         mongo().then(async (mongoosectransfert) => {
           try {
@@ -837,7 +838,7 @@ module.exports = {
                           }
 
                           var formData = new FormData();
-                          formData.append('attachments', { "filename": "file.png", "description": "ekipe" });
+                          formData.append('files[0]', "../../Assets/ekipe.png");
                           formData.append('payload_json', JSON.stringify(dataCards));
 
                           axios({
