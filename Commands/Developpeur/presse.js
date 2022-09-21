@@ -9,8 +9,8 @@ const {
 const path = require('path');
 const Util = require('../../Utils/function')
 const fs = require('fs')
-registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
-  family: 'DINNextLTPro-Black'
+registerFont('./Assets/Fonts/DINNextLTPro-HeavyItalic.ttf', {
+  family: 'DINNextLTPro-HeavyItalic'
 })
 registerFont('./Assets/Fonts/DINNextLTPro-BlackItalic.ttf', {
   family: 'DINNextLTPro-BlackItalic'
@@ -40,7 +40,7 @@ module.exports = {
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
-    ctx.font = '130px DINNextLTPro-BlackItalic'
+    ctx.font = '130px DINNextLTPro-HeavyItalic'
     let scoreG = titreMot[Math.floor(Math.random() * titreMot.length)]
     ctx.fillText(scoreG, 175, 450)
 
