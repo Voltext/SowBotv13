@@ -823,7 +823,7 @@ module.exports = {
                           const embed = new MessageEmbed()
                             .setTitle("Un aperçu de la presse")
                             .setDescription("Ce transfert à chamboulé beaucoup de fans de Foot mais également la presse. En voici la Une")
-                            .setImage(`attachment://file.png`);
+                            .setImage("attachment://file.png");
 
 
                           dataCards = {
@@ -834,7 +834,7 @@ module.exports = {
                           }
 
                           var formData = new FormData();
-                          formData.append('files[0]', fs.createReadStream("../../Assets/ekipe.png"), "file.png");
+                          formData.append('files[0]', "../../Assets/ekipe.png", "file.png");
                           formData.append('payload_json', JSON.stringify(dataCards));
 
                           axios({
