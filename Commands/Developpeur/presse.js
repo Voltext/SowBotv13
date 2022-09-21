@@ -51,8 +51,8 @@ module.exports = {
     ctx.fillStyle = '#4d4d4d'
     ctx.textAlign = "center"
     ctx.font = '15px DIN Next LT Pro Black Condensed'
-    let present = `La rumeur est confirmée. L'arrivée du talent dans son nouveau club ne devrait plus tarder...`
-    ctx.fillText(present, 175, 165)
+    let desc = `La rumeur est confirmée. L'arrivée du talent dans son nouveau club ne devrait plus tarder...`
+    ctx.fillText(desc, 175, 165)
 
     ctx.fillStyle = '#ffffff'
     ctx.textAlign = "center"
