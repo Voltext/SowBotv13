@@ -780,7 +780,7 @@ module.exports = {
         let scoreG = titreMot[Math.floor(Math.random() * titreMot.length)]
         ctx.fillText(scoreG, 175, 210)
 
-        const attachment = new MessageAttachment(canvas.toBuffer())
+        const attachment = new MessageAttachment(canvas.toBuffer(), 'file.png')
 
         mongo().then(async (mongoosectransfert) => {
           try {
@@ -821,7 +821,6 @@ module.exports = {
 
                           dataCards = {
                             "message": {
-                              "content": "Bienvenue dans ton nouveau club",
                               "files": [{
                                 "attachment": attachment,
                                 "name": 'file.png'
