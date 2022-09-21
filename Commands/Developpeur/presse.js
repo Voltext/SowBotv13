@@ -19,7 +19,7 @@ registerFont('./Assets/Fonts/DINNextLTPro-BoldCondensed.ttf', {
   family: 'DINNextLTPro-BoldCondensed',
 })
 registerFont('./Assets/Fonts/DINNextLTPro-BlackCondensed.ttf', {
-  family: 'DIN Next LT Pro Black Condensed'
+  family: 'DINNextLTPro-BlackCondensed'
 })
 
 module.exports = {
