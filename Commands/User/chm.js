@@ -820,15 +820,9 @@ module.exports = {
                           });
 
 
-                          const embed = new MessageEmbed()
-                            .setTitle("Un aperçu de la presse")
-                            .setDescription("Ce transfert à chamboulé beaucoup de fans de Foot mais également la presse. En voici la Une")
-                            .setImage("attachment://file.png");
-
-
                           dataCards = {
                             "message": {
-                              "embeds": [embed],
+                              "content": "Revue de presse",
                             },
                             "name": `[NOUVEAU TRANSFERT] ${userObj.joueurName} a rejoint ${userObjTeamPlayer.team.teamName} pour ${userObj.montant}`
                           }
