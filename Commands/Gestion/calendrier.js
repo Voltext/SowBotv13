@@ -25,7 +25,7 @@ module.exports = {
     const embed = new MessageEmbed()
     .setTitle("Calendrier de l'Avent : " + jour + " Décembre")
     .setDescription("Nous sommes le " + jour + " Décembre. Un nouveau jour pour gagner des petits cadeaux sur le Discord. Voici les cadeaux disponibles aujourd'hui")
-    addFields(
+    .addFields(
 			{ name: 'Probabilités', value: pourcent, inline: true },
 			{ name: 'Lot', value: kdo, inline: true },
 		);
