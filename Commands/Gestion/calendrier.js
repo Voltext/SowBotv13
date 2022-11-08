@@ -1,4 +1,4 @@
-const { MessageEmbed, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { MessageEmbed, MessageActionRow, MessageButton } = require("discord.js");
 require('dotenv').config();
 const Moment = require("moment");
 
@@ -21,12 +21,12 @@ module.exports = {
       kdo = "Points prédis (entre 1 et 10)\nCarte aléatoire\nCarte spéciale Noel\nVIP\nSub\nNitro\nMaillot de son choix\n2 places matchs de son choix ";
     }
 
-    const row = new ActionRowBuilder()
+    const row = new MessageActionRow()
 			.addComponents(
-				new ButtonBuilder()
-					.setCustomId('primary')
-					.setLabel("Je découvre mon cadeau du jour")
-					.setStyle(ButtonStyle.Primary),
+				new MessageButton()
+					.setCustomId('cadeau')
+					.setLabel('Je découvre mon cadeau du jour')
+					.setStyle('PRIMARY'),
 			);
     
 
