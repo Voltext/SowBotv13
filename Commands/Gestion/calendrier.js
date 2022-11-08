@@ -1,4 +1,4 @@
-const { MessageEmbed } = require("discord.js");
+const { MessageEmbed, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require("discord.js");
 require('dotenv').config();
 const Moment = require("moment");
 
@@ -20,6 +20,14 @@ module.exports = {
       pourcent="80%\n10%\n5%\n3%\n1%\n0.5%\n0.4%\n0.1%"
       kdo = "Points prédis (entre 1 et 10)\nCarte aléatoire\nCarte spéciale Noel\nVIP\nSub\nNitro\nMaillot de son choix\n2 places matchs de son choix ";
     }
+
+    const row = new ActionRowBuilder()
+			.addComponents(
+				new ButtonBuilder()
+					.setCustomId('primary')
+					.setLabel("Je découvre mon cadeau du jour")
+					.setStyle(ButtonStyle.Primary),
+			);
     
 
     const embed = new MessageEmbed()
@@ -32,6 +40,7 @@ module.exports = {
 
     interaction.reply({
         embeds: [embed],
+        components: [row]
     })
 
   }
