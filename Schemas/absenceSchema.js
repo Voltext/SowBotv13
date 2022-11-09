@@ -10,11 +10,11 @@ const absenceSchema = mongoose.Schema({
         required: true
     },
     date_depart: {
-        type: String,
+        type: Date,
         required: true
     },
     date_retour: {
-        type: String,
+        type: Date,
         required: true
     },
     etat: {
