@@ -59,12 +59,8 @@ module.exports = {
         } = interaction
         const raison = interaction.options.getString('raison');
         const date_depart = interaction.options.getString('date_depart');
-        let date_retour = interaction.options.getString('date_retour');
+        const date_retour = interaction.options.getString('date_retour');
 
-        const jour = Moment(date_depart).format('DD/MM/YYYY')
-
-        console.log(typeof date_depart)
-        console.log(jour)
 
         const etat = "En attente";
 
