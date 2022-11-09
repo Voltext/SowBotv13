@@ -60,6 +60,10 @@ module.exports = {
         const raison = interaction.options.getString('raison');
         const date_depart = new Date(interaction.options.getString('date_depart'));
         const date_retour = new Date(interaction.options.getString('date_retour'));
+
+        console.log(date_depart)
+        console.log(date_retour)
+        
         const etat = "En attente";
 
         const userId = interaction.user.id;
