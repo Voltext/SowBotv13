@@ -59,8 +59,8 @@ module.exports = {
             options
         } = interaction
         const raison = interaction.options.getString('raison');
-        let date_depart = interaction.options.getString('date_depart');
-        let date_retour = interaction.options.getString('date_retour');
+        const debut = interaction.options.getString('date_depart');
+        const fin = interaction.options.getString('date_retour');
 
         const etat = "En attente";
 
@@ -71,7 +71,7 @@ module.exports = {
 
         switch (subCommand) {
             case "new": {
-                if(Moment(date_depart, 'DD/MM/YYYY', true).isValid() === false || Moment(date_retour, 'DD/MM/YYYY', true).isValid() === false)   {
+                if(Moment(debut, 'DD/MM/YYYY', true).isValid() === false || Moment(fin, 'DD/MM/YYYY', true).isValid() === false)   {
                     interaction.reply({
                         embeds: [new MessageEmbed().setTitle("Format date incorrect").setDescription("Merci d'indiquer la date de vos absences sous le format : DD/MM/YYYY")],
                         ephemeral: true
@@ -79,8 +79,8 @@ module.exports = {
                     return
                 }
 
-                date_depart = Util.dateToMilliseconds(date_depart)
-                date_retour = Util.dateToMilliseconds(date_retour)
+                const date_depart = Util.dateToMilliseconds(debut)
+                const date_retour = Util.dateToMilliseconds(fin)
 
                 await mongo().then(async (mongoosenewabsence) => {
                     try {
@@ -96,11 +96,11 @@ module.exports = {
                             .setDescription("Ta demande d'absence a bien été envoyé aux responsables. Vous recevrez une notification une fois l'absence validée ou refusé.")
                             .addFields({
                                 name: 'Date départ',
-                                value: date_depart,
+                                value: debut,
                                 inline: true
                             }, {
                                 name: 'Date Retour',
-                                value: date_retour,
+                                value: fin,
                                 inline: true
                             }, {
                                 name: 'Raison',
