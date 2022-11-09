@@ -79,6 +79,7 @@ module.exports = {
                 await mongo().then(async (mongoosenewabsence) => {
                     try {
                         await absenceSchema.create({
+                            userId,
                             raison,
                             date_depart,
                             date_retour,
