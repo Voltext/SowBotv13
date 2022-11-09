@@ -58,6 +58,7 @@ module.exports = {
         const raison = interaction.options.getString('raison');
         const date_depart = interaction.options.getString('date_depart');
         const date_retour = interaction.options.getString('date_retour');
+        const etat = "En attente";
 
         const userId = interaction.user.id;
         const userName = interaction.user.username;
@@ -74,6 +75,7 @@ module.exports = {
                             raison,
                             date_depart,
                             date_retour,
+                            etat
                         }, {
                             upsert: true,
                         })
@@ -114,7 +116,7 @@ module.exports = {
                                 inline: true
                             }, {
                                 name: "Date d'absence",
-                                value: date_depart + '/' + date_retour,
+                                value: 'du' + date_depart + ' au ' + date_retour,
                                 inline: true
                             }, {
                                 name: 'Raison',
