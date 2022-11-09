@@ -40,7 +40,7 @@ module.exports = {
                             $lte: today
                         }, 
                         "date_retour": {
-                            $te: today
+                            $gte: today
                         },
                     })
 
