@@ -30,8 +30,6 @@ module.exports = {
             const userId = member.user.id
             const userName = member.user.username
 
-            const today = new Date().toISOString()
-
             await mongo().then(async (mongoosenewabsence) => {
                 try {
                     const results = await absenceSchema.findOne({

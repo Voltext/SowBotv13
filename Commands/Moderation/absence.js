@@ -58,9 +58,8 @@ module.exports = {
             options
         } = interaction
         const raison = interaction.options.getString('raison');
-        let date_depart = interaction.options.getString('date_depart');
-        let date_retour = interaction.options.getString('date_retour');
-
+        const date_depart = interaction.options.getString('date_depart');
+        const date_retour = interaction.options.getString('date_retour');
 
         const etat = "En attente";
 
@@ -78,22 +77,14 @@ module.exports = {
                     })
                     return
                 }
-                const [month1, day1, year1] = date_depart.split('/');
-                const [month2, day2, year2] = date_retour.split('/');
 
-                date_depart = new Date(+year1, +month1 - 1, +day1);
-                date_retour = new Date(+year2, +month2 - 1, +day2);
-
-                date_depart.toLocaleDateString("fr")
-                date_retour.toLocaleDateString("fr")
-                
                 await mongo().then(async (mongoosenewabsence) => {
                     try {
                         await absenceSchema.create({
                             userId,
                             raison,
-                            date_depart,
-                            date_retour,
+                            "date_depart" : Moment(date_depart, 'DD/MM/YYYY', true),
+                            "date_retour" : Moment(date_depart, 'DD/MM/YYYY', true),
                             etat
                         })
                         const embed = new MessageEmbed()
