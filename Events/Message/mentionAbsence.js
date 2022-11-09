@@ -30,9 +30,7 @@ module.exports = {
             const userId = member.user.id
             const userName = member.user.username
 
-            let today = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-
-            today = new Date(today)
+            const today = new Date().toISOString()
 
             await mongo().then(async (mongoosenewabsence) => {
                 try {
@@ -42,7 +40,7 @@ module.exports = {
                             $lte: today
                         }, 
                         "date_retour": {
-                            $gte: today
+                            $te: today
                         },
                     })
 
