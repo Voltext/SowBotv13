@@ -14,7 +14,6 @@ module.exports = {
             const etat = "Validée"
 
             const member = await guild.members.fetch(userId);
-            console.log(member)
 
             await mongo().then(async (mongoosenewabsence) => {
                 try {
