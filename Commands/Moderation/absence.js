@@ -96,7 +96,8 @@ module.exports = {
                                 inline: true
                             }, )
                         interaction.reply({
-                            embeds: [embed]
+                            embeds: [embed],
+                            ephemeral: true
                         })
                         const valide = new MessageActionRow()
                             .addComponents(
