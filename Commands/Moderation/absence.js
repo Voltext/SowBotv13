@@ -3,6 +3,7 @@ const {
 } = require("discord.js");
 const mongo = require('../../mongo');
 const absenceSchema = require('../../Schemas/absenceSchema');
+const Moment = require("moment");
 
 module.exports = {
     name: "absence",
@@ -51,6 +52,7 @@ module.exports = {
     ],
 
     async execute(interaction) {
+        Moment.locale("fr");
         const {
             guild,
             options
@@ -67,17 +69,20 @@ module.exports = {
 
         switch (subCommand) {
             case "new": {
+                if(Moment(date_depart, 'DD/MM/YYYY', true).isValid() === false || Moment(date_retour, 'DD/MM/YYYY', true).isValid() === false)   {
+                    interaction.reply({
+                        embeds: [new MessageEmbed().setTitle("Format date incorrect").setDescription("Merci d'indiquer la date de vos absences sous le format : DD/MM/YYYY")],
+                        ephemeral: true
+                    })
+                    return
+                }
                 await mongo().then(async (mongoosenewabsence) => {
                     try {
-                        await absenceSchema.findOneAndUpdate({
-                            userId,
-                        }, {
+                        await absenceSchema.create({
                             raison,
                             date_depart,
                             date_retour,
                             etat
-                        }, {
-                            upsert: true,
                         })
                         const embed = new MessageEmbed()
                             .setTitle("Demande d'absence déposée")
