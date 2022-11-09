@@ -58,8 +58,8 @@ module.exports = {
             options
         } = interaction
         const raison = interaction.options.getString('raison');
-        const date_depart = interaction.options.getString('date_depart');
-        const date_retour = interaction.options.getString('date_retour');
+        const date_depart = new Date(interaction.options.getString('date_depart'));
+        const date_retour = new Date(interaction.options.getString('date_retour'));
         const etat = "En attente";
 
         const userId = interaction.user.id;
