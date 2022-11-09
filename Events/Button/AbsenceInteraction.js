@@ -12,6 +12,10 @@ module.exports = {
            if(interaction.customId === 'valideAbsence') {
             const userId = interaction.message.embeds[0].footer.text
             const etat = "Validée"
+
+            const member = await guild.members.fetch(userId);
+            console.log(member)
+
             await mongo().then(async (mongoosenewabsence) => {
                 try {
                     const results = await absenceSchema.findOneAndUpdate({
@@ -25,19 +29,20 @@ module.exports = {
                     const embed = new MessageEmbed()
                         .setTitle("Demande d'absence validée")
                         .setDescription("La demande d'absence a bien été validée.")
-                        /* .addFields({
-                            name: 'Date départ',
-                            value: date_depart,
+                        .setColor("GREEN")
+                        .addFields({
+                            name: 'Modérateur',
+                            value: results.userId,
                             inline: true
                         }, {
-                            name: 'Date Retour',
-                            value: date_retour,
+                            name: "Date d'absence",
+                            value: "Du " + date_depart + " au " + date_retour,
                             inline: true
                         }, {
                             name: 'Raison',
                             value: raison,
                             inline: true
-                        }, ) */
+                        }, )
                         guild.channels.cache.get('899025666736021504').send({
                         embeds: [embed]
                     })
