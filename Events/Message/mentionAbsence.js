@@ -38,20 +38,13 @@ module.exports = {
                 try {
                     const results = await absenceSchema.findOne({
                         userId,
-                        "date_debut": {
-                            $lte: today
-                        },
-                        "date_retour": {
-                            $gte: today
-                        },
                     })
 
-                    console.log(results)
-
                     if (results !== null) {
-                        message.reply({
-                            content: userName + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
-                        })
+                        if (results.date_depart < today || results.date_retour > today)
+                            message.reply({
+                                content: userName + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
+                            })
                     }
                 } catch (err) {
                     console.log(err)
