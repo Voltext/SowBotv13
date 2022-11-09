@@ -62,6 +62,12 @@ module.exports = class Utils {
         return Math.abs(a - b);
     }
 
+    static dateToMilliseconds(value) {
+        const date = new Date(value); // some mock date
+        const milliseconds = date.getTime(); 
+        return milliseconds;
+    }
+
     static addStat(userId, stat, point, stamina, userObj) {
 
         let update = {}

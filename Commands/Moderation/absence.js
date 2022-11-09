@@ -4,6 +4,7 @@ const {
 const mongo = require('../../mongo');
 const absenceSchema = require('../../Schemas/absenceSchema');
 const Moment = require("moment");
+const Util = require('../../Utils/function')
 
 module.exports = {
     name: "absence",
@@ -58,8 +59,8 @@ module.exports = {
             options
         } = interaction
         const raison = interaction.options.getString('raison');
-        const date_depart = interaction.options.getString('date_depart');
-        const date_retour = interaction.options.getString('date_retour');
+        let date_depart = interaction.options.getString('date_depart');
+        let date_retour = interaction.options.getString('date_retour');
 
         const etat = "En attente";
 
@@ -77,6 +78,9 @@ module.exports = {
                     })
                     return
                 }
+
+                date_depart = Util.dateToMilliseconds(date_depart)
+                date_retour = Util.dateToMilliseconds(date_retour)
 
                 await mongo().then(async (mongoosenewabsence) => {
                     try {
