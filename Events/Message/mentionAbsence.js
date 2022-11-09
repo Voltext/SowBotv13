@@ -25,11 +25,13 @@ const {
   
       if(message.mentions.members.first()) {
         const userId = message.mentions.members.id
+        console.log(userId)
         await mongo().then(async (mongoosenewabsence) => {
             try {
                 const results = await absenceSchema.findOne({
                     userId,
                 })
+                console.log(results)
                 if (results !== null) { 
                     message.reply({
                         content: message.mentions.members.username + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
