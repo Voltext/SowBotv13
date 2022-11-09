@@ -5,6 +5,8 @@ const {
     MessageActionRow,
     Client
   } = require('discord.js');
+  const mongo = require('../../mongo');
+  const absenceSchema = require('../../Schemas/absenceSchema');
   
   module.exports = {
     name: "messageCreate",
