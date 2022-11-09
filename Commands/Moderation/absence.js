@@ -129,7 +129,7 @@ module.exports = {
                                 inline: true
                             }, {
                                 name: "Date d'absence",
-                                value: 'Du ' + date_depart + ' au ' + date_retour,
+                                value: 'Du ' + debut + ' au ' + fin,
                                 inline: true
                             }, {
                                 name: 'Raison',
