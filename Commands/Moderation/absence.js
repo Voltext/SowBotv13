@@ -103,9 +103,9 @@ module.exports = {
                                 .setLabel('Valider')
                                 .setStyle('SUCCESS'),
                                 new MessageButton()
-                                .setCustomId('valideAbsence')
-                                .setLabel('Valider')
-                                .setStyle('SUCCESS'),
+                                .setCustomId('refusAbsence')
+                                .setLabel('Refuser')
+                                .setStyle('DANGER'),
                             );
                         guild.channels.cache.get(process.env.DEMANDES).send({
                             embeds: [new MessageEmbed().setTitle("Nouvelle demande d'absence").setDescription("Nouvelle demande d'absence enregistrée. Utilisez les bouton ci-dessous pour la gérer").addFields({
