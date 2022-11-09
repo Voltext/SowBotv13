@@ -10,7 +10,7 @@ module.exports = {
         const {guild} = interaction
         if (interaction.isButton()) {
            if(interaction.customId === 'valideAbsence') {
-            console.log(interaction.message.embeds.footer)
+            console.log(interaction.message.embeds[0].footer)
             const userId = interaction.message.embeds.footer.text
             const etat = "Validée"
             await mongo().then(async (mongoosenewabsence) => {
