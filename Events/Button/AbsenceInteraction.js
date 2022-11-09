@@ -24,6 +24,8 @@ module.exports = {
                     }, {
                         upsert: true,
                     })
+                    const debut = new Date(results.date_depart);
+                    const fin = new Date(results.date_retour);
                     const embed = new MessageEmbed()
                         .setTitle("Demande d'absence validée")
                         .setDescription("La demande d'absence a bien été validée.")
@@ -34,7 +36,7 @@ module.exports = {
                             inline: true
                         }, {
                             name: "Date d'absence",
-                            value: "Du " + results.date_depart + " au " + results.date_retour,
+                            value: "Du " + debut.toLocaleString('en-GB') + " au " + fin.toLocaleString('en-GB'),
                             inline: true
                         }, {
                             name: 'Raison',
