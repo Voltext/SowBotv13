@@ -25,7 +25,6 @@ module.exports = {
                     }, {
                         upsert: true,
                     })
-                    console.log(results)
                     const embed = new MessageEmbed()
                         .setTitle("Demande d'absence validée")
                         .setDescription("La demande d'absence a bien été validée.")
