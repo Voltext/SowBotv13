@@ -122,7 +122,7 @@ module.exports = {
                                 name: 'Raison',
                                 value: raison,
                                 inline: true
-                            }, ).setFooter(userId)],
+                            }, ).setFooter({text: userId})],
                             components: [valide]
                         })
                     } catch (err){
