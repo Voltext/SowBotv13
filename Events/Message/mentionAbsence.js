@@ -38,17 +38,16 @@ module.exports = {
                         userId,
                         "date_debut": {
                             $lte: today
-                        }, 
+                        },
                         "date_retour": {
                             $gte: today
                         },
                     })
 
                     if (results !== null) {
-                        if (debut.isBefore(today) === false && fin.isAfter(today) === false)
-                            message.reply({
-                                content: userName + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
-                            })
+                        message.reply({
+                            content: userName + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
+                        })
                     }
                 } catch (err) {
                     console.log(err)
