@@ -51,7 +51,7 @@ module.exports = {
     ],
 
     async execute(interaction) {
-        const {guild} = interaction
+        const {guild, options} = interaction
         const raison = interaction.options.getString('raison');
         const date_depart = interaction.options.getString('date_depart');
         const date_retour = interaction.options.getString('date_retour');
