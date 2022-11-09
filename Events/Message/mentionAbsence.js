@@ -28,7 +28,6 @@ const {
         const userId = member.user.id
         const userName = member.user.username
 
-        console.log(userId)
         await mongo().then(async (mongoosenewabsence) => {
             try {
                 const results = await absenceSchema.findOne({
