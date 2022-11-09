@@ -41,7 +41,7 @@ module.exports = {
                     })
 
                     if (results !== null) {
-                        if (results.date_depart < today || results.date_retour > today)
+                        if (results.date_depart < today && results.date_retour > today)
                             message.reply({
                                 content: userName + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
                             })
