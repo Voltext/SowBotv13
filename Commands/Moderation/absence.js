@@ -134,7 +134,7 @@ module.exports = {
                         })
                     } catch (err){
                         console.log(err)
-                        console.log("Erreur commande bannissement: ban(91)")
+                        console.log("Erreur commande absence: absence(137)")
                         mongoosenewabsence.connection.close()
                     }
                 })
