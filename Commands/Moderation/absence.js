@@ -70,9 +70,9 @@ module.exports = {
 
         switch (subCommand) {
             case "new": {
-                if(Moment(date_depart, 'DD/MM/YYYY', true).isValid() === false || Moment(date_retour, 'DD/MM/YYYY', true).isValid() === false)   {
+                if(Moment(date_depart, 'YYYY-MM-DD', true).isValid() === false || Moment(date_retour, 'YYYY-MM-DD', true).isValid() === false)   {
                     interaction.reply({
-                        embeds: [new MessageEmbed().setTitle("Format date incorrect").setDescription("Merci d'indiquer la date de vos absences sous le format : DD/MM/YYYY")],
+                        embeds: [new MessageEmbed().setTitle("Format date incorrect").setDescription("Merci d'indiquer la date de vos absences sous le format : YYYY-MM-DD")],
                         ephemeral: true
                     })
                     return
@@ -83,8 +83,8 @@ module.exports = {
                         await absenceSchema.create({
                             userId,
                             raison,
-                            "date_depart" : Moment(date_depart, 'DD/MM/YYYY', true),
-                            "date_retour" : Moment(date_depart, 'DD/MM/YYYY', true),
+                            date_depart,
+                            date_retour,
                             etat
                         })
                         const embed = new MessageEmbed()
