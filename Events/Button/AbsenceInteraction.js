@@ -32,20 +32,22 @@ module.exports = {
                         .setColor("GREEN")
                         .addFields({
                             name: 'Modérateur',
-                            value: results.userId,
+                            value: member.user.username,
                             inline: true
                         }, {
                             name: "Date d'absence",
-                            value: "Du " + date_depart + " au " + date_retour,
+                            value: "Du " + results.date_depart + " au " + results.date_retour,
                             inline: true
                         }, {
                             name: 'Raison',
-                            value: raison,
+                            value: results.raison,
                             inline: true
                         }, )
                         guild.channels.cache.get('899025666736021504').send({
                         embeds: [embed]
-                    })
+                        })
+
+                        interaction.message.delete();
                 } catch (err){
                     console.log(err)
                     console.log("Erreur commande bannissement: ban(91)")
