@@ -102,13 +102,10 @@ module.exports = {
                                 .setCustomId('valideAbsence')
                                 .setLabel('Valider')
                                 .setStyle('SUCCESS'),
-                            );
-                        const refus = new MessageActionRow()
-                            .addComponents(
                                 new MessageButton()
-                                .setCustomId('refusAbsence')
-                                .setLabel('Refuser')
-                                .setStyle('DANGER'),
+                                .setCustomId('valideAbsence')
+                                .setLabel('Valider')
+                                .setStyle('SUCCESS'),
                             );
                         guild.channels.cache.get(process.env.DEMANDES).send({
                             embeds: [new MessageEmbed().setTitle("Nouvelle demande d'absence").setDescription("Nouvelle demande d'absence enregistrée. Utilisez les bouton ci-dessous pour la gérer").addFields({
@@ -124,9 +121,10 @@ module.exports = {
                                 value: raison,
                                 inline: true
                             }, )],
-                            components: [valide, refus]
+                            components: [valide]
                         })
-                    } catch {
+                    } catch (err){
+                        console.log(err)
                         console.log("Erreur commande bannissement: ban(91)")
                         mongoosenewabsence.connection.close()
                     }
