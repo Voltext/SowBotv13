@@ -63,7 +63,11 @@ module.exports = class Utils {
     }
 
     static dateToMilliseconds(value) {
-        const date = new Date(value); // some mock date
+        const vDate = value.split('/')
+        const jour = vDate[1]
+        const mois = vDate[0]
+        const annee = vDate[2];
+        const date = new Date(mois+"/"+jour+"/"+annee); // some mock date
         const milliseconds = date.getTime(); 
         return milliseconds;
     }
