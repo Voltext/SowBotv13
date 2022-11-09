@@ -32,7 +32,7 @@ module.exports = {
             const userName = member.user.username
 
             const today = Util.dateToMilliseconds(Moment().format("D/M/YYYY"))
-            console.log(typeof today)
+            console.log(today)
 
             await mongo().then(async (mongoosenewabsence) => {
                 try {
@@ -41,7 +41,7 @@ module.exports = {
                     })
 
                     if (results !== null) {
-                        if (results.date_depart < today && results.date_retour > today)
+                        if (results.date_depart <= today && results.date_retour > today)
                             message.reply({
                                 content: userName + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
                             })
