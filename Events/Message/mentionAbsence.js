@@ -24,7 +24,10 @@ const {
       if (message.author.bot) return
   
       if(message.mentions.members.first()) {
-        const userId = message.mentions.members.id
+        const member = message.mentions.members.first()
+        const userId = member.user.id
+        const userName = member.user.username
+
         console.log(userId)
         await mongo().then(async (mongoosenewabsence) => {
             try {
@@ -34,7 +37,7 @@ const {
                 console.log(results)
                 if (results !== null) { 
                     message.reply({
-                        content: message.mentions.members.username + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
+                        content: userName + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
                     })
                 }
             } catch (err){
