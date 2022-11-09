@@ -34,7 +34,6 @@ const {
                 const results = await absenceSchema.findOne({
                     userId,
                 })
-                console.log(results)
                 if (results !== null) { 
                     message.reply({
                         content: userName + " est actuellement absent. Merci de ne pas l'identifier, il ne répondra pas à vos message jusqu'au " + results.date_retour
