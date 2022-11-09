@@ -58,8 +58,8 @@ module.exports = {
             options
         } = interaction
         const raison = interaction.options.getString('raison');
-        let date_depart = new Date(interaction.options.getString('date_depart'));
-        let date_retour = new Date(interaction.options.getString('date_retour'));
+        let date_depart = interaction.options.getString('date_depart');
+        let date_retour = interaction.options.getString('date_retour');
     
         date_depart = new Date(date_depart)
         date_retour = new Date(date_retour)
