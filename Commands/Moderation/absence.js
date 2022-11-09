@@ -63,7 +63,7 @@ module.exports = {
 
         const jour = Moment(date_depart).format('DD/MM/YYYY')
 
-        console.log(date_depart)
+        console.log(typeof date_depart)
         console.log(jour)
 
         const etat = "En attente";
