@@ -71,9 +71,9 @@ module.exports = {
 
         switch (subCommand) {
             case "new": {
-                if(Moment(date_depart, 'YYYY-MM-DD', true).isValid() === false || Moment(date_retour, 'YYYY-MM-DD', true).isValid() === false)   {
+                if(Moment(date_depart, 'DD/MM/YYYY', true).isValid() === false || Moment(date_retour, 'DD/MM/YYYY', true).isValid() === false)   {
                     interaction.reply({
-                        embeds: [new MessageEmbed().setTitle("Format date incorrect").setDescription("Merci d'indiquer la date de vos absences sous le format : YYYY-MM-DD")],
+                        embeds: [new MessageEmbed().setTitle("Format date incorrect").setDescription("Merci d'indiquer la date de vos absences sous le format : DD/MM/YYYY")],
                         ephemeral: true
                     })
                     return
