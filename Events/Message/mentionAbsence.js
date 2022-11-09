@@ -31,8 +31,8 @@ module.exports = {
             const userId = member.user.id
             const userName = member.user.username
 
-            console.log(Moment(new Date(), 'DD/MM/YYYY', true))
-            const today = Util.dateToMilliseconds(Moment(new Date(), 'DD/MM/YYYY', true))
+            console.log(Moment().format("D/M/YYYY"))
+            const today = Util.dateToMilliseconds(Moment().format("D/M/YYYY"))
 
             await mongo().then(async (mongoosenewabsence) => {
                 try {
