@@ -71,6 +71,23 @@ module.exports = {
 
         switch (subCommand) {
             case "new": {
+                await mongo().then(async (mongoosenewabsence) => {
+                    try {
+                        const results = await absenceSchema.findOne({
+                            userId,
+                        })
+    
+                        if (results !== null) {
+                            interaction.reply({
+                                embeds: [new MessageEmbed().setTitle("Absence déjà en cours").setDescription("Veuillez attendre la fin de votre absence en cours avant d'en demander une nouvelle").addField("Absent jusqu'au", results.date_retour)]
+                            })
+                        }
+                    } catch (err) {
+                        console.log(err)
+                        console.log("Erreur commande bannissement: ban(91)")
+                        mongoosenewabsence.connection.close()
+                    }
+                })
                 if(Moment(debut, 'DD/MM/YYYY', true).isValid() === false || Moment(fin, 'DD/MM/YYYY', true).isValid() === false)   {
                     interaction.reply({
                         embeds: [new MessageEmbed().setTitle("Format date incorrect").setDescription("Merci d'indiquer la date de vos absences sous le format : DD/MM/YYYY")],
