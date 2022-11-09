@@ -79,7 +79,7 @@ module.exports = {
     
                         if (results !== null) {
                             interaction.reply({
-                                embeds: [new MessageEmbed().setTitle("Absence déjà en cours").setDescription("Veuillez attendre la fin de votre absence en cours avant d'en demander une nouvelle").addField("Absent jusqu'au", results.date_retour)],
+                                embeds: [new MessageEmbed().setTitle("Absence déjà en cours").setDescription("Veuillez attendre la fin de votre absence en cours avant d'en demander une nouvelle")],
                                 ephemeral: true
                             })
                             return
