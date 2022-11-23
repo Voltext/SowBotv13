@@ -352,6 +352,11 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			});
 		})
 
+		schedule.scheduleJob('0 0 * 12 *', async () => {
+			const embed = new MessageEmbed()
+			.setTitle("Calendrier de l'Avent : " + Moment(new Date()).format('DD-MM'))
+		})
+
 		//0 15 * * 1
 		schedule.scheduleJob('0 15 * * 1', async () => {
 			const getSchedule = new TwitchSchedule()
