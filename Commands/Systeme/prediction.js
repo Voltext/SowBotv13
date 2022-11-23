@@ -782,7 +782,7 @@ module.exports = {
 								.setFooter(`${teamClone}`)
 								.addFields({
 									name: 'Pronostiques',
-									value: `${process.env.ONE} : Si vous pensez qu'ils ne perdront pas + \n ${process.env.TWO} : Si vous pensez qu'ils vont perdre`,
+									value: `${process.env.ONE} : Si vous pensez qu'ils ne perdront pas + \n ${process.env.TWO} : Si vous pensez qu'au moins 1 equipe perdra`,
 									inline: true
 								}, {
 									name: 'Côtes',

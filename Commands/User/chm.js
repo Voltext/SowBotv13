@@ -842,7 +842,10 @@ module.exports = {
                               'Authorization': 'Bot ' + process.env.BOT_TOKEN,
                               'Content-Type': 'multipart/form-data',
                             },
-                          }).then((response) => {console.log(response)}).catch((error) => {
+                          }).then(() => {
+                            const thread = channelD.threads.cache.find(x => x.id === userObj.threadId);
+                            thread.delete();
+                          }).catch((error) => {
                             if( error.response ){
                                 console.log(error.response.data); // => the response payload 
                             }
