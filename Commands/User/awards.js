@@ -1,5 +1,5 @@
 const mongo = require('../../mongo');
-const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
+const awardsSchema = require('../../Schemas/awardsSchema')
 const {
   CommandInteraction,
   MessageEmbed,
@@ -234,7 +234,7 @@ module.exports = {
     
     await mongo().then(async (mongooselock) => {
 			try {
-				await prediSchema.findOneAndUpdate({
+				await awardsSchema.findOneAndUpdate({
 					userId,
 				}, {
           userId,
@@ -248,8 +248,8 @@ module.exports = {
 				}, {
 					upsert: true,
 				})
-			} catch {
-                console.log("Erreur script lock prediction: lockpredi(30)")
+			} catch(err) {
+                console.log(err)
 				        mongooselock.connection.close()
 			}
 		})
