@@ -234,16 +234,16 @@ module.exports = {
                 color = "GREEN"
               }
 
-              if (playerData[0].poste === "attaquant") {
+              if (playerData[0].poste == "attaquant") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
-              if (playerData[0].poste === "milieu") {
+              if (playerData[0].poste == "milieu") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
-              if (playerData[0].poste === "defenseur") {
+              if (playerData[0].poste == "defenseur") {
                 keysChart = ["Vitesse", "Passe", "Tacle", "Physique", "Drible", "Défense"];
               }
-              if (playerData[0].poste === "gardien") {
+              if (playerData[0].poste == "gardien") {
                 keysChart = ["Plongeon", "Jeu main", "Dégagement", "Reflexes", "Vitesse", "Placement"];
               }
               const configuration = {
@@ -308,7 +308,7 @@ module.exports = {
                   inline: true
                 }, {
                   name: "Succès",
-                  value: playerData[0].succes.toString(),
+                  value: playerData[0].success.toString(),
                   inline: true
                 })
 
