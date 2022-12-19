@@ -44,6 +44,7 @@ registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
 })
 const FormData = require('form-data');
 const fs = require('fs');
+const playerMysql = require('../../Schemas/mysql/player')
 
 
 module.exports = {
@@ -219,6 +220,7 @@ module.exports = {
           height: 600,
           backgroundColour: 'white'
         })
+        console.log(playerMysql.getPlayer(userId))
         mongo().then(async (mongoosecplayer) => {
           try {
             const userObj = await playerSchema.findOne({

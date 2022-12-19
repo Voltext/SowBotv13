@@ -5,6 +5,7 @@ const battleSchema = require('../Schemas/battleSchema');
 const pronoSchema = require('../Schemas/pronoSchema');
 const counterSchema = require('../Schemas/counterSchema');
 const playerSchema = require('../Schemas/playerSchema')
+const mysql = require('mysql2');
 const {
     MessageEmbed
 } = require('discord.js');
@@ -70,6 +71,19 @@ module.exports = class Utils {
         const date = new Date(mois+"/"+jour+"/"+annee); // some mock date
         const milliseconds = date.getTime(); 
         return milliseconds;
+    }
+
+    static getBDD() {
+        const connection = mysql.createConnection({
+            host: process.env.HOST,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD,
+            database: process.env.DB_NAME,
+          });
+          connection.connect(err => {
+			if(err) throw err;
+		});
+		return connection;
     }
 
     static addStat(userId, stat, point, stamina, userObj) {
