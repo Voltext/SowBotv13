@@ -6,6 +6,7 @@ const {
 	MessageEmbed,
 	MessageAttachment
 } = require("discord.js");
+const mysql = require('mysql2');
 const schedule = require('node-schedule');
 const colors = require('colors');
 const mongo = require('../../mongo');

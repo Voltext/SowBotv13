@@ -220,17 +220,12 @@ module.exports = {
           height: 600,
           backgroundColour: 'white'
         })
-        console.log(playerMysql.getPlayer(userId))
-        mongo().then(async (mongoosecplayer) => {
-          try {
-            const userObj = await playerSchema.findOne({
-              userId,
-            }, {});
-            if (userObj !== null) {
+        const playerData = playerMysql.getPlayer(userId)
+            if (playerData !== "") {
               var total = 100;
-              var current = userObj.stamina;
+              var current = playerData.stamina;
 
-              if (userObj.isInjured === true) {
+              if (playerData.isInjured === true) {
                 etat = "Blessé"
                 color = "RED"
               } else {
@@ -238,16 +233,16 @@ module.exports = {
                 color = "GREEN"
               }
 
-              if (userObj.poste === "attaquant") {
+              if (playerData.poste === "attaquant") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
-              if (userObj.poste === "milieu") {
+              if (playerData.poste === "milieu") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
-              if (userObj.poste === "defenseur") {
+              if (playerData.poste === "defenseur") {
                 keysChart = ["Vitesse", "Passe", "Tacle", "Physique", "Drible", "Défense"];
               }
-              if (userObj.poste === "gardien") {
+              if (playerData.poste === "gardien") {
                 keysChart = ["Plongeon", "Jeu main", "Dégagement", "Reflexes", "Vitesse", "Placement"];
               }
               const configuration = {
@@ -256,7 +251,7 @@ module.exports = {
                   labels: keysChart,
                   datasets: [{
                     label: `Vos statistiques`,
-                    data: [userObj.stat1, userObj.stat2, userObj.stat3, userObj.stat4, userObj.stat5, userObj.stat6],
+                    data: [playerData.stat1, playerData.stat2, playerData.stat3, playerData.stat4, playerData.stat5, playerData.stat6],
                     backgroundColor: [
                       'rgb(255, 99, 132)',
                       'rgb(75, 192, 192)',
@@ -276,7 +271,7 @@ module.exports = {
               const statEmbed = new MessageEmbed()
                 .setTitle("Les statistiques de votre joueur : " + username)
                 .setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`")
-                .setThumbnail(userObj.profil)
+                .setThumbnail(playerData.profil)
                 .setColor(color)
                 .setFooter({
                   text: "Stamina actuelle : " + progressbar.filledBar(total, current, 20)[0] + " " + progressbar.filledBar(total, current)[1] + "/100"
@@ -284,27 +279,27 @@ module.exports = {
                 .setImage("attachment://graph.png")
                 .addFields({
                   name: keysChart[0],
-                  value: userObj.stat1.toString(),
+                  value: playerData.stat1.toString(),
                   inline: true
                 }, {
                   name: keysChart[1],
-                  value: userObj.stat2.toString(),
+                  value: playerData.stat2.toString(),
                   inline: true
                 }, {
                   name: keysChart[2],
-                  value: userObj.stat3.toString(),
+                  value: playerData.stat3.toString(),
                   inline: true
                 }, {
                   name: keysChart[3],
-                  value: userObj.stat4.toString(),
+                  value: playerData.stat4.toString(),
                   inline: true
                 }, {
                   name: keysChart[4],
-                  value: userObj.stat5.toString(),
+                  value: playerData.stat5.toString(),
                   inline: true
                 }, {
                   name: keysChart[5],
-                  value: userObj.stat6.toString(),
+                  value: playerData.stat6.toString(),
                   inline: true
                 }, {
                   name: "Etat de santé",
@@ -312,7 +307,7 @@ module.exports = {
                   inline: true
                 }, {
                   name: "Succès",
-                  value: userObj.succes.toString(),
+                  value: playerData.succes.toString(),
                   inline: true
                 })
 
@@ -327,12 +322,6 @@ module.exports = {
                 ephemeral: true
               })
             }
-          } catch (err) {
-            console.log("Erreur commande club house manager: chm(183)")
-            console.log(err)
-            mongoosecplayer.connection.close()
-          }
-        })
         break;
       }
       case "entrainement": {
