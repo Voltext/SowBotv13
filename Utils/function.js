@@ -73,7 +73,7 @@ module.exports = class Utils {
         return milliseconds;
     }
 
-    static async getBDD() {
+    static getBDD() {
         const connection = mysql.createConnection({
             host: process.env.HOST,
             user: process.env.DB_USER,

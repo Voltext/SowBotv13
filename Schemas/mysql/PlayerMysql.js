@@ -1,5 +1,5 @@
 const Util = require("../../Utils/function")
-const bdd = await Util.getBDD();
+const bdd = Util.getBDD();
 
 module.exports = class PlayerMysql {
 
