@@ -226,7 +226,7 @@ module.exports = {
               var total = 100;
               var current = playerData[0].stamina;
 
-              if (playerData[0].isInjured === true) {
+              if (playerData[0].isInjured === 1) {
                 etat = "Blessé"
                 color = "RED"
               } else {
