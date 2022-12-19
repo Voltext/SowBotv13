@@ -221,12 +221,11 @@ module.exports = {
           backgroundColour: 'white'
         })
         const playerData = await PlayerMysql.getPlayer(userId)
-        console.log(playerData[0]);
-            if (playerData.length > 0) {
+            if (playerData[0].length > 0) {
               var total = 100;
-              var current = playerData.stamina;
+              var current = playerData[0].stamina;
 
-              if (playerData.isInjured === true) {
+              if (playerData[0].isInjured === true) {
                 etat = "Blessé"
                 color = "RED"
               } else {
@@ -234,16 +233,16 @@ module.exports = {
                 color = "GREEN"
               }
 
-              if (playerData.poste === "attaquant") {
+              if (playerData[0].poste === "attaquant") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
-              if (playerData.poste === "milieu") {
+              if (playerData[0].poste === "milieu") {
                 keysChart = ["Vitesse", "Passe", "Tirs", "Physique", "Drible", "Défense"];
               }
-              if (playerData.poste === "defenseur") {
+              if (playerData[0].poste === "defenseur") {
                 keysChart = ["Vitesse", "Passe", "Tacle", "Physique", "Drible", "Défense"];
               }
-              if (playerData.poste === "gardien") {
+              if (playerData[0].poste === "gardien") {
                 keysChart = ["Plongeon", "Jeu main", "Dégagement", "Reflexes", "Vitesse", "Placement"];
               }
               const configuration = {
@@ -252,7 +251,7 @@ module.exports = {
                   labels: keysChart,
                   datasets: [{
                     label: `Vos statistiques`,
-                    data: [playerData.stat1, playerData.stat2, playerData.stat3, playerData.stat4, playerData.stat5, playerData.stat6],
+                    data: [playerData[0].stat1, playerData[0].stat2, playerData[0].stat3, playerData[0].stat4, playerData[0].stat5, playerData[0].stat6],
                     backgroundColor: [
                       'rgb(255, 99, 132)',
                       'rgb(75, 192, 192)',
@@ -272,7 +271,7 @@ module.exports = {
               const statEmbed = new MessageEmbed()
                 .setTitle("Les statistiques de votre joueur : " + username)
                 .setDescription("Vous pouvez augmenter vos statistiques en utilisant la commande `/chm entrainement`")
-                .setThumbnail(playerData.profil)
+                .setThumbnail(playerData[0].profil)
                 .setColor(color)
                 .setFooter({
                   text: "Stamina actuelle : " + progressbar.filledBar(total, current, 20)[0] + " " + progressbar.filledBar(total, current)[1] + "/100"
@@ -280,27 +279,27 @@ module.exports = {
                 .setImage("attachment://graph.png")
                 .addFields({
                   name: keysChart[0],
-                  value: playerData.stat1.toString(),
+                  value: playerData[0].stat1.toString(),
                   inline: true
                 }, {
                   name: keysChart[1],
-                  value: playerData.stat2.toString(),
+                  value: playerData[0].stat2.toString(),
                   inline: true
                 }, {
                   name: keysChart[2],
-                  value: playerData.stat3.toString(),
+                  value: playerData[0].stat3.toString(),
                   inline: true
                 }, {
                   name: keysChart[3],
-                  value: playerData.stat4.toString(),
+                  value: playerData[0].stat4.toString(),
                   inline: true
                 }, {
                   name: keysChart[4],
-                  value: playerData.stat5.toString(),
+                  value: playerData[0].stat5.toString(),
                   inline: true
                 }, {
                   name: keysChart[5],
-                  value: playerData.stat6.toString(),
+                  value: playerData[0].stat6.toString(),
                   inline: true
                 }, {
                   name: "Etat de santé",
@@ -308,7 +307,7 @@ module.exports = {
                   inline: true
                 }, {
                   name: "Succès",
-                  value: playerData.succes.toString(),
+                  value: playerData[0].succes.toString(),
                   inline: true
                 })
 
