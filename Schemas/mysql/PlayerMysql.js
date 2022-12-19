@@ -4,7 +4,7 @@ const bdd = Util.getBDD();
 module.exports = class PlayerMysql {
 
     static getPlayer(userId) {
-        bdd.query(
+        bdd.execute(
             `SELECT * FROM players WHERE userId = ${userId}`,
             function(err, results, fields) {
                     return results
