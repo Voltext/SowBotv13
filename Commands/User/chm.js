@@ -221,7 +221,6 @@ module.exports = {
           backgroundColour: 'white'
         })
         const playerData = await PlayerMysql.getPlayer(userId)
-        console.log(playerData[0] !== "")
             if (playerData[0] !== "") {
               var total = 100;
               var current = playerData[0].stamina;
@@ -327,25 +326,21 @@ module.exports = {
       }
       case "entrainement": {
         const embedSelect = new MessageEmbed();
-        mongo().then(async (mongoosecplayer) => {
-          try {
-            const userObj = await playerSchema.findOne({
-              userId,
-            }, {});
-            if (userObj !== null) {
-              if (userObj.isInjured === true) {
+        const playerData = await PlayerMysql.getPlayer(userId)
+            if (playerData[0] !== "") {
+              if (playerData[0].isInjured === 1) {
                 etat = "Blessé"
               } else {
                 etat = "En forme"
               }
-              if (userObj.stamina === 0 || userObj.isInjured === true) {
-                embedSelect.setTitle("Attention !").setDescription("Votre état de forme ne vous permet pas de vous entrainer").addField("Votre stamina", userObj.stamina.toString()).addField("Etat de santé", etat).setColor("RED");
+              if (playerData[0].stamina === 0 || playerData[0].isInjured === true) {
+                embedSelect.setTitle("Attention !").setDescription("Votre état de forme ne vous permet pas de vous entrainer").addField("Votre stamina", playerData[0].stamina.toString()).addField("Etat de santé", etat).setColor("RED");
                 interaction.reply({
                   embeds: [embedSelect],
                   ephemeral: true
                 })
               } else {
-                if (userObj.stamina < 20 && userObj.stamina > 0) {
+                if (playerData[0].stamina < 20 && playerData[0].stamina > 0) {
                   embedSelect.setTitle("Attention !").setDescription("Votre niveau de Stamina est faible, vous risquez de vous blesser à l'issu de votre entraînement...").setColor("RED");
                 } else {
                   embedSelect.setTitle("Tout est bon !").setDescription("Vous êtes dans une forme correcte pour vous entrainer").setColor("GREEN");
@@ -355,7 +350,7 @@ module.exports = {
                     new MessageSelectMenu()
                     .setCustomId('select')
                     .setPlaceholder('Choisissez la statistique que vous souhaitez travailler'));
-                if (userObj.poste === "attaquant") {
+                if (playerData[0].poste === "attaquant") {
                   row.components[0].addOptions([{
                     label: `Vitesse`,
                     description: `Augmenter la vitesse de son joueur`,
@@ -382,7 +377,7 @@ module.exports = {
                     value: `defense_stat6`,
                   }, ]);
                 }
-                if (userObj.poste === "milieu") {
+                if (playerData[0].poste === "milieu") {
                   row.components[0].addOptions([{
                     label: `Vitesse`,
                     description: `Augmenter la vitesse de son joueur`,
@@ -409,7 +404,7 @@ module.exports = {
                     value: `defense_stat6`,
                   }, ]);
                 }
-                if (userObj.poste === "defenseur") {
+                if (playerData[0].poste === "defenseur") {
                   row.components[0].addOptions([{
                     label: `Vitesse`,
                     description: `Augmenter la vitesse de son joueur`,
@@ -436,7 +431,7 @@ module.exports = {
                     value: `defense_stat6`,
                   }, ]);
                 }
-                if (userObj.poste === "gardien") {
+                if (playerData[0].poste === "gardien") {
                   row.components[0].addOptions([{
                     label: `Plongeon`,
                     description: `Augmenter les plongeons de son joueur`,
@@ -475,12 +470,6 @@ module.exports = {
                 ephemeral: true
               })
             }
-          } catch (err) {
-            console.log("Erreur commande club house manager: chm(381)")
-            console.log(err)
-            mongoosecplayer.connection.close()
-          }
-        })
         break;
       }
       case "match": {
