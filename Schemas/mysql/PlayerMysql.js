@@ -6,6 +6,7 @@ module.exports = class PlayerMysql {
         bdd.query(
             `SELECT * FROM players WHERE userId = '${userId}'`,
             function(err, results, fields) {
+                console.log(results)
                 return results
             }
           );
