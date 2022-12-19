@@ -1,15 +1,9 @@
-const Util = require("../../Utils/function")
-const bdd = Util.getBDD();
+const db = require("./db")
 
 module.exports = class PlayerMysql {
-    static getPlayer(userId) {
-        bdd.query(
-            `SELECT * FROM players WHERE userId = '${userId}'`,
-            function(err, results, fields) {
-                console.log(results)
-                return results
-            }
-          );
+    static async getPlayer(userId) {
+        const [data] = await db.execute(`SELECT * FROM players WHERE userId = '${userId}'`);
+        return data
     }
 
 }
