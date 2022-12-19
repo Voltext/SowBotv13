@@ -44,7 +44,7 @@ registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
 })
 const FormData = require('form-data');
 const fs = require('fs');
-const playerMysql = require('../../Schemas/mysql/player')
+const PlayerMysql = require('../../Schemas/mysql/PlayerMysql')
 
 
 module.exports = {
@@ -220,7 +220,7 @@ module.exports = {
           height: 600,
           backgroundColour: 'white'
         })
-        const playerData = playerMysql.getPlayer(userId)
+        const playerData = PlayerMysql.getPlayer(userId)
         console.log(playerData);
             if (playerData.length > 0) {
               var total = 100;
