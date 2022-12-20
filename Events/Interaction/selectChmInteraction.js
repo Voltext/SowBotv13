@@ -42,7 +42,7 @@ module.exports = {
                 embeds: [embedTrainingProgress],
                 components: []
               })
-              .then(() => {
+              .then( async () => {
                 setTimeout(function () {
                   const embedTrainingEnd = new MessageEmbed()
                     .setTitle("Entrainement terminé")
