@@ -89,6 +89,7 @@ module.exports = class Utils {
                 succes: userObj.succes + 1
             }
         }
+        console.log(stat)
         mongo().then(async (mongooselock) => {
             try {
                 await playerSchema.findOneAndUpdate({

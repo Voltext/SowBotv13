@@ -4,6 +4,7 @@ const {
 const playerSchema = require('../../Schemas/playerSchema')
 const Util = require('../../Utils/function')
 const mongo = require('../../mongo');
+const PlayerMysql = require('../../Schemas/mysql/PlayerMysql')
 
 module.exports = {
   name: "interactionCreate",
@@ -15,13 +16,9 @@ module.exports = {
       const stat = interaction.values[0].split("_")[0]
       const idStat = interaction.values[0].split("_")[1]
       let blessure = "Non"
-      mongo().then(async (mongoosecplayer) => {
-        try {
-          const userObj = await playerSchema.findOne({
-            userId,
-          });
-          if (userObj !== null) {
-            if(userObj.stamina < 20) {
+      const playerData = await PlayerMysql.getPlayer(userId)
+      if (playerData[0] !== "") {
+            if(playerData[0].stamina < 20) {
               blessure = "Oui"
             }
             else {
@@ -40,7 +37,7 @@ module.exports = {
                 inline: true
               })
               .setColor("GOLD")
-              .setThumbnail(userObj.profil);
+              .setThumbnail(playerData[0].profil);
             interaction.update({
                 embeds: [embedTrainingProgress],
                 components: []
@@ -64,9 +61,9 @@ module.exports = {
                       inline: true
                     })
                     .setColor("GREEN")
-                    .setThumbnail(userObj.profil);
+                    .setThumbnail(playerData[0].profil);
 
-                    Util.addStat(userId, idStat, 1, userObj.stamina, userObj)
+                    Util.addStat(userId, idStat, 1, playerData[0].stamina, playerData[0])
                     
                   interaction.followUp({
                     embeds: [embedTrainingEnd],
@@ -81,12 +78,6 @@ module.exports = {
               ephemeral: true
             })
           }
-        } catch(err) {
-          console.log(err)
-          console.log("Erreur commande club house manager: selectChmInteraction(83)")
-          mongoosecplayer.connection.close()
-        }
-      })
     }
   }
 }
