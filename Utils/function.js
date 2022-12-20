@@ -75,8 +75,7 @@ module.exports = class Utils {
     }
 
     static async addStat(userId, stat, point, stamina, userObj) {
-        console.log(userObj)
-        console.log(stamina)
+        let update = {}
         if (stamina < 20) {
             update = {
                 stamina: stamina - stamina,
