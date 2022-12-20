@@ -80,13 +80,15 @@ module.exports = class Utils {
             update = {
                 stamina: stamina - stamina,
                 [stat]: userObj[stat] + point,
-                isInjured: true
+                isInjured: true,
+                succes: userObj.success
             }
         } else {
             update = {
                 stamina: stamina - 20,
                 [stat]: userObj[stat] + point, 
-                succes: userObj.success + 1
+                succes: userObj.success + 1,
+                isInjured: false
             }
         }
         await PlayerMysql.insertStat(userId, update)
