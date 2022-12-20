@@ -82,7 +82,7 @@ module.exports = class Utils {
                 stat: userObj[stat] + point,
                 succes: userObj.success,
                 isInjured: true,
-                idStat=stat
+                idStat:stat
             }
         } else {
             update = {
@@ -90,7 +90,7 @@ module.exports = class Utils {
                 stat: userObj[stat] + point, 
                 succes: userObj.success + 1,
                 isInjured: false,
-                idStat=stat
+                idStat:stat
             }
         }
         const res = await PlayerMysql.insertStat(userId, update)
