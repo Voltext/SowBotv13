@@ -79,19 +79,22 @@ module.exports = class Utils {
         if (stamina < 20) {
             update = {
                 stamina: stamina - stamina,
-                [stat]: userObj[stat] + point,
+                stat: userObj[stat] + point,
+                succes: userObj.success,
                 isInjured: true,
-                succes: userObj.success
+                idStat=stat
             }
         } else {
             update = {
                 stamina: stamina - 20,
-                [stat]: userObj[stat] + point, 
+                stat: userObj[stat] + point, 
                 succes: userObj.success + 1,
-                isInjured: false
+                isInjured: false,
+                idStat=stat
             }
         }
-        await PlayerMysql.insertStat(userId, update)
+        const res = await PlayerMysql.insertStat(userId, update)
+        console.log(res)
     }
 
 

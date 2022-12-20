@@ -7,10 +7,8 @@ module.exports = class PlayerMysql {
     }
 
     static async insertStat(userId, data) {
-        console.log(userId)
-        console.log(data)
-        /* const [data] = await db.execute(`SELECT * FROM players WHERE userId = '${userId}'`);
-        return data */
+        const [data] = await db.execute(`UPDATE players SET stamina=${data.stamina}, ${data.idStat}=${data.stat}, success=${data.succes}, isInjured=${data.isInjured} WHERE userId = '${userId}'`);
+        return data
     }
 
 }
