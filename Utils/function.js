@@ -9,6 +9,7 @@ const mysql = require('mysql2');
 const {
     MessageEmbed
 } = require('discord.js');
+const PlayerMysql = require('../Schemas/mysql/PlayerMysql')
 
 module.exports = class Utils {
     static async getMemberRole(user) {
@@ -76,7 +77,6 @@ module.exports = class Utils {
     static addStat(userId, stat, point, stamina, userObj) {
         console.log(userObj)
         console.log(stamina)
-        let update = {}
         if (stamina < 20) {
             update = {
                 stamina: stamina - stamina,
@@ -90,17 +90,7 @@ module.exports = class Utils {
                 succes: userObj.succes + 1
             }
         }
-        mongo().then(async (mongooselock) => {
-            try {
-                await playerSchema.findOneAndUpdate({
-                    userId,
-                }, update)
-            } catch (err) {
-                console.log(err)
-                console.log("Erreur script lock prediction: lockpredi(30)")
-                mongooselock.connection.close()
-            }
-        })
+        await PlayerMysql.insertStat(userId, update)
     }
 
 
