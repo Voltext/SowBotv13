@@ -74,7 +74,7 @@ module.exports = class Utils {
         return milliseconds;
     }
 
-    static addStat(userId, stat, point, stamina, userObj) {
+    static async addStat(userId, stat, point, stamina, userObj) {
         console.log(userObj)
         console.log(stamina)
         if (stamina < 20) {
