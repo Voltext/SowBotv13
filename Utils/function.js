@@ -74,7 +74,8 @@ module.exports = class Utils {
     }
 
     static addStat(userId, stat, point, stamina, userObj) {
-
+        console.log(userObj)
+        console.log(stamina)
         let update = {}
         if (stamina < 20) {
             update = {
@@ -89,7 +90,6 @@ module.exports = class Utils {
                 succes: userObj.succes + 1
             }
         }
-        console.log(stat)
         mongo().then(async (mongooselock) => {
             try {
                 await playerSchema.findOneAndUpdate({
