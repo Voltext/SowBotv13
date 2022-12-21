@@ -221,7 +221,7 @@ module.exports = {
           backgroundColour: 'white'
         })
         const playerData = await PlayerMysql.getPlayer(userId)
-            if (playerData[0] !== "undefined") {
+            if (typeof playerData[0] !== 'undefined') {
               var total = 100;
               var current = playerData[0].stamina;
 
@@ -327,7 +327,7 @@ module.exports = {
       case "entrainement": {
         const embedSelect = new MessageEmbed();
         const playerData = await PlayerMysql.getPlayer(userId)
-            if (playerData[0] !== "") {
+            if (typeof playerData[0] !== 'undefined') {
               if (playerData[0].isInjured === 1) {
                 etat = "Blessé"
               } else {
@@ -488,8 +488,7 @@ module.exports = {
         const profil = toonavatar.generate_avatar({
           "gender": gender
         });
-        console.log(playerData)
-            if (playerData[0] === "undefined") {
+            if (typeof playerData[0] === 'undefined') {
               const playerInsert = await PlayerMysql.insertPlayer(userId, poste, genre, profil)
               console.log(playerInsert)
               interaction.reply({
