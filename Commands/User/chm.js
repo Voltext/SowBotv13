@@ -520,8 +520,9 @@ module.exports = {
                       const teamPlayerData = await TeamPlayerMysql.getPlayerById(userId)
                       if (typeof teamPlayerData[0] === 'undefined') {
                         const teamData = await TeamMysql.insertTeam(teamName, userId)
+                        console.log(teamData)
                         const teamPlayerData = await TeamPlayerMysql.insertTeamPlayer(playerData[0].id, teamData[0].insertId)
-                        
+
                         const capitaine = await guild.members.fetch(userId);
                         capitaine.roles.add(recruteurRole)
 
