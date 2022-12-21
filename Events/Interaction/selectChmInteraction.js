@@ -16,7 +16,7 @@ module.exports = {
       const stat = interaction.values[0].split("_")[0]
       const idStat = interaction.values[0].split("_")[1]
       let blessure = "Non"
-      const playerData = await PlayerMysql.getPlayer(userId)
+      const playerData = await PlayerMysql.getPlayerByUserId(userId)
       if (playerData[0] !== "") {
             if(playerData[0].stamina < 20) {
               blessure = "Oui"

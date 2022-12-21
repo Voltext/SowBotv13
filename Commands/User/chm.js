@@ -45,6 +45,8 @@ registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
 const FormData = require('form-data');
 const fs = require('fs');
 const PlayerMysql = require('../../Schemas/mysql/PlayerMysql')
+const TeamMysql = require('../../Schemas/mysql/TeamMysql')
+const TeamPlayerMysql = require('../../Schemas/mysql/TeamPlayerMysql')
 
 
 module.exports = {
@@ -220,7 +222,7 @@ module.exports = {
           height: 600,
           backgroundColour: 'white'
         })
-        const playerData = await PlayerMysql.getPlayer(userId)
+        const playerData = await PlayerMysql.getPlayerByUserId(userId)
             if (typeof playerData[0] !== 'undefined') {
               var total = 100;
               var current = playerData[0].stamina;
@@ -326,7 +328,7 @@ module.exports = {
       }
       case "entrainement": {
         const embedSelect = new MessageEmbed();
-        const playerData = await PlayerMysql.getPlayer(userId)
+        const playerData = await PlayerMysql.getPlayerByUserId(userId)
             if (typeof playerData[0] !== 'undefined') {
               if (playerData[0].isInjured === 1) {
                 etat = "Blessé"
@@ -478,7 +480,7 @@ module.exports = {
       case "createplayer": {
         const poste = interaction.options.getString("poste")
         const genre = interaction.options.getString("genre")
-        const playerData = await PlayerMysql.getPlayer(userId)
+        const playerData = await PlayerMysql.getPlayerByUserId(userId)
         let gender = ""
         if (genre === "homme") {
           gender = "male"
@@ -505,79 +507,42 @@ module.exports = {
       }
       case "createteam": {
         const teamName = interaction.options.getString("teamname")
-        mongo().then(async (mongoosecplayer) => {
-          try {
-            const userObj = await playerSchema.findOne({
-              userId,
-            });
-            if (userObj !== null) {
-              if (userObj.succes < 50) {
+        const playerData = await PlayerMysql.getPlayerByUserId(userId)
+          if (typeof playerData[0] !== 'undefined') {
+              if (playerData[0].success < 50) {
                 interaction.reply({
                   embeds: [Util.errorEmbed("Création impossible", "Vous n'avez pas suffisamment de point de succès pour créer votre équipe. Il vous faut minimum 50 points de succès")],
                   ephemeral: true
                 })
               } else {
-                mongo().then(async (mongooseteam) => {
-                  try {
-                    const teamObj = await Teams.find({}, {
-                      idCapitaine: 1,
-                      teamName: 1,
-                      budget: 1,
-                      _id: 0,
-                    });
-                    if (teamObj.length === 0) {
-                      const capitaine = await guild.members.fetch(userId);
-                      capitaine.roles.add(recruteurRole)
-
-                      Teams.create({
-                        idCapitaine: userId,
-                        teamName: teamName,
-                        budget: 10000000
-                      }).then(team => {
-                        teamPlayerSchema.create({
-                          team: team,
-                          userId: userId,
-                        })
-                      })
-
-                      interaction.reply({
-                        embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
-                        ephemeral: true
-                      })
-                    } else {
-                      const userObj = await teamPlayerSchema.findOne({
-                        userId,
-                      });
-
-                      if (userObj.length === 0) {
-                        Teams.create({
-                          idCapitaine: userId,
-                          teamName: teamName,
-                          budget: 10000000
-                        }).then(team => {
-                          teamPlayerSchema.create({
-                            team: team,
-                            userId: userId,
-                          })
-                        })
+                const teamData = await TeamMysql.getTeamByCaptainId(userId)
+                    if (typeof teamData[0] === 'undefined') {
+                      const teamPlayerData = await TeamPlayerMysql.getPlayerById(userId)
+                      if (typeof teamPlayerData[0] === 'undefined') {
+                        const teamData = await TeamMysql.insertTeam(teamName, userId)
+                        const teamPlayerData = await TeamPlayerMysql.insertTeamPlayer(playerData[0].id, teamData[0].insertId)
+                        
+                        const capitaine = await guild.members.fetch(userId);
+                        capitaine.roles.add(recruteurRole)
 
                         interaction.reply({
                           embeds: [Util.successEmbed("Equipe créée", `Votre équipe **${teamName}** a bien été créée. Vous avez dorénavant accès au salon <#${process.env.INFO_RECRUTEUR}>`)],
                           ephemeral: true
                         })
-                      } else {
+                      }
+                      else {
                         interaction.reply({
-                          embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie de : **${userObj.team.teamName}**`)],
+                          embeds: [Util.errorEmbed("Création impossible", `Impossible de créer une équipe car vous faites déjà partie d'une équipe`)],
                           ephemeral: true
                         })
                       }
+                    } 
+                    else {
+                      interaction.reply({
+                        embeds: [Util.errorEmbed("Création impossible", `Vous êtes déjà capitaine d'une équipe`)],
+                        ephemeral: true
+                      })
                     }
-                  } catch (err) {
-                    console.log(err)
-                    console.log("Erreur commande club house manager: chm(222)")
-                    mongooseteam.connection.close()
-                  }
-                })
               }
             } else {
               interaction.reply({
@@ -585,12 +550,6 @@ module.exports = {
                 ephemeral: true
               })
             }
-
-          } catch {
-            console.log("Erreur commande club house manager: chm(183)")
-            mongoosecplayer.connection.close()
-          }
-        })
 
         break;
       }
