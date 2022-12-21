@@ -16,7 +16,7 @@ module.exports = class TeamMysql {
     return data
 }
 
-    static async insertTeam(teamName, idCapitaine) {
+    static insertTeam(teamName, idCapitaine) {
       let data = ""
         db.execute(`INSERT INTO teams (teamName, idCapitaine) VALUES ('${teamName}', '${idCapitaine}')`, function(err, result, fields) {
           if (err) throw err;
