@@ -487,30 +487,10 @@ module.exports = {
         const profil = toonavatar.generate_avatar({
           "gender": gender
         });
-        mongo().then(async (mongoosecplayer) => {
-          try {
-            const userObj = await playerSchema.findOne({
-              userId,
-            }, {
-              userId: 1,
-              _id: 0,
-            });
-            if (userObj === null) {
-              playerSchema.create({
-                userId: userId,
-                poste: poste,
-                genre: genre,
-                profil: profil,
-                isInjured: false,
-                succes: 0,
-                stat1: 65,
-                stat2: 65,
-                stat3: 65,
-                stat4: 65,
-                stat5: 65,
-                stat6: 65,
-                stamina: 100,
-              });
+        const playerData = await PlayerMysql.getPlayer(userId)
+            if (playerData[0] === "") {
+              const playerInsert = await PlayerMysql.getPlayer(userId, poste, genre, profil)
+              console.log(playerInsert)
               interaction.reply({
                 embeds: [Util.successEmbed("Joueur crée", "Votre joueur a bien été crée")],
                 ephemeral: true
@@ -521,11 +501,6 @@ module.exports = {
                 ephemeral: true
               })
             }
-          } catch {
-            console.log("Erreur commande club house manager: chm(183)")
-            mongoosecplayer.connection.close()
-          }
-        })
         break;
       }
       case "createteam": {

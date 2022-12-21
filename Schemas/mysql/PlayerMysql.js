@@ -11,4 +11,9 @@ module.exports = class PlayerMysql {
         return data
     }
 
+    static async insertPlayer(userId, poste, genre, profil) {
+        const [data] = await db.execute(`INSERT INTO players (userId, poste, genre, profil) VALUES ('${userId}', '${poste}', '${genre}', '${profil}')`);
+        return data
+    }
+
 }
