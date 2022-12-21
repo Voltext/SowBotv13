@@ -489,7 +489,7 @@ module.exports = {
         const profil = toonavatar.generate_avatar({
           "gender": gender
         });
-        console.log(playerData[0])
+        console.log(playerData)
             if (playerData[0] == "") {
               const playerInsert = await PlayerMysql.insertPlayer(userId, poste, genre, profil)
               console.log(playerInsert)
