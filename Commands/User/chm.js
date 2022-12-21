@@ -578,13 +578,13 @@ module.exports = {
                 // Si le joueur ne fait partie d'aucune équipe
                 if (typeof teamPlayerData[0] === 'undefined') {
                   const thread = await channel.threads.create({
-                    name: `${username} souhaite transférer ${user.username} pour ${budget}`,
+                    name: `${username} souhaite transférer ${user.username}(${receveur}) pour ${budget}`,
                     type: 'GUILD_PRIVATE_THREAD',
                     content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
                   });
 
                   await thread.members.add(userId);
-                  await thread.members.add(user.id);
+                  await thread.members.add(receveur);
 
                   const transfert = await TransfertMysql.insertTransfert(user.id, "Libre", teamData[0].id, budget, thread.id, "En discussion")
 
