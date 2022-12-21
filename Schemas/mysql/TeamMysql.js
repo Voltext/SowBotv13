@@ -17,8 +17,8 @@ module.exports = class TeamMysql {
 }
 
     static async insertTeam(teamName, idCapitaine) {
-        const [data] = await db.execute(`INSERT INTO teams (teamName, idCapitaine) VALUES ('${teamName}', '${idCapitaine}')`);
-        return data
+        const {result} = await db.execute(`INSERT INTO teams (teamName, idCapitaine) VALUES ('${teamName}', '${idCapitaine}')`);
+        return result
     }
 
 }

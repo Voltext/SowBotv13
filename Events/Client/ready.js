@@ -12,7 +12,6 @@ const colors = require('colors');
 const mongo = require('../../mongo');
 const rankPrediSchema = require('../../Schemas/rankPredictSchema')
 const Cards = require("../../Api/card");
-require('dotenv').config();
 const fs = require('fs')
 const path = require('path');
 const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
