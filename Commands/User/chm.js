@@ -221,6 +221,7 @@ module.exports = {
           backgroundColour: 'white'
         })
         const playerData = await PlayerMysql.getPlayer(userId)
+        console.log(playerData)
             if (playerData[0] !== "") {
               var total = 100;
               var current = playerData[0].stamina;
