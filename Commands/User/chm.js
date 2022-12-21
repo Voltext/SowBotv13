@@ -479,6 +479,7 @@ module.exports = {
       case "createplayer": {
         const poste = interaction.options.getString("poste")
         const genre = interaction.options.getString("genre")
+        const playerData = await PlayerMysql.getPlayer(userId)
         let gender = ""
         if (genre === "homme") {
           gender = "male"
@@ -488,10 +489,9 @@ module.exports = {
         const profil = toonavatar.generate_avatar({
           "gender": gender
         });
-        const playerData = await PlayerMysql.getPlayer(userId)
         console.log(playerData[0])
-            if (playerData[0] === "") {
-              const playerInsert = await PlayerMysql.getPlayer(userId, poste, genre, profil)
+            if (playerData[0] == "") {
+              const playerInsert = await PlayerMysql.insertPlayer(userId, poste, genre, profil)
               console.log(playerInsert)
               interaction.reply({
                 embeds: [Util.successEmbed("Joueur crée", "Votre joueur a bien été crée")],
