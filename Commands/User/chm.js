@@ -221,8 +221,7 @@ module.exports = {
           backgroundColour: 'white'
         })
         const playerData = await PlayerMysql.getPlayer(userId)
-        console.log(playerData[0])
-            if (playerData[0] !== "") {
+            if (playerData[0] !== "undefined") {
               var total = 100;
               var current = playerData[0].stamina;
 
@@ -490,7 +489,7 @@ module.exports = {
           "gender": gender
         });
         console.log(playerData)
-            if (playerData[0] == "") {
+            if (playerData[0] === "undefined") {
               const playerInsert = await PlayerMysql.insertPlayer(userId, poste, genre, profil)
               console.log(playerInsert)
               interaction.reply({
