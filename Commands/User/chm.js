@@ -488,6 +488,7 @@ module.exports = {
           "gender": gender
         });
         const playerData = await PlayerMysql.getPlayer(userId)
+        console.log(playerData[0])
             if (playerData[0] === "") {
               const playerInsert = await PlayerMysql.getPlayer(userId, poste, genre, profil)
               console.log(playerInsert)
