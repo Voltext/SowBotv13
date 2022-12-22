@@ -586,7 +586,7 @@ module.exports = {
                   await thread.members.add(userId);
                   await thread.members.add(receveur);
 
-                  const transfert = await TransfertMysql.insertTransfert(user.id, "Libre", teamData[0].id, budget, thread.id, "En discussion")
+                  const transfert = await TransfertMysql.insertTransfert(user.id, null, teamData[0].id, budget, thread.id, "En discussion")
 
                   interaction.reply({
                     embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous et le joueur libre")],
