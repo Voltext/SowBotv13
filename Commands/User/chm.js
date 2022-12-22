@@ -567,59 +567,51 @@ module.exports = {
             ephemeral: true
           })
         } else {
-          if ((teamData[0].budget - Number(budget)) < 0) {
+          if ((teamData[0].budget - Number(budget)) < 0 || isNan(budget)) {
             interaction.reply({
-              embeds: [Util.errorEmbed("Transfert impossible", "Vous n'avez pas le budget suffisant pour ce transfert. Votre budget actuel est de **" + teamData[0].budget + "**")],
+              embeds: [Util.errorEmbed("Transfert impossible", "Vous n'avez pas le budget suffisant pour ce transfert ou le montant proposé n'est pas valide. Votre budget actuel est de **" + teamData[0].budget + "**")],
               ephemeral: true
             })
           } else {
-                const teamPlayerData = await TeamPlayerMysql.getPlayerById(receveur)
-                // Si le joueur ne fait partie d'aucune équipe
-                if (typeof teamPlayerData[0] === 'undefined') {
-                  const thread = await channel.threads.create({
-                    name: `${username} souhaite transférer ${user.username}(${receveur}) pour ${budget}`,
-                    type: 'GUILD_PRIVATE_THREAD',
-                    content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
-                  });
+            const teamPlayerData = await TeamPlayerMysql.getPlayerById(receveur)
+            // Si le joueur ne fait partie d'aucune équipe
+            if (typeof teamPlayerData[0] === 'undefined') {
+              const thread = await channel.threads.create({
+                name: `${username} souhaite transférer ${user.username}(${receveur}) pour ${budget}`,
+                type: 'GUILD_PRIVATE_THREAD',
+                content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
+              });
 
-                  await thread.members.add(userId);
-                  await thread.members.add(receveur);
+              await thread.members.add(userId);
+              await thread.members.add(receveur);
 
-                  const transfert = await TransfertMysql.insertTransfertLibre(user.id, teamData[0].id, budget, thread.id, "En discussion")
+              const transfert = await TransfertMysql.insertTransfertLibre(user.id, teamData[0].id, budget, thread.id, "En discussion")
 
-                  interaction.reply({
-                    embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous et le joueur libre")],
-                    ephemeral: true
-                  })
-                  // Si le joueur fait déjà partie d'une équipe
-                } else {
-                  const thread = await channel.threads.create({
-                    name: `${username} souhaite transférer ${user.username} pour ${budget}`,
-                    type: 'GUILD_PRIVATE_THREAD',
-                    content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
-                  });
+              interaction.reply({
+                embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous et le joueur libre")],
+                ephemeral: true
+              })
+              // Si le joueur fait déjà partie d'une équipe
+            } else {
+              const thread = await channel.threads.create({
+                name: `${username} souhaite transférer ${user.username} pour ${budget}`,
+                type: 'GUILD_PRIVATE_THREAD',
+                content: `Les discussions sont lancées entre <@${userId}> et <@${user.id}>.`
+              });
 
-                  const teamPlayerData = await TeamMysql.getTeamById(teamPlayerData[0].teamId)
+              const teamPlayerData = await TeamMysql.getTeamById(teamPlayerData[0].teamId)
 
-                  await thread.members.add(userId);
-                  await thread.members.add(user.id);
-                  await thread.members.add(teamPlayerData[0].idCapitaine);
+              await thread.members.add(userId);
+              await thread.members.add(user.id);
+              await thread.members.add(teamPlayerData[0].idCapitaine);
 
-                  const transfert = await TransfertMysql.insertTransfert(user.id, teamPlayerData[0].teamId, teamData[0].id, budget, thread.id, "En discussion")
-                  if('insertId' in transfert) {
-                    interaction.reply({
-                      embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous, le joueur et son capitaine")],
-                      ephemeral: true
-                    })
-                  }
-                  else {
-                    interaction.reply({
-                      embeds: [Util.errorEmbed("Transfert impossible", "La demande de transfert n'a pas pu s'effectuée. Vérifiez que toutes les informations du transfert sont correctes.")],
-                      ephemeral: true
-                    })
-                  }
-                  
-                }
+              const transfert = await TransfertMysql.insertTransfert(user.id, teamPlayerData[0].teamId, teamData[0].id, budget, thread.id, "En discussion")
+              interaction.reply({
+                embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous, le joueur et son capitaine")],
+                ephemeral: true
+              })
+
+            }
           }
         }
 
