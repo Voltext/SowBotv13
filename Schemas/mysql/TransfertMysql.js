@@ -1,8 +1,8 @@
 const db = require("./db")
 
 module.exports = class TransfertMysql {
-    static async insertTransfert(userId, poste, genre, profil) {
-        const [data] = await db.execute(`INSERT INTO transferts (userId, poste, genre, profil) VALUES ('${userId}', '${poste}', '${genre}', '${profil}')`);
+    static async insertTransfert(joueur, from, to, montant, thread, statut) {
+        const [data] = await db.execute(`INSERT INTO transferts (joueurId, fromTeamId, toTeamId, montant, threadId, status) VALUES ('${joueur}', '${from}', '${to}', '${montant}', '${thread}', '${statut}')`);
         return data
     }
 
