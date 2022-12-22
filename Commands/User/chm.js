@@ -521,7 +521,6 @@ module.exports = {
               const teamPlayerData = await TeamPlayerMysql.getPlayerById(userId)
               if (typeof teamPlayerData[0] === 'undefined') {
                 const teamData = await TeamMysql.insertTeam(teamName, userId)
-                console.log(teamData.insertId)
                 const teamPlayerData = await TeamPlayerMysql.insertTeamPlayer(playerData[0].id, teamData.insertId)
 
                 const capitaine = await guild.members.fetch(userId);
@@ -607,11 +606,19 @@ module.exports = {
                   await thread.members.add(teamPlayerData[0].idCapitaine);
 
                   const transfert = await TransfertMysql.insertTransfert(user.id, teamPlayerData[0].teamId, teamData[0].id, budget, thread.id, "En discussion")
-
-                  interaction.reply({
-                    embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous, le joueur et son capitaine")],
-                    ephemeral: true
-                  })
+                  if(typeof transfert.insertId !== undefined) {
+                    interaction.reply({
+                      embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous, le joueur et son capitaine")],
+                      ephemeral: true
+                    })
+                  }
+                  else {
+                    interaction.reply({
+                      embeds: [Util.errorEmbed("Transfert impossible", "La demande de transfert n'a pas pu s'effectuée. Vérifiez que toutes les informations du transfert sont correctes.")],
+                      ephemeral: true
+                    })
+                  }
+                  
                 }
           }
         }
