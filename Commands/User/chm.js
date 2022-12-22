@@ -606,8 +606,7 @@ module.exports = {
                   await thread.members.add(teamPlayerData[0].idCapitaine);
 
                   const transfert = await TransfertMysql.insertTransfert(user.id, teamPlayerData[0].teamId, teamData[0].id, budget, thread.id, "En discussion")
-                  console.log(transfert)
-                  if(typeof transfert.insertId !== undefined) {
+                  if('insertId' in transfert) {
                     interaction.reply({
                       embeds: [Util.successEmbed("Transfert en cours", "Les discussions sont lancées entre vous, le joueur et son capitaine")],
                       ephemeral: true
