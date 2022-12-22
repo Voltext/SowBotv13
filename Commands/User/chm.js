@@ -569,7 +569,7 @@ module.exports = {
         } else {
           if ((teamData[0].budget - Number(budget)) < 0 || isNaN(budget)) {
             interaction.reply({
-              embeds: [Util.errorEmbed("Transfert impossible", "Vous n'avez pas le budget suffisant pour ce transfert ou le montant proposé n'est pas valide. Votre budget actuel est de **" + teamData[0].budget + "**")],
+              embeds: [Util.errorEmbed("Transfert impossible", "Vous n'avez pas le budget suffisant pour ce transfert ou le montant proposé n'est pas valide. Votre budget actuel est de **" + teamData[0].budget + "**. Le montant saisi est **" + budget + "**")],
               ephemeral: true
             })
           } else {
