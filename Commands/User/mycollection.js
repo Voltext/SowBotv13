@@ -28,7 +28,7 @@ module.exports = {
                     userId,
                 });
                 if (results === null) {
-                    const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${userId}.png`)
+                    const embed = new MessageEmbed().setImage(`http://clubhousemanager.fr/Cards/${userId}.png`)
                         
                     ArrEmb.push(embed)
                     pagination.setEmbeds(ArrEmb);
@@ -36,14 +36,14 @@ module.exports = {
                 } else {
                     const ArrCards = results.cards
 
-                    const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${userId}.png`)
+                    const embed = new MessageEmbed().setImage(`http://clubhousemanager.fr/Cards/${userId}.png`)
                         
                     ArrEmb.push(embed)
 
                     try {
                         const pathImg = path.join(__dirname, `../../Assets/Cards/${userId}_boost.png`)
                         if(fs.existsSync(pathImg)) {
-                            const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${userId}_boost.png`)
+                            const embed = new MessageEmbed().setImage(`http://clubhousemanager.fr/Cards/${userId}_boost.png`)
                         
                             ArrEmb.push(embed)
                         }
