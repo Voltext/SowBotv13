@@ -53,7 +53,7 @@ module.exports = {
                     }
 
                     ArrCards.forEach(function (elem) {
-                        const embed = new MessageEmbed().setImage(`http://141.94.78.72/Cards/${elem}`)
+                        const embed = new MessageEmbed().setImage(`http://clubhousemanager.fr/Cards/${elem}`)
 
                         ArrEmb.push(embed)
                     })
