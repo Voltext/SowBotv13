@@ -113,7 +113,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			programme.bulkDelete(1);
 
 			const prog = await getSchedule.Schedule()
-			if (prog.data.segments !== null) {
+			if (prog.data.segments !== null || prog.status !== 404) {
 				const programmation = prog.data.segments;
 				const embed = new MessageEmbed()
 					.setTitle("Programme de la semaine")
