@@ -193,7 +193,7 @@ module.exports = {
             .setTitle("Répartition des équipes")
             .setDescription("La ligue de la muerte débute, et pour vous y retrouver, voici les informations respectives des différentes équipes.");
           teamsData.forEach(function (team) {
-            teamsName = teamsName + ` <:strasbourg:914209458052284476> ` + team.teamName + '\n'
+            teamsName = teamsName + ` <:${team.icon}> ` + team.teamName + '\n'
             owners = owners + `<@${team.teamOwner}>` + '\n'
             budget = budget + team.budget + '\n'
           })
