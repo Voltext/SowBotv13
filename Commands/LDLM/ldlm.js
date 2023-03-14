@@ -181,13 +181,11 @@ module.exports = {
       }
       case "teams" : {
         const teamsData = await LDLMTeam.getAllTeam()
+        console.log(teamsData)
         if (typeof playerData[0] !== 'undefined') {
           const TeamEmbed = new MessageEmbed()
           .setTitle("Répartition des équipes")
-          .setDescription("La ligue de la muerte débute, et pour vous y retrouver, voici les informations respectives des différentes équipes.")
-          .addFields({
-
-          })
+          .setDescription("La ligue de la muerte débute, et pour vous y retrouver, voici les informations respectives des différentes équipes.");
         }
         break;
       }
