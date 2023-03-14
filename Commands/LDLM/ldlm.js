@@ -57,12 +57,11 @@ module.exports = {
       type: "SUB_COMMAND",
       description: "Recherchez des informations sur un joueur",
       options: [{
-          name: "nom",
-          type: "STRING",
-          required: true,
-          description: "Saisissez le nom du joueur recherché"
-        }
-      ]
+        name: "nom",
+        type: "STRING",
+        required: true,
+        description: "Saisissez le nom du joueur recherché"
+      }]
     },
     {
       name: "matchinfo",
@@ -176,33 +175,40 @@ module.exports = {
     const subCommand = options.getSubcommand();
 
     switch (subCommand) {
-      case "myteam" : {
+      case "myteam": {
         break;
       }
-      case "teams" : {
+      case "teams": {
+        let teamsName = "";
+        let budget = "";
+        let owners = "";
+
         const teamsData = await LDLMTeam.getAllTeam()
         console.log(teamsData)
         if (typeof teamsData[0] !== 'undefined') {
           const TeamEmbed = new MessageEmbed()
-          .setTitle("Répartition des équipes")
-          .setDescription("La ligue de la muerte débute, et pour vous y retrouver, voici les informations respectives des différentes équipes.");
-          teamsData.forEach(function(team) { 
-            TeamEmbed.addFields({
-              name: "Nom équipe",
-              value: `<:${team.icon}> ${team.teamName}`,
-              inline: true,
-            }, {
-              name: "Equipe de",
-              value: `<@${team.teamOwner}>`,
-              inline: true,
-            }, {
-              name: "Budget",
-              value: `${team.budget}`,
-              inline: true,
-            });
+            .setTitle("Répartition des équipes")
+            .setDescription("La ligue de la muerte débute, et pour vous y retrouver, voici les informations respectives des différentes équipes.");
+          teamsData.forEach(function (team) {
+            teamsName = teamsName + team.teamName + '\n'
+            owners = owners + team.teamOwner + '\n'
+            budget = budget + team.budget + '\n'
           })
+          TeamEmbed.addFields({
+            name: "Nom d'équipe",
+            value: `${teamsName}`,
+            inline: true,
+          }, {
+            name: "Equipe de",
+            value: `${owners}`,
+            inline: true,
+          }, {
+            name: "Budget",
+            value: `${budget}`,
+            inline: true,
+          });
           interaction.reply({
-            embeds:[TeamEmbed]
+            embeds: [TeamEmbed]
           })
         }
         break;
