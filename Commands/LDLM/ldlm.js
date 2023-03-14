@@ -60,7 +60,8 @@ module.exports = {
         name: "nom",
         type: "STRING",
         required: true,
-        description: "Saisissez le nom du joueur recherché"
+        description: "Saisissez le nom du joueur recherché",
+        autocomplete: true
       }]
     },
     {
