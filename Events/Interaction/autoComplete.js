@@ -11,9 +11,8 @@ module.exports = {
         const propertyNames = Object.values(playersData);
 
         const filtered = propertyNames.filter(choice => choice.Surname.startsWith(entry));
-        console.log(filtered)
         await interaction.respond(
-          filtered.map(choice => ({
+          filtered.slice(0, 25).map(choice => ({
             name: choice.Surname,
             value: choice.Surname
           })),
