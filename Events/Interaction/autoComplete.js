@@ -7,7 +7,7 @@ module.exports = {
     if (interaction.isAutocomplete()) {
       let entry = interaction.options.getFocused()
       const playersData = await LDLMPlayer.getAllPlayers()
-      const propertyNames = Object.keys(playersData);
+        const propertyNames = Object.keys(playersData);
 
         const filtered = propertyNames.filter(choice => console.log(choice));
         await interaction.respond(
@@ -16,7 +16,6 @@ module.exports = {
             value: choice
           })),
         );
-      }
     }
   }
 }
