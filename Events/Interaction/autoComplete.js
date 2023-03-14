@@ -8,7 +8,6 @@ module.exports = {
       let entry = interaction.options.getFocused()
       const playersData = await LDLMPlayer.getAllPlayers()
       if (typeof playersData[0] !== 'undefined') {
-        console.log(playersData)
         const filtered = playersData.filter(choice => choice.Surname.startsWith(entry));
         await interaction.respond(
           filtered.map(choice => ({
