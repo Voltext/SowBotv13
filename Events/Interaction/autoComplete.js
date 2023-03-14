@@ -10,7 +10,7 @@ module.exports = {
 
         const propertyNames = Object.values(playersData);
 
-        const filtered = propertyNames.filter(choice => choice.Surname.StartsWith(entry));
+        const filtered = propertyNames.filter(choice => choice.Surname.startsWith(entry));
         await interaction.respond(
           filtered.map(choice => ({
             name: choice.Surname,
