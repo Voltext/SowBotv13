@@ -10,9 +10,7 @@ module.exports = {
       if (typeof playersData[0] !== 'undefined') {
         const propertyNames = Object.keys(playersData);
 
-        console.log(propertyNames);
-
-        const filtered = playersData.filter(choice => choice.Surname.startsWith(entry));
+        const filtered = propertyNames.filter(choice => choice.Surname.startsWith(entry));
         await interaction.respond(
           filtered.map(choice => ({
             name: choice,
