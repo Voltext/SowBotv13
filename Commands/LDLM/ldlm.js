@@ -182,10 +182,28 @@ module.exports = {
       case "teams" : {
         const teamsData = await LDLMTeam.getAllTeam()
         console.log(teamsData)
-        if (typeof playerData[0] !== 'undefined') {
+        if (typeof teamsData[0] !== 'undefined') {
           const TeamEmbed = new MessageEmbed()
           .setTitle("Répartition des équipes")
           .setDescription("La ligue de la muerte débute, et pour vous y retrouver, voici les informations respectives des différentes équipes.");
+          teamsData.forEach(function(team) { 
+            TeamEmbed.addFields({
+              name: "Nom équipe",
+              value: `<:${team.icon}> ${team.teamName}`,
+              inline: true,
+            }, {
+              name: "Equipe de",
+              value: `<@${team.teamOwner}>`,
+              inline: true,
+            }, {
+              name: "Budget",
+              value: `${team.budget}`,
+              inline: true,
+            });
+          })
+          interaction.reply({
+            embeds:[TeamEmbed]
+          })
         }
         break;
       }
