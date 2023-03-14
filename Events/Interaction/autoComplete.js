@@ -7,9 +7,11 @@ module.exports = {
     if (interaction.isAutocomplete()) {
       let entry = interaction.options.getFocused()
       const playersData = await LDLMPlayer.getAllPlayers()
-        const propertyNames = Object.keys(playersData);
 
-        const filtered = propertyNames.filter(choice => console.log(choice));
+        const propertyNames = Object.entries(playersData);
+        console.log(propertyNames)
+
+        const filtered = propertyNames.filter(choice => console.log);
         await interaction.respond(
           filtered.map(choice => ({
             name: choice,
