@@ -10,11 +10,11 @@ module.exports = {
 
         const propertyNames = Object.values(playersData);
 
-        const filtered = propertyNames.filter(choice => console.log(choice.Surname));
+        const filtered = propertyNames.filter(choice => choice.Surname.StartsWith(entry));
         await interaction.respond(
           filtered.map(choice => ({
-            name: choice,
-            value: choice
+            name: choice.Surname,
+            value: choice.Surname
           })),
         );
     }
