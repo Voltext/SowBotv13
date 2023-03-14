@@ -5,11 +5,6 @@ module.exports = class LDLMPlayer {
     const [data] = await db.execute(`SELECT * FROM ldlm_players`);
     return data
   }
-
-  static async getAllPlayers() {
-    const [data] = await db.execute(`SELECT * FROM ldlm_players`);
-    return data
-  }
   
 
 }
