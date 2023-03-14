@@ -163,7 +163,7 @@ module.exports = {
    * 
    * @param {CommandInteraction} interaction 
    */
-  async execute(interaction) {
+  async execute(interaction, client) {
     const {
       options,
       guild
@@ -183,6 +183,9 @@ module.exports = {
         let budget = "";
         let owners = "";
 
+        const someEmoji = client.emojis.cache.get("strasbourg");
+        console.log(someEmoji)
+
         const teamsData = await LDLMTeam.getAllTeam()
         console.log(teamsData)
         if (typeof teamsData[0] !== 'undefined') {
@@ -191,7 +194,7 @@ module.exports = {
             .setDescription("La ligue de la muerte débute, et pour vous y retrouver, voici les informations respectives des différentes équipes.");
           teamsData.forEach(function (team) {
             teamsName = teamsName + team.teamName + '\n'
-            owners = owners + team.teamOwner + '\n'
+            owners = owners + `<@${team.teamOwner}>` + '\n'
             budget = budget + team.budget + '\n'
           })
           TeamEmbed.addFields({
