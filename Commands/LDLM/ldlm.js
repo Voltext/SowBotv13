@@ -65,6 +65,18 @@ module.exports = {
       }]
     },
     {
+      name: "add",
+      type: "SUB_COMMAND",
+      description: "Recherchez des informations sur un joueur",
+      options: [{
+        name: "nom",
+        type: "STRING",
+        required: true,
+        description: "Saisissez le nom du joueur que vous voulez ajouter",
+        autocomplete: true
+      }]
+    },
+    {
       name: "matchinfo",
       type: "SUB_COMMAND",
       description: "Informations de match",

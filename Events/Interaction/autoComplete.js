@@ -9,9 +9,8 @@ module.exports = {
       const playersData = await LDLMPlayer.getAllPlayers()
 
         const propertyNames = Object.values(playersData);
-        console.log(propertyNames) 
 
-        const filtered = propertyNames.filter(choice => choice.Surname.startsWith(entry));
+        const filtered = propertyNames.filter(choice => console.log(choice));
         await interaction.respond(
           filtered.map(choice => ({
             name: choice,
