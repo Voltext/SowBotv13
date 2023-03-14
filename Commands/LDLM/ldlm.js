@@ -188,7 +188,6 @@ module.exports = {
         console.log(someEmoji)
 
         const teamsData = await LDLMTeam.getAllTeam()
-        console.log(teamsData)
         if (typeof teamsData[0] !== 'undefined') {
           const TeamEmbed = new MessageEmbed()
             .setTitle("Répartition des équipes")

@@ -1,14 +1,15 @@
 const db = require("./db")
 
 module.exports = class LDLMPlayer {
-  static async getAllTeam() {
-    const [data] = await db.execute(`SELECT * FROM ldlm_team`);
+  static async getAllPlayers() {
+    const [data] = await db.execute(`SELECT * FROM ldlm_players`);
     return data
   }
 
-  static async getTeamByUserId(userId) {
-    const [data] = await db.execute(`SELECT * FROM ldlm_team WHERE teamOwner = '${userId}'`);
+  static async getAllPlayers() {
+    const [data] = await db.execute(`SELECT * FROM ldlm_players`);
     return data
   }
+  
 
 }
