@@ -111,10 +111,10 @@ module.exports = {
           description: "Buts marqués de l'équipe à l'extérieur",
         },
         {
-          name: "tirs aux buts",
+          name: "shootout",
           type: "STRING",
           required: false,
-          description: "Score final",
+          description: "(Facultatif) Résultats tirs aux buts",
         }
       ]
     },
@@ -186,7 +186,7 @@ module.exports = {
           .setTitle("Répartition des équipes")
           .setDescription("La ligue de la muerte débute, et pour vous y retrouver, voici les informations respectives des différentes équipes.")
           .addFields({
-            
+
           })
         }
         break;
