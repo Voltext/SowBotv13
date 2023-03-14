@@ -10,7 +10,7 @@ module.exports = {
 
         const propertyNames = Object.values(playersData);
 
-        const filtered = propertyNames.filter(choice => console.log(choice));
+        const filtered = propertyNames.filter(choice => console.log(choice.Surname));
         await interaction.respond(
           filtered.map(choice => ({
             name: choice,
