@@ -13,8 +13,8 @@ module.exports = {
         const filtered = propertyNames.filter(choice => choice.Surname.startsWith(entry));
         await interaction.respond(
           filtered.map(choice => ({
-            name: choice.Surname.substr(0,25),
-            value: choice.Surname.substr(0,25)
+            name: choice.Surname.substr(0,24),
+            value: choice.Surname.substr(0,24)
           })),
         );
     }
