@@ -8,8 +8,8 @@ module.exports = {
       let entry = interaction.options.getFocused()
       const playersData = await LDLMPlayer.getAllPlayers()
 
-        const propertyNames = Object.entries(playersData);
-        console.log(propertyNames)
+        const propertyNames = Object.values(playersData);
+        console.log(propertyNames) 
 
         const filtered = propertyNames.filter(choice => console.log);
         await interaction.respond(
