@@ -238,8 +238,8 @@ module.exports = {
 
       case "add" : {
         const nom = interaction.options.getString("nom")
-        let member = guild.members.cache.get(userId)
-        if(member.roles.cache.has(process.env.ORGANISATEUR)) {
+        const member = await guild.members.fetch(userId)
+        if(member.roles.cache.has('1085594724477448224') === true) {
           if (typeof player[0] !== 'undefined') {
             if (typeof playerTeam[0] !== 'undefined') {
               const player = LDLMPlayer.getPlayerByID(nom)
