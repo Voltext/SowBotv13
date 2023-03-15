@@ -228,6 +228,11 @@ module.exports = {
         }
         break;
       }
+
+      case "search" : {
+        const nom = interaction.options.getString("nom")
+        console.log(nom)
+      }
     }
 
   }
