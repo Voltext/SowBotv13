@@ -241,12 +241,13 @@ module.exports = {
         const member = await guild.members.fetch(userId)
         const player = LDLMPlayer.getPlayerByID(nom)
         const playerTeam = LDLMTeam.findTeamByPlayerID(nom)
+        console.log(player)
+        console.log(playerTeam)
         if(member.roles.cache.has('1085594724477448224') === true) {
           if (typeof player[0] !== 'undefined') {
             if (typeof playerTeam[0] !== 'undefined') {
+              console.log("Test")
               const playerEmbed = new MessageEmbed();
-              console.log(player)
-              console.log(playerTeam)
             }
           }
         }
