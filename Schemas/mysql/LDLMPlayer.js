@@ -5,6 +5,11 @@ module.exports = class LDLMPlayer {
     const [data] = await db.execute(`SELECT * FROM ldlm_players`);
     return data
   }
+
+  static async getPlayerByID(id) {
+    const [data] = await db.execute(`SELECT * FROM ldlm_players where ID=${id}`);
+    return data
+  }
   
 
 }

@@ -36,7 +36,8 @@ registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
 })
 const FormData = require('form-data');
 const fs = require('fs');
-const LDLMTeam = require('../../Schemas/mysql/LDLMTeam')
+const LDLMTeam = require('../../Schemas/mysql/LDLMTeam');
+const LDLMPlayer = require("../../Schemas/mysql/LDLMPlayer");
 
 
 module.exports = {
@@ -231,7 +232,30 @@ module.exports = {
 
       case "search" : {
         const nom = interaction.options.getString("nom")
-        console.log(nom)
+        break
+
+      }
+
+      case "add" : {
+        const nom = interaction.options.getString("nom")
+        if(!interaction.member.roles.cache.get(process.env.ORGANISATEUR)) {
+          interaction.reply({
+            embeds:[new MessageEmbed().setTitle("Action impossible").setDescription("Vous ne pouvez pas faire cette action car vous n'êtes pas un organisateur").setColor("RED")]
+          })
+        }
+        else {
+          const player = LDLMPlayer.getPlayerByID(nom)
+          const playerTeam = LDLMTeam.findTeamByPlayerID(nom)
+          if (typeof player[0] !== 'undefined') {
+            if (typeof playerTeam[0] !== 'undefined') {
+              const playerEmbed = new MessageEmbed();
+              console.log(player)
+              console.log(playerTeam)
+            }
+          }
+        }
+        break
+
       }
     }
 

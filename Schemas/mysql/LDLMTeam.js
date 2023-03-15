@@ -11,4 +11,9 @@ module.exports = class LDLMTeam {
     return data
   }
 
+  static async findTeamByPlayerID(id) {
+    const [data] = await db.execute(`SELECT * FROM ldlm_teamplayers where idPlayer=${id}`);
+    return data
+  }
+
 }
