@@ -238,7 +238,7 @@ module.exports = {
 
       case "add" : {
         const nom = interaction.options.getString("nom")
-        if(!interaction.member.roles.cache.has(process.env.ORGANISATEUR) === true) {
+        if(interaction.member.roles.cache.has(process.env.ORGANISATEUR) === true) {
           interaction.reply({
             embeds:[new MessageEmbed().setTitle("Action impossible").setDescription("Vous ne pouvez pas faire cette action car vous n'êtes pas un organisateur").setColor("RED")]
           })
