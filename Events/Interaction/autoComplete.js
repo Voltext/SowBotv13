@@ -15,7 +15,7 @@ module.exports = {
         await interaction.respond(
           filtered.slice(0, 25).map(choice => ({
             name: choice.Forename + " " + choice.Surname,
-            value: choice.Surname
+            value: choice.ID
           })),
         );
     }
