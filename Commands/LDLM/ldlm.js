@@ -239,8 +239,8 @@ module.exports = {
       case "add" : {
         const nom = interaction.options.getString("nom")
         const member = await guild.members.fetch(userId)
-        const player = LDLMPlayer.getPlayerByID(nom)
-        const playerTeam = LDLMTeam.findTeamByPlayerID(nom)
+        const player = await LDLMPlayer.getPlayerByID(nom)
+        const playerTeam = await LDLMTeam.findTeamByPlayerID(nom)
         console.log(player)
         console.log(playerTeam)
         if(member.roles.cache.has('1085594724477448224') === true) {
