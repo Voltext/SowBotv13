@@ -239,11 +239,6 @@ module.exports = {
       case "add" : {
         const nom = interaction.options.getString("nom")
         if(interaction.member.roles.cache.has(process.env.ORGANISATEUR) === true) {
-          interaction.reply({
-            embeds:[new MessageEmbed().setTitle("Action impossible").setDescription("Vous ne pouvez pas faire cette action car vous n'êtes pas un organisateur").setColor("RED")]
-          })
-        }
-        else {
           const player = LDLMPlayer.getPlayerByID(nom)
           const playerTeam = LDLMTeam.findTeamByPlayerID(nom)
           if (typeof player[0] !== 'undefined') {
@@ -253,6 +248,11 @@ module.exports = {
               console.log(playerTeam)
             }
           }
+        }
+        else {
+          interaction.reply({
+            embeds:[new MessageEmbed().setTitle("Action impossible").setDescription("Vous ne pouvez pas faire cette action car vous n'êtes pas un organisateur").setColor("RED")]
+          })
         }
         break
 
