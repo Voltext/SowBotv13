@@ -238,9 +238,11 @@ module.exports = {
 
       case "add" : {
         const nom = interaction.options.getString("nom")
-        if(interaction.member.roles.cache.has(process.env.ORGANISATEUR) === true) {
-          const player = LDLMPlayer.getPlayerByID(nom)
-          const playerTeam = LDLMTeam.findTeamByPlayerID(nom)
+        const player = LDLMPlayer.getPlayerByID(nom)
+        const playerTeam = LDLMTeam.findTeamByPlayerID(nom)
+        let member = guild.members.cache.get("id")
+        let hasRole = member.roles.cache.some(role => role.name === 'ORGANISATEUR')
+        if(hasRole) {
           if (typeof player[0] !== 'undefined') {
             if (typeof playerTeam[0] !== 'undefined') {
               const playerEmbed = new MessageEmbed();
