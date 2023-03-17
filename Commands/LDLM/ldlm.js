@@ -253,7 +253,7 @@ module.exports = {
                   playerEmbed.setThumbnail(stats[0].ImageURL);
                 }
               if (typeof playerTeam[0] !== 'undefined') {
-                playerEmbed.setFooter({text: `Ce joueur appartient à <@${playerTeam[0].teamOwner}> et joue à ${playerTeam[0].teamName}`})
+                playerEmbed.setFooter({text: `Ce joueur appartient à <@!${playerTeam[0].teamOwner}> et joue à ${playerTeam[0].teamName}`})
               }
               else {
                 playerEmbed.setFooter({text: `Ce joueur appartient n'appartient à aucune équipe`})
