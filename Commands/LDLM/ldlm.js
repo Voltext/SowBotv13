@@ -254,14 +254,22 @@ module.exports = {
                 }
               if (typeof playerTeam[0] !== 'undefined') {
               }
+              interaction.reply({
+                embeds: [playerEmbed],
+                ephemeral: true
+              })
             }
           }
-          interaction.reply({
-            embeds: [playerEmbed]
-          })
+          else {
+            interaction.reply({
+              embeds: [new MessageEmbed().setTitle("Action impossible").setDescription("Le joueur recherché est introuvable").setColor("RED")],
+              ephemeral: true
+            })
+          }
         } else {
           interaction.reply({
-            embeds: [new MessageEmbed().setTitle("Action impossible").setDescription("Vous ne pouvez pas faire cette action car vous n'êtes pas un organisateur").setColor("RED")]
+            embeds: [new MessageEmbed().setTitle("Action impossible").setDescription("Vous ne pouvez pas faire cette action car vous n'êtes pas un organisateur").setColor("RED")],
+            ephemeral: true
           })
         }
         break
