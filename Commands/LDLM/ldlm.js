@@ -243,6 +243,8 @@ module.exports = {
         const stats = await LDLMPlayer.getPlayerStats(nom)
         const playerTeam = await LDLMTeam.findTeamByPlayerID(nom)
         let teamName = "";
+        let libelleStat = "";
+        let valueStat = ""
         if (member.roles.cache.has('1085594724477448224') === true) {
           if (typeof player[0] !== 'undefined') {
             if (typeof stats[0] !== 'undefined') {
@@ -252,6 +254,23 @@ module.exports = {
                 if(stats[0].ImageURL !== 'NULL') {
                   playerEmbed.setThumbnail(stats[0].ImageURL);
                 }
+                stats[0].forEach(function(stat) {
+                  libelleStat = libelleStat + stat.libelle + '\n'
+                  valueStat = valueStat + stat.value + '\n'
+                })
+                playerEmbed.addFields({
+                  name: "#",
+                  value: `#`,
+                  inline: true,
+                }, {
+                  name: "Statistique",
+                  value: `${libelleStat}`,
+                  inline: true,
+                }, {
+                  name: "Valeur",
+                  value: `${valueStat}`,
+                  inline: true,
+                });
               if (typeof playerTeam[0] !== 'undefined') {
                 playerEmbed.setFooter({text: `Ce joueur appartient à ${playerTeam[0].teamName}`})
               }
