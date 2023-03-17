@@ -254,7 +254,7 @@ module.exports = {
                 if(stats[0].ImageURL !== 'NULL') {
                   playerEmbed.setThumbnail(stats[0].ImageURL);
                 }
-                stats[0].forEach(function(stat) {
+                stats.forEach(function(stat) {
                   libelleStat = libelleStat + stat.libelle + '\n'
                   valueStat = valueStat + stat.value + '\n'
                 })
