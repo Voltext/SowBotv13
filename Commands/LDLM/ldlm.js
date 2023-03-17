@@ -249,7 +249,7 @@ module.exports = {
                 const playerEmbed = new MessageEmbed()
                 .setTitle(stats[0].Forename + " " + stats[0].Surname)
                 .setDescription("Voici la page de présentation de ce joueur ainsi que ses statistiques de la saison");
-                if(stats[0].ImageURL !== NULL) {
+                if(stats[0].ImageURL !== 'NULL') {
                   playerEmbed.setThumbnail(stats[0].ImageURL);
                 }
               if (typeof playerTeam[0] !== 'undefined') {
