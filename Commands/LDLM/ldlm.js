@@ -251,7 +251,7 @@ module.exports = {
                 .setTitle(player[0].Forename + " " + player[0].Surname)
                 .setDescription("Voici la page de présentation de ce joueur ainsi que ses statistiques de la saison");
                 if(player[0].ImageURL !== 'NULL') {
-                  playerEmbed.setThumbnail(stats[0].ImageURL);
+                  playerEmbed.setThumbnail(player[0].ImageURL);
                 }
                 if (typeof stats[0] !== 'undefined') {
                 stats.forEach(function(stat) {
