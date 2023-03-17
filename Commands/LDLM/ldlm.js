@@ -261,6 +261,9 @@ module.exports = {
             embeds: [new MessageEmbed().setTitle("Action impossible").setDescription("Vous ne pouvez pas faire cette action car vous n'êtes pas un organisateur").setColor("RED")]
           })
         }
+        interaction.reply({
+          embeds: [playerEmbed]
+        })
         break
 
       }
