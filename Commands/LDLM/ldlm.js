@@ -240,13 +240,14 @@ module.exports = {
         const nom = interaction.options.getString("nom")
         const member = await guild.members.fetch(userId)
         const player = await LDLMPlayer.getPlayerByID(nom)
+        const stats = await LDLMPlayer.getPlayerStats(nom)
         const playerTeam = await LDLMTeam.findTeamByPlayerID(nom)
         console.log(player)
         console.log(playerTeam)
         if(member.roles.cache.has('1085594724477448224') === true) {
           if (typeof player[0] !== 'undefined') {
             if (typeof playerTeam[0] !== 'undefined') {
-              console.log("Test")
+              console.log(stats)
               const playerEmbed = new MessageEmbed();
             }
           }
