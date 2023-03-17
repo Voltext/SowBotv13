@@ -247,13 +247,13 @@ module.exports = {
         let valueStat = ""
         if (member.roles.cache.has('1085594724477448224') === true) {
           if (typeof player[0] !== 'undefined') {
-            if (typeof stats[0] !== 'undefined') {
                 const playerEmbed = new MessageEmbed()
-                .setTitle(stats[0].Forename + " " + stats[0].Surname)
+                .setTitle(player[0].Forename + " " + player[0].Surname)
                 .setDescription("Voici la page de présentation de ce joueur ainsi que ses statistiques de la saison");
-                if(stats[0].ImageURL !== 'NULL') {
+                if(player[0].ImageURL !== 'NULL') {
                   playerEmbed.setThumbnail(stats[0].ImageURL);
                 }
+                if (typeof stats[0] !== 'undefined') {
                 stats.forEach(function(stat) {
                   libelleStat = libelleStat + stat.libelle + '\n'
                   valueStat = valueStat + stat.value + '\n'
@@ -271,6 +271,10 @@ module.exports = {
                   value: `${valueStat}`,
                   inline: true,
                 });
+              }
+                else {
+                  playerEmbed.addFields({ name: "/", value: "Aucune statistique pour le joueur" })
+                }
               if (typeof playerTeam[0] !== 'undefined') {
                 playerEmbed.setFooter({text: `Ce joueur appartient à ${playerTeam[0].teamName}`})
               }
@@ -281,7 +285,6 @@ module.exports = {
                 embeds: [playerEmbed],
                 ephemeral: true
               })
-            }
           }
           else {
             interaction.reply({
