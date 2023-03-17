@@ -230,31 +230,35 @@ module.exports = {
         break;
       }
 
-      case "search" : {
+      case "search": {
         const nom = interaction.options.getString("nom")
         break
 
       }
 
-      case "add" : {
+      case "add": {
         const nom = interaction.options.getString("nom")
         const member = await guild.members.fetch(userId)
         const player = await LDLMPlayer.getPlayerByID(nom)
         const stats = await LDLMPlayer.getPlayerStats(nom)
         const playerTeam = await LDLMTeam.findTeamByPlayerID(nom)
-        console.log(player)
-        console.log(playerTeam)
-        if(member.roles.cache.has('1085594724477448224') === true) {
+        let teamName = "";
+        if (member.roles.cache.has('1085594724477448224') === true) {
           if (typeof player[0] !== 'undefined') {
-            if (typeof playerTeam[0] !== 'undefined') {
-              console.log(stats)
-              const playerEmbed = new MessageEmbed();
+            if (typeof stats[0] !== 'undefined') {
+                const playerEmbed = new MessageEmbed()
+                .setTitle(stats[0].Forename + " " + stats[0].Surname)
+                .setDescription("Voici la page de présentation de ce joueur ainsi que ses statistiques de la saison");
+                if(stats[0].ImageURL !== NULL) {
+                  playerEmbed.setThumbnail(stats[0].ImageURL);
+                }
+              if (typeof playerTeam[0] !== 'undefined') {
+              }
             }
           }
-        }
-        else {
+        } else {
           interaction.reply({
-            embeds:[new MessageEmbed().setTitle("Action impossible").setDescription("Vous ne pouvez pas faire cette action car vous n'êtes pas un organisateur").setColor("RED")]
+            embeds: [new MessageEmbed().setTitle("Action impossible").setDescription("Vous ne pouvez pas faire cette action car vous n'êtes pas un organisateur").setColor("RED")]
           })
         }
         break
