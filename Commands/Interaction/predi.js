@@ -9,11 +9,11 @@ module.exports = {
     name: "predi",
     description: "Gestion des predictions",
     options: [{
-            name: "closePredi",
+            name: "closepredi",
             type: "SUB_COMMAND",
             description: "Saisissez l'identifiant du message",
             options: [{
-                name: "idMessage",
+                name: "idmessage",
                 type: "STRING",
                 required: true,
                 description: "Saisissez le nom du joueur recherché",
@@ -21,11 +21,11 @@ module.exports = {
             }]
         },
         {
-            name: "openPredi",
+            name: "openpredi",
             type: "SUB_COMMAND",
             description: "Saisissez l'identifiant du message",
             options: [{
-                name: "idMessage",
+                name: "idmessage",
                 type: "STRING",
                 required: true,
                 description: "Saisissez le nom du joueur recherché",
