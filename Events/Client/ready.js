@@ -65,7 +65,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 		channelD.messages.fetch()
 			.then(console.log("Loaded"))
 
-		let isOnLive = false;
+		/* let isOnLive = false;
 		const getLive = new TwitchLive();
 		//const channel = client.channels.cache.get(process.env.TWITCH_LIVE);
 		setInterval(async function () {
@@ -104,12 +104,12 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					});
 				isOnLive = false;
 			}
-		}, 2 * 60 * 1000);
+		}, 2 * 60 * 1000); */
 
-		const getSchedule = new TwitchSchedule();
+		//const getSchedule = new TwitchSchedule();
 		schedule.scheduleJob('0 0 * * *', async () => {
 
-			const programme = client.channels.cache.get(process.env.PROGRAMME);
+			/* const programme = client.channels.cache.get(process.env.PROGRAMME);
 			programme.bulkDelete(1);
 
 			const prog = await getSchedule.Schedule()
@@ -154,7 +154,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					content: "Voici le programme de la semaine",
 					embeds: [embed],
 				});
-			}
+			} */
 			const rankchannel = client.channels.cache.get(process.env.RANK_CHANNEL);
 			rankchannel.bulkDelete(1);
 			let placement = 1;
@@ -358,7 +358,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 		})
 
 		//0 15 * * 1
-		schedule.scheduleJob('0 15 * * 1', async () => {
+		/* schedule.scheduleJob('0 15 * * 1', async () => {
 			const getSchedule = new TwitchSchedule()
 			const prog = await getSchedule.Schedule()
 
@@ -402,7 +402,7 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 			}
 
-		})
+		}) */
 
 		let environnement = ""
 
