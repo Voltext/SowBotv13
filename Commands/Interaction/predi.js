@@ -1,4 +1,7 @@
-const { ContextMenuInteraction, MessageEmbed } = require("discord.js");
+const {
+    ContextMenuInteraction,
+    MessageEmbed
+} = require("discord.js");
 const mongo = require('../../mongo');
 const prediSchema = require('../../Schemas/prediSchema')
 
@@ -6,19 +9,7 @@ module.exports = {
     name: "predi",
     description: "Gestion des predictions",
     options: [{
-        name: "close",
-        type: "SUB_COMMAND",
-        description: "Saisissez l'identifiant du message",
-        options: [{
-            name: "idMessage",
-            type: "STRING",
-            required: true,
-            description: "Saisissez le nom du joueur recherché",
-            autocomplete: true
-          }]
-        },
-        {
-            name: "open",
+            name: "closePredi",
             type: "SUB_COMMAND",
             description: "Saisissez l'identifiant du message",
             options: [{
@@ -27,8 +18,21 @@ module.exports = {
                 required: true,
                 description: "Saisissez le nom du joueur recherché",
                 autocomplete: true
-              }]
-      }],
+            }]
+        },
+        {
+            name: "openPredi",
+            type: "SUB_COMMAND",
+            description: "Saisissez l'identifiant du message",
+            options: [{
+                name: "idMessage",
+                type: "STRING",
+                required: true,
+                description: "Saisissez le nom du joueur recherché",
+                autocomplete: true
+            }]
+        }
+    ],
 
     /**
      * 
@@ -38,7 +42,7 @@ module.exports = {
         const {
             options,
             guild
-          } = interaction;
+        } = interaction;
         const subCommand = options.getSubcommand();
 
         switch (subCommand) {
@@ -59,14 +63,17 @@ module.exports = {
                         mongooselock.connection.close()
                     }
                 })
-        
+
                 const lockEmbed = new MessageEmbed()
-                .setColor("RED")
-                .setTitle("Prediction fermée")
-                .setDescription("Vous venez de bloquer les intéractions avec cette prédiction. Il n'est donc plus possible pour les utilisateurs de participer à celle-ci.")
-        
-                interaction.reply({embeds: [lockEmbed], ephemeral: true})
-              break;
+                    .setColor("RED")
+                    .setTitle("Prediction fermée")
+                    .setDescription("Vous venez de bloquer les intéractions avec cette prédiction. Il n'est donc plus possible pour les utilisateurs de participer à celle-ci.")
+
+                interaction.reply({
+                    embeds: [lockEmbed],
+                    ephemeral: true
+                })
+                break;
             }
             case "open": {
                 const status = "open";
@@ -85,16 +92,19 @@ module.exports = {
                         mongooseopen.connection.close()
                     }
                 })
-        
+
                 const lockEmbed = new MessageEmbed()
-                .setColor("GREEN")
-                .setTitle("Prediction Réouverte")
-                .setDescription("La prédiction a été réouverte, les utilisateurs peuvent à nouveau participer à cette prédictions.")
-        
-                interaction.reply({embeds: [lockEmbed], ephemeral: true})
+                    .setColor("GREEN")
+                    .setTitle("Prediction Réouverte")
+                    .setDescription("La prédiction a été réouverte, les utilisateurs peuvent à nouveau participer à cette prédictions.")
+
+                interaction.reply({
+                    embeds: [lockEmbed],
+                    ephemeral: true
+                })
                 break;
             }
         }
-        
+
     }
 }
