@@ -46,7 +46,7 @@ module.exports = {
         const subCommand = options.getSubcommand();
 
         switch (subCommand) {
-            case "close": {
+            case "closepredi": {
                 const status = "close";
                 const msgId = interaction.options.getString("idmessage")
                 await mongo().then(async (mongooselock) => {
@@ -76,7 +76,7 @@ module.exports = {
                 })
                 break;
             }
-            case "open": {
+            case "openpredi": {
                 const status = "open";
                 const msgId = interaction.options.getString("idmessage")
                 await mongo().then(async (mongooseopen) => {
