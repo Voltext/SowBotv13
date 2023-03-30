@@ -5,7 +5,7 @@ const {
 module.exports = {
     name: "interactionCreate",
     async execute(interaction, client) {
-        if (interaction.isCommand() || interaction.isContextMenu()) {
+        if (interaction.isCommand() || interaction.isContextMenuCommand()) {
             const command = client.commands.get(interaction.commandName);
             if (!command) return interaction.reply({
                 embeds: [
