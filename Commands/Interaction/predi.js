@@ -48,6 +48,7 @@ module.exports = {
         switch (subCommand) {
             case "close": {
                 const status = "close";
+                const msgId = interaction.options.getString("idmessage")
                 await mongo().then(async (mongooselock) => {
                     try {
                         await prediSchema.findOneAndUpdate({
@@ -77,6 +78,7 @@ module.exports = {
             }
             case "open": {
                 const status = "open";
+                const msgId = interaction.options.getString("idmessage")
                 await mongo().then(async (mongooseopen) => {
                     try {
                         await prediSchema.findOneAndUpdate({
