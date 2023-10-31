@@ -66,7 +66,7 @@ module.exports = {
 
       modal2.addComponents(six, sept, huit, neuf, dix);
 
-      await interaction.showModal(modal2);
+      await modal.showModal(modal2);
     }
 
     if (modal.customId === "nomineModal2") {
@@ -87,9 +87,9 @@ module.exports = {
 
         const onze = new MessageActionRow().addComponents(flop);
 
-        modal2.addComponents(onze);
+        modal3.addComponents(onze);
 
-        await interaction.showModal(modal3);
+        await modal.showModal(modal3);
     }
 
     if (modal.customId === "nomineModal3") {
