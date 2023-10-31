@@ -1,5 +1,7 @@
 const { Modal } = require("discord-modals");
-const { Formatters, MessageEmbed } = require("discord.js");
+const { Formatters, MessageEmbed, Modal,
+  TextInputComponent,
+  MessageActionRow } = require("discord.js");
 const teamsSchema = require("../../Schemas/teamsSchema");
 const mongo = require("../../mongo");
 const Util = require("../../Utils/function");
@@ -37,23 +39,23 @@ module.exports = {
 
       const avis = new TextInputComponent()
         .setCustomId("avisMembre")
-        .setLabel("Quel est votre nominé ?")
+        .setLabel("Quel est votre nominé pour l'avis le plus claqué?")
         .setStyle("SHORT");
       const devoue = new TextInputComponent()
         .setCustomId("devoueMembre")
-        .setLabel("Quel est votre nominé ?")
+        .setLabel("Quel est votre nominé pour être le membre le plus dévoué?")
         .setStyle("SHORT");
       const dynamique = new TextInputComponent()
         .setCustomId("dynamiqueMembre")
-        .setLabel("Quel est votre nominé ?")
+        .setLabel("Quel est votre nominé pour être le membre le plus dynamique?")
         .setStyle("SHORT");
       const compris = new TextInputComponent()
         .setCustomId("comprisMembre")
-        .setLabel("Quel est votre nominé ?")
+        .setLabel("Quel est votre nominé pour être le membre qui n'a pas compris qu'on était sur un serveur foot?")
         .setStyle("SHORT");
       const ouest = new TextInputComponent()
         .setCustomId("ouestMembre")
-        .setLabel("Quel est votre nominé ?")
+        .setLabel("Quel est votre nominé pour être le membre le plus à l'ouest ?")
         .setStyle("SHORT");
 
       const six = new MessageActionRow().addComponents(avis);
@@ -80,7 +82,7 @@ module.exports = {
 
         const flop = new TextInputComponent()
         .setCustomId("flopMembre")
-        .setLabel("Quel est votre nominé ?")
+        .setLabel("Quel est votre nominé pour être le plus gros flop ?")
         .setStyle("SHORT");
 
         const onze = new MessageActionRow().addComponents(flop);

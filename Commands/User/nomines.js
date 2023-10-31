@@ -22,23 +22,23 @@ module.exports = {
 
     const meilleur = new TextInputComponent()
     .setCustomId('meilleurMembre')
-    .setLabel('Quel est votre nominé ?')
+    .setLabel('Quel est votre nominé pour être le meilleur membre ?')
     .setStyle('SHORT');
     const emblematique = new TextInputComponent()
     .setCustomId('emblemMembre')
-    .setLabel('Quel est votre nominé ?')
+    .setLabel('Quel est votre nominé pour être le membre le plus emblématique?')
     .setStyle('SHORT');
     const supporter = new TextInputComponent()
     .setCustomId('supportMembre')
-    .setLabel('Quel est votre nominé ?')
+    .setLabel('Quel est votre nominé pour être le meilleur supporter ?')
     .setStyle('SHORT');
     const modo = new TextInputComponent()
     .setCustomId('modoMembre')
-    .setLabel('Quel est votre nominé ?')
+    .setLabel('Quel est votre nominé pour être le meilleur modérateur?')
     .setStyle('SHORT');
     const equipe = new TextInputComponent()
     .setCustomId('equipeMeilleur')
-    .setLabel('Quel est votre nominé ?')
+    .setLabel('Quelle est votre nominée pour la meilleur équipe représentée ?')
     .setStyle('SHORT');
 
     const un = new MessageActionRow().addComponents(meilleur);
