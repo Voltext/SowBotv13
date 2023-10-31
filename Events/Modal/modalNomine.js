@@ -39,23 +39,23 @@ module.exports = {
 
       const avis = new TextInputComponent()
         .setCustomId("avisMembre")
-        .setLabel("Quel est votre nominé pour l'avis le plus claqué?")
+        .setLabel("Qui a l'avis le plus claqué ?")
         .setStyle("SHORT");
       const devoue = new TextInputComponent()
         .setCustomId("devoueMembre")
-        .setLabel("Quel est votre nominé pour être le membre le plus dévoué?")
+        .setLabel("Quei est le membre le plus dévoué?")
         .setStyle("SHORT");
       const dynamique = new TextInputComponent()
         .setCustomId("dynamiqueMembre")
-        .setLabel("Quel est votre nominé pour être le membre le plus dynamique?")
+        .setLabel("Qui est le membre le plus dynamique?")
         .setStyle("SHORT");
       const compris = new TextInputComponent()
         .setCustomId("comprisMembre")
-        .setLabel("Quel est votre nominé pour être le membre qui n'a pas compris qu'on était sur un serveur foot?")
+        .setLabel("Qui n'a pas compris (serveur foot)?")
         .setStyle("SHORT");
       const ouest = new TextInputComponent()
         .setCustomId("ouestMembre")
-        .setLabel("Quel est votre nominé pour être le membre le plus à l'ouest ?")
+        .setLabel("Qui est le plus à l'ouest ?")
         .setStyle("SHORT");
 
       const six = new MessageActionRow().addComponents(avis);
@@ -82,7 +82,7 @@ module.exports = {
 
         const flop = new TextInputComponent()
         .setCustomId("flopMembre")
-        .setLabel("Quel est votre nominé pour être le plus gros flop ?")
+        .setLabel("Qui est le plus gros flop ?")
         .setStyle("SHORT");
 
         const onze = new MessageActionRow().addComponents(flop);
