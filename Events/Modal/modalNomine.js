@@ -1,5 +1,4 @@
-const { Modal } = require("discord-modals");
-const { Formatters, MessageEmbed,
+const { Formatters, MessageEmbed, Modal,
   TextInputComponent,
   MessageActionRow } = require("discord.js");
 const teamsSchema = require("../../Schemas/teamsSchema");
