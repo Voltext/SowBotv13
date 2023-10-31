@@ -12,7 +12,7 @@ module.exports = {
    * @param { Modal } modal
    */
 
-  async execute(modal) {
+  async execute(modal, client) {
     let bestMembre = "";
     let emblematiqueMembre = "";
     let bestSupporter = "";
@@ -65,7 +65,7 @@ module.exports = {
 
       modal2.addComponents(six, sept, huit, neuf, dix);
 
-      await modal.showModal(modal2);
+      await client.showModal(modal2);
     }
 
     if (modal.customId === "nomineModal2") {
