@@ -85,8 +85,8 @@ module.exports = {
     modal2.addComponents(six, sept, huit, neuf, dix);
     modal3.addComponents(onze);
 
-    await interaction.showModal(modal);
-    await interaction.showModal(modal2);
-    await interaction.showModal(modal3);
+    await interaction.showModal(modal, modal2, modal3);
+    //await interaction.showModal(modal2);
+    //await interaction.showModal(modal3);
   },
 };
