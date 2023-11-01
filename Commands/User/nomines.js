@@ -103,7 +103,7 @@ module.exports = {
     
     await mongo().then(async (mongooselock) => {
 			try {
-				await awardsSchema.findOneAndUpdate({
+				await nominesSchema.findOneAndUpdate({
 					userId,
 				}, {
           userId,
