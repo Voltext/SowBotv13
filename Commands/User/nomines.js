@@ -14,6 +14,7 @@ module.exports = {
   description: "Permet de voter pour un membre dans chacune catégorie",
 
   async execute(interaction) {
+    const channelId = interaction.channelId
     const {
       guild
     } = interaction
