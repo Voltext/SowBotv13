@@ -33,7 +33,7 @@ module.exports = {
       bestTeam = modal.getTextInputValue("equipeMeilleur");
 
       console.log(bestMembre)
-      modal.followUp({ 
+      modal.reply({ 
         embeds: [new MessageEmbed().setTitle("Message envoyé").setDescription(`Vos nominés ont bien été sauvegardés`).setColor('GREEN')],
         ephemeral: true
       });
