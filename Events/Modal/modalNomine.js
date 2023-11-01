@@ -33,10 +33,40 @@ module.exports = {
       bestTeam = modal.getTextInputValue("equipeMeilleur");
 
       console.log(bestMembre)
-      modal.reply({ 
-        embeds: [new MessageEmbed().setTitle("Message envoyé").setDescription(`Vos nominés ont bien été sauvegardés`).setColor('GREEN')],
-        ephemeral: true
-      });
+      const modal2 = new Modal()
+      .setCustomId("nomineModal2")
+      .setTitle("Votez pour les nominés des Sowards");
+
+      const avis = new TextInputComponent()
+      .setCustomId("avisMembre")
+      .setLabel("Qui a l'avis le plus claqué ?")
+      .setStyle("SHORT");
+    const devoue = new TextInputComponent()
+      .setCustomId("devoueMembre")
+      .setLabel("Quei est le membre le plus dévoué?")
+      .setStyle("SHORT");
+    const dynamique = new TextInputComponent()
+      .setCustomId("dynamiqueMembre")
+      .setLabel("Qui est le membre le plus dynamique?")
+      .setStyle("SHORT");
+    const compris = new TextInputComponent()
+      .setCustomId("comprisMembre")
+      .setLabel("Qui n'a pas compris (serveur foot)?")
+      .setStyle("SHORT");
+    const ouest = new TextInputComponent()
+      .setCustomId("ouestMembre")
+      .setLabel("Qui est le plus à l'ouest ?")
+      .setStyle("SHORT");
+
+      const six = new MessageActionRow().addComponents(avis);
+    const sept = new MessageActionRow().addComponents(devoue);
+    const huit = new MessageActionRow().addComponents(dynamique);
+    const neuf = new MessageActionRow().addComponents(compris);
+    const dix = new MessageActionRow().addComponents(ouest);
+
+    modal2.addComponents(six, sept, huit, neuf, dix);
+
+    modal.showModal(modal2);
     }
 
     if (modal.customId === "nomineModal2") {
