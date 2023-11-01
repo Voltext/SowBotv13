@@ -14,6 +14,10 @@ module.exports = {
   description: "Permet de voter pour un membre dans chacune catégorie",
 
   async execute(interaction) {
+    const {
+      guild
+    } = interaction
+
     const modal = new Modal()
       .setCustomId("nomineModal")
       .setTitle("Votez pour les nominés des Sowards");
@@ -85,6 +89,8 @@ module.exports = {
     modal2.addComponents(six, sept, huit, neuf, dix);
     modal3.addComponents(onze);
 
-    await interaction.reply(modal);
+    guild.channels.cache.get(channelId).send({
+        components: [modal]
+      });
   },
 };
