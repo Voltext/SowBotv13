@@ -1,97 +1,139 @@
-const mongo = require("../../mongo");
-const awardsSchema = require("../../Schemas/awardsSchema");
+const mongo = require('../../mongo');
+const nominesSchema = require('../../Schemas/nominesSchema.js')
 const {
   CommandInteraction,
   MessageEmbed,
-  MessageButton,
-  Modal,
-  TextInputComponent,
-  MessageActionRow,
+  MessageButton
 } = require("discord.js");
 
 module.exports = {
   name: "nomines",
-  description: "Permet de voter pour un membre dans chacune catégorie",
+  description: "Définissez vos nominés",
+  options: [{
+    name: 'meilleur_membre',
+    description: "Meilleur membre de l'année",
+    type: "STRING",
+    required: true,
+  }, 
+  {
+    name: 'meilleur_emblematique',
+    description: "Meilleur membre emblématique de l'année",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'meilleur_supporter',
+    description: "Meilleur supporter de l'année",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'meilleur_pronostiqueur',
+    description: "Meilleur pronostiqueur de l'année",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'meilleur_moderateur',
+    description: "Meilleur moderateur de l'année",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'meilleur_equipe',
+    description: "Meilleur equipe de l'année",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'pire_avis',
+    description: "Avis le plus claqué",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'membre_devoue',
+    description: "Membre le plus dévoué",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'membre_dynamique',
+    description: "Membre le plus dynamique",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'pas_compris',
+    description: "Pas compris qu'on été sur un serveur foot",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'membre_ouest',
+    description: "Membre le plus à l'ouest",
+    type: "STRING",
+    required: true,
+  },
+  {
+    name: 'membre_flop',
+    description: "Le plus gros flop",
+    type: "STRING",
+    required: true,
+  },
+],
 
   async execute(interaction) {
-    const channelId = interaction.channelId
-    const {
-      guild
-    } = interaction
 
-    const modal = new Modal()
-      .setCustomId("nomineModal")
-      .setTitle("Votez pour les nominés des Sowards");
-    const modal2 = new Modal()
-      .setCustomId("nomineModal2")
-      .setTitle("Votez pour les nominés des Sowards");
-    const modal3 = new Modal()
-      .setCustomId("nomineModal3")
-      .setTitle("Votez pour les nominés des Sowards");
+    const { guild } = interaction
+    const userId = interaction.user.id
 
-    const meilleur = new TextInputComponent()
-      .setCustomId("meilleurMembre")
-      .setLabel("Qui est le meilleur membre ?")
-      .setStyle("SHORT");
-    const emblematique = new TextInputComponent()
-      .setCustomId("emblemMembre")
-      .setLabel("Qui est le membre le plus emblématique?")
-      .setStyle("SHORT");
-    const supporter = new TextInputComponent()
-      .setCustomId("supportMembre")
-      .setLabel("Qui est le meilleur supporter ?")
-      .setStyle("SHORT");
-    const modo = new TextInputComponent()
-      .setCustomId("modoMembre")
-      .setLabel("Qui est le meilleur modérateur?")
-      .setStyle("SHORT");
-    const equipe = new TextInputComponent()
-      .setCustomId("equipeMeilleur")
-      .setLabel("Quelle est l'équipe la plus représentée ?")
-      .setStyle("SHORT");
-    const avis = new TextInputComponent()
-      .setCustomId("avisMembre")
-      .setLabel("Qui a l'avis le plus claqué ?")
-      .setStyle("SHORT");
-    const devoue = new TextInputComponent()
-      .setCustomId("devoueMembre")
-      .setLabel("Quei est le membre le plus dévoué?")
-      .setStyle("SHORT");
-    const dynamique = new TextInputComponent()
-      .setCustomId("dynamiqueMembre")
-      .setLabel("Qui est le membre le plus dynamique?")
-      .setStyle("SHORT");
-    const compris = new TextInputComponent()
-      .setCustomId("comprisMembre")
-      .setLabel("Qui n'a pas compris (serveur foot)?")
-      .setStyle("SHORT");
-    const ouest = new TextInputComponent()
-      .setCustomId("ouestMembre")
-      .setLabel("Qui est le plus à l'ouest ?")
-      .setStyle("SHORT");
-    const flop = new TextInputComponent()
-      .setCustomId("flopMembre")
-      .setLabel("Qui est le plus gros flop ?")
-      .setStyle("SHORT");
+    const membre = interaction.options.getString("meilleur_membre")
+    const emblematique = interaction.options.getString("meilleur_emblematique")
+    const supporter = interaction.options.getString("meilleur_supporter")
+    const prono = interaction.options.getString("meilleur_pronostiqueur")
+    const modo = interaction.options.getString("meilleur_moderateur")
+    const equipe = interaction.options.getString("meilleur_equipe")
+    const avis = interaction.options.getString("pire_avis")
+    const devoue = interaction.options.getString("membre_devoue")
+    const dynamique = interaction.options.getString("membre_dynamique")
+    const compris = interaction.options.getString("pas_compris")
+    const ouest = interaction.options.getString("membre_ouest")
+    const flop = interaction.options.getString("membre_flop")
+    
+    await mongo().then(async (mongooselock) => {
+			try {
+				await awardsSchema.findOneAndUpdate({
+					userId,
+				}, {
+          userId,
+          membre,
+          emblematique,
+          supporter,
+          prono,
+          modo,
+          equipe,
+          avis,
+          devoue,
+          dynamique,
+          compris,
+          ouest,
+          flop
+				}, {
+					upsert: true,
+				})
+			} catch(err) {
+                console.log(err)
+				        mongooselock.connection.close()
+			}
+		})
 
-    const un = new MessageActionRow().addComponents(meilleur);
-    const deux = new MessageActionRow().addComponents(emblematique);
-    const trois = new MessageActionRow().addComponents(supporter);
-    const quatre = new MessageActionRow().addComponents(modo);
-    const cinq = new MessageActionRow().addComponents(equipe);
-    const six = new MessageActionRow().addComponents(avis);
-    const sept = new MessageActionRow().addComponents(devoue);
-    const huit = new MessageActionRow().addComponents(dynamique);
-    const neuf = new MessageActionRow().addComponents(compris);
-    const dix = new MessageActionRow().addComponents(ouest);
-    const onze = new MessageActionRow().addComponents(flop);
+  interaction.reply({
+      content: `Vos réponses ont bien été sauvegardées. Vous pouvez à tout moment les changer en refaisant la même commande.`,
+      ephemeral: true
+  })
+    
 
-    modal.addComponents(un, deux, trois, quatre, cinq);
-    modal2.addComponents(six, sept, huit, neuf, dix);
-    modal3.addComponents(onze);
 
-    guild.channels.cache.get(channelId).send({
-        components: [modal]
-      });
-  },
-};
+  }
+}
