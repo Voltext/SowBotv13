@@ -38,8 +38,8 @@ module.exports = {
     type: "STRING",
     required: true,
     choices: [{
-      name: "Bampy",
-      value: "Bampy"
+      name: "Nolan",
+      value: "Nolan"
     },
     {
       name: "Coco07",
