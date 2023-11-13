@@ -15,28 +15,20 @@ module.exports = {
     type: "STRING",
     required: true,
     choices: [{
+      name: "Nolan",
+      value: "nolan"
+    },
+    {
+      name: "Just1",
+      value: "just1"
+    },
+    {
+      name: "Coco07",
+      value: "coco07"
+    },
+    {
       name: "Samir",
       value: "Samir"
-    },
-    {
-      name: "Sunryze",
-      value: "Sunryze"
-    },
-    {
-      name: "Cesare",
-      value: "Cesare"
-    },
-    {
-      name: "Nolan_ctl",
-      value: "Nolan_ctl"
-    },
-    {
-      name: "IsaacNew76",
-      value: "IsaacNew76"
-    },
-    {
-      name: "Ff Cc Sowldat",
-      value: "Ff_Cc_Sowldat"
     }
   ]
   }, 
@@ -50,8 +42,8 @@ module.exports = {
       value: "Bampy"
     },
     {
-      name: "Adam",
-      value: "Adam"
+      name: "Coco07",
+      value: "coco07"
     },
     {
       name: "Crapouchou",
@@ -60,10 +52,6 @@ module.exports = {
     {
       name: "Imperator Grisouille",
       value: "Imperator_grisouille"
-    },
-    {
-      name: "Samir",
-      value: "Samir"
     }
   ]
   },
@@ -77,20 +65,16 @@ module.exports = {
       value: "Cesare"
     },
     {
-      name: "Nolan_ctl",
-      value: "Nolan_ctl"
+      name: "Pilou",
+      value: "Pilou"
     },
     {
-      name: "Samir",
-      value: "Samir"
+      name: "Kiwi",
+      value: "Kiwi"
     },
     {
-      name: "Petit Kiwi",
-      value: "Petit_Kiwi"
-    },
-    {
-      name: "Ff Cc Sowldat",
-      value: "Ff_Cc_Sowldat"
+      name: "Isaac",
+      value: "Isaac"
     }
   ]
   },
@@ -100,28 +84,20 @@ module.exports = {
     type: "STRING",
     required: true,
     choices: [{
-      name: "c0co07",
-      value: "c0co07"
+      name: "Joan Sama",
+      value: "Joan_Sama"
     },
     {
-      name: "Nolan_ctl",
-      value: "Nolan_ctl"
+      name: "Coco07",
+      value: "Coco07"
     },
     {
-      name: "Cesare",
-      value: "Cesare"
+      name: "Samir",
+      value: "Samir"
     },
     {
-      name: "Ff Cc Sowldat",
-      value: "Ff_Cc_Sowldat"
-    },
-    {
-      name: "Milan",
-      value: "Milan"
-    },
-    {
-      name: "StrasN3",
-      value: "StrasN3"
+      name: "Gigio27",
+      value: "Gigio27"
     }
   ]
   },
@@ -130,10 +106,7 @@ module.exports = {
     description: "Meilleur moderateur de l'année",
     type: "STRING",
     required: true,
-    choices: [{
-      name: "Crapouchou",
-      value: "Crapouchou"
-    },
+    choices: [
     {
       name: "Just1",
       value: "Just1"
@@ -143,20 +116,12 @@ module.exports = {
       value: "Axtinner"
     },
     {
-      name: "Petit Kiwi",
-      value: "Petit_Kiwi"
+      name: "Kiwi",
+      value: "Kiwi"
     },
     {
-      name: "Milan",
-      value: "Milan"
-    },
-    {
-      name: "Adam",
-      value: "Adam"
-    },
-    {
-      name: "Filou",
-      value: "Filou"
+      name: "Grisouille",
+      value: "Grisouille"
     }
   ]
   },
@@ -170,20 +135,16 @@ module.exports = {
       value: "Juventus"
     },
     {
-      name: "OM",
-      value: "OM"
-    },
-    {
-      name: "PSG",
-      value: "PSG"
+      name: "Strasbourg",
+      value: "Strasbourg"
     },
     {
       name: "Lyon",
       value: "Lyon"
     },
     {
-      name: "Barcelone",
-      value: "Barcelone"
+      name: "Dortmund",
+      value: "Dortmund"
     }
   ]
   },
@@ -193,28 +154,134 @@ module.exports = {
     type: "STRING",
     required: true,
     choices: [{
-      name: "Voltext",
-      value: "Voltext"
+      name: "Adam",
+      value: "Adam"
     },
     {
       name: "Matteo",
       value: "Matteo"
     },
     {
-      name: "IsaacNew76",
-      value: "IsaacNew76"
+      name: "Ff Cc",
+      value: "Ff_Cc"
     },
     {
       name: "sid",
       value: "sid"
+    }
+  ]
+  },
+  {
+    name: 'membre_devoue',
+    description: "Membre le plus dévoué",
+    type: "STRING",
+    required: true,
+    choices: [{
+      name: "Kiwi",
+      value: "Kiwi"
     },
     {
-      name: "Nolan_ctl",
-      value: "Nolan_ctl"
+      name: "Pilou",
+      value: "Pilou"
     },
     {
-      name: "Sowdred",
-      value: "Sowdred"
+      name: "Cesare",
+      value: "Cesare"
+    },
+    {
+      name: "Baba",
+      value: "Bab"
+    }
+  ]
+  },
+  {
+    name: 'membre_dynamique',
+    description: "Mmebre le plus dynamique",
+    type: "STRING",
+    required: true,
+    choices: [{
+      name: "Nolan",
+      value: "Nolan"
+    },
+    {
+      name: "Samir",
+      value: "Samir"
+    },
+    {
+      name: "Just1",
+      value: "Just1"
+    },
+    {
+      name: "Axtinner",
+      value: "Axtinner"
+    }
+  ]
+  },
+  {
+    name: 'rien_compris',
+    description: "Pas compris qu'on était sur un serveur foot",
+    type: "STRING",
+    required: true,
+    choices: [{
+      name: "Khuuzi",
+      value: "Khuuzi"
+    },
+    {
+      name: "Adam",
+      value: "Adam"
+    },
+    {
+      name: "Nolan",
+      value: "Nolan"
+    },
+    {
+      name: "Pada",
+      value: "Pada"
+    }
+  ]
+  },
+  {
+    name: 'a_louest',
+    description: "Membre le plus à l'ouest",
+    type: "STRING",
+    required: true,
+    choices: [{
+      name: "Pada",
+      value: "Pada"
+    },
+    {
+      name: "Khuuzi",
+      value: "Khuuzi"
+    },
+    {
+      name: "Nolan",
+      value: "Nolan"
+    },
+    {
+      name: "sid",
+      value: "sid"
+    }
+  ]
+  },{
+    name: 'flop',
+    description: "Le plus gros flop",
+    type: "STRING",
+    required: true,
+    choices: [{
+      name: "Adam",
+      value: "Adam"
+    },
+    {
+      name: "Pilou",
+      value: "Pilou"
+    },
+    {
+      name: "Pada",
+      value: "Pada"
+    },
+    {
+      name: "sid",
+      value: "sid"
     }
   ]
   },],
@@ -231,6 +298,11 @@ module.exports = {
     const modo = interaction.options.getString("meilleur_moderateur")
     const equipe = interaction.options.getString("meilleur_equipe")
     const avis = interaction.options.getString("pire_avis")
+    const devoue = interaction.options.getString("membre_devoue")
+    const dynamique = interaction.options.getString("membre_dynamique")
+    const compris = interaction.options.getString("rien_compris")
+    const ouest = interaction.options.getString("a_louest")
+    const flop = interaction.options.getString("flop")
     
     await mongo().then(async (mongooselock) => {
 			try {
@@ -244,7 +316,12 @@ module.exports = {
           prono,
           modo,
           equipe,
-          avis
+          avis,
+          devoue,
+          dynamique,
+          compris,
+          ouest,
+          flop,
 				}, {
 					upsert: true,
 				})

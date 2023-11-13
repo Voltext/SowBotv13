@@ -33,6 +33,30 @@ const awardsSchema = mongoose.Schema({
     type: String,
     required: true
   },
+  devoue: {
+    type: String,
+    required: true
+  },
+  dynamique: {
+    type: String,
+    required: true
+  },
+  avis: {
+    type: String,
+    required: true
+  },
+  compris: {
+    type: String,
+    required: true
+  },
+  ouest: {
+    type: String,
+    required: true
+  },
+  flop: {
+    type: String,
+    required: true
+  },
 })
 
 module.exports = mongoose.model('awards', awardsSchema);
