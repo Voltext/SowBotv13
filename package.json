@@ -19,7 +19,7 @@
   "homepage": "https://github.com/Voltext/SowBotv13#readme",
   "dependencies": {
     "ascii-table": "^0.0.9",
-    "axios": "^0.26.1",
+    "axios": "^0.28.0",
     "canvas": "^2.11.2",
     "cartoon-avatar": "^1.0.2",
     "chart.js": "^3.7.1",
