@@ -1,71 +1,62 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
+require("dotenv").config();
+const mongoose = require("mongoose");
 const TwitchLive = require("../../Api/twitchlive");
 const TwitchSchedule = require("../../Api/twitchschedule");
-const {
-	MessageEmbed,
-	MessageAttachment
-} = require("discord.js");
-const mysql = require('mysql2');
-const schedule = require('node-schedule');
-const colors = require('colors');
-const mongo = require('../../mongo');
-const rankPrediSchema = require('../../Schemas/rankPredictSchema')
+const { MessageEmbed, MessageAttachment } = require("discord.js");
+const mysql = require("mysql2");
+const schedule = require("node-schedule");
+const colors = require("colors");
+const mongo = require("../../mongo");
+const rankPrediSchema = require("../../Schemas/rankPredictSchema");
 const Cards = require("../../Api/card");
-const fs = require('fs')
-const path = require('path');
-const cardCollectionSchema = require('../../Schemas/cardCollectionSchema')
-const linkTwitchSchema = require('../../Schemas/linkTwitchSchema')
-const axios = require('axios')
-const {
-	registerFont,
-	createCanvas,
-	loadImage
-} = require("canvas")
-registerFont('./Assets/Fonts/DINNextLTPro-Black.ttf', {
-	family: 'DINNextLTPro-Black'
-})
-registerFont('./Assets/Fonts/DINNextLTPro-UltraLightIt.ttf', {
-	family: 'DINNextLTPro-UltraLightIt'
-})
-registerFont('./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf', {
-	family: 'DINNextRoundedLTPro-Bold'
-})
+const fs = require("fs");
+const path = require("path");
+const cardCollectionSchema = require("../../Schemas/cardCollectionSchema");
+const linkTwitchSchema = require("../../Schemas/linkTwitchSchema");
+const axios = require("axios");
+const { registerFont, createCanvas, loadImage } = require("canvas");
+registerFont("./Assets/Fonts/DINNextLTPro-Black.ttf", {
+  family: "DINNextLTPro-Black",
+});
+registerFont("./Assets/Fonts/DINNextLTPro-UltraLightIt.ttf", {
+  family: "DINNextLTPro-UltraLightIt",
+});
+registerFont("./Assets/Fonts/DINNextRoundedLTPro-Bold.ttf", {
+  family: "DINNextRoundedLTPro-Bold",
+});
 const Moment = require("moment");
-const playerSchema = require('../../Schemas/playerSchema');
+const playerSchema = require("../../Schemas/playerSchema");
 
 module.exports = {
-	name: "ready",
-	once: true,
-	execute(client) {
-		Moment.locale("fr");
-		console.log(
-			`
+  name: "ready",
+  once: true,
+  execute(client) {
+    Moment.locale("fr");
+    console.log(
+      `
 ██████ ██████ ██      ██  ██  ███████  ████████  ██████████
 ██     ██  ██ ██      ██ ██   ██   ██  ██    ██      ██
 ██████ ██  ██ ██  ██  ██      ██ ██    ██    ██      ██
     ██ ██  ██ ██  ██  ██      ██   ██  ██    ██      ██
 ██████ ██████ ██████████      ███████  ████████      ██
 `.rainbow +
-			`
-Bot discord en relation avec le serveur discord de ${'Sowdred !'.blue} !
-Le BOT est ${'en ligne !'.green}
+        `
+Bot discord en relation avec le serveur discord de ${"Sowdred !".blue} !
+Le BOT est ${"en ligne !".green}
 
-${'↓ LOGS ↓'.bgBlue}`,
-		);
-		console.log("✅ Le bot est actuellement en ligne");
-		client.user.setActivity("le serveur...", {
-			type: "WATCHING"
-		});
+${"↓ LOGS ↓".bgBlue}`
+    );
+    console.log("✅ Le bot est actuellement en ligne");
+    client.user.setActivity("le serveur...", {
+      type: "WATCHING",
+    });
 
-		const channelS = client.channels.cache.get(process.env.PREDICTIONS)
-		channelS.messages.fetch()
-			.then(console.log("Loaded"))
-		const channelD = client.channels.cache.get(process.env.DEMANDES)
-		channelD.messages.fetch()
-			.then(console.log("Loaded"))
+    const channelS = client.channels.cache.get(process.env.PREDICTIONS);
+    channelS.messages.fetch().then(console.log("Loaded"));
+    const channelD = client.channels.cache.get(process.env.DEMANDES);
+    channelD.messages.fetch().then(console.log("Loaded"));
 
-		/* let isOnLive = false;
+    /* let isOnLive = false;
 		const getLive = new TwitchLive();
 		//const channel = client.channels.cache.get(process.env.TWITCH_LIVE);
 		setInterval(async function () {
@@ -106,10 +97,9 @@ ${'↓ LOGS ↓'.bgBlue}`,
 			}
 		}, 2 * 60 * 1000); */
 
-		//const getSchedule = new TwitchSchedule();
-		schedule.scheduleJob('0 0 * * *', async () => {
-
-			/* const programme = client.channels.cache.get(process.env.PROGRAMME);
+    //const getSchedule = new TwitchSchedule();
+    schedule.scheduleJob("0 0 * * *", async () => {
+      /* const programme = client.channels.cache.get(process.env.PROGRAMME);
 			programme.bulkDelete(1);
 
 			const prog = await getSchedule.Schedule()
@@ -155,160 +145,170 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					embeds: [embed],
 				});
 			} */
-			const rankchannel = client.channels.cache.get(process.env.RANK_CHANNEL);
-			rankchannel.bulkDelete(1);
-			let placement = 1;
+      const rankchannel = client.channels.cache.get(process.env.RANK_CHANNEL);
+      rankchannel.bulkDelete(1);
+      let placement = 1;
 
-			await mongo().then(async (mongooseclassement) => {
-				try {
-					const results = await rankPrediSchema.find({}, {
-						points: 1,
-						userName: 1,
-						_id: 0
-					}, {
-						limit: 20
-					}).sort({
-						"points": -1
-					});
+      await mongo().then(async (mongooseclassement) => {
+        try {
+          const results = await rankPrediSchema
+            .find(
+              {},
+              {
+                points: 1,
+                userName: 1,
+                _id: 0,
+              },
+              {
+                limit: 20,
+              }
+            )
+            .sort({
+              points: -1,
+            });
 
+          const rankEmbed = new MessageEmbed()
+            .setTitle("Classement des prédicteurs")
+            .setDescription(
+              "Voici le TOP 20 des meilleurs prédicteurs du serveur"
+            );
 
-					const rankEmbed = new MessageEmbed()
-						.setTitle("Classement des prédicteurs")
-						.setDescription("Voici le TOP 20 des meilleurs prédicteurs du serveur");
+          if (results.length === 0) {
+            rankEmbed.addField(
+              "Classement",
+              "Aucun utilisateur ne fait actuellement parti de ce classement"
+            );
+          } else {
+            const canvas = createCanvas(1920, 1080);
+            const ctx = canvas.getContext("2d");
 
-					if (results.length === 0) {
-						rankEmbed.addField("Classement", "Aucun utilisateur ne fait actuellement parti de ce classement")
-					} else {
-						const canvas = createCanvas(1920, 1080)
-						const ctx = canvas.getContext('2d')
+            const background = await loadImage(
+              path.join(__dirname, `../../Assets/Base/Classement.png`)
+            );
+            let x = 0;
+            let y = 0;
 
-						const background = await loadImage(
-							path.join(__dirname, `../../Assets/Base/Classement.png`)
-						)
-						let x = 0
-						let y = 0
+            let xp = 350;
+            let yp = 340;
 
-						let xp = 350
-						let yp = 340
+            let x1 = 890;
+            let y1 = 340;
 
-						let x1 = 890
-						let y1 = 340
+            ctx.drawImage(background, x, y);
+            results.forEach(function (elem) {
+              ctx.fillStyle = "#ffffff";
+              ctx.font = "30px DINNextLTPro-Black";
+              let name1 = `${elem.userName}`;
+              ctx.fillText(name1, xp, yp);
 
-						ctx.drawImage(background, x, y)
-						results.forEach(function (elem) {
-							ctx.fillStyle = '#ffffff'
-							ctx.font = '30px DINNextLTPro-Black'
-							let name1 = `${elem.userName}`
-							ctx.fillText(name1, xp, yp)
+              ctx.fillStyle = "#ffffff";
+              ctx.font = "30px DINNextLTPro-Black";
+              let points = `${elem.points}`;
+              ctx.fillText(points, x1, y1);
 
-							ctx.fillStyle = '#ffffff'
-							ctx.font = '30px DINNextLTPro-Black'
-							let points = `${elem.points}`
-							ctx.fillText(points, x1, y1)
+              yp = yp + 65;
+              y1 = y1 + 65;
 
-							yp = yp + 65;
-							y1 = y1 + 65;
+              if (placement === 10) {
+                xp = 1060;
+                yp = 340;
 
-							if (placement === 10) {
-								xp = 1060
-								yp = 340
+                x1 = 1590;
+                y1 = 340;
+              }
 
-								x1 = 1590
-								y1 = 340
-							}
+              placement = placement + 1;
+            });
+            const attachment = new MessageAttachment(canvas.toBuffer());
+            client.channels.cache.get(process.env.RANK_CHANNEL).send({
+              files: [attachment],
+            });
+          }
+        } catch {
+          console.log("Erreur event ready: ready(226)");
+          mongooseclassement.connection.close();
+        }
+      });
+    });
 
-							placement = placement + 1;
-						})
-						const attachment = new MessageAttachment(canvas.toBuffer())
-						client.channels.cache.get(process.env.RANK_CHANNEL).send({
-							files: [attachment]
-						});
-					}
-				} catch {
-					console.log("Erreur event ready: ready(226)")
-					mongooseclassement.connection.close();
-				}
-			});
-		})
+    // schedule.scheduleJob('*/30 17-23 * * *', async () => {
+    // 	client.channels.cache.get(process.env.MANAGE_CARD).send({
+    // 		content: `-------------------`,
+    // 	})
+    // 	const getUsers = new Cards()
 
-		schedule.scheduleJob('*/30 17-23 * * *', async () => {
-			client.channels.cache.get(process.env.MANAGE_CARD).send({
-				content: `-------------------`,
-			})
-			const getUsers = new Cards()
+    // 	const ArrId = []
 
-			const ArrId = []
+    // 	const card = await getUsers.getUserCard()
+    // 	if (card.data.length !== 0) {
+    // 		const data = card.data
 
-			const card = await getUsers.getUserCard()
-			if (card.data.length !== 0) {
-				const data = card.data
+    // 		data.forEach(async function (elem) {
+    // 			const userName = elem.user_name
 
-				data.forEach(async function (elem) {
-					const userName = elem.user_name
+    // 			await mongo().then(async (mongoosepredi) => {
+    // 				try {
+    // 					const results = await linkTwitchSchema.findOne({
+    // 						userName,
+    // 					});
+    // 					if (results === null) {
+    // 						client.channels.cache.get(process.env.MANAGE_CARD).send({
+    // 							content: `Le compte ${userName} n'est link à aucun compte`,
+    // 						})
+    // 					} else {
+    // 						const rewardId = elem.id;
+    // 						const userId = results.userId
 
-					await mongo().then(async (mongoosepredi) => {
-						try {
-							const results = await linkTwitchSchema.findOne({
-								userName,
-							});
-							if (results === null) {
-								client.channels.cache.get(process.env.MANAGE_CARD).send({
-									content: `Le compte ${userName} n'est link à aucun compte`,
-								})
-							} else {
-								const rewardId = elem.id;
-								const userId = results.userId
+    // 						const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
+    // 						let chosenFile = files[Math.floor(Math.random() * files.length)]
 
-								const files = fs.readdirSync(path.join(__dirname, `../../Assets/Cards/`))
-								let chosenFile = files[Math.floor(Math.random() * files.length)]
+    // 						await mongo().then(async (mongooselock) => {
+    // 							try {
+    // 								await cardCollectionSchema.findOneAndUpdate({
+    // 									userId,
+    // 								}, {
+    // 									userId,
+    // 									$push: {
+    // 										cards: [chosenFile],
+    // 									},
+    // 								}, {
+    // 									upsert: true,
+    // 								})
+    // 							} catch {
+    // 								console.log("Erreur event ready: ready(276)")
+    // 								mongooselock.connection.close()
+    // 							}
+    // 						})
+    // 						headers = {
+    // 							'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
+    // 							'Client-Id': process.env.CLIENT_ID_SOW,
+    // 							'Content-Type': 'application/json'
+    // 						}
 
-								await mongo().then(async (mongooselock) => {
-									try {
-										await cardCollectionSchema.findOneAndUpdate({
-											userId,
-										}, {
-											userId,
-											$push: {
-												cards: [chosenFile],
-											},
-										}, {
-											upsert: true,
-										})
-									} catch {
-										console.log("Erreur event ready: ready(276)")
-										mongooselock.connection.close()
-									}
-								})
-								headers = {
-									'Authorization': 'Bearer ' + process.env.TOKEN_SOW,
-									'Client-Id': process.env.CLIENT_ID_SOW,
-									'Content-Type': 'application/json'
-								}
+    // 						dataCards = {
+    // 							'status': 'FULFILLED'
+    // 						}
 
-								dataCards = {
-									'status': 'FULFILLED'
-								}
+    // 						axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, dataCards, {
+    // 							'headers': headers
+    // 						}).then(resp => {
+    // 							console.log(resp.data);
+    // 						}).catch(err => console.error(err))
+    // 						client.channels.cache.get(process.env.MANAGE_CARD).send({
+    // 							content: `Nouvelle récupération`,
+    // 							embeds: [new MessageEmbed().setTitle("Nouvelle carte récupérée").setDescription(`${userName} a récupérée la carte ${chosenFile}`)],
+    // 						})
+    // 					}
+    // 				} catch {
+    // 					console.log("Erreur event ready: ready(301)")
+    // 					mongoosepredi.connection.close();
+    // 				}
+    // 			});
+    // 		})
+    // 	}
+    // })
 
-								axios.patch(`https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions?id=${rewardId}&broadcaster_id=727375071&reward_id=dd830257-d211-41fa-9c41-89472c032a9f`, dataCards, {
-									'headers': headers
-								}).then(resp => {
-									console.log(resp.data);
-								}).catch(err => console.error(err))
-								client.channels.cache.get(process.env.MANAGE_CARD).send({
-									content: `Nouvelle récupération`,
-									embeds: [new MessageEmbed().setTitle("Nouvelle carte récupérée").setDescription(`${userName} a récupérée la carte ${chosenFile}`)],
-								})
-							}
-						} catch {
-							console.log("Erreur event ready: ready(301)")
-							mongoosepredi.connection.close();
-						}
-					});
-				})
-			}
-		})
-
-		schedule.scheduleJob('30 * * * *', async () => {
+    /* schedule.scheduleJob('30 * * * *', async () => {
 			mongo().then(async (mongooserank) => {
 				try {
 					const results = await playerSchema.find({
@@ -350,15 +350,15 @@ ${'↓ LOGS ↓'.bgBlue}`,
 					mongooserank.connection.close();
 				}
 			});
-		})
+		}) */
 
-		schedule.scheduleJob('0 0 * 12 *', async () => {
+    /* schedule.scheduleJob('0 0 * 12 *', async () => {
 			const embed = new MessageEmbed()
 			.setTitle("Calendrier de l'Avent : " + Moment(new Date()).format('DD-MM'))
-		})
+		}) */
 
-		//0 15 * * 1
-		/* schedule.scheduleJob('0 15 * * 1', async () => {
+    //0 15 * * 1
+    /* schedule.scheduleJob('0 15 * * 1', async () => {
 			const getSchedule = new TwitchSchedule()
 			const prog = await getSchedule.Schedule()
 
@@ -404,24 +404,26 @@ ${'↓ LOGS ↓'.bgBlue}`,
 
 		}) */
 
-		let environnement = ""
+    let environnement = "";
 
-		if(process.env.ENV == "PROD") {
-			environnement = process.env.MONGO_PATH
-		}
-		else {
-			environnement = process.env.MONGO_DEV
-		}
+    if (process.env.ENV == "PROD") {
+      environnement = process.env.MONGO_PATH;
+    } else {
+      environnement = process.env.MONGO_DEV;
+    }
 
-		mongoose.connect(environnement, {
-			useNewUrlParser: true,
-			useUnifiedTopology: true
-		}).then(() => {
-			console.log("✅ La base de donnée est connectée")
-		}).catch((err) => {
-			console.log(err)
-		});
+    mongoose
+      .connect(environnement, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      })
+      .then(() => {
+        console.log("✅ La base de donnée est connectée");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-		require("../../Systems/FilterSys")(client);
-	}
-}
+    require("../../Systems/FilterSys")(client);
+  },
+};
